@@ -1,4 +1,4 @@
-$db = SQLite3::Database.open 'word.db'
+$db = SQLite3::Database.open './word.db'
 
 class Word
 

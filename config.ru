@@ -1,3 +1,3 @@
-require './hello_world'
+require './app/api/version1'
 
-run API
+run SocialChallenges::API
