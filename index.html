@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<title>Test</title>
+</head>
+<body>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script>
+
+
+
+$( document ).ready(function() {
+  //console.log('xxx');
+
+
+var url = 'http://localhost:9292/hello?callback=jsonCallback';
+
+$.ajax({
+   type: 'GET',
+    url: url,
+    async: false,
+    jsonpCallback: 'jsonCallback',
+    contentType: "application/javascript",
+    dataType: 'jsonp',
+    success: function(json) {
+       //console.log(json);
+
+for (var i in json) {
+
+          console.log(json.hello);
+    }
+
+
+
+    },
+    error: function(e) {
+       console.log('error');
+    }
+});
+
+
+
+
+
+ });
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>
