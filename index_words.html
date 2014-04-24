@@ -16,7 +16,7 @@ $( document ).ready(function() {
 
 
 
-var url = 'http://localhost:9292/hello?callback=jsonCallback';
+var url = 'http://localhost:9292/words?callback=jsonCallback';
 
 $.ajax({
    type: 'GET',
@@ -33,9 +33,9 @@ $.ajax({
         var output="<ul>";
         
         for (var i in json) {
-            output+="<li>" + json.hello + "</li>";
+            output+="<li>" + json[i][1] + "</li>";
         }
-        output+="</ul>";
+            output+="</ul>";
         }
 
         $('#output').html(output);
