@@ -1,10 +1,14 @@
 require 'grape'
 require 'sqlite3'
 require 'json'
+require 'rack/contrib'
 
 require './words.rb'
 
 class API < Grape::API
+
+  use Rack::JSONP
+  format :json
 
   get :hello do
     {hello: "world"}
