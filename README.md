@@ -1,10 +1,12 @@
+#Setup
+
 bundle install
 
 rake db:create
 
 rackup
 
-curl -X POST "http://localhost:9292/add/bar"  -d ''
+curl -X POST "http://localhost:9292/add/foobar"  -d ''
 
 
 #Front end
