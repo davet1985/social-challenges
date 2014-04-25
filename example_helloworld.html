@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<title>Test</title>
+</head>
+<body>
+
+
+    <script src="assets/js/jquery/jquery-1.10.2.min.js"></script>
+
+    <script>
+
+
+
+$( document ).ready(function() {
+
+
+
+var url = 'http://localhost:9292/hello?callback=jsonCallback';
+
+$.ajax({
+   type: 'GET',
+    url: url,
+    async: false,
+    jsonpCallback: 'jsonCallback',
+    contentType: "application/javascript",
+    dataType: 'jsonp',
+    success: function(json) {
+
+
+    for (var i in json) {
+    
+        var output="<ul>";
+        
+        for (var i in json) {
+            output+="<li>" + json.hello + "</li>";
+        }
+        output+="</ul>";
+        }
+
+        $('#output').html(output);
+        },
+        
+        error: function(e) {
+           console.log('error');
+        }
+    });
+ });
+
+
+
+    </script>
+
+
+
+<div id="output"></div>
+
+
+</body>
+</html>
