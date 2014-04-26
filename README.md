@@ -21,12 +21,3 @@ Then browse to http://localhost:9393
 ##Perform a post
 
 curl -X POST "http://localhost:9292/add/foobar"  -d ''
-
-
-#Front end
-
-gem install bootstrap-sass
-
-npm install grunt-contrib-jasmine --save-dev
-
-grunt
