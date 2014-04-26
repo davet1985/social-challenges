@@ -30,3 +30,9 @@ gem install bootstrap-sass
 npm install grunt-contrib-jasmine --save-dev
 
 grunt
+
+npm install Express
+
+node server.js 8000
+
+http://localhost:8000/

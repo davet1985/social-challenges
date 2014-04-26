@@ -22,13 +22,34 @@ module.exports = function(grunt) {
 
         },
 
+        concat: {
+            dist: {
+                src: [
+                    //angular
+                    'assets/js/socialChallengeApp.js', 
+                    'assets/js/controllers/ratingCtrl.js', 
+                    'assets/js/services/ratingService.js'
+                ],
+                dest: 'public/js/angular.js'
+            }
+        },
+
         jshint: {
             options: grunt.file.readJSON('.jshintrc'),
             javascripts: {
                 src: [
                     'assets/js/custom.js'
                 ]
-            }
+            },
+            beforeconcat: [
+                //angular
+                'assets/js/socialChallengeApp.js', 
+                'assets/js/controllers/ratingCtrl.js', 
+                'assets/js/services/ratingService.js'
+                ],
+            afterconcat: [
+                'public/js/angular.js'
+                ]
         },
 
         uglify: {
@@ -36,7 +57,11 @@ module.exports = function(grunt) {
             app: {
                 files: {
                     'public/js/app.js' : [
+                        //libs
+                        'assets/js/angularjs/angular.min.js',
+                        'assets/js/angularjs/angular-route.min.js',
                         'assets/js/jquery/jquery-1.10.2.min.js',
+                        //bootstrap
                         'assets/js/bootstrap/affix.js',
                         'assets/js/bootstrap/alert.js',
                         'assets/js/bootstrap/button.js',
@@ -49,6 +74,7 @@ module.exports = function(grunt) {
                         'assets/js/bootstrap/modal.js',
                         'assets/js/bootstrap/tooltip.js',
                         'assets/js/bootstrap/popover.js',
+                        //custom
                         'assets/js/custom.js'
                     ]
                 }
@@ -89,6 +115,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     
     /* the default task can be run just by typing 'grunt' on the command line */
     grunt.registerTask('default', ['css-prod']);
@@ -96,8 +123,9 @@ module.exports = function(grunt) {
     grunt.registerTask(
         'css-prod',[
             'compass:production',
+            'concat',
             'jshint', 
-            'uglify:app', 
+            'uglify:app',
             'copy:jsfiles',
             'jasmine'
             ]

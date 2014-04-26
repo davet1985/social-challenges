@@ -1,6 +1,8 @@
 {
     "predef": [
-        "HOVV",
+        "angular",
+        "console",
+        "socialChallengeApp",
         "_",
         "jQuery",
         "$",
@@ -39,7 +41,7 @@
     "strict": false,
     "trailing": true,
     "undef": true,
-    "unused": "vars",
+    "unused": "true",
     "asi": false,
     "boss": true,
     "debug": false,
