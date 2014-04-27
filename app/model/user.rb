@@ -30,8 +30,11 @@ module GrapeWarden
       include BCrypt
 
       def get(id)
-        row = $db.get_first_row("select * from session where userid = ?", id)
-        User.new(row[1], row[2])
+        row = $db.get_first_row("select * from session where userid = ? and expires > datetime('now')", id)
+        if row != nil
+          $db.execute( "update session set expires= datetime('now', '+30 minutes')  where id = ?",  row[0])
+          User.new(row[1], row[2])
+        end
       end
       
       def authenticate(u, p)
