@@ -12,6 +12,16 @@ module UserDB
         );
       SQL
       )
+      database.execute(
+        <<-SQL
+        CREATE TABLE session (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          userid INTEGER NOT NULL,
+          username VARCHAR(50) NOT NULL,
+          expires DATETIME NOT NULL
+          );
+        SQL
+        )
   end
   
 end

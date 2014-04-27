@@ -30,12 +30,20 @@ module GrapeWarden
       include BCrypt
 
       def get(id)
-        row = $db.get_first_row("select * from users where id = ?", id)
-        User.new(row[0], row[1])
+        row = $db.get_first_row("select * from session where userid = ?", id)
+        User.new(row[1], row[2])
       end
       
       def authenticate(u, p)
         row = $db.get_first_row("select * from users where username = ?", u)
+        
+        if row != nil
+          insert =  <<-SQL
+          INSERT INTO session
+          values (NULL, ? , ? , datetime('now', '+30 minutes'))
+          SQL
+          $db.execute(insert, row[0], u)
+        end
         matchingPass = false
         matchingPass = Password.new(row[2]) == p if row != nil
         User.new(row[0], u) if row != nil && matchingPass
