@@ -27,8 +27,8 @@ module.exports = function(grunt) {
                 src: [
                     //angular
                     'assets/js/socialChallengeApp.js', 
-                    'assets/js/controllers/ratingCtrl.js', 
-                    'assets/js/services/ratingService.js'
+                    'assets/js/controllers/*.js', 
+                    'assets/js/services/*.js'
                 ],
                 dest: 'public/js/angular.js'
             }
@@ -44,8 +44,8 @@ module.exports = function(grunt) {
             beforeconcat: [
                 //angular
                 'assets/js/socialChallengeApp.js', 
-                'assets/js/controllers/ratingCtrl.js', 
-                'assets/js/services/ratingService.js'
+                'assets/js/controllers/*.js', 
+                'assets/js/services/*.js'
                 ],
             afterconcat: [
                 'public/js/angular.js'
@@ -62,18 +62,7 @@ module.exports = function(grunt) {
                         'assets/js/angularjs/angular-route.min.js',
                         'assets/js/jquery/jquery-1.10.2.min.js',
                         //bootstrap
-                        'assets/js/bootstrap/affix.js',
-                        'assets/js/bootstrap/alert.js',
-                        'assets/js/bootstrap/button.js',
-                        'assets/js/bootstrap/carousel.js',
-                        'assets/js/bootstrap/collapse.js',
-                        'assets/js/bootstrap/dropdown.js',
-                        'assets/js/bootstrap/tab.js',
-                        'assets/js/bootstrap/transition.js',
-                        'assets/js/bootstrap/scrollspy.js',
-                        'assets/js/bootstrap/modal.js',
-                        'assets/js/bootstrap/tooltip.js',
-                        'assets/js/bootstrap/popover.js',
+                        //'assets/js/bootstrap.js',
                         //custom
                         'assets/js/custom.js'
                     ]

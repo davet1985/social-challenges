@@ -1,7 +1,58 @@
 
-    <div  ng-repeat="key in ratings">
-        {{key.title}}
-      <br />
-        <img ng-src="{{key.image}}">
 
-    </div>
+  <div class="col-md-3" ng-repeat="key in ratings" ng-show="$index=='0'">
+      <img ng-src="{{key.image}}" class="img-thumbnail img-responsive">
+      <h1>Score: {{key.rating}}</h1>
+  </div>
+
+   <div class="col-md-6" ng-repeat="key in ratings" ng-show="$index=='1'">
+      <img ng-src="{{key.image}}" class="img-thumbnail img-responsive">
+            <div ng-controller="RatingDemoCtrl" class="rating">
+      <div style="text-align:center">
+    <h3>{{key.title}}</h3>
+      <rating value="x" max="10" state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'"></rating> 
+      <h3>{{x}}</h3>
+      </div>
+    </div> 
+      <div class="caption">
+    
+        <p> {{key.description}}</p>
+      </div> 
+  </div>
+
+   <div class="col-md-3" ng-repeat="key in ratings" ng-show="$index=='2'">
+      <img ng-src="{{key.image}}" class="img-thumbnail img-responsive">
+  </div>
+
+
+
+
+<!-- Carousel example
+<div class="row" id="myCarousel">
+  <div class="col-md-12">
+  <div ng-controller="CarouselDemoCtrl">
+    <carousel finish="onFinish">
+      <slide ng-repeat="key in ratings" active="key.active">
+        <img ng-src="{{key.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+        <h3>{{key.title}}</h3>
+        <p>{{key.description}}</p>
+        </div>
+      </slide>
+    </carousel>
+         <button class="btn btn-mini"  ng-click="count = count + 1" ng-init="count=0">select</button>
+ {{count}}
+  </div>
+ </div>
+</div>
+
+<div style="clearfix"></div>
+
+<div class="row">
+  <div ng-controller="RatingDemoCtrl" class="rating">
+      <div style="text-align:center"><rating value="x" max="10" state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'"></rating> 
+      <h3>{{x}}</h3>
+  </div>
+</div>
+<div style="clearfix"></div>
+-->

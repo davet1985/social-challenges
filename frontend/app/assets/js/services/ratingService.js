@@ -15,4 +15,6 @@ socialChallengeApp.factory('ratingService', function($http){
         ratings: _ratingDataArr,
         getRatingData: _getRatingData
     };
+
+
 });

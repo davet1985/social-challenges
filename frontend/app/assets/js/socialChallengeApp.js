@@ -1,6 +1,6 @@
 /* jshint -W079 */
 
-var socialChallengeApp = angular.module('socialChallengeApp', ['ngRoute']);
+var socialChallengeApp = angular.module('socialChallengeApp', ['ngRoute','ui.bootstrap']);
 
 //Do configuration and routing here
 socialChallengeApp.config(function($routeProvider){
