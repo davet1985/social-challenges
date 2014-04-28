@@ -20,9 +20,25 @@ module GrapeWarden
     def self.save(username, password)
       insert =  <<-SQL
         INSERT INTO users
-        values (NULL, ?, ?)
+        values (NULL, ?, ?, "inactive")
         SQL
-        $db.execute(insert, username, Password.create(password))
+      $db.execute(insert, username, Password.create(password))
+      id = $db.last_insert_row_id()
+        insertToken =  <<-SQL
+          INSERT INTO user_token
+          values (NULL, ?, datetime('now', '+30 minutes'), ?)
+          SQL
+      $db.execute(insertToken, id, SecureRandom.uuid)  
+    end
+    
+    def self.activate(token)
+      row = $db.get_first_row("select * from user_token where token = ? and expires > datetime('now')", token)
+      update =  <<-SQL
+        update users
+        set status = "active"  
+        where id = ?
+        SQL
+        $db.execute(update, row[1])
     end
 
     class << self
@@ -38,17 +54,19 @@ module GrapeWarden
       end
       
       def authenticate(u, p)
-        row = $db.get_first_row("select * from users where username = ?", u)
+        row = $db.get_first_row("select * from users where username = ? and status='active'", u)
         
-        if row != nil
+        matchingPass = false
+        matchingPass = Password.new(row[2]) == p if row != nil
+        
+        if matchingPass == true
           insert =  <<-SQL
           INSERT INTO session
           values (NULL, ? , ? , datetime('now', '+30 minutes'))
           SQL
           $db.execute(insert, row[0], u)
         end
-        matchingPass = false
-        matchingPass = Password.new(row[2]) == p if row != nil
+
         User.new(row[0], u) if row != nil && matchingPass
       end
 

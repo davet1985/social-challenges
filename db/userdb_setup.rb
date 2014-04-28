@@ -8,7 +8,8 @@ module UserDB
       CREATE TABLE users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username VARCHAR(50) NOT NULL,
-        password VARCHAR(255) NOT NULL
+        password VARCHAR(255) NOT NULL,
+        status VARCHAR(50) NOT NULL
         );
       SQL
       )
@@ -22,6 +23,16 @@ module UserDB
           );
         SQL
         )
+        database.execute(
+          <<-SQL
+          CREATE TABLE user_token (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            userid INTEGER NOT NULL,
+            expires DATETIME NOT NULL,
+            token VARCHAR(255) NOT NULL
+            );
+          SQL
+          )
   end
   
 end
