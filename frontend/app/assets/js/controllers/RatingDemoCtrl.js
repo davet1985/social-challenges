@@ -1,27 +1,17 @@
-/* jshint -W117 */
+/* jshint -W117 *///ignore alert error 
 
 socialChallengeApp.controller('RatingDemoCtrl', function ($scope){
 
-	var RatingDemoCtrl = function ($scope) {
-		$scope.rate = 7;
-		$scope.max = 10;
-		$scope.isReadonly = false;
+	$scope.max = 10;
 
-		$scope.hoveringOver = function(value) {
-			$scope.overStar = value;
-			$scope.percent = 100 * (value / $scope.max);
-		};
-
-		scope.ratingStates = [
-			{stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
-			{stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
-			{stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle'},
-			{stateOn: 'glyphicon-heart'},
-			{stateOff: 'glyphicon-off'}
-		];
+	$scope.hoveringOver = function(value) {
+		$scope.overStar = value;
 	};
 
-
+	// do something with value
+	$scope.getValue = function (value) {
+		alert('you selected '+value);
+	};
 });
 
 
