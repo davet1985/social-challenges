@@ -1,27 +1,39 @@
-<div class="col-md-3" ng-repeat="key in ratings" ng-show="$index=='0'">
-  <img ng-src="{{key.image}}" class="img-thumbnail img-responsive">
-  <h1>Score: {{key.rating}}</h1>
-</div>
-
-<div class="col-md-6" ng-repeat="key in ratings" ng-show="$index=='1'">
+<div class="col-md-3" ng-repeat="key in ratings">
   <div class="panel panel-default">
       <div class="panel-body">
-          <img ng-src="{{key.image}}" class="img-thumbnail img-responsive">
+        <img ng-src="{{key.previous.image}}" class="img-thumbnail img-responsive">
+        <h3>Rating: {{key.previous.rating}}</h3>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6" ng-repeat="key in ratings">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <img ng-src="{{key.current.image}}" class="img-thumbnail img-responsive">
           <div ng-controller="RatingDemoCtrl" class="rating">
             <div style="text-align:center">
-              <h3>{{key.title}}</h3>
+              <h3>{{key.current.title}}</h3>
               <rating value="ratingValue" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" ng-click ="getValue(ratingValue)"></rating> 
               <br />
               <div class="label label-primary ratingNum clearfix">{{overStar || "0"}}</div>
               </div>
             </div> 
             <div class="caption">  
-              <p> {{key.description}}</p>
+              <p>{{key.current.description}}</p>
+              <ul>
+                <li ng-repeat="(key, value) in key.current.tags"><a href="/{{value}}">{{value}}</a></li>
+              </ul>  
             </div> 
-        </div>
+    </div>
   </div>
 </div>
 
-<div class="col-md-3" ng-repeat="key in ratings" ng-show="$index=='2'">
-  <img ng-src="{{key.image}}" class="img-thumbnail img-responsive">
+<div class="col-md-3" ng-repeat="key in ratings">
+  <div class="panel panel-default">
+      <div class="panel-body">
+        <img ng-src="{{key.next.image}}" class="img-thumbnail img-responsive">
+        <h3>Next...</h3>
+    </div>
+  </div>
 </div>
