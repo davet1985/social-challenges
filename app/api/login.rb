@@ -29,6 +29,10 @@ module SocialChallenges
       GrapeWarden::User.save(params[:username], params[:password])
     end
     
+    post 'activate/:token' do
+      GrapeWarden::User.activate(params[:token])
+    end
+    
     post 'login' do
           env['warden'].authenticate(:password)
           error! "Invalid username or password", 401 unless env['warden'].user
