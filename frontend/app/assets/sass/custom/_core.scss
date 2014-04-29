@@ -1,6 +1,10 @@
 //section
 html, body {
   height: 100%;
+  padding-top: 0 !important;
+}
+.navbar{
+	border-radius: 0px;
 }
 
 #wrap {
@@ -12,10 +16,6 @@ html, body {
   padding-bottom:300px; /* this needs to be bigger than footer height*/
 }
 
-section.main{
-	margin-top: 30px;
-}
-
 .nav, .pagination, .carousel, .panel-title a { 
 	cursor: pointer; 
 	}
@@ -23,17 +23,3 @@ section.main{
     float: none;
     margin: 0 auto;
 }
-//tags
-.tags{
-	list-style: none; 
-	margin: 0;
-	padding: 0;
-	li{
-		display: inline;
-		margin: 0 4px 0 0;
-		a{
-			color: #fff;
-		}
-	}
-}
-

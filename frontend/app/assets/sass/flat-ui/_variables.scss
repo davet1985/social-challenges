@@ -41,14 +41,19 @@ $silver:                    #bdc3c7 !default;
 $concrete:                  #95a5a6 !default;
 $asbestos:                  #7f8c8d !default;
 
+//default font color
+$dark-grey: 				#333 !default;
+
 // Grays
 $gray:                      $concrete !default;
 $gray-light:                $silver !default;
 $inverse:                   white !default;
 
 // Brand colors
-$brand-primary:             $wet-asphalt !default;
-$brand-secondary:           $turquoise !default;
+$brand-primary: 			$alizarin !default;
+$brand-secondary:           $pomegranate !default;
+//$brand-primary:             $wet-asphalt !default;
+//$brand-secondary:           $turquoise !default;
 $brand-success:             $emerald !default;
 $brand-warning:             $sun-flower !default;
 $brand-danger:              $alizarin !default;
@@ -103,7 +108,8 @@ $line-height-computed:      floor($font-size-base * $line-height-base) !default;
 $headings-font-family:      inherit !default;
 $headings-font-weight:      700 !default;
 $headings-line-height:      1.1 !default;
-$headings-color:            inherit !default;
+//$headings-color:            inherit !default;
+$headings-color:            $dark-grey !default;
 
 
 //== Iconography

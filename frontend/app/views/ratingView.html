@@ -1,40 +1,74 @@
-<div class="col-md-3" ng-repeat="key in ratings">
-  <div class="panel panel-default">
-      <div class="panel-body">
-        <img ng-src="{{key.previous.image}}" class="img-rounded img-responsive">
-        <h3>Rating: {{key.previous.rating}}</h3>
+<div class="col-sm-3" ng-repeat="key in ratings">
+  <section class="prev">
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="image-container">
+          <img ng-src="{{key.previous.image}}" class="img-rounded img-responsive">
+          <h2><span>Rating: {{key.previous.rating}}</span></h2>
+          </div>
+      </div>
     </div>
-  </div>
+  </section>
+  <section class="categories">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3>More</h3>
+            <ul class="tags">
+              <li><a href="#">selfies</a></li>
+              <li><a href="#">puppies</a></li>
+              <li><a href="#">food</a></li>
+              <li><a href="#">games</a></li>
+              <li><a href="#">sports</a></li>
+              <li><a href="#">drinking</a></li>
+              <li><a href="#">dares</a></li>
+              <li><a href="#">funny</a></li>
+            </ul>  
+      </div>
+    </div>
+  </section>
 </div>
 
-<div class="col-md-6" ng-repeat="key in ratings">
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <img ng-src="{{key.current.image}}" class="img-rounded img-responsive">
-          <div ng-controller="RatingDemoCtrl" class="rating">
-            <div style="text-align:center">
-              <h3>{{key.current.title}}</h3>
-              <rating value="ratingValue" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" ng-click ="getValue(ratingValue)"></rating> 
-              <br />
-              <div class="label label-primary ratingNum clearfix">{{overStar || "0"}}</div>
-              </div>
-            </div> 
-            <div class="caption">  
-              <p>{{key.current.description}}</p>
-              <p>Tags:</p>
-              <ul class="tags">
-                <li ng-repeat="(key, value) in key.current.tags"><span class="label label-primary"><a href="/{{value}}">{{value}}</a></span></li>
-              </ul>  
-            </div> 
+<div class="col-sm-6" ng-repeat="key in ratings">
+  <section class="current">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <img ng-src="{{key.current.image}}" class="img-rounded img-responsive">
+            <div ng-controller="RatingDemoCtrl" class="rating">
+              <div style="text-align:center">
+                <h3>{{key.current.title}}</h3>
+                <rating value="ratingValue" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" ng-click ="getValue(ratingValue)"></rating> 
+                <!-- <br />
+                <div class="label label-primary ratingNum clearfix">{{overStar || "0"}}</div> -->
+                </div>
+              </div> 
+              <div class="caption">
+                    <img src="public/img/profile.jpeg" class="img-rounded profileThumb" />
+    
+                <p>{{key.current.description}}</p>
+
+                <div class="clearfix"></div>
+                <ul class="tags">
+                  <li ng-repeat="(key, value) in key.current.tags"><span class="label label-primary"><a href="/{{value}}">{{value}}</a></span></li>
+                </ul>    
+              </div> 
+      </div>
     </div>
-  </div>
+    <div class="buttons pull-left">
+      <button class="btn btn-lg btn-info"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</button>
+      <button class="btn btn-lg btn-info"><span class="fa fa-heart"></span>&nbsp;Top 20</button>
+    </div>
+  </section>
 </div>
 
-<div class="col-md-3" ng-repeat="key in ratings">
-  <div class="panel panel-default">
-      <div class="panel-body">
-        <img ng-src="{{key.next.image}}" class="img-rounded img-responsive">
-        <h3>Next...</h3>
+<div class="col-sm-3" ng-repeat="key in ratings">
+  <section class="next">
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="image-container">
+            <img ng-src="{{key.next.image}}" class="img-rounded img-responsive">
+            <h2 class="next"><span>Next...</span></h2>
+          </div>
+      </div>
     </div>
-  </div>
+  </section>
 </div>

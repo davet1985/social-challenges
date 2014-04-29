@@ -2,25 +2,25 @@
    {
     "current": {
         "id": "2",
-        "title": "Name of image is cats",
+        "title": "Fluffy twins",
         "type": "image",
         "dateAdded": "02/03/2014",
         "user": "Jo_Bloggs69",
         "url": "#",
-        "image": "http://www.doggyfashions.co.uk/catimages/cats.jpg",
-        "description": "Some description goes here",
-        "tags": ["cat", "cute", "ginger"]
+        "image": "public/img/cat1.jpg",
+        "description": "The domestic cat (Felis catus or Felis silvestris catus) is a small, usually furry, domesticated, and carnivorous mammal.",
+        "tags": ["cutest", "cats", "ragdoll", "kittens"]
     },
     "previous": {
         "id": "1",
         "type": "image",
         "rating": 4,
-        "image": "http://walltoday.com/download?filename=2014/01/Husky-Puppy-Wallpaper.jpg"
+        "image": "public/img/cat2.jpg"
     },
     "next": {
         "id": "3",
         "type": "image",
-        "image": "http://2.bp.blogspot.com/-iHep-NWcquA/T9xC0P7Xh1I/AAAAAAAACVo/sORgcFXA3pQ/s1600/Rabbit+Pictures.jpg"
+        "image": "public/img/cat3.jpg"
         }
     }
 ]
