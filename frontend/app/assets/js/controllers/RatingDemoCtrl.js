@@ -2,7 +2,7 @@
 
 socialChallengeApp.controller('RatingDemoCtrl', function ($scope){
 
-	$scope.max = 10;
+	$scope.max = 5;
 
 	$scope.hoveringOver = function(value) {
 		$scope.overStar = value;

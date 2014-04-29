@@ -62,7 +62,12 @@ module.exports = function(grunt) {
                         'assets/js/angularjs/angular-route.min.js',
                         'assets/js/jquery/jquery-1.10.2.min.js',
                         //bootstrap
-                        //'assets/js/bootstrap.js',
+                        'assets/js/bootstrap.js',
+                        //flat-ui
+                        'assets/js/flat-ui/application.js',
+                        'assets/js/flat-ui/flatui-checkbox.js',
+                        'assets/js/flat-ui/flatui-radio.js',
+                        'assets/js/flat-ui/jquery-ui-1.10.3.custom.min.js',
                         //custom
                         'assets/js/custom.js'
                     ]
