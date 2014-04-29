@@ -17,7 +17,13 @@
 
 </head>
 <body>
-    <div class="container" ng-view=""></div>
+
+    <header ng-include src="'views/headerView.html'" class="mainHeader"></header>
+    <div id="wrap">
+        <section class="container main" ng-view="" id="main"></section>
+    </div>
+    <footer ng-include src="'views/footerView.html'" class="footer"></footer>
+    
     <script src="public/js/app.js"></script> 
     <script src="public/js/ui-bootstrap.js"></script>  
     <script src="public/js/angular.js"></script>
