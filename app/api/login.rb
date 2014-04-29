@@ -3,6 +3,7 @@ require 'sqlite3'
 require 'json'
 require 'rack/contrib'
 require 'warden'
+require 'password_strength'
 
 require_relative './../model/user'
 require_relative './../model/warden'
@@ -26,7 +27,26 @@ module SocialChallenges
     end
     
     post 'create' do
-      GrapeWarden::User.save(params[:username], params[:password])
+      strength = PasswordStrength.test(params[:username], params[:password])
+      if strength.strong?
+        GrapeWarden::User.save(params[:username], params[:password], params[:email])
+      else
+        { "status" => "password not strong enough" }
+      end
+    end
+    
+    post 'change-password' do
+      env['warden'].authenticate
+      error! "Unauthorized", 401 unless env['warden'].user
+      
+      strength = PasswordStrength.test(env['warden'].user.name, params[:password])
+      if strength.strong?
+        if params[:password] == params[:confirmPassword]
+          GrapeWarden::User.changePassword(env['warden'].user.id, params[:password])
+        end
+      else
+        { "status" => "password not strong enough" }
+      end
     end
     
     post 'activate/:token' do

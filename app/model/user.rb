@@ -1,4 +1,5 @@
 require 'bcrypt'
+require 'net/smtp'
 
 $db = SQLite3::Database.open './user.db'
 
@@ -17,28 +18,52 @@ module GrapeWarden
       @name = name
     end
     
-    def self.save(username, password)
+    def self.save(username, password, email)
       insert =  <<-SQL
         INSERT INTO users
-        values (NULL, ?, ?, "inactive")
+        values (NULL, ?, ?, ?, "inactive")
         SQL
-      $db.execute(insert, username, Password.create(password))
+      $db.execute(insert, username, Password.create(password),email)
       id = $db.last_insert_row_id()
+      token = SecureRandom.uuid
         insertToken =  <<-SQL
           INSERT INTO user_token
           values (NULL, ?, datetime('now', '+30 minutes'), ?)
           SQL
-      $db.execute(insertToken, id, SecureRandom.uuid)  
+      $db.execute(insertToken, id, token)  
+      message = <<-MESSAGE_END
+      From: Social Challanges <me@fromdomain.com>
+      To: A Test User <#{email}>
+      Subject: SMTP e-mail test
+
+      Please use this token to login #{token}.
+      MESSAGE_END
+
+      Net::SMTP.start('localhost') do |smtp|
+        smtp.send_message message, 'me@fromdomain.com', 
+                                   'test@todomain.com'
+      end
     end
     
     def self.activate(token)
       row = $db.get_first_row("select * from user_token where token = ? and expires > datetime('now')", token)
+      if row != nil
       update =  <<-SQL
         update users
         set status = "active"  
         where id = ?
         SQL
         $db.execute(update, row[1])
+      end
+    end
+    
+    def self.changePassword(userid, password)
+      update =  <<-SQL
+        update users
+        set password = ? 
+        where id = ?
+        SQL
+        $db.execute(update, Password.create(password), userid)
     end
 
     class << self

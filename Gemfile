@@ -7,3 +7,4 @@ gem 'bootstrap-sass', '~> 3.1.1.1'
 gem 'compass', '~> 0.12.6'
 gem 'warden'
 gem 'bcrypt'
+gem "password_strength"
