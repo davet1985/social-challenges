@@ -1,4 +1,4 @@
-word.db
+*.db
 .DS_Store
 app/.DS_Store
 .sass-cache

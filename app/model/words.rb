@@ -1,15 +1,15 @@
-$db = SQLite3::Database.open './word.db'
+$wordsdb = SQLite3::Database.open 'word.db'
 
 class Word
 
   attr_reader :text
 
-  def initialize(word)
-    @text = word
+  def initialize(text)
+    @text = text
   end
 
   def self.all
-    sorted = $db.execute("select * from words")
+    sorted = $wordsdb.execute("select * from words")
   end
 
   def save
@@ -17,7 +17,7 @@ class Word
       INSERT INTO words
       values (NULL, ?)
       SQL
-      $db.execute(insert, self.text)
+      $wordsdb.execute(insert, self.text)
   end
 
 end
