@@ -1,4 +1,4 @@
-$db = SQLite3::Database.new 'word.db'
+$worddb = SQLite3::Database.new 'word.db'
 
 module WordDB
   
