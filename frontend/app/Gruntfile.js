@@ -82,7 +82,8 @@ module.exports = function(grunt) {
                         flatten: true, 
                         src: [
                         'assets/js/html5shiv.js', 
-                        'assets/js/respond.min.js'
+                        'assets/js/respond.min.js',
+                        'assets/js/flat-ui/ui-bootstrap.js'
                         ], 
                         dest: 'public/js/', 
                         filter: 'isFile'
