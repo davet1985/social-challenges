@@ -4,4 +4,3 @@ app/.DS_Store
 .sass-cache
 Gemfile.lock
 node_modules
-public
