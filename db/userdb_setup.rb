@@ -10,7 +10,8 @@ module UserDB
         username VARCHAR(50) NOT NULL,
         password VARCHAR(255) NOT NULL,
         email VARCHAR(50) NOT NULL,
-        status VARCHAR(50) NOT NULL
+        status VARCHAR(50) NOT NULL,
+        loginAttempts INTEGER
         );
       SQL
       )

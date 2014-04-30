@@ -21,7 +21,7 @@ module GrapeWarden
     def self.save(username, password, email)
       insert =  <<-SQL
         INSERT INTO users
-        values (NULL, ?, ?, ?, "inactive")
+        values (NULL, ?, ?, ?, "inactive", 0)
         SQL
       $db.execute(insert, username, Password.create(password),email)
       id = $db.last_insert_row_id()
@@ -79,7 +79,7 @@ module GrapeWarden
       end
       
       def authenticate(u, p)
-        row = $db.get_first_row("select * from users where username = ? and status='active'", u)
+        row = $db.get_first_row("select * from users where username = ? and status='active' and loginAttempts < 5", u)
         
         matchingPass = false
         matchingPass = Password.new(row[2]) == p if row != nil
@@ -90,6 +90,19 @@ module GrapeWarden
           values (NULL, ? , ? , datetime('now', '+30 minutes'))
           SQL
           $db.execute(insert, row[0], u)
+          update =  <<-SQL
+            update users
+            set loginAttempts = 0
+            where id = ?
+            SQL
+            $db.execute(update, row[0])  
+        elsif row != nil
+          update =  <<-SQL
+            update users
+            set loginAttempts = loginAttempts + 1 
+            where id = ?
+            SQL
+            $db.execute(update, row[0])
         end
 
         User.new(row[0], u) if row != nil && matchingPass
