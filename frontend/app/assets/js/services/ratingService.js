@@ -1,4 +1,4 @@
-socialChallengeApp.factory('ratingService', function($http){
+app.factory('ratingService', function($http){
     var _ratingDataArr = [];
 
     var _getRatingData = function(){

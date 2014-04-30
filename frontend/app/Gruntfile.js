@@ -26,7 +26,7 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     //angular
-                    'assets/js/socialChallengeApp.js', 
+                    'assets/js/app.js', 
                     'assets/js/controllers/*.js', 
                     'assets/js/services/*.js'
                 ],
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
             },
             beforeconcat: [
                 //angular
-                'assets/js/socialChallengeApp.js', 
+                'assets/js/app.js', 
                 'assets/js/controllers/*.js', 
                 'assets/js/services/*.js'
                 ],

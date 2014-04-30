@@ -1,6 +1,4 @@
-/* jshint -W117 *///ignore alert error 
-
-socialChallengeApp.controller('RatingDemoCtrl', function ($scope){
+app.controller('RatingDemoCtrl', function ($scope){
 
 	$scope.max = 5;
 
