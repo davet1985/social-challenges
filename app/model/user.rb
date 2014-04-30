@@ -45,6 +45,39 @@ module GrapeWarden
       end
     end
     
+    def self.sendForgotPassword(email)
+      row = $db.get_first_row("select * from users where email = ? and status='active' and loginAttempts < 5", email)
+      if row != nil
+        token = SecureRandom.uuid
+          insertToken =  <<-SQL
+            INSERT INTO user_token
+            values (NULL, ?, datetime('now', '+30 minutes'), ?)
+            SQL
+        $db.execute(insertToken, row[0], token)  
+        message = <<-MESSAGE_END
+        From: Social Challanges <me@fromdomain.com>
+        To: A Test User <#{email}>
+        Subject: SMTP e-mail test
+
+        Please use this token to change your password #{token}.
+        MESSAGE_END
+
+        Net::SMTP.start('localhost') do |smtp|
+          smtp.send_message message, 'me@fromdomain.com', 
+                                     'test@todomain.com'
+        end
+      end
+    end
+    
+    def self.getIdFromToken(token)
+      row = $db.get_first_row("select * from user_token where token = ? and expires > datetime('now')", token)
+      id = -1
+      if row != nil
+        id = row[1]
+      end
+      id
+    end
+    
     def self.activate(token)
       row = $db.get_first_row("select * from user_token where token = ? and expires > datetime('now')", token)
       if row != nil
