@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function(grunt) {
 
     var path = require('path');
@@ -30,17 +31,12 @@ module.exports = function(grunt) {
                     'assets/js/controllers/*.js', 
                     'assets/js/services/*.js'
                 ],
-                dest: 'public/js/angular.js'
+                dest: 'public/js/app.js'
             }
         },
 
         jshint: {
             options: grunt.file.readJSON('.jshintrc'),
-            javascripts: {
-                src: [
-                    'assets/js/custom.js'
-                ]
-            },
             beforeconcat: [
                 //angular
                 'assets/js/app.js', 
@@ -48,28 +44,31 @@ module.exports = function(grunt) {
                 'assets/js/services/*.js'
                 ],
             afterconcat: [
-                'public/js/angular.js'
+                'public/js/app.js'
                 ]
         },
 
         uglify: {
-
-            app: {
+            core: {
                 files: {
-                    'public/js/app.js' : [
+                    'public/js/core.js' : [
                         //libs
-                        'assets/js/angularjs/angular.min.js',
-                        'assets/js/angularjs/angular-route.min.js',
+                        'assets/js/lib/angular.min.js',
+                        'assets/js/lib/angular-route.min.js',
                         'assets/js/jquery/jquery-1.10.2.min.js',
-                        //bootstrap
-                        'assets/js/bootstrap.js',
-                        //flat-ui
-                        'assets/js/flat-ui/application.js',
+                        //flat-ui js
+                        'assets/js/flat-ui/ui-bootstrap.js',
+                        //'assets/js/flat-ui/application.js',
                         'assets/js/flat-ui/flatui-checkbox.js',
                         'assets/js/flat-ui/flatui-radio.js',
-                        'assets/js/flat-ui/jquery-ui-1.10.3.custom.min.js',
-                        //custom
-                        'assets/js/custom.js'
+                        'assets/js/flat-ui/jquery-ui-1.10.3.custom.min.js'
+                    ]
+                }
+            },
+             app: {
+                files: {
+                    'public/js/app.js' : [
+                        'public/js/app.js'
                     ]
                 }
             }
@@ -81,9 +80,8 @@ module.exports = function(grunt) {
                         expand: true, 
                         flatten: true, 
                         src: [
-                        'assets/js/html5shiv.js', 
-                        'assets/js/respond.min.js',
-                        'assets/js/flat-ui/ui-bootstrap.js'
+                        'assets/js/shim/html5shiv.js', 
+                        'assets/js/shim/respond.min.js'
                         ], 
                         dest: 'public/js/', 
                         filter: 'isFile'
@@ -134,7 +132,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-concat');
     
-    /* the default task can be run just by typing 'grunt' on the command line */
     grunt.registerTask('default', ['css-prod']);
 
     grunt.registerTask(
@@ -142,10 +139,8 @@ module.exports = function(grunt) {
             'compass:production',
             'concat',
             'jshint', 
-            'uglify:app',
-            'copy:jsfiles',
-            'copy:images',
-            'copy:fonts',
+            'uglify',
+            'copy',
             'jasmine'
             ]
     );

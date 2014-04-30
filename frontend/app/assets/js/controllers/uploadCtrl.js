@@ -1,11 +1,13 @@
-app.controller('ratingCtrl', function ($scope, ratingService){
-
-    $scope.ratings = ratingService.ratings;
-
-	ratingService.getRatingData();
+/*
+app.controller('uploadCtrl', function ($scope){
 
 
 });
+*/
+
+var uploadCtrl = function ($scope) {
 
 
+};
 
+uploadCtrl.$inject = ['$scope'];
