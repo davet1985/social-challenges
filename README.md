@@ -27,13 +27,11 @@ curl -X POST "http://localhost:9292/add/foobar"  -d ''
 
 #Front end
 
-gem install bootstrap-sass
+bundle install
 
-npm install grunt-contrib-jasmine --save-dev
+npm install
 
 grunt
-
-npm install Express
 
 node server.js 8000
 
