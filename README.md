@@ -1,8 +1,10 @@
 #API setup
 
-bundle install
+sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future bundle install
 
 rake db:create
+
+rake db:usercreate
 
 rackup
 
