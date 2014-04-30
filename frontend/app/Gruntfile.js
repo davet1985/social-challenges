@@ -88,7 +88,29 @@ module.exports = function(grunt) {
                         dest: 'public/js/', 
                         filter: 'isFile'
                     }]
-            }       
+            },
+             images: {
+                files: [{
+                        expand: true, 
+                        flatten: true, 
+                        src: [
+                        'assets/img/*'
+                        ], 
+                        dest: 'public/img/', 
+                        filter: 'isFile'
+                    }]
+            },
+             fonts: {
+                files: [{
+                        expand: true, 
+                        flatten: true, 
+                        src: [
+                        'assets/fonts/*/*'
+                        ], 
+                        dest: 'public/fonts/', 
+                        filter: 'isFile'
+                    }]
+            }                         
         },
         jasmine: {
             test: {
@@ -122,6 +144,8 @@ module.exports = function(grunt) {
             'jshint', 
             'uglify:app',
             'copy:jsfiles',
+            'copy:images',
+            'copy:fonts',
             'jasmine'
             ]
     );

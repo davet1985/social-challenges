@@ -2,5 +2,4 @@
 .sass-cache
 Gemfile.lock
 node_modules
-public/css
-public/js
+public
