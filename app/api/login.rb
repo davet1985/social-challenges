@@ -53,6 +53,24 @@ module SocialChallenges
       GrapeWarden::User.activate(params[:token])
     end
     
+    post 'forgot-password' do
+      GrapeWarden::User.sendForgotPassword(params[:email])
+    end
+    
+    post 'forgot-password/:token' do
+      strength = PasswordStrength.test("test", params[:password])
+      if strength.strong?
+        if params[:password] == params[:confirmPassword]
+          userId = GrapeWarden::User.getIdFromToken(params[:token])
+          if userId != -1
+            GrapeWarden::User.changePassword(userId, params[:password])
+          end
+        end
+      else
+        { "status" => "password not strong enough" }
+      end
+    end
+    
     post 'login' do
           env['warden'].authenticate(:password)
           error! "Invalid username or password", 401 unless env['warden'].user

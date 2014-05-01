@@ -1,10 +1,8 @@
 /* jshint -W079 */
 
-var app = angular.module('app', ['ngRoute','ui.bootstrap']);
+var app = angular.module('app', ['ngRoute','ui.bootstrap'])
+    .config(['$routeProvider', function ($routeProvider) {
 
-//Do configuration and routing here
-app.config(function($routeProvider){
-    //console.log($routeProvider);
     $routeProvider
         .when('/',{
             controller: 'ratingCtrl',
@@ -15,4 +13,4 @@ app.config(function($routeProvider){
             templateUrl: 'views/uploadView.html'
         })
         .otherwise({'redirectTo': '/'});
-});
+}]);

@@ -1,4 +1,5 @@
-app.controller('RatingDemoCtrl', function ($scope){
+
+var RatingDemoCtrl = function ($scope) {
 
 	$scope.max = 5;
 
@@ -10,6 +11,7 @@ app.controller('RatingDemoCtrl', function ($scope){
 	$scope.getValue = function (value) {
 		alert('you selected '+value);
 	};
-});
 
+};
 
+RatingDemoCtrl.$inject = ['$scope'];
