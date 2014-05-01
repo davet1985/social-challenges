@@ -38,3 +38,25 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+
+.form-control:-moz-placeholder{
+  color: $silver;
+}
+
+.form-control::-moz-placeholder{
+  color: $silver;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+  color: $silver;
+}
+
+.form-control::-webkit-input-placeholder{
+  color: $silver;
+}
+
+.form-control.placeholder{
+  color: $silver;
+}

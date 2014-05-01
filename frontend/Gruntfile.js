@@ -62,7 +62,8 @@ module.exports = function(grunt) {
                         //'assets/js/flat-ui/application.js',
                         'assets/js/flat-ui/flatui-checkbox.js',
                         'assets/js/flat-ui/flatui-radio.js',
-                        'assets/js/flat-ui/jquery-ui-1.10.3.custom.min.js'
+                        'assets/js/flat-ui/jquery-ui-1.10.3.custom.min.js',
+                        'assets/js/flat-ui/jquery.placeholder.js'
                     ]
                 }
             },

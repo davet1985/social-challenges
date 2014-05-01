@@ -18,3 +18,14 @@ var app = angular.module('app', ['ngRoute','ui.bootstrap'])
         })
         .otherwise({'redirectTo': '/'});
 }]);
+
+
+// Some general UI pack related JS
+
+$(function () {
+
+    // JS input/textarea placeholder
+    $('input, textarea').placeholder();
+
+});
+
