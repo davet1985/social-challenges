@@ -1,6 +1,6 @@
 /* jshint -W079 */
 
-var app = angular.module('app', ['ngRoute','ui.bootstrap'])
+var app = angular.module('app', ['ngRoute','ui.bootstrap', 'ngTagsInput', 'angularFileUpload'])
     .config(['$routeProvider', function ($routeProvider) {
 
     $routeProvider
@@ -20,12 +20,13 @@ var app = angular.module('app', ['ngRoute','ui.bootstrap'])
 }]);
 
 
+
 // Some general UI pack related JS
 
-$(function () {
-
-    // JS input/textarea placeholder
-    $('input, textarea').placeholder();
+$(function() {
+  
+    // Placeholders for input/textarea
+    $(':text, textarea').placeholder();
 
 });
-
+  

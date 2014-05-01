@@ -1,17 +1,13 @@
+
+<div class="row">
 <div class="col-sm-3" ng-repeat="key in ratings">
   <section class="prev">
-    <div class="panel panel-default">
-        <div class="panel-body">
           <div class="image-container">
           <img ng-src="{{key.previous.image}}" class="img-rounded img-responsive">
           <h2><span>Rating: {{key.previous.rating}}</span></h2>
           </div>
-      </div>
-    </div>
   </section>
   <section class="categories">
-    <div class="panel panel-default">
-        <div class="panel-body">
             <h3>More</h3>
             <ul class="tags">
               <li><a href="#">selfies</a></li>
@@ -23,15 +19,12 @@
               <li><a href="#">dares</a></li>
               <li><a href="#">funny</a></li>
             </ul>  
-      </div>
-    </div>
   </section>
 </div>
 
 <div class="col-sm-6" ng-repeat="key in ratings">
   <section class="current">
-    <div class="panel panel-default">
-      <div class="panel-body">
+
         <img ng-src="{{key.current.image}}" class="img-rounded img-responsive">
             <div ng-controller="RatingDemoCtrl" class="rating">
               <div style="text-align:center">
@@ -51,24 +44,21 @@
                   <li ng-repeat="(key, value) in key.current.tags"><span class="label label-primary"><a href="/{{value}}">{{value}}</a></span></li>
                 </ul>    
               </div> 
-      </div>
-    </div>
-    <div class="buttons pull-left">
+  </section>
+      <div class="buttons pull-left">
       <a href="/#/upload" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
       <button class="btn btn-lg btn-info"><span class="fa fa-heart"></span>&nbsp;Top 20</button>
     </div>
-  </section>
 </div>
 
 <div class="col-sm-3" ng-repeat="key in ratings">
   <section class="next">
-    <div class="panel panel-default">
-        <div class="panel-body">
+
           <div class="image-container">
             <img ng-src="{{key.next.image}}" class="img-rounded img-responsive">
             <h2 class="next"><span>Next...</span></h2>
           </div>
-      </div>
-    </div>
+
   </section>
+</div>
 </div>

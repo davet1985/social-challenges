@@ -6,6 +6,7 @@
 		cursor: pointer;
 		cursor: hand;
 		margin: 10px 0 20px 0;
+		color: $brand-primary;
 	}
 }
 .ratingNum{
@@ -102,4 +103,17 @@ img.profileThumb{
 .buttons{
 	margin-bottom: 30px;
 	margin-right: 30px;
+}
+
+section.prev,
+section.next,
+section.current,
+section.categories{
+	padding: 10px;
+	margin-bottom: 30px;
+	background-color: white;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }

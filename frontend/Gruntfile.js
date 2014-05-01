@@ -54,16 +54,20 @@ module.exports = function(grunt) {
                 files: {
                     'public/js/core.js' : [
                         //libs
+                        'assets/js/file-upload/angular-file-upload-shim.min.js',
                         'assets/js/lib/angular.min.js',
+                        'assets/js/file-upload/angular-file-upload.min.js',
                         'assets/js/lib/angular-route.min.js',
                         'assets/js/jquery/jquery-1.10.2.min.js',
-                        //flat-ui js
-                        'assets/js/flat-ui/ui-bootstrap.js',
-                        //'assets/js/flat-ui/application.js',
-                        'assets/js/flat-ui/flatui-checkbox.js',
-                        'assets/js/flat-ui/flatui-radio.js',
+                        'assets/js/lib/ng-tags-input.min.js',
+                        //ui-bootstrap
+                        'assets/js/ui-bootstrap/ui-bootstrap.js',
+                        //flat ui
                         'assets/js/flat-ui/jquery-ui-1.10.3.custom.min.js',
-                        'assets/js/flat-ui/jquery.placeholder.js'
+                        'assets/js/flat-ui/jquery.placeholder.js',
+                        'assets/js/flat-ui/flatui-checkbox.js',
+                        'assets/js/flat-ui/flatui-radio.js'
+      
                     ]
                 }
             },
