@@ -27,8 +27,10 @@ curl -X POST "http://localhost:9292/add/foobar" -d ''
 
 ## Posting a file upload
 
+This is a multipart form post, one part sends the metadata in JSON and the other part sends the file.
+
 ```
-curl -X POST --form image_file=@/path/to/image.jpg http://localhost:9393/upload/add
+curl -X POST -F 'metadata={"userid": 1}' -F "image_file=@/Users/davidt/dev/social-challenges/frontend/app/assets/img/cat1.jpg" http://localhost:9393/upload/add
 ```
 
 #Front end
