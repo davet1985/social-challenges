@@ -34,11 +34,11 @@ curl -X POST --form image_file=@/path/to/image.jpg http://localhost:9393/upload/
 #Front end
 
 ```
-cd frontend/app
+cd frontend
 bundle install
 npm install
 grunt
-node server.js 8000
+node server.js
 ```
 
 Browse at http://localhost:8000/
