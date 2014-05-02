@@ -1,18 +1,22 @@
 <div class="row">
-	<div class="col-lg-12">
-		<form class="form-signin" role="form" method="POST" action="http://localhost:9292/auth/login">
-			<h2 class="form-signin-heading">Please sign in</h2>
-			<input name="username" type="email" class="form-control" placeholder="Email address" required autofocus>
-	        <input password="password" type="password" class="form-control" placeholder="Password" required>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-			        <label class="checkbox" for="checkbox1">
-	            <span class="icons">
-	            	<span class="first-icon fui-checkbox-unchecked"></span>
-	            	<span class="second-icon fui-checkbox-checked"></span>
-	            </span>
-	            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
-	            Remember me
-	          </label>
-		</form>
+	<div class="col-md-12">
+		<section class="login" ng-controller="loginCtrl">
+			<h2>Sign in</h2>
+				<div class="row">
+					<form class="form-signin col-sm-4" role="form" method="POST" action="http://localhost:9292/auth/login">
+					<input name="username" type="email" class="form-control" placeholder="Email address" required autofocus>
+			        <input password="password" type="password" class="form-control" placeholder="Password" required>
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+					        <label class="checkbox" for="checkbox1">
+			            <span class="icons">
+			            	<span class="first-icon fui-checkbox-unchecked"></span>
+			            	<span class="second-icon fui-checkbox-checked"></span>
+			            </span>
+			            <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox">
+			            Remember me
+			          </label>
+					</form>
+				</div>
+		</section>
 	</div> 
 </div>      

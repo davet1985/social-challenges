@@ -1,0 +1,23 @@
+
+//upload
+.drop-box{
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  text-align: center;
+  margin-top: 20px;
+  padding: 30px;
+  }
+.sel-file img{
+  	margin-top: 20px;
+  }
+
+.sel-file .progress {
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	background: #fff;
+}
+
+.sel-file .progress div {
+	background: $nephritis;
+}
