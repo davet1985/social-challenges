@@ -40,7 +40,7 @@ cd frontend
 bundle install
 npm install
 grunt
-node server.js
+npm start
 ```
 
 Browse at http://localhost:8000/

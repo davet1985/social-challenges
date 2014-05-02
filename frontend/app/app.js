@@ -5,16 +5,16 @@ var app = angular.module('app', ['ngRoute','ui.bootstrap', 'ngTagsInput', 'angul
 
     $routeProvider
         .when('/',{
-            controller: 'ratingCtrl',
-            templateUrl: 'app/views/ratingView.html'
+            templateUrl: 'app/views/ratingView.html',
+            controller: 'ratingCtrl'
         })
         .when('/login',{
-            controller: 'loginCtrl',
-            templateUrl: 'app/views/loginView.html'
+            templateUrl: 'app/views/loginView.html',
+            controller: 'loginCtrl'
         })
         .when('/upload',{
-            controller: 'uploadCtrl',
-            templateUrl: 'app/views/uploadView.html'
+            templateUrl: 'app/views/uploadView.html',
+            controller: 'uploadCtrl'
         })
         .otherwise({'redirectTo': '/'});
 }]);

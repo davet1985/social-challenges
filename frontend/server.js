@@ -1,24 +1,18 @@
-/*
-This script depends on Node.js and Express
-Install node.js form www.node.org
-
-Install Express by Windows Command Prompt
-Type "npm install Express"
- */
-
 var express = require('express');
 var app = express();
+
 port = process.argv[2] || 8000;
 
 var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {
        app.use(
-        "/", //the URL throught which you want to access to you static content
-        express.static(__dirname) //where your static content is located in your filesystem
+        "/",
+        express.static(__dirname)
     );
 }
 
-app.listen(port); //the port you want to use
+app.listen(port);
+
 console.log("Express server running at => http://localhost:" + port + "/\nCTRL + C to shutdown");
 
 
