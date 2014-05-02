@@ -54,3 +54,13 @@
 .form-control.placeholder{
   color: $silver;
 }
+.login-links p{
+  font-size: .8em;
+}
+.form-signin {
+  .reset-password{
+    float: right;
+    font-size: .8em;
+    margin-top: .55em;
+  }
+}

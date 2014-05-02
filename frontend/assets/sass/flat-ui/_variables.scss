@@ -68,8 +68,8 @@ $body-bg:                   #eee !default;
 $text-color:                $dark-grey !default;
 
 //** Global textual link color.
-$link-color:                $green-sea !default;
-$link-hover-color:          $turquoise !default;
+$link-color:                $brand-primary !default;
+$link-hover-color:          darken($brand-primary, 25%) !default;
 
 
 //== Typography
@@ -313,7 +313,7 @@ $navbar-inverse-border:               darken($navbar-inverse-bg, 10%) !default;
 
 // Inverted navbar links
 $navbar-inverse-link-color:           $inverse !default;
-$navbar-inverse-link-hover-color:     $brand-secondary !default;
+$navbar-inverse-link-hover-color:     $link-hover-color !default;
 $navbar-inverse-link-hover-bg:        transparent !default;
 $navbar-inverse-link-active-color:    $navbar-inverse-link-color !default;
 $navbar-inverse-link-active-bg:       $brand-secondary !default;

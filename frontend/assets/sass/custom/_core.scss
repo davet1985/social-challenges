@@ -5,6 +5,10 @@ html, body {
 }
 .navbar{
 	border-radius: 0px;
+
+  .buttons{
+    margin: 8px 0 0 0;
+  }
 }
 
 #wrap {
@@ -30,4 +34,10 @@ html, body {
   .inner {
     padding: 10px;
  }
+}
+@media (min-width: $screen-sm-min) { 
+  .navbar-collapse{
+    float: right;
+    margin-right: -40px !important;
+  }
 }

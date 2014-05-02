@@ -12,6 +12,14 @@ var app = angular.module('app', ['ngRoute','ui.bootstrap', 'ngTagsInput', 'angul
             templateUrl: 'app/views/loginView.html',
             controller: 'loginCtrl'
         })
+        .when('/signup',{
+            templateUrl: 'app/views/signupView.html',
+            controller: 'signupCtrl'
+        })
+        .when('/forgot',{
+            templateUrl: 'app/views/forgotView.html',
+            controller: 'forgotCtrl'
+        })
         .when('/upload',{
             templateUrl: 'app/views/uploadView.html',
             controller: 'uploadCtrl'
