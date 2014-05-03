@@ -19,19 +19,24 @@ shotgun config.ru
 
 Then browse to http://localhost:9393
 
-##Perform a post
+## Uploads API
 
-```
-curl -X POST "http://localhost:9292/add/foobar" -d ''
-```
-
-## Posting a file upload
+### Posting a file upload
 
 This is a multipart form post, one part sends the metadata in JSON and the other part sends the file.
 
 ```
-curl -X POST -F 'metadata={"userid": 1}' -F "image_file=@/Users/davidt/dev/social-challenges/frontend/app/assets/img/cat1.jpg" http://localhost:9393/upload/add
+curl -X POST -F 'metadata={"userid": 1}' -F "image_file=@/Users/davidt/dev/social-challenges/frontend/assets/img/cat1.jpg" http://localhost:9393/upload/add
 ```
+
+### Getting file uploads
+
+Get endpoints for uploads API are as follows: -
+
+* http://localhost:9393/upload/add
+* http://localhost:9393/upload/all
+* http://localhost:9393/upload/[id]
+* http://localhost:9393/upload/[id]/download
 
 #Front end
 
