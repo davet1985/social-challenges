@@ -24,7 +24,7 @@ class UploadRepository
     if uploads.count == 1
       uploads[0]
     else
-      nil
+      false
     end
   end
 

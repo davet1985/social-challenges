@@ -18,7 +18,7 @@ module SocialChallenges
 
     get '/:id' do
       upload = UploadRepository.get_by_id(params[:id])
-      if upload.nil? then
+      if !upload then
         error! 'Upload not found', 404
       else
         upload.to_json
@@ -27,7 +27,7 @@ module SocialChallenges
 
     get '/:id/download' do
       upload = UploadRepository.get_by_id params[:id]
-      if upload.nil? then
+      if !upload then
         error! 'Upload not found', 404
       else
         file_path = UploadRepository.get_file_path upload.file_name
