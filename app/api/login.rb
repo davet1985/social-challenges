@@ -43,6 +43,9 @@ module SocialChallenges
       if strength.strong?
         if params[:password] == params[:confirmPassword]
           GrapeWarden::User.changePassword(env['warden'].user.id, params[:password])
+          { "status" => "password changed successfully" }
+        else
+          { "status" => "passwords do not match" }
         end
       else
         { "status" => "password not strong enough" }
@@ -50,11 +53,16 @@ module SocialChallenges
     end
     
     post 'activate/:token' do
-      GrapeWarden::User.activate(params[:token])
+      if GrapeWarden::User.activate(params[:token])
+        { "status" => "Account activated" }
+      else
+        { "status" => "Invalid token provided" }
+      end
     end
     
     post 'forgot-password' do
       GrapeWarden::User.sendForgotPassword(params[:email])
+      { "status" => "email sent to address provided if it is a valid email" } 
     end
     
     post 'forgot-password/:token' do
@@ -64,7 +72,12 @@ module SocialChallenges
           userId = GrapeWarden::User.getIdFromToken(params[:token])
           if userId != -1
             GrapeWarden::User.changePassword(userId, params[:password])
-          end
+            { "status" => "successfully changed password" }
+          else
+            { "status" => "token not valid" }
+          end          
+        else
+          { "status" => "passwords do not match" }
         end
       else
         { "status" => "password not strong enough" }

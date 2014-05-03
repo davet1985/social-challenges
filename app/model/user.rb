@@ -24,13 +24,13 @@ module GrapeWarden
         values (NULL, ?, ?, ?, "inactive", 0)
         SQL
       $db.execute(insert, username, Password.create(password),email)
-      id = $db.last_insert_row_id()
-      token = SecureRandom.uuid
-        insertToken =  <<-SQL
-          INSERT INTO user_token
-          values (NULL, ?, datetime('now', '+30 minutes'), ?)
-          SQL
-      $db.execute(insertToken, id, token)  
+      userId = $db.last_insert_row_id()
+      
+      token = createToken(userId)
+      sendNewUserEmail(email, token)  
+    end
+    
+    def self.sendNewUserEmail(email, token)
       message = <<-MESSAGE_END
       From: Social Challanges <me@fromdomain.com>
       To: A Test User <#{email}>
@@ -48,46 +48,66 @@ module GrapeWarden
     def self.sendForgotPassword(email)
       row = $db.get_first_row("select * from users where email = ? and status='active' and loginAttempts < 5", email)
       if row != nil
-        token = SecureRandom.uuid
-          insertToken =  <<-SQL
-            INSERT INTO user_token
-            values (NULL, ?, datetime('now', '+30 minutes'), ?)
-            SQL
-        $db.execute(insertToken, row[0], token)  
-        message = <<-MESSAGE_END
-        From: Social Challanges <me@fromdomain.com>
-        To: A Test User <#{email}>
-        Subject: SMTP e-mail test
+        token = createToken(row[0]) 
+        sendForgotPasswordEmail(email, token)
+      end
+    end
+    
+    def self.createToken(userId)
+      token = SecureRandom.uuid
+        insertToken =  <<-SQL
+          INSERT INTO user_token
+          values (NULL, ?, datetime('now', '+30 minutes'), ?)
+          SQL
+      $db.execute(insertToken, userId, token)
+      token
+    end
+    
+    def self.sendForgotPasswordEmail(email, token)
+      message = <<-MESSAGE_END
+      From: Social Challanges <me@fromdomain.com>
+      To: A Test User <#{email}>
+      Subject: SMTP e-mail test
 
-        Please use this token to change your password #{token}.
-        MESSAGE_END
+      Please use this token to change your password #{token}.
+      MESSAGE_END
 
-        Net::SMTP.start('localhost') do |smtp|
-          smtp.send_message message, 'me@fromdomain.com', 
-                                     'test@todomain.com'
-        end
+      Net::SMTP.start('localhost') do |smtp|
+        smtp.send_message message, 'me@fromdomain.com', 
+                                   'test@todomain.com'
       end
     end
     
     def self.getIdFromToken(token)
-      row = $db.get_first_row("select * from user_token where token = ? and expires > datetime('now')", token)
+      tokenDetails = getActiveToken(token)
       id = -1
-      if row != nil
-        id = row[1]
+      if tokenDetails != nil
+        id = tokenDetails[1]
       end
       id
     end
     
     def self.activate(token)
-      row = $db.get_first_row("select * from user_token where token = ? and expires > datetime('now')", token)
-      if row != nil
+      tokenDetails = getActiveToken(token)
+      if tokenDetails != nil
+        activateUserAccount(tokenDetails[1])
+        true
+      else
+        false
+      end
+    end
+    
+    def self.activateUserAccount(id)
       update =  <<-SQL
         update users
         set status = "active"  
         where id = ?
         SQL
-        $db.execute(update, row[1])
-      end
+        $db.execute(update, id)
+    end
+    
+    def self.getActiveToken(token)
+      $db.get_first_row("select * from user_token where token = ? and expires > datetime('now')", token)
     end
     
     def self.changePassword(userid, password)
@@ -114,31 +134,48 @@ module GrapeWarden
       def authenticate(u, p)
         row = $db.get_first_row("select * from users where username = ? and status='active' and loginAttempts < 5", u)
         
-        matchingPass = false
-        matchingPass = Password.new(row[2]) == p if row != nil
+        if row != nil
+          userId = row[0]
+          currentPassword = row[2]
+          
+          matchingPass = false
+          matchingPass = Password.new(currentPassword) == p 
         
-        if matchingPass == true
-          insert =  <<-SQL
-          INSERT INTO session
-          values (NULL, ? , ? , datetime('now', '+30 minutes'))
-          SQL
-          $db.execute(insert, row[0], u)
-          update =  <<-SQL
-            update users
-            set loginAttempts = 0
-            where id = ?
-            SQL
-            $db.execute(update, row[0])  
-        elsif row != nil
-          update =  <<-SQL
-            update users
-            set loginAttempts = loginAttempts + 1 
-            where id = ?
-            SQL
-            $db.execute(update, row[0])
-        end
+          if matchingPass == true        
+            insertSession(userId, u)
+            resetLoginAttempts(userId)
+          elsif row != nil
+            increaseLoginAttempts(userId)
+          end
 
-        User.new(row[0], u) if row != nil && matchingPass
+          User.new(userId, u) if matchingPass
+        end
+      end
+      
+      def insertSession(id, username)
+        insert =  <<-SQL
+        INSERT INTO session
+        values (NULL, ? , ? , datetime('now', '+30 minutes'))
+        SQL
+        $db.execute(insert, id, username)
+      end 
+      
+      def resetLoginAttempts(id)
+        update =  <<-SQL
+          update users
+          set loginAttempts = 0
+          where id = ?
+          SQL
+          $db.execute(update, id) 
+      end 
+      
+      def increaseLoginAttempts(id)
+        update =  <<-SQL
+          update users
+          set loginAttempts = loginAttempts + 1 
+          where id = ?
+          SQL
+          $db.execute(update, id)
       end
 
     end
