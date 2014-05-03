@@ -8,8 +8,8 @@ var RatingDemoCtrl = function ($scope) {
 	};
 
 	// do something with value
-	$scope.getValue = function (value) {
-		alert('you selected '+value);
+	$scope.getValue = function (value, id) {
+		console.log('rating: '+value+ ', id: '+id);
 	};
 
 };
