@@ -18,6 +18,15 @@ module GrapeWarden
       @name = name
     end
     
+    def self.usernameDoesNotExist(username)
+      row = $db.get_first_row("select * from users where username = ?", username)
+      userDoesNotExists = false
+      if row == nil
+        userDoesNotExists = true
+      end
+      userDoesNotExists
+    end
+    
     def self.save(username, password, email)
       insert =  <<-SQL
         INSERT INTO users

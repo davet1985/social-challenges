@@ -29,7 +29,16 @@ module SocialChallenges
     post 'create' do
       strength = PasswordStrength.test(params[:username], params[:password])
       if strength.strong?
-        GrapeWarden::User.save(params[:username], params[:password], params[:email])
+        if params[:password] == params[:confirmPassword]
+          if GrapeWarden::User.usernameDoesNotExist(params[:username])
+            GrapeWarden::User.save(params[:username], params[:password], params[:email])
+            { "status" => "user successfully created. You have been sent an email with instructions on how to activate the account" }
+          else
+            { "status" => "username already in use. Please chose another" }
+          end
+        else
+          { "status" => "passwords do not match" }
+        end
       else
         { "status" => "password not strong enough" }
       end
