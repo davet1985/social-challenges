@@ -30,14 +30,14 @@ class UploadRepository
 
   def self.cast(results)
     uploads = Array.new
-    results.each { |r| uploads << Upload.new(r[2], r[3], r[4], r[5], r[1], r[0]) }
+    results.each { |r| uploads << Upload.new(r[2], r[3], r[4], r[5], r[1], r[0], r[6], r[7]) }
     uploads
   end
 
   def self.save(upload)
     insert =  <<-SQL
       INSERT INTO uploads
-      values (NULL, ?, ?, ?, ?, ?)
+      values (NULL, ?, ?, ?, ?, ?, 0, 0)
       SQL
       $uploaddb.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid)
   end
