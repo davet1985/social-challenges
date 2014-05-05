@@ -2,6 +2,7 @@ require './app/api/version1'
 require './app/api/login'
 require './app/api/uploads'
 require './app/api/rating'
+require './app/api/tag'
 
 run SocialChallenges::API
 
@@ -15,4 +16,8 @@ end
 
 map '/rating' do
   run SocialChallenges::RatingAPI
+end
+
+map '/tag' do
+  run SocialChallenges::TagAPI
 end

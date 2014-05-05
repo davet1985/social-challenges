@@ -28,7 +28,27 @@ module UploadDB
           userid INTEGER NOT NULL
           );
         SQL
-        )
+        )  
+        database.execute(
+          <<-SQL
+          CREATE TABLE tags (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            tagName VARCHAR(255) NOT NULL,
+            userid INTEGER NOT NULL,
+            tag_datetime DATETIME NOT NULL
+            );
+          SQL
+          )
+          database.execute(
+            <<-SQL
+            CREATE TABLE tag_objects (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              objectId INTEGER NOT NULL,
+              tagId INTEGER NOT NULL,
+              tag_datetime DATETIME NOT NULL
+              );
+            SQL
+            )
   end
   
 end
