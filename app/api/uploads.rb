@@ -21,7 +21,7 @@ module SocialChallenges
       if !upload then
         error! 'Upload not found', 404
       else
-        upload.to_json
+        JSON.parse(upload.to_json)
       end
     end
 
