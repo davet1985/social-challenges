@@ -5,7 +5,7 @@ app.factory('ratingService', ['$http', '$location', function($http, $location) {
     var _getRatingData = function(){
         
     
-      
+    /*
         $http.get('app/data/ratings.json')
             .then(function(results){
                 //Success
@@ -22,7 +22,7 @@ app.factory('ratingService', ['$http', '$location', function($http, $location) {
     };
     
     
-    /*
+    */
         $http.get('http://localhost:9292/upload/2')
             .then(function(results){
                 //Success
@@ -36,6 +36,6 @@ app.factory('ratingService', ['$http', '$location', function($http, $location) {
         ratings: _ratingDataArr,
         getRatingData: _getRatingData
     };
-    */
+    
 
 }]);
