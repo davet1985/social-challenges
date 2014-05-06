@@ -1,3 +1,5 @@
+/* jshint -W089 */
+
 var loginCtrl = function ($scope, $http) {
 
     $scope.processForm = function() {

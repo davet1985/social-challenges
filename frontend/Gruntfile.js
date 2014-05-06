@@ -125,9 +125,25 @@ module.exports = function(grunt) {
                         'app/tests/vendor/jasmine-jquery.js'
                         ],
                         specs: 'app/tests/specs/*.spec.js'
+                }
+            }
+        },
+         watch: {
+            dev: {
+                files: [
+                    'app/*.js',
+                    'app/controllers/*.js',
+                    'app/services/*.js',    
+                    'app/tests/**/*.js',
+                    'assets/sass/*.scss',
+                    'assets/sass/**/*.scss'
+                ],
+                tasks: ['prod'],
+                options: {
+                    spawn: true
+                }
+            }
         }
-    }
-}
  
     });
 
@@ -137,11 +153,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     
-    grunt.registerTask('default', ['css-prod']);
+    grunt.registerTask('default', ['prod']);
+
 
     grunt.registerTask(
-        'css-prod',[
+        'prod',[
             'compass:production',
             'concat',
             'jshint', 

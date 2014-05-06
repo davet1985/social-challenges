@@ -3,7 +3,7 @@
 <div class="col-sm-3" ng-repeat="key in ratings">
   <section class="prev">
           <div class="image-container">
-          <img ng-src="{{key.previous.image}}" class="img-rounded img-responsive">
+          <img ng-src="{{key.previous.file_name}}" class="img-rounded img-responsive">
           <h2><span>Rating: {{key.previous.rating}}</span></h2>
           </div>
   </section>
@@ -25,7 +25,7 @@
 <div class="col-sm-6" ng-repeat="key in ratings">
   <section class="current">
 
-        <img ng-src="{{key.current.image}}" class="img-rounded img-responsive">
+        <img ng-src="{{key.current.file_name}}" class="img-rounded img-responsive">
             <div ng-controller="RatingDemoCtrl" class="rating">
               <div style="text-align:center">
                 <h3>{{key.current.title}}</h3>
@@ -38,7 +38,7 @@
                     <img src="public/img/profile.jpeg" class="img-rounded profileThumb" />
     
                 <p>{{key.current.description}}</p>
-                <a href="{{key.current.user}}" class="user-link">{{key.current.user}}</a>
+                <a href="{{key.current.userid}}" class="user-link">{{key.current.userid}}</a>
 
                 <div class="clearfix"></div>
                 <ul class="tags">
@@ -56,7 +56,7 @@
   <section class="next">
 
           <div class="image-container">
-            <img ng-src="{{key.next.image}}" class="img-rounded img-responsive">
+            <img ng-src="{{key.next.file_name}}" class="img-rounded img-responsive">
             <h2 class="next"><span>Next...</span></h2>
           </div>
 

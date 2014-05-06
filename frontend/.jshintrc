@@ -51,6 +51,7 @@
     "node"     : true,
       "globals"   : {
         "$"                    : false,
+        "data"                 : false,
         "angular"              : false,
         "browser"              : false,
         "repeater"             : false,
