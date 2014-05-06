@@ -3,7 +3,7 @@
 		<section class="login" ng-controller="loginCtrl">
 			<h2>Sign in</h2>
 				<div class="row">
-					<form class="form-signin col-sm-4" role="form" method="POST" action="http://localhost:9292/auth/login">
+					<form class="form-signin col-sm-4" role="form" ng-submit="attemptLogin()">
 					<input name="username" type="email" class="form-control" placeholder="Email address" required autofocus>
 			        <input password="password" type="password" class="form-control" placeholder="Password" required>
 					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
