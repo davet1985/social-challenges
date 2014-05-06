@@ -30,7 +30,8 @@ module.exports = function(grunt) {
                     //angular
                     'app/app.js', 
                     'app/controllers/*.js', 
-                    'app/services/*.js'
+                    'app/services/*.js',
+                    'app/directives/*.js'
                 ],
                 dest: 'public/js/app.js'
             }
@@ -42,7 +43,8 @@ module.exports = function(grunt) {
                 //angular
                 'app/app.js', 
                 'app/controllers/*.js', 
-                'app/services/*.js'
+                'app/services/*.js',
+                'app/directives/*.js'
                 ],
             afterconcat: [
                 'public/js/app.js'
@@ -133,7 +135,8 @@ module.exports = function(grunt) {
                 files: [
                     'app/*.js',
                     'app/controllers/*.js',
-                    'app/services/*.js',    
+                    'app/services/*.js',
+                    'app/directives/*.js',    
                     'app/tests/**/*.js',
                     'assets/sass/*.scss',
                     'assets/sass/**/*.scss'

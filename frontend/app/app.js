@@ -4,7 +4,7 @@ var app = angular.module('app', ['ngRoute','ui.bootstrap', 'ngTagsInput', 'angul
     .config(['$routeProvider', function ($routeProvider) {
 
     $routeProvider
-        .when('/',{
+        .when('/' || '/next/:id',{
             templateUrl: 'app/views/ratingView.html',
             controller: 'ratingCtrl'
         })

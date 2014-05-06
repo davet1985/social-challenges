@@ -1,0 +1,25 @@
+[
+   {
+    "current": {
+        "id": "3",
+        "title": "Fat ginger cat",
+        "type": "image",
+        "upload_datetime": "02/03/2014",
+        "userid": "Peter Pan",
+        "file_name": "public/img/cat3.jpg",
+        "description": "This is a fat ginger cat",
+        "tags": ["ginger", "cats", "fat"]
+    },
+    "previous": {
+        "id": "2",
+        "type": "image",
+        "rating": 4,
+        "file_name": "public/img/cat1.jpg"
+    },
+    "next": {
+        "id": "4",
+        "type": "image",
+        "file_name": "public/img/profile.jpeg"
+        }
+    }
+]
