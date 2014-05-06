@@ -55,5 +55,9 @@ class TagRepository
     results.each { |r| uploads << Upload.new(r[2], r[3], r[4], r[5], r[1], r[0], r[6], r[7]) }
     uploads
   end
+  
+  def self.all
+    results = $uploaddb.execute("select id, tagName from tags")
+  end
 
 end
