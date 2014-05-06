@@ -8,3 +8,4 @@ gem 'compass', '~> 0.12.6'
 gem 'warden'
 gem 'bcrypt'
 gem "password_strength"
+gem 'rack-cors'

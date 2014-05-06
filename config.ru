@@ -3,6 +3,14 @@ require './app/api/login'
 require './app/api/uploads'
 require './app/api/rating'
 require './app/api/tag'
+require 'rack/cors'
+
+use Rack::Cors do
+  allow do
+    origins '*'
+    resource '*', headers: :any, methods: :get
+  end
+end
 
 run SocialChallenges::API
 
