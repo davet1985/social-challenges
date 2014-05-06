@@ -44,6 +44,7 @@ Get endpoints for uploads API are as follows: -
 cd frontend
 bundle install
 npm install
+npm install -g grunt-cli
 grunt
 npm start
 ```

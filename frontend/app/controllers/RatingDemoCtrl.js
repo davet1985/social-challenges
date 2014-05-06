@@ -1,5 +1,5 @@
 
-var RatingDemoCtrl = function ($scope) {
+var RatingDemoCtrl = function ($scope, $location) {
 
 	$scope.max = 5;
 
@@ -14,4 +14,4 @@ var RatingDemoCtrl = function ($scope) {
 
 };
 
-RatingDemoCtrl.$inject = ['$scope'];
+RatingDemoCtrl.$inject = ['$scope', '$location'];
