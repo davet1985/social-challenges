@@ -4,9 +4,10 @@ class Tag
 
   attr_reader :tagName, :userId
 
-  def initialize(tagName, userId)
+  def initialize(tagName, userId, id = nil)
     @tagName = tagName
     @userId = userId
+    @id = id
   end
   
   def self.findTagOrAddIfNotFound(tag, userId)

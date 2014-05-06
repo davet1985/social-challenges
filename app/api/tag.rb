@@ -11,6 +11,10 @@ module SocialChallenges
 
     use Rack::JSONP
     format :json
+    
+    get :all do
+      TagRepository.all.to_json
+    end
 
     post '/add' do      
       tagName = params[:tagName]
