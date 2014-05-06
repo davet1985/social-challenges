@@ -44,7 +44,8 @@ class TagRepository
     results = $uploaddb.execute(select, id)
     uploads = self.cast results
     if uploads.count != 0
-      uploads
+      randIndex = Random.new.rand(0..uploads.count-1)
+      uploads[randIndex]
     else
       false
     end
