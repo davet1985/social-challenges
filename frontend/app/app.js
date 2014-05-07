@@ -8,7 +8,7 @@ var app = angular.module('app', ['ngRoute','ui.bootstrap', 'ngTagsInput', 'angul
             templateUrl: 'app/views/ratingView.html',
             controller: 'ratingCtrl'
         })
-        .when('/:tag/:id',{
+        .when('/cats/:id',{
             templateUrl: 'app/views/ratingView.html',
             controller: 'ratingCtrl'
         })
@@ -28,10 +28,12 @@ var app = angular.module('app', ['ngRoute','ui.bootstrap', 'ngTagsInput', 'angul
             templateUrl: 'app/views/uploadView.html',
             controller: 'uploadCtrl'
         })
-        .otherwise({'redirectTo': '/'});
+        .when('/404',{
+            templateUrl: 'app/views/404View.html',
+            controller: 'errorCtrl'
+        })
+        .otherwise({'redirectTo': '/404'});
 }]);
-
-
 
 // Some general UI pack related JS
 

@@ -1,4 +1,4 @@
-app.factory('ratingService', ['$http', '$location', function($http, $location) {
+app.service('ratingService', ['$http', '$location',  function($http, $location) {
   
     var _ratingDataArr = [];
 
@@ -22,14 +22,19 @@ app.factory('ratingService', ['$http', '$location', function($http, $location) {
     };
     
     */
- 
-        $http.get('http://localhost:9292/upload/2')
+        //var pageTag = $location.path().split('/')[1]||'Unknown';
+        var pageId  = $location.path().split('/')[2]||'Unknown';
+
+        var url  = 'http://localhost:9292/upload/';
+
+        $http.get(url+pageId)
             .then(function(results){
                 //Success
                 angular.copy(results.data, _ratingDataArr);
             }, function(results){
                 //Error
-        });
+                $location.path( '/404' );
+            });
     };
     
     return{
