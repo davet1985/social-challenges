@@ -34,7 +34,7 @@ class TagRepository
       $uploaddb.execute(insert, objectId, tagId)
   end
   
-  def self.get_objects_tagid(id)
+  def self.get_random_object_bytagid(id)
     select =  <<-SQL
       SELECT *
       FROM uploads, tag_objects
@@ -53,7 +53,7 @@ class TagRepository
   
   def self.cast(results)
     uploads = Array.new
-    results.each { |r| uploads << Upload.new(r[2], r[3], r[4], r[5], r[1], r[0], r[6], r[7]) }
+    results.each { |r| uploads << Upload.new(r[2], r[3], r[4], r[5], r[8], r[9], r[1], r[0], r[6], r[7]) }
     uploads
   end
   

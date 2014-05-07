@@ -13,7 +13,9 @@ module UploadDB
         original_file_name VARCHAR(255) NOT NULL,
         userid INTEGER NOT NULL,
         overallScore INTEGER,
-        numOfRatings INTEGER
+        numOfRatings INTEGER,
+        title VARCHAR(255) NOT NULL,
+        description VARCHAR(255) NOT NULL
         );
       SQL
       )

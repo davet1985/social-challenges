@@ -35,12 +35,14 @@ module SocialChallenges
       }
     end
     
-    get '/:id' do
-      objects = TagRepository.get_objects_tagid(params[:id])
-      if !objects then
+    get '/:currentId' do
+      currentObject = UploadRepository.get_by_id params[:currentId]
+      previousObject = UploadRepository.get_by_id 1
+      nextObject = TagRepository.get_random_object_bytagid 1
+      if !currentObject then
         error! 'Upload not found', 404
       else
-        objects.to_json
+        JSON.parse(Tag.returnJSON(currentObject, previousObject, nextObject))
       end
     end
 

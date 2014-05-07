@@ -28,7 +28,7 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
         //var pageTag = $location.path().split('/')[1]||'Unknown';
         var pageId  = $location.path().split('/')[2]||'Unknown';
 
-        var url  = 'http://localhost:9292/upload/';
+        var url  = 'http://localhost:9292/tag/';
 
         $http.get(url+pageId)
             .then(function(results){
