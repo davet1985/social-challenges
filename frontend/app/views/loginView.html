@@ -1,14 +1,17 @@
 <div class="row">
 	<div class="col-md-12">
 		<section class="login">
-			<h2>Sign in</h2>
+			<h2>Login</h2>
 				<div class="row">
-
-					<form class="form-signin col-sm-4" role="form" ng-submit="processForm()">
-					<input name="username" type="email" class="form-control" placeholder="Email address" required autofocus ng-model="username">
-			        <input password="password" type="password" class="form-control" placeholder="Password" required ng-model="password">
-
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+					<span class="fa fa-key fa-flip-horizontal" style="color: #E6E6E6;font-size: 80rem;position: fixed;margin-top: -100px;"></span>
+					<form class="form-signin col-xs-12 col-sm-6 col-md-5" role="form" ng-submit="processForm()">
+						<div class="form-group">
+							<input name="username" type="email" class="form-control" placeholder="Email address" required autofocus ng-model="username">
+			        		<input password="password" type="password" class="form-control" placeholder="Password" required ng-model="password">
+						</div>
+						<div class="form-group">
+							<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+						</div>
 					        <label class="checkbox" for="checkbox1" style="display: inline-block;">
 			            <span class="icons">
 			            	<span class="first-icon fui-checkbox-unchecked"></span>
@@ -21,7 +24,9 @@
 						<div class="login-links">
 							<p>Don't have an account? <a href="/#/signup">Sign up</a></p>
 						</div>
+
 					</form>
+
 				</div>
 		</section>
 	</div> 
