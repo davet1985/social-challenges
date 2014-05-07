@@ -29,7 +29,7 @@
             <div ng-controller="RatingDemoCtrl" class="rating">
               <div style="text-align:center">
                 <h3>{{key.current.title}}</h3>
-                <rating value="ratingValue" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" ng-click ="getValue(ratingValue, key.current.id, key.next.id, '/cats/'+key.next.id)"></rating> 
+                <rating value="ratingValue" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'fa fa-star'" state-off="'fa fa-star-o star-empty'" ng-click ="getValue(ratingValue, key.current.id, key.next.id, '/cats/'+key.next.id)"></rating> 
                 <!-- <br />
                 <div class="label label-primary ratingNum clearfix">{{overStar || "0"}}</div> -->
                 </div>
