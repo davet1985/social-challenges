@@ -1,9 +1,9 @@
 var mainCtrl = function ($scope, $location) {
 
 
-    $scope.pageId = $location.path().split('/')[2]||'Unknown';
+    //var pId = $location.path().split('/')[2]||'Unknown';
 
-    //console.log('page id = '+$scope.pageId);
+    //console.log('page id = '+pId);
 };
 
 mainCtrl.$inject = ['$scope', '$location'];

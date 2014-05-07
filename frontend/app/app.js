@@ -1,6 +1,11 @@
 /* jshint -W079 */
 
-var app = angular.module('app', ['ngRoute','ui.bootstrap', 'ngTagsInput', 'angularFileUpload'])
+var app = angular.module('app', [
+    'ngRoute',
+    'ui.bootstrap',
+    'ngTagsInput',
+    'angularFileUpload'
+])
     .config(['$routeProvider', function ($routeProvider) {
 
     $routeProvider

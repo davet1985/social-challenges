@@ -22,6 +22,9 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
     };
     
     */
+
+
+    
         //var pageTag = $location.path().split('/')[1]||'Unknown';
         var pageId  = $location.path().split('/')[2]||'Unknown';
 
