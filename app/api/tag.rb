@@ -13,7 +13,7 @@ module SocialChallenges
     format :json
     
     get :all do
-      TagRepository.all.to_json
+      JSON.parse(TagRepository.all.to_json)
     end
 
     post '/add' do      

@@ -9,16 +9,9 @@
   </section>
   <section class="categories">
             <h3>More</h3>
-            <ul class="tags">
-              <li><a href="#">selfies</a></li>
-              <li><a href="#">puppies</a></li>
-              <li><a href="#">food</a></li>
-              <li><a href="#">games</a></li>
-              <li><a href="#">sports</a></li>
-              <li><a href="#">drinking</a></li>
-              <li><a href="#">dares</a></li>
-              <li><a href="#">funny</a></li>
-            </ul>  
+            <ul class="tags" ng-controller="tagCloudCtrl">
+              <li ng-repeat="(key, value) in tagCloud"><a href="#/{{value[1]}}">{{value[1]}}</a></li>
+            </ul>
   </section>
 </div>
 
