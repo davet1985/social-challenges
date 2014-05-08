@@ -34,12 +34,13 @@ class TagRepository
       $uploaddb.execute(insert, objectId, tagId)
   end
   
-  def self.get_random_object_bytagid(id)
+  def self.get_random_object_bytagname(id)
     select =  <<-SQL
       SELECT *
-      FROM uploads, tag_objects
+      FROM uploads, tag_objects, tags
       WHERE uploads.id = tag_objects.objectId
-      AND tag_objects.tagId = ?
+      AND tags.id = tag_objects.tagId
+      AND tags.tagName = ?
       SQL
     results = $uploaddb.execute(select, id)
     uploads = self.cast results

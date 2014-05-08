@@ -13,7 +13,7 @@ var app = angular.module('app', [
             templateUrl: 'app/views/ratingView.html',
             controller: 'ratingCtrl'
         })
-        .when('/tag/:id',{
+        .when('/:tag/:id/:prevId',{
             templateUrl: 'app/views/ratingView.html',
             controller: 'ratingCtrl'
         })
