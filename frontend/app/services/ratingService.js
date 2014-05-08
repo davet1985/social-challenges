@@ -4,26 +4,6 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 
     var _getRatingData = function(){
         
-    /*
-  
-        $http.get('app/data/ratings2.json')
-            .then(function(results){
-                //Success
-                angular.copy(results.data, _ratingDataArr);
-            }, function(results){
-                //Error
-        });
-    };
-
-
-    return{
-        ratings: _ratingDataArr,
-        getRatingData: _getRatingData
-    };
-    
-    */
-
-
     
         //var pageTag = $location.path().split('/')[1]||'Unknown';
         var pageId  = $location.path().split('/')[2]||'Unknown';

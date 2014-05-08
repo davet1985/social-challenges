@@ -8,9 +8,9 @@ var RatingDemoCtrl = function ($scope, $location) {
 	};
 
 	// do something with value
-	$scope.getValue = function (value, prevId, currentId, hash) {
-		console.log('rating: '+value+ ', previous id: '+prevId+ ', current id: '+currentId+' page: '+hash);
-		$location.path(hash);
+	$scope.getValue = function (value, prevId, currentId, path) {
+		console.log('rating: '+value+ ', previous id: '+prevId+ ', current id: '+currentId+' request: '+path);
+		$location.path(path);
 
 	};
 

@@ -10,7 +10,7 @@
     <section class="categories hidden-xs">
             <h3>More</h3>
             <ul class="tags" ng-controller="tagCloudCtrl">
-              <li ng-repeat="(key, value) in tagCloud"><a href="#/{{value[1]}}">{{value[1]}}</a></li>
+              <li ng-repeat="(key, value) in tagCloud"><a href="#!/{{value[1]}}">{{value[1]}}</a></li>
             </ul>
   </section>
 </div>
@@ -34,7 +34,7 @@
             <div ng-controller="RatingDemoCtrl" class="rating">
               <div style="text-align:center">
                 <h3>{{key.current.title}}</h3>
-                <rating value="ratingValue" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'fa fa-star'" state-off="'fa fa-star-o star-empty'" ng-click ="getValue(ratingValue, key.current.id, key.next.id, '/cats/'+key.next.id)"></rating> 
+                <rating value="ratingValue" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'fa fa-star'" state-off="'fa fa-star-o star-empty'" ng-click ="getValue(ratingValue, key.current.id, key.next.id, '/tag/'+key.next.id)"></rating> 
                 <!-- <br />
                 <div class="label label-primary ratingNum clearfix">{{overStar || "0"}}</div> -->
                 </div>
@@ -47,12 +47,12 @@
 
                 <div class="clearfix"></div>
                 <ul class="tags">
-                  <li ng-repeat="(key, value) in key.current.tags"><span class="label label-primary"><a href="/{{value}}">{{value}}</a></span></li>
+                  <li ng-repeat="(key, value) in key.current.tags"><span class="label label-primary"><a href="#!/{{value}}">{{value}}</a></span></li>
                 </ul>   
               </div> 
   </section>
       <div class="buttons pull-left">
-      <a href="#/upload" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
+      <a href="#!/upload" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
       <button class="btn btn-lg btn-info"><span class="fa fa-heart"></span>&nbsp;Top 20</button>
     </div>
 </div>
@@ -61,7 +61,7 @@
     <section class="categories">
             <h3>More</h3>
             <ul class="tags" ng-controller="tagCloudCtrl">
-              <li ng-repeat="(key, value) in tagCloud"><a href="#/{{value[1]}}">{{value[1]}}</a></li>
+              <li ng-repeat="(key, value) in tagCloud"><a href="#!/{{value[1]}}">{{value[1]}}</a></li>
             </ul>
   </section>
 </div>

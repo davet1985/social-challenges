@@ -6,14 +6,14 @@ var app = angular.module('app', [
     'ngTagsInput',
     'angularFileUpload'
 ])
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider', '$locationProvider', function ($routeProvider,  $locationProvider) {
 
     $routeProvider
         .when('/',{
             templateUrl: 'app/views/ratingView.html',
             controller: 'ratingCtrl'
         })
-        .when('/cats/:id',{
+        .when('/tag/:id',{
             templateUrl: 'app/views/ratingView.html',
             controller: 'ratingCtrl'
         })
@@ -38,7 +38,14 @@ var app = angular.module('app', [
             controller: 'errorCtrl'
         })
         .otherwise({'redirectTo': '/404'});
+
+    $locationProvider
+    .html5Mode(false)
+    .hashPrefix('!');
+
 }]);
+
+
 
 // Some general UI pack related JS
 
