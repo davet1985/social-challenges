@@ -41,3 +41,24 @@ html, body {
     margin-right: -40px !important;
   }
 }
+.navbar-brand:hover .logo-graphic{
+  border-color: $brand-secondary;
+}
+
+.logo-graphic{
+  display: inline-block;
+  border: solid 1px #fff;
+  padding: 4px;
+  margin-top: -6px;
+}
+
+.logo-type{
+  margin: 0 10px;
+}
+.page-bg{
+  color: #E6E6E6;
+  font-size: 80rem;
+  position: fixed;
+  margin-top: -100px;
+  z-index: -1;
+}

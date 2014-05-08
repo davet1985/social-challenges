@@ -5,4 +5,17 @@ footer.footer{
 	height: 150px;
 	clear:both;
 	padding-top:20px;
+
+	.logo-graphic{
+	  display: inline-block;
+	  border: solid 1px #333;
+	  padding: 0 4px;
+	  color: #333;
+	}
+
+	.logo-type{
+	  margin: 0 10px;
+	  color: #333;
+	}
+
 }

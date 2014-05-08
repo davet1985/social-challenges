@@ -51,7 +51,7 @@ $inverse:                   white !default;
 
 // Brand colors
 $brand-primary: 			$alizarin !default;
-$brand-secondary:           $pomegranate !default;
+$brand-secondary:           $dark-grey !default;
 //$brand-primary:             $wet-asphalt !default;
 //$brand-secondary:           $turquoise !default;
 $brand-success:             $emerald !default;
@@ -69,7 +69,7 @@ $text-color:                $dark-grey !default;
 
 //** Global textual link color.
 $link-color:                $brand-primary !default;
-$link-hover-color:          darken($brand-primary, 25%) !default;
+$link-hover-color:          $brand-secondary !default;
 
 
 //== Typography
@@ -165,7 +165,8 @@ $btn-default-bg:             $gray-light !default;
 $btn-hover-bg:               mix($gray-light, white, 80%) !default;
 $btn-active-bg:              mix($gray-light, black, 85%) !default;
 
-$btn-primary-hover-bg:       mix($brand-secondary, white, 80%) !default;
+$btn-primary-hover-bg:       $brand-secondary !default;
+//$btn-primary-hover-bg:       mix($brand-secondary, white, 80%) !default;
 $btn-primary-active-bg:      mix($brand-secondary, black, 85%) !default;
 
 $btn-info-hover-bg:          mix($brand-info, white, 80%) !default;
