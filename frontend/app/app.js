@@ -33,6 +33,10 @@ var app = angular.module('app', [
             templateUrl: 'app/views/uploadView.html',
             controller: 'uploadCtrl'
         })
+        .when('/top',{
+            templateUrl: 'app/views/topView.html',
+            controller: 'topCtrl'
+        })
         .when('/404',{
             templateUrl: 'app/views/404View.html',
             controller: 'errorCtrl'
