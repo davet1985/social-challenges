@@ -7,6 +7,7 @@ rake db:usercreate
 rake db:uploadcreate
 rackup
 ```
+Then browse to http://localhost:9292
 
 *OR*
 
