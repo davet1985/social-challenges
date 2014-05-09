@@ -1,9 +1,10 @@
-var mainCtrl = function ($scope, $location) {
+var mainCtrl = function ($scope, $location, $http) {
+	
+	$scope.getPageTag = function() {
+		return $location.path().split('/')[1]||'Unknown';
+    };
 
-
-    //var pId = $location.path().split('/')[2]||'Unknown';
-
-    //console.log('page id = '+pId);
+    //console.log($scope.getPageTag());
 };
 
-mainCtrl.$inject = ['$scope', '$location'];
+mainCtrl.$inject = ['$scope', '$location', '$http'];

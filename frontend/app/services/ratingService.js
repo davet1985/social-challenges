@@ -13,7 +13,7 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 		
 		var urlWithCurrentAndPrev = url + pageTag + '/' + pageId + '/' + prevId;
 		
-		console.log(urlWithCurrentAndPrev);
+		//console.log(urlWithCurrentAndPrev);
 
         $http.get(urlWithCurrentAndPrev)
             .then(function(results){

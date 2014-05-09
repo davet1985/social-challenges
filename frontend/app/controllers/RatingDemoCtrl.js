@@ -3,15 +3,15 @@ var RatingDemoCtrl = function ($scope, $location) {
 
 	$scope.max = 5;
 
+	var tagName = $scope.getPageTag();
+
 	$scope.hoveringOver = function(value) {
 		$scope.overStar = value;
 	};
 
 	// do something with value
-	$scope.getValue = function (value, prevId, currentId, path) {
-		console.log('rating: '+value+ ', previous id: '+prevId+ ', current id: '+currentId+' request: '+path);
-		$location.path(path);
-
+	$scope.getValue = function (value, prevId, currentId, nextId) {
+		$location.path('/'+tagName+'/'+nextId+'/'+currentId);
 	};
 
 };
