@@ -11,7 +11,16 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 
         var url  = 'http://localhost:9292/tag/';
 		
-		var urlWithCurrentAndPrev = url + pageTag + '/' + pageId + '/' + prevId;
+		var urlWithCurrentAndPrev = url + pageTag;
+		
+		if (pageId !== 'Unknown') {
+			urlWithCurrentAndPrev = urlWithCurrentAndPrev + '/' + pageId;
+		}
+		
+		if (prevId !== 'Unknown') {
+			urlWithCurrentAndPrev = urlWithCurrentAndPrev + '/' + prevId;
+		}
+			
 		
 		//console.log(urlWithCurrentAndPrev);
 

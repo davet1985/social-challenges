@@ -17,6 +17,10 @@ var app = angular.module('app', [
             templateUrl: 'app/views/ratingView.html',
             controller: 'ratingCtrl'
         })
+        .when('/:tag',{
+            templateUrl: 'app/views/ratingView.html',
+            controller: 'ratingCtrl'
+        })
         .when('/login',{
             templateUrl: 'app/views/loginView.html',
             controller: 'loginCtrl'

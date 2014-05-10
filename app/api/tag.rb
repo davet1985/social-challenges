@@ -45,6 +45,16 @@ module SocialChallenges
         JSON.parse(Tag.returnJSON(currentObject, previousObject, nextObject))
       end
     end
+    
+    get '/:tagName' do
+      currentObject = TagRepository.get_random_object_bytagname params[:tagName]
+      nextObject = TagRepository.get_random_object_bytagname params[:tagName]
+      if !currentObject then
+        error! 'Upload not found', 404
+      else
+        JSON.parse(Tag.returnJSONNoPrevious(currentObject, nextObject))
+      end
+    end
 
   end
 
