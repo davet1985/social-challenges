@@ -32,6 +32,7 @@
 	   position: absolute; 
 	   bottom: 0; 
 	   width: 100%; 
+	   margin-left: -11px;
 	   span { 
 		   color: white; 
 		   font: bold .4em/1.8em $font-family-base; 
@@ -47,6 +48,7 @@
 	h2.next{	
 	  	right: 0; 
 	  	width: auto;
+	  	margin-right: -11px;
 	}
 }
 
