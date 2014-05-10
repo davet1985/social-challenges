@@ -23,11 +23,11 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/ratingView.html',
                     controller: 'ratingCtrl'
                 })
-                .when('/:tag/:id/:prevId',{
+                .when('/tag/:tag/:id/:prevId',{
                     templateUrl: 'app/views/ratingView.html',
                     controller: 'ratingCtrl'
                 })
-				.when('/:tag',{
+				.when('/tag/:tag',{
 					templateUrl: 'app/views/ratingView.html',
 					controller: 'ratingCtrl'
 				})

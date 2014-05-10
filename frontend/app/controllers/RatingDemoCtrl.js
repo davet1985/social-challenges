@@ -25,7 +25,7 @@ var RatingDemoCtrl = function ($scope, $location, $http) {
             },
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
         });
-		$location.path('/'+tagName+'/'+nextId+'/'+currentId);
+		$location.path('/tag/'+tagName+'/'+nextId+'/'+currentId);
 	};
 
 };

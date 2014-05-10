@@ -9,7 +9,7 @@
     <section class="categories hidden-xs">
             <h3>More</h3>
             <ul class="tags" ng-controller="tagCloudCtrl">
-              <li ng-repeat="(key, value) in tagCloud"><a href="#!/{{value[1]}}">{{value[1]}}</a></li>
+              <li ng-repeat="(key, value) in tagCloud"><a href="#!/tag/{{value[1]}}">{{value[1]}}</a></li>
             </ul>
   </section>
 </div>
@@ -47,7 +47,7 @@
 
                 <div class="clearfix"></div>
                 <ul class="tags">
-                  <li ng-repeat="(key, value) in key.current.tags"><span class="label label-primary"><a href="#!/{{value}}">{{value}}</a></span></li>
+                  <li ng-repeat="(key, value) in key.current.tags"><span class="label label-primary"><a href="#!/tag/{{value}}">{{value}}</a></span></li>
                 </ul>   
               </div> 
   </section>
@@ -61,7 +61,7 @@
     <section class="categories">
             <h3>More</h3>
             <ul class="tags" ng-controller="tagCloudCtrl">
-              <li ng-repeat="(key, value) in tagCloud"><a href="#!/{{value[1]}}">{{value[1]}}</a></li>
+              <li ng-repeat="(key, value) in tagCloud"><a href="#!/tag/{{value[1]}}">{{value[1]}}</a></li>
             </ul>
   </section>
 </div>
