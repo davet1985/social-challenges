@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col-xs-6 col-sm-3">
-  <section class="prev" ng-repeat="key in ratings" ng-hide="key.previous.id == ''">
+  <section class="prev" ng-repeat="key in ratings" ng-hide="key.previous.id == null">
           <div class="image-container">
           <img ng-src="{{key.previous.file_name}}" class="img-rounded img-responsive">
           <h2><span>Rating: {{key.previous.rating}}</span></h2>
