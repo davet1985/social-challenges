@@ -50,7 +50,7 @@ $gray-light:                $silver !default;
 $inverse:                   white !default;
 
 // Brand colors
-$brand-primary: 			$alizarin !default;
+$brand-primary: 			#D61717 !default;
 $brand-secondary:           $dark-grey !default;
 //$brand-primary:             $wet-asphalt !default;
 //$brand-secondary:           $turquoise !default;
@@ -76,8 +76,8 @@ $link-hover-color:          $brand-secondary !default;
 //
 //## Font, line-height for body text, headings, and more.
 
-$font-family-base:          "Lato", Helvetica, Arial, sans-serif !default;
-$font-family-demo:          "Lato", Helvetica Neue, Helvetica, Arial, sans-serif !default;
+$font-family-base:          "Ubuntu", Helvetica, Arial, sans-serif !default;
+$font-family-demo:          "Ubuntu", Helvetica Neue, Helvetica, Arial, sans-serif !default;
 $font-family-monospace:     Monaco, Menlo, Consolas, "Courier New", monospace !default;
 $font-size-base:            18px !default;
 
@@ -309,7 +309,8 @@ $navbar-inverse-divider:              darken($brand-primary, 3%) !default;
 
 // Reset inverted navbar basics
 $navbar-inverse-color:                $inverse !default;
-$navbar-inverse-bg:                   $brand-primary !default;
+$navbar-inverse-bg:						#DFDFDF !default;
+//$navbar-inverse-bg:                   $brand-primary !default;
 $navbar-inverse-border:               darken($navbar-inverse-bg, 10%) !default;
 
 // Inverted navbar links

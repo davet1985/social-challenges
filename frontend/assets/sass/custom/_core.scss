@@ -41,24 +41,48 @@ html, body {
     margin-right: -40px !important;
   }
 }
-.navbar-brand:hover .logo-graphic{
-  border-color: $brand-secondary;
-}
 
-.logo-graphic{
-  display: inline-block;
-  border: solid 1px #fff;
-  padding: 4px;
-  margin-top: -6px;
-}
-
-.logo-type{
-  margin: 0 10px;
-}
 .page-bg{
-  color: #E6E6E6;
+  color: #E7E7E7;
   font-size: 80rem;
   position: fixed;
   margin-top: -100px;
   z-index: -1;
+}
+
+//Navbar
+.navbar-inverse .navbar-nav > li > a {
+  color: $brand-primary;
+}
+
+.navbar-brand{
+      -webkit-transition: none;
+    transition: none;
+}
+.navbar-brand:hover .logo-graphic{
+    background-color: #333;
+    color: #fff;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+}
+.navbar-brand:hover .logo-type{
+    color: #333;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+}
+
+.logo-graphic{
+  //display: inline-block;
+  //border: solid 1px #fff;
+  padding: 0 4px;
+  padding-top: 12px;
+  //background-color: #D61717;
+  background-color: $brand-primary;
+
+}
+
+.logo-type{
+  margin: 0 10px;
+  color: $brand-primary;
+  //color: #D61717;
 }
