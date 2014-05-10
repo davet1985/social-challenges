@@ -11,6 +11,10 @@
 	.star-empty {
 		color: #B3B3B3 !important;
 	}
+	.rate-hint{
+		font-size: 16px;
+		color: #B3B3B3;
+	}
 }
 .ratingNum{
 	margin-top: 20px;
@@ -28,11 +32,13 @@
 	   position: absolute; 
 	   bottom: 0; 
 	   width: 100%; 
+	   margin-left: -11px;
 	   span { 
 		   color: white; 
 		   font: bold .4em/1.8em $font-family-base; 
-		   background: rgb(0, 0, 0); /* fallback color */
-		   background: rgba(0, 0, 0, 0.7);
+		   //background: rgb(0, 0, 0); /* fallback color */
+		   //background: rgba(0, 0, 0, 0.7);
+		   background: $brand-primary;
 		   padding: 10px; 
 		   .spacer {
 			   padding:0 5px;
@@ -42,6 +48,7 @@
 	h2.next{	
 	  	right: 0; 
 	  	width: auto;
+	  	margin-right: -11px;
 	}
 }
 
@@ -65,8 +72,6 @@
 }
 
 img.profileThumb{
-	width: 80px;
-	height: 80px;
 	float: left;
 	margin: 8px 10px 0 0;
 }
@@ -87,13 +92,12 @@ img.profileThumb{
 		
 		li{
 			display: inline-block;
-			background-color: #1abc9c;
+			background-color: $brand-primary;
 			padding: 0 6px;
 			line-height: 1.6em;
 			font-size: 1em;
-			background-color:$turquoise;
 			&:hover{
-				background-color: darken($turquoise, 10%);
+				background-color: #333;
 			}
 			a{
 				color: #fff;
@@ -121,4 +125,6 @@ section.categories{
 }
 .user-link{
 	font-size: .8em;
+	margin-top: 2px;
+	display: inline-block;
 }

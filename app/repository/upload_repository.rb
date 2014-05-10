@@ -37,9 +37,9 @@ class UploadRepository
   def self.save(upload)
     insert =  <<-SQL
       INSERT INTO uploads
-      values (NULL, ?, ?, ?, ?, ?, 0, 0, ?, ?)
+      values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       SQL
-      $uploaddb.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid, upload.title, upload.description)
+    $uploaddb.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid, upload.overallScore, upload.numOfRatings, upload.title, upload.description)
   end
 
   def self.transfer_file(file, file_name)

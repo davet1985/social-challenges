@@ -33,16 +33,17 @@
             <div ng-controller="RatingDemoCtrl" class="rating">
               <div style="text-align:center">
                 <h3>{{key.current.title}}</h3>
+                <p class="rate-hint">Click on a star to rate</p>
                 <rating value="ratingValue" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" state-on="'fa fa-star'" state-off="'fa fa-star-o star-empty'" ng-click ="getValue(ratingValue, key.previous.id, key.current.id, key.next.id)"></rating> 
                 <!-- <br />
                 <div class="label label-primary ratingNum clearfix">{{overStar || "0"}}</div> -->
                 </div>
               </div> 
               <div class="caption">
-                    <img src="public/img/profile.jpeg" class="img-rounded profileThumb" />
-    
+                    <img gravatar-src="'sommes.email@gmail.com'" class="img-rounded profileThumb">
+                <a href="{{key.current.userid}}" class="user-link">{{key.current.userid}}</a> 
                 <p>{{key.current.description}}</p>
-                <a href="{{key.current.userid}}" class="user-link">{{key.current.userid}}</a>
+                
 
                 <div class="clearfix"></div>
                 <ul class="tags">
@@ -51,8 +52,8 @@
               </div> 
   </section>
       <div class="buttons pull-left">
-      <a href="#!/upload" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
-      <a href="#!/top" class="btn btn-lg btn-info"><span class="fa fa-heart"></span>&nbsp;Top 20</a>
+      <a href="#!/upload" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
+      <a href="#!/top" class="btn btn-lg btn-primary"><span class="fa fa-heart"></span>&nbsp;Top 20</a>
     </div>
 </div>
 

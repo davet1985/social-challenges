@@ -39,13 +39,12 @@ module SocialChallenges
     end
 
     post '/add' do
-      metadata_json = JSON.parse(params[:metadata])
-      userid = metadata_json['userid']
+      userid = params[:userid]
+      title = params[:title]
+      description = params[:description]
       type = params[:image_file].type
       original_file_name = params[:image_file].filename
       file = params[:image_file]
-      title = params[:title]
-      description = params[:description]
       file_name = Time.now.strftime('%Y%m%d%H%M%S%L') + '_' + original_file_name
       upload = Upload.new type, file_name, original_file_name, userid, title, description
       UploadRepository.save upload

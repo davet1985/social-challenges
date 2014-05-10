@@ -612,7 +612,8 @@
   
   .navbar-toggle {
     &:before {
-      color: $navbar-inverse-toggle-color;
+      //color: $navbar-inverse-toggle-color;
+      color: $brand-primary;
     }   
     &:hover,
     &:focus {
@@ -625,7 +626,8 @@
   }
   
   .navbar-collapse {
-    border-color: $navbar-inverse-form-border;
+    //border-color: $navbar-inverse-form-border;
+    border-color: #C4C4C4;
     border-width: 2px;
   }
   
