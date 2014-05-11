@@ -10,7 +10,7 @@ class UploadRepository
 
   def self.all
     results = $uploaddb.execute("select * from uploads")
-    cast results
+    Upload.cast results
   end
 
   def self.get_by_id(id)
@@ -20,7 +20,7 @@ class UploadRepository
       WHERE id = ?
       SQL
     results = $uploaddb.execute(select, id)
-    uploads = self.cast results
+    uploads = Upload.cast results
     if uploads.count == 1
       uploads[0]
     else
@@ -28,18 +28,12 @@ class UploadRepository
     end
   end
 
-  def self.cast(results)
-    uploads = Array.new
-    results.each { |r| uploads << Upload.new(r[2], r[3], r[4], r[5], r[8], r[9], r[1], r[0], r[6], r[7]) }
-    uploads
-  end
-
   def self.save(upload)
     insert =  <<-SQL
       INSERT INTO uploads
-      values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       SQL
-    $uploaddb.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid, upload.overallScore, upload.numOfRatings, upload.title, upload.description)
+    $uploaddb.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid, upload.overallScore, upload.numOfRatings, upload.averageScore , upload.title, upload.description)
     upload_id = $uploaddb.last_insert_row_id()
   end
 

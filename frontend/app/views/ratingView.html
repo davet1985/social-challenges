@@ -30,7 +30,7 @@
   <section class="current">
 
         <img ng-src="{{key.current.file_name}}" class="img-rounded img-responsive">
-            <div ng-controller="RatingDemoCtrl" class="rating">
+            <div class="rating">
               <div style="text-align:center">
                 <h3>{{key.current.title}}</h3>
                 <p class="rate-hint">Click on a star to rate</p>
@@ -53,7 +53,7 @@
   </section>
       <div class="buttons pull-left">
       <a href="#!/upload" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
-      <a href="#!/top" class="btn btn-lg btn-primary"><span class="fa fa-heart"></span>&nbsp;Top 20</a>
+      <a href="#!/top/{{getPageTag()}}" class="btn btn-lg btn-primary"><span class="fa fa-heart"></span>&nbsp;Top 20</a>
     </div>
 </div>
 

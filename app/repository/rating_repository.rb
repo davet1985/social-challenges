@@ -21,6 +21,12 @@ class RatingRepository
       where id = ?
       SQL
       $uploaddb.execute(update, score, objectId)
+    updateAverageScore =  <<-SQL
+        update uploads
+        set averageScore = (overallScore * 1.0) / numOfRatings
+        where id = ?
+        SQL
+        $uploaddb.execute(updateAverageScore, objectId)
   end
 
 end

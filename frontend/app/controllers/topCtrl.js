@@ -1,6 +1,7 @@
-var topCtrl = function ($scope) {
+var topCtrl = function ($scope, topService) {
 
-
+	$scope.top = topService.top;
+	topService.gettopData();
 };
 
-topCtrl.$inject = ['$scope'];
+topCtrl.$inject = ['$scope', 'topService'];

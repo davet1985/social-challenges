@@ -51,11 +51,11 @@
                 <div class="sel-file" ng-repeat="f in selectedFiles">
                   <span class="progress" ng-show="progress[$index] >= 0">           
                     <div class="progress-bar" style="width:{{progress[$index]}}%"></div>
-                    <!-- <button class="button" ng-click="start($index)" ng-show="progress[$index] < 0">Start</button>
+                  </span> 
+                          <!-- <button class="button" ng-click="start($index)" ng-show="progress[$index] < 0">Start</button>
                    <p>{{progress[$index]}}% downloaded</p>
                   <button class="button" ng-click="abort($index)" ng-show="hasUploader($index) && progress[$index] < 100">Abort</button>
                   {{f.name}} - size: {{f.size}}B - type: {{f.type}} -->
-                  </span> 
                 </div>
               </div>
 

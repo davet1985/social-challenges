@@ -14,6 +14,7 @@ module UploadDB
         userid INTEGER NOT NULL,
         overallScore INTEGER,
         numOfRatings INTEGER,
+        averageScore REAL NOT NULL,
         title VARCHAR(255) NOT NULL,
         description VARCHAR(255) NOT NULL
         );
