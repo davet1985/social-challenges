@@ -52,7 +52,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
         }
     };
 
-    $scope.processForm = function(x) {
+    $scope.processForm = function() {
         var index = 0;
         $scope.progress[index] = 0;
         $scope.upload[index] = $upload.upload({
@@ -67,11 +67,19 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
             fileFormDataName: 'image_file'
         }).then(function(response) {
             $scope.uploadResult.push(response.data);
-            console.log(response.data);
+            console.log('response: '+response.data);
+            
             // TODO: redirect to the appropriate place
-            $location.path('/top');
+            //$location.path('/user/xyz/uploads');
+
         }, null, function(evt) {
             $scope.progress[index] = parseInt(100.0 * evt.loaded / evt.total);
+
+            if ($scope.progress[index] === 100){
+                $location.path('/user/xyz/uploads');
+            }
+
+
         }).xhr(function(xhr){
             xhr.upload.addEventListener('abort', function(){console.log('aborted complete');}, false);
         });

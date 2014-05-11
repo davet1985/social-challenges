@@ -52,6 +52,10 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/topView.html',
                     controller: 'topCtrl'
                 })
+                .when('/user/:userName/uploads',{
+                    templateUrl: 'app/views/userUploadsView.html',
+                    controller: 'userUploadsCtrl'
+                })
                 .when('/404',{
                     templateUrl: 'app/views/404View.html',
                     controller: 'errorCtrl'
