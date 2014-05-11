@@ -3,6 +3,7 @@ require './app/api/login'
 require './app/api/uploads'
 require './app/api/rating'
 require './app/api/tag'
+require './app/api/leaderboard'
 require 'rack/cors'
 
 use Rack::Cors do
@@ -28,4 +29,8 @@ end
 
 map '/tag' do
   run SocialChallenges::TagAPI
+end
+
+map '/leaderboard' do
+  run SocialChallenges::LeaderboardAPI
 end

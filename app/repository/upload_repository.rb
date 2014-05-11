@@ -10,7 +10,7 @@ class UploadRepository
 
   def self.all
     results = $uploaddb.execute("select * from uploads")
-    cast results
+    Upload.cast results
   end
 
   def self.get_by_id(id)
@@ -20,18 +20,12 @@ class UploadRepository
       WHERE id = ?
       SQL
     results = $uploaddb.execute(select, id)
-    uploads = self.cast results
+    uploads = Upload.cast results
     if uploads.count == 1
       uploads[0]
     else
       false
     end
-  end
-
-  def self.cast(results)
-    uploads = Array.new
-    results.each { |r| uploads << Upload.new(r[2], r[3], r[4], r[5], r[9], r[10], r[1], r[0], r[6], r[7], r[8]) }
-    uploads
   end
 
   def self.save(upload)

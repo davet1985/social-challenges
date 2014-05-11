@@ -19,9 +19,13 @@ class Upload
   end
 
   def to_json(*a)
-    [{
-      "current"       => {"id" => @id, "type" => @type, "file_name" => @file_name, "file_name" => "http://localhost:9292/upload/#{@id}/download", "userid" => @userid, "upload_datetime" => @upload_datetime, "overallScore" => @overallScore, "numOfRatings" => @numOfRatings, "title" => @title, "description" => @description, "tags" => ""}, "previous" => {"id" => "1", "type" => "image", "rating" => 4, "file_name" => "public/img/cat2.jpg"}, "next" => {"id" => "3", "type" => "image", "rating" => 3, "file_name" => "public/img/cat3.jpg"}
-      }].to_json(*a)
+    {"id" => @id, "type" => @type, "file_name" => @file_name, "file_name" => "http://localhost:9292/upload/#{@id}/download", "userid" => @userid, "upload_datetime" => @upload_datetime, "averageScore" => @averageScore.round(1), "numOfRatings" => @numOfRatings, "title" => @title, "description" => @description, "tags" => ""}.to_json(*a)
+  end
+  
+  def self.cast(results)
+    uploads = Array.new
+    results.each { |r| uploads << Upload.new(r[2], r[3], r[4], r[5], r[9], r[10], r[1], r[0], r[6], r[7], r[8]) }
+    uploads
   end
 
 end

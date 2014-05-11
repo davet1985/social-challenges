@@ -10,14 +10,14 @@
 						          <div class="image-container">
 						            <a href="#!/tag/{{getPageTag()}}/6/1">
 							            <img ng-src="{{value.file_name}}" class="img-rounded img-responsive">
-							            <h2 class="top-score"><span>{{value.top_rating}}</span></h2>
+							            <h2 class="top-score"><span>{{$index+1}}</span></h2>
 						            </a>
 						          </div>
 							  </section>
 							</div>
 							<div class="col-sm-6 col-xs-12">
 			  					<section class="top">
-			  					<h2 class="top-score-total"><span>Rating: {{value.total_rating}}</span></h2>
+			  					<h2 class="top-score-total"><span>Rating: {{value.averageScore}}</span></h2>
 			  					<img gravatar-src="'sommes.email@gmail.com'" class="img-rounded profileThumb">
 			  						<p><a href="#!/user/{{value.userid}}">{{value.userid}}</a></p>
 			  						<h3 class="leaderboard-title">{{value.title}}</h3>
