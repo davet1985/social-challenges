@@ -20,6 +20,7 @@ var app = angular.module('app', [
 
             $routeProvider
                 .when('/',{
+                    redirectTo: '/tag/cat', /* todo: make it go to a random tag or most popular? */
                     templateUrl: 'app/views/ratingView.html',
                     controller: 'ratingCtrl'
                 })

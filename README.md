@@ -50,4 +50,4 @@ grunt
 npm start
 ```
 
-Browse at http://localhost:8000/#!/[tag name]/[current id]/[previous id]
+Browse at http://localhost:8000
