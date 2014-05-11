@@ -6,7 +6,11 @@
   text-align: center;
   margin-top: 20px;
   padding: 30px;
-  }
+}
+.drop-box.dragover{
+  border: 5px dashed #333;
+}
+
 .sel-file img{
   	margin-top: 20px;
   }

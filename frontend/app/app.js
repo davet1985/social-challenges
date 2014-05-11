@@ -45,7 +45,7 @@ var app = angular.module('app', [
                 })
                 .when('/upload',{
                     templateUrl: 'app/views/uploadView.html',
-                    controller: 'uploadCtrl'
+                    controller: 'fileUploadCtrl'
                 })
                 .when('/top',{
                     templateUrl: 'app/views/topView.html',

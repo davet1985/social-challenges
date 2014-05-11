@@ -2,7 +2,7 @@
 	<div class="col-md-12" >
 	  <section class="upload">
 	    <h2>Upload</h2>
-  		<div class="row" ng-controller="fileUploadCtrl">
+  		<div class="row">
   			<span class="fa fa-cloud-upload page-bg"></span>
   			<form class="col-sm-6" role="form" ng-submit="processForm()">
 
@@ -21,14 +21,7 @@
 
   						<div ng-show="selectedFiles != null">
   							<div class="sel-file" ng-repeat="f in selectedFiles">
-  								<span class="progress" ng-show="progress[$index] >= 0">						
-  									<div class="progress-bar" style="width:{{progress[$index]}}%"></div>
-  								</span>	
   								<img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive">
-  								<!-- <button class="button" ng-click="start($index)" ng-show="progress[$index] < 0">Start</button>
-  								 <p>{{progress[$index]}}% downloaded</p>
-  								<button class="button" ng-click="abort($index)" ng-show="hasUploader($index) && progress[$index] < 100">Abort</button>
-  								{{f.name}} - size: {{f.size}}B - type: {{f.type}} -->
   							</div>
   						</div>
   					</div>
@@ -52,6 +45,21 @@
   	      </div>
 
   	      <button type="submit" class="btn btn-primary btn-block">Upload</button>
+
+
+              <div ng-show="selectedFiles != null">
+                <div class="sel-file" ng-repeat="f in selectedFiles">
+                  <span class="progress" ng-show="progress[$index] >= 0">           
+                    <div class="progress-bar" style="width:{{progress[$index]}}%"></div>
+                    <!-- <button class="button" ng-click="start($index)" ng-show="progress[$index] < 0">Start</button>
+                   <p>{{progress[$index]}}% downloaded</p>
+                  <button class="button" ng-click="abort($index)" ng-show="hasUploader($index) && progress[$index] < 100">Abort</button>
+                  {{f.name}} - size: {{f.size}}B - type: {{f.type}} -->
+                  </span> 
+                </div>
+              </div>
+
+
   	    </form>
   		</div> 
 	  </section>

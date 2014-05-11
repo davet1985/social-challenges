@@ -52,7 +52,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
         }
     };
 
-    $scope.processForm = function() {
+    $scope.processForm = function(x) {
         var index = 0;
         $scope.progress[index] = 0;
         $scope.upload[index] = $upload.upload({
