@@ -73,7 +73,7 @@
 
 img.profileThumb{
 	float: left;
-	margin: 8px 10px 0 0;
+	margin: 0 10px 0 0;
 }
 
 
@@ -114,7 +114,8 @@ img.profileThumb{
 section.prev,
 section.next,
 section.current,
-section.categories{
+section.categories,
+section.top{
 	padding: 10px;
 	margin-bottom: 30px;
 	background-color: white;

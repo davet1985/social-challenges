@@ -48,7 +48,7 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/uploadView.html',
                     controller: 'fileUploadCtrl'
                 })
-                .when('/top',{
+                .when('/top/:tag',{
                     templateUrl: 'app/views/topView.html',
                     controller: 'topCtrl'
                 })
