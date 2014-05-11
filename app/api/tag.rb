@@ -4,6 +4,7 @@ require 'rack/contrib'
 
 require_relative './../model/tag'
 require_relative './../repository/tag_repository'
+require_relative './../helpers/tag_helper'
 
 module SocialChallenges
 
@@ -30,7 +31,7 @@ module SocialChallenges
       
       tagArray = tags.split(" ")
       tagArray.each { |tag| 
-        tagId = Tag.findTagOrAddIfNotFound(tag, userid)
+        tagId = TagHelper.find_or_add_tag(tag, userid)
         TagRepository.tagObject objectId, tagId
       }
     end

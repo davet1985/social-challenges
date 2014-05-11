@@ -4,6 +4,7 @@ require 'rack/contrib'
 
 require_relative './../model/upload'
 require_relative './../repository/upload_repository'
+require_relative './../helpers/tag_helper'
 
 module SocialChallenges
 
@@ -39,16 +40,18 @@ module SocialChallenges
     end
 
     post '/add' do
-      userid = params[:userid]
+      user_id = params[:userid]
       title = params[:title]
       description = params[:description]
       type = params[:image_file].type
       original_file_name = params[:image_file].filename
       file = params[:image_file]
+      tags_csv = params[:tags]
       file_name = Time.now.strftime('%Y%m%d%H%M%S%L') + '_' + original_file_name
-      upload = Upload.new type, file_name, original_file_name, userid, title, description
-      UploadRepository.save upload
+      upload = Upload.new type, file_name, original_file_name, user_id, title, description
+      upload_id = UploadRepository.save upload
       UploadRepository.transfer_file file, file_name
+      TagHelper.process_tags tags_csv, upload_id, user_id
     end
 
   end

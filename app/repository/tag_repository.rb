@@ -31,7 +31,7 @@ class TagRepository
       INSERT INTO tag_objects
       values (NULL, ?, ?, datetime('now'))
       SQL
-      $uploaddb.execute(insert, objectId, tagId)
+    $uploaddb.execute(insert, objectId, tagId)
   end
   
   def self.get_random_object_bytagname(id)

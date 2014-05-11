@@ -40,6 +40,7 @@ class UploadRepository
       values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       SQL
     $uploaddb.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid, upload.overallScore, upload.numOfRatings, upload.title, upload.description)
+    upload_id = $uploaddb.last_insert_row_id()
   end
 
   def self.transfer_file(file, file_name)

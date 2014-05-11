@@ -34,10 +34,11 @@
 
   	      <div class="form-group">
   	        <label for="tags" style="margin-bottom: -14px;">Tags</label>
-        		<div ng-controller="tagsCtrl">
+        		<div>
         			<tags-input ng-model="tags"></tags-input>
         		</div>
         	</div>
+
 
   	      <div class="form-group">
   	        <label for="desc">Description</label>
@@ -45,7 +46,6 @@
   	      </div>
 
   	      <button type="submit" class="btn btn-primary btn-block">Upload</button>
-
 
               <div ng-show="selectedFiles != null">
                 <div class="sel-file" ng-repeat="f in selectedFiles">

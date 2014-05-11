@@ -6,6 +6,12 @@
 var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
     
     'use strict';
+
+    $scope.tags = [
+        { text: 'Tag1' },
+        { text: 'Tag2' },
+        { text: 'Tag3' }
+    ];
     
     $scope.fileReaderSupported = window.FileReader != null;
     $scope.changeAngularVersion = function() {
@@ -61,7 +67,8 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
             data : {
                 userid : 1, //TODO: set this properly
                 title : $scope.title,
-                description : $scope.description
+                description : $scope.description,
+                tags : $scope.tagsToCSV()
             },
             file: $scope.selectedFiles[index],
             fileFormDataName: 'image_file'
@@ -75,6 +82,19 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
         }).xhr(function(xhr){
             xhr.upload.addEventListener('abort', function(){console.log('aborted complete');}, false);
         });
+    };
+
+    // TODO: create a tag service to handle stuff like this and inject it into this controller
+    $scope.tagsToCSV = function() {
+        var tags = $scope.tags;
+        var tagsCSV = '';
+        for (var i = 0; i < tags.length; i++) {
+            tagsCSV += tags[i].text;
+            if (i < tags.length-1) {
+                tagsCSV += ',';
+            }
+        }
+        return tagsCSV;
     };
 
 };
