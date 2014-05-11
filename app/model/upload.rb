@@ -2,9 +2,9 @@ require 'json'
 
 class Upload
 
-  attr_reader :upload_datetime, :type, :file_name, :original_file_name, :userid, :title, :description, :overallScore, :numOfRatings, :id
+  attr_reader :upload_datetime, :type, :file_name, :original_file_name, :userid, :title, :description, :overallScore, :numOfRatings, :averageScore, :id
 
-  def initialize(type, file_name, original_file_name, userid, title, description, upload_datetime = Time.now.to_s, id = nil, overallScore = 0, numOfRatings = 0)
+  def initialize(type, file_name, original_file_name, userid, title, description, upload_datetime = Time.now.to_s, id = nil, overallScore = 0, numOfRatings = 0, averageScore = 0)
     @type = type
     @file_name = file_name
     @original_file_name = original_file_name
@@ -13,6 +13,7 @@ class Upload
     @id = id
     @overallScore = overallScore
     @numOfRatings = numOfRatings
+    @averageScore = averageScore
     @title = title
     @description = description
   end

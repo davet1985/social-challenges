@@ -56,7 +56,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
         var index = 0;
         $scope.progress[index] = 0;
         $scope.upload[index] = $upload.upload({
-            url : 'http://localhost:9393/upload/add',
+            url : 'http://localhost:9292/upload/add',
             method: 'POST',
             data : {
                 userid : 1, //TODO: set this properly
