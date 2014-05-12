@@ -5,7 +5,7 @@ class TagHelper
 
   def self.process_tags(tags_csv, object_id, user_id)
     TagHelper.create_tags_from_csv(tags_csv, user_id).each do |tag| 
-      tag_id = TagRepository.save tag
+      tag_id = self.find_or_add_tag tag.tagName, tag.userId
       TagRepository.tagObject object_id, tag_id
     end
   end
