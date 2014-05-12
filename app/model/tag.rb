@@ -10,6 +10,10 @@ class Tag
     @userId = userId
     @id = id
   end
+
+  def to_json(*a)
+    {"id" => @id, "tag_name" => @tagName, "userid" => @userId}.to_json(*a)
+  end
   
   def self.returnJSON(currentObject, previousObject, nextObject)
     [{

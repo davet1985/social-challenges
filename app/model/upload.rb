@@ -2,6 +2,8 @@ require 'json'
 
 class Upload
 
+  @tags = Array.new
+
   attr_reader :upload_datetime, :type, :file_name, :original_file_name, :userid, :title, :description, :overallScore, :numOfRatings, :averageScore, :id
 
   def initialize(type, file_name, original_file_name, userid, title, description, upload_datetime = Time.now.to_s, id = nil, overallScore = 0, numOfRatings = 0, averageScore = 0)
@@ -19,7 +21,11 @@ class Upload
   end
 
   def to_json(*a)
-    {"id" => @id, "type" => @type, "file_name" => @file_name, "file_name" => "http://localhost:9292/upload/#{@id}/download", "userid" => @userid, "upload_datetime" => @upload_datetime, "averageScore" => @averageScore.round(1), "numOfRatings" => @numOfRatings, "title" => @title, "description" => @description, "tags" => ""}.to_json(*a)
+    {"id" => @id, "type" => @type, "file_name" => @file_name, "file_name" => "http://localhost:9292/upload/#{@id}/download", "userid" => @userid, "upload_datetime" => @upload_datetime, "averageScore" => @averageScore.round(1), "numOfRatings" => @numOfRatings, "title" => @title, "description" => @description, "tags" => @tags.to_json}.to_json(*a)
+  end
+
+  def set_tags(tags)
+    @tags = tags
   end
   
   def self.cast(results)

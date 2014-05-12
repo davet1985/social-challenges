@@ -1,4 +1,5 @@
 require_relative './../repository/tag_repository'
+require_relative './../model/tag'
 
 class TagHelper
 
@@ -20,6 +21,12 @@ class TagHelper
       tag_id = TagRepository.save tag
     end
     tag_id
+  end
+
+  def self.cast_results(results)
+    tags = Array.new
+    results.each { |r| tags << Tag.new(r[2], r[1], r[0]) }
+    tags
   end
 
 end

@@ -4,6 +4,7 @@ require 'rack/contrib'
 
 require_relative './../model/upload'
 require_relative './../repository/upload_repository'
+require_relative './../repository/tag_repository'
 require_relative './../helpers/tag_helper'
 
 module SocialChallenges
@@ -19,6 +20,7 @@ module SocialChallenges
 
     get '/:id' do
       upload = UploadRepository.get_by_id(params[:id])
+      upload.set_tags TagRepository.find_by_object_id(upload.id)
       if !upload then
         error! 'Upload not found', 404
       else

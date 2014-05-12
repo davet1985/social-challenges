@@ -2,6 +2,7 @@ require 'sqlite3'
 
 require_relative './../model/tag'
 require_relative './../model/upload'
+require_relative './../helpers/tag_helper'
 
 $uploaddb = SQLite3::Database.open 'upload.db'
 
@@ -54,6 +55,16 @@ class TagRepository
   
   def self.all
     results = $uploaddb.execute("select id, tagName from tags")
+  end
+
+  def self.find_by_object_id(object_id)
+    select = <<-SQL
+      SELECT t.id, t.userid, t.tagName
+      FROM tag_objects o join tags t on t.id = o.tagid
+      WHERE o.objectid = ?
+      SQL
+    results = $uploaddb.execute(select, object_id)
+    tags = TagHelper.cast_results results
   end
 
 end
