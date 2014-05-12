@@ -39,7 +39,7 @@ module SocialChallenges
     get '/:tagName/:currentId/:previousId' do
       currentObject = UploadRepository.get_by_id params[:currentId]
       previousObject = UploadRepository.get_by_id params[:previousId]
-      nextObject = TagRepository.get_random_object_bytagname params[:tagName]
+      nextObject = TagRepository.get_random_object_bytagname params[:tagName], Array(-1)
       if !currentObject then
         error! 'Upload not found', 404
       else
@@ -48,8 +48,8 @@ module SocialChallenges
     end
     
     get '/:tagName' do
-      currentObject = TagRepository.get_random_object_bytagname params[:tagName]
-      nextObject = TagRepository.get_random_object_bytagname params[:tagName]
+      currentObject = TagRepository.get_random_object_bytagname params[:tagName], Array(-1)
+      nextObject = TagRepository.get_random_object_bytagname params[:tagName], Array(-1)
       if !currentObject then
         error! 'Upload not found', 404
       else

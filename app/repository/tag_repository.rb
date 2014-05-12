@@ -35,15 +35,16 @@ class TagRepository
     $uploaddb.execute(insert, objectId, tagId)
   end
   
-  def self.get_random_object_bytagname(id)
+  def self.get_random_object_bytagname(id, excludeIds)
     select =  <<-SQL
       SELECT *
       FROM uploads, tag_objects, tags
       WHERE uploads.id = tag_objects.objectId
       AND tags.id = tag_objects.tagId
       AND tags.tagName = ?
+      AND uploads.id NOT IN (?)
       SQL
-    results = $uploaddb.execute(select, id)
+    results = $uploaddb.execute(select, id, excludeIds)
     uploads = Upload.cast results
     if uploads.count != 0
       randIndex = Random.new.rand(0..uploads.count-1)
