@@ -1,6 +1,10 @@
+/* jshint -W089 */
+
 app.service('ratingService', ['$http', '$location',  function($http, $location) {
   
     var _ratingDataArr = [];
+	
+	var ignore_ids = [];
 
     var _getRatingData = function(){
         
@@ -15,6 +19,7 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 		
 		if (pageId !== 'Unknown') {
 			urlWithCurrentAndPrev = urlWithCurrentAndPrev + '/' + pageId;
+			ignore_ids.push(pageId);
 		}
 		
 		if (prevId !== 'Unknown') {
@@ -24,7 +29,19 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 		
 		//console.log(urlWithCurrentAndPrev);
 
-        $http.get(urlWithCurrentAndPrev)
+        $http({
+            method  : 'POST',
+            url     : urlWithCurrentAndPrev,
+            data: {'ignoreIds': ignore_ids},
+            transformRequest: function(obj) {
+                var str = [];
+                for(var p in obj) {
+                    str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+                }
+                return str.join('&');
+            },
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+        })
             .then(function(results){
                 //Success
                 angular.copy(results.data, _ratingDataArr);
