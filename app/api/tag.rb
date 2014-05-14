@@ -36,10 +36,17 @@ module SocialChallenges
       }
     end
     
-    get '/:tagName/:currentId/:previousId' do
+    post '/:tagName/:currentId/:previousId' do
+      
+      idstoignore = params[:ignoreIds]
+      if params[:ignoreIds] == "" then
+        idstoignore = Array[-1]
+      else
+        idstoignore = params[:ignoreIds].split(',')
+      end
       currentObject = UploadRepository.get_by_id params[:currentId]
       previousObject = UploadRepository.get_by_id params[:previousId]
-      nextObject = TagRepository.get_random_object_bytagname params[:tagName], Array(-1)
+      nextObject = TagRepository.get_random_object_bytagname params[:tagName], idstoignore
       if !currentObject then
         error! 'Upload not found', 404
       else
@@ -47,9 +54,18 @@ module SocialChallenges
       end
     end
     
-    get '/:tagName' do
-      currentObject = TagRepository.get_random_object_bytagname params[:tagName], Array(-1)
-      nextObject = TagRepository.get_random_object_bytagname params[:tagName], Array(-1)
+    
+    post '/:tagName' do
+      
+      idstoignore = params[:ignoreIds]
+      if params[:ignoreIds] == "" then
+        idstoignore = Array[-1]
+      else
+        idstoignore = params[:ignoreIds].split(',')
+      end
+      
+      currentObject = TagRepository.get_random_object_bytagname params[:tagName], idstoignore
+      nextObject = TagRepository.get_random_object_bytagname params[:tagName], idstoignore
       if !currentObject then
         error! 'Upload not found', 404
       else

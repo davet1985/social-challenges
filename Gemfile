@@ -9,3 +9,4 @@ gem 'warden'
 gem 'bcrypt'
 gem "password_strength"
 gem 'rack-cors'
+gem 'activerecord'

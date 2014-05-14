@@ -2,7 +2,7 @@ require 'grape'
 require 'json'
 require 'rack/contrib'
 
-require_relative './../model/upload'
+require_relative './../model/upload_model'
 require_relative './../repository/leaderboard_repository'
 
 module SocialChallenges
