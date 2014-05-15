@@ -4,6 +4,7 @@ require 'rack/contrib'
 
 require_relative './../model/tag'
 require_relative './../repository/tag_repository'
+require_relative './../repository/tag_upload_repository'
 require_relative './../helpers/tag_helper'
 
 module SocialChallenges
@@ -42,11 +43,11 @@ module SocialChallenges
       if params[:ignoreIds] == "" then
         idstoignore = Array[-1]
       else
-        idstoignore = params[:ignoreIds].split(',')
+        idstoignore = params[:ignoreIds].split(',').map { |s| s.to_i }
       end
       currentObject = UploadRepository.get_by_id params[:currentId]
       previousObject = UploadRepository.get_by_id params[:previousId]
-      nextObject = TagRepository.get_random_object_bytagname params[:tagName], idstoignore
+      nextObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore
       if !currentObject then
         error! 'Upload not found', 404
       else
@@ -61,11 +62,11 @@ module SocialChallenges
       if params[:ignoreIds] == "" then
         idstoignore = Array[-1]
       else
-        idstoignore = params[:ignoreIds].split(',')
+        idstoignore = params[:ignoreIds].split(',').map { |s| s.to_i }
       end
       
-      currentObject = TagRepository.get_random_object_bytagname params[:tagName], idstoignore
-      nextObject = TagRepository.get_random_object_bytagname params[:tagName], idstoignore
+      currentObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore 
+      nextObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore
       if !currentObject then
         error! 'Upload not found', 404
       else

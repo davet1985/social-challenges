@@ -1,9 +1,9 @@
 require 'sqlite3'
 
 require_relative './../model/tag'
-require_relative './../model/upload_model'
+require_relative './../model/uploadmodel'
 require_relative './../helpers/tag_helper'
-require_relative './../repository/upload'
+require_relative './../helpers/upload_model_helper'
 
 $uploaddb = SQLite3::Database.open 'upload.db'
 
@@ -34,28 +34,6 @@ class TagRepository
       values (NULL, ?, ?, datetime('now'))
       SQL
     $uploaddb.execute(insert, objectId, tagId)
-  end
-  
-  def self.get_random_object_bytagname(id, excludeIds)
-    select =  <<-SQL
-      SELECT u.id, u.upload_datetime, u.type, u.file_name, u.original_file_name, u.userid, u.overallScore, u.numOfRatings, u.averageScore, u.title, u.description
-      FROM uploads u, tag_objects, tags
-      WHERE u.id = tag_objects.objectId
-      AND tags.id = tag_objects.tagId
-      AND tags.tagName = ?
-      AND u.id NOT IN (?)
-      SQL
-    /results = $uploaddb.execute(select, id, excludeIds)/
-    
-    records = Upload.find_by_sql [select, id, excludeIds]
-    
-    uploads = UploadModel.cast_upload records
-    if uploads.count != 0
-      randIndex = Random.new.rand(0..uploads.count-1)
-      uploads[randIndex]
-    else
-      false
-    end
   end
   
   def self.all
