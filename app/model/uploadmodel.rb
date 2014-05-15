@@ -1,7 +1,7 @@
 require 'json'
 require_relative './../model/tag'
 
-class UploadModel
+class Uploadmodel
 
   @tags = Array.new
 
@@ -31,15 +31,7 @@ class UploadModel
   
   def self.cast(results)
     uploads = Array.new
-    results.each { |r| uploads << upload = UploadModel.new(r[2], r[3], r[4], r[5], r[9], r[10], r[1], r[0], r[6], r[7], r[8]) 
-                                  upload.set_tags TagRepository.find_by_object_id(upload.id)
-                                  upload }
-    uploads
-  end
-  
-  def self.cast_upload(results)
-    uploads = Array.new
-    results.each { |r| uploads << upload = UploadModel.new(r.type, r.file_name, r.original_file_name, r.userid, r.title, r.description, r.upload_datetime, r.id, r.overallScore, r.numOfRatings, r.averageScore) 
+    results.each { |r| uploads << upload = Uploadmodel.new(r[2], r[3], r[4], r[5], r[9], r[10], r[1], r[0], r[6], r[7], r[8]) 
                                   upload.set_tags TagRepository.find_by_object_id(upload.id)
                                   upload }
     uploads

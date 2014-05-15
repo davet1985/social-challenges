@@ -1,6 +1,6 @@
 require 'sqlite3'
 
-require_relative './../model/upload_model'
+require_relative './../model/uploadmodel'
 
 $uploaddb = SQLite3::Database.open 'upload.db'
 
@@ -20,7 +20,7 @@ class UploadRepository
       WHERE id = ?
       SQL
     results = $uploaddb.execute(select, id)
-    uploads = UploadModel.cast results
+    uploads = Uploadmodel.cast results
     if uploads.count == 1
       uploads[0]
     else

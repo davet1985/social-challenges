@@ -1,5 +1,5 @@
 require 'json'
-require_relative './../model/upload_model'
+require_relative './../model/uploadmodel'
 
 class Tag
 

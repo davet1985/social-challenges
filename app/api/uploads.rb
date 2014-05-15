@@ -2,7 +2,7 @@ require 'grape'
 require 'json'
 require 'rack/contrib'
 
-require_relative './../model/upload_model'
+require_relative './../model/uploadmodel'
 require_relative './../repository/upload_repository'
 require_relative './../repository/tag_repository'
 require_relative './../helpers/tag_helper'
@@ -50,7 +50,7 @@ module SocialChallenges
       file = params[:image_file]
       tags_csv = params[:tags]
       file_name = Time.now.strftime('%Y%m%d%H%M%S%L') + '_' + original_file_name
-      upload = UploadModel.new type, file_name, original_file_name, user_id, title, description
+      upload = Uploadmodel.new type, file_name, original_file_name, user_id, title, description
       upload_id = UploadRepository.save upload
       UploadRepository.transfer_file file, file_name
       TagHelper.process_tags tags_csv, upload_id, user_id
