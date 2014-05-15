@@ -6,6 +6,8 @@
   			<span class="fa fa-cloud-upload page-bg"></span>
   			<form class="col-sm-6" role="form" ng-submit="processForm()">
 
+        <div ng-hide="progressBar > 1">
+
           <div class="form-group">
             <label for="inputFile">Image</label>
 
@@ -36,6 +38,7 @@
   	        <label for="tags" style="margin-bottom: -14px;">Tags</label>
         		<div>
         			<tags-input ng-model="tags"></tags-input>
+              <p class="help-block">Separate with commas or return</p>
         		</div>
         	</div>
 
@@ -45,19 +48,24 @@
   	        <textarea class="form-control" rows="3" id="desc" ng-model="description"></textarea>
   	      </div>
 
+
+
   	      <button type="submit" class="btn btn-primary btn-block">Upload</button>
 
-              <div ng-show="selectedFiles != null">
-                <div class="sel-file" ng-repeat="f in selectedFiles">
-                  <span class="progress" ng-show="progress[$index] >= 0">           
-                    <div class="progress-bar" style="width:{{progress[$index]}}%"></div>
-                  </span> 
+          </div>
+
+                <div class="sel-file" ng-show="progressBar > 0">
+                    
+                    <h3 class="pull-left">Crunching...</h3><i class="fa fa-cog fa-spin" style="margin-top: 3em;"></i>
+                    <div class="clearfix"></div>
+                    <progressbar class="progress-striped active" value="progressBar" ></progressbar>
+        
                           <!-- <button class="button" ng-click="start($index)" ng-show="progress[$index] < 0">Start</button>
                    <p>{{progress[$index]}}% downloaded</p>
                   <button class="button" ng-click="abort($index)" ng-show="hasUploader($index) && progress[$index] < 100">Abort</button>
                   {{f.name}} - size: {{f.size}}B - type: {{f.type}} -->
                 </div>
-              </div>
+ 
 
 
   	    </form>
