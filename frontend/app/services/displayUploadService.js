@@ -13,7 +13,8 @@ app.service('displayUploadService', ['$http', '$location',  function($http, $loc
         $http.get(url)
             .then(function(results){
                 //Success
-                angular.copy(results.data, _displayUploadDataArr);
+                angular.copy(JSON.parse('['+JSON.stringify(results.data)+']'), _displayUploadDataArr);
+
             }, function(results){
                 //Error
         });
@@ -21,7 +22,7 @@ app.service('displayUploadService', ['$http', '$location',  function($http, $loc
 
 
     return{
-        displayUpload: _displayUploadDataArr,
+        displayUpload:_displayUploadDataArr,
         getDisplayUploadData: _getDisplayUploadData
     };
    
