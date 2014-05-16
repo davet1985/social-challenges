@@ -76,8 +76,6 @@ var app = angular.module('app', [
         }
     ]);
 
-
-
 // Some general UI pack related JS
 
 $(function() {
