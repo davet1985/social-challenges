@@ -76,6 +76,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
     $scope.processForm = function() {
         var index = 0;
         $scope.progressBar = 0;
+		$scope.uploadId = 0;
         $scope.upload[index] = $upload.upload({
             url : 'http://localhost:9292/upload/add',
             method: 'POST',
@@ -87,14 +88,10 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
             },
             file: $scope.selectedFiles[index],
             fileFormDataName: 'image_file'
-        }).then(function(response) {
-            $scope.uploadResult.push(response.data);
-        }, null, function(evt) {
-            $scope.progressBar = parseInt(100.0 * evt.loaded / evt.total);
-            if (evt.loaded === evt.total){
-                $location.path('/user/userName/uploads/1');// todo: get upload id and replace with hardcoded value "1"
-            }
-
+        }).progress(function(evt) {
+			$scope.progressBar = parseInt(100.0 * evt.loaded / evt.total);
+        }).success(function(data, status, headers, config) {
+			$location.path('/user/userName/uploads/' + data);// todo: get upload id and replace with hardcoded value "1"
         }).xhr(function(xhr){
             xhr.upload.addEventListener('abort', function(){
                 console.log('aborted complete');
