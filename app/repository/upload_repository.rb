@@ -1,6 +1,7 @@
 require 'sqlite3'
 
 require_relative './../model/uploadmodel'
+require_relative './../helpers/upload_model_helper'
 
 $uploaddb = SQLite3::Database.open 'upload.db'
 
@@ -10,7 +11,7 @@ class UploadRepository
 
   def self.all
     results = $uploaddb.execute("select * from uploads")
-    Uploadmodel.cast results
+    UploadModelHelper.cast_upload_results results
   end
 
   def self.get_by_id(id)
@@ -20,7 +21,7 @@ class UploadRepository
       WHERE id = ?
       SQL
     results = $uploaddb.execute(select, id)
-    uploads = Uploadmodel.cast results
+    uploads = UploadModelHelper.cast_upload_results results
     if uploads.count == 1
       uploads[0]
     else
