@@ -36,16 +36,37 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
         $scope.uploadResult = [];
         $scope.selectedFiles = $files;
         $scope.dataUrls = [];
+                
         for ( var x = 0; x < $files.length; x++) {
             var $file = $files[x];
             if (window.FileReader && $file.type.indexOf('image') > -1) {
+
+                if (
+                    $files[0].type === 'image/jpeg' ||
+                    $files[0].type === 'image/png'  ||
+                    $files[0].type === 'image/jpg'  ||
+                    $files[0].type === 'image/gif'){
+                    $scope.loading = true;
+                }
+
                 var fileReader = new FileReader();
                 fileReader.readAsDataURL($files[x]);
                 var loadFile = function(fileReader, index) {
                     fileReader.onload = function(e) {
+                        $scope.uploadFileName = function() {
+                            return  $files[0].name;
+                        };
+
                         $timeout(function() {
                             $scope.dataUrls[index] = e.target.result;
                         });
+
+                        $scope.previewProgress = parseInt(100.0 * e.loaded / e.total);
+                        
+                        if (e.loaded === e.total){
+                            $scope.loading = false;
+                        }
+                        
                     };
                 }(fileReader, x);
             }

@@ -1,5 +1,13 @@
 /* jshint -W079 */
 
+$(function() {
+  
+    // Placeholders for input/textarea
+    $(':text, textarea').placeholder();
+
+});
+
+
 var app = angular.module('app', [
     'ngRoute',
     'ui.bootstrap',
@@ -76,12 +84,5 @@ var app = angular.module('app', [
         }
     ]);
 
-// Some general UI pack related JS
 
-$(function() {
-  
-    // Placeholders for input/textarea
-    $(':text, textarea').placeholder();
-
-});
   

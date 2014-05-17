@@ -55,6 +55,15 @@
 
 }
 
+/*
+.top-thumb{
+	width: 800px;
+	height: 500px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: table-cell;
+}
+*/
 @media (max-width: $screen-sm-min) { 
 	.leaderboard h2.top-score{
 		top: -20px !important;

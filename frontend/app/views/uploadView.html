@@ -10,19 +10,21 @@
 
           <div class="form-group">
             <label for="inputFile">Image</label>
-
   				  <div>
   					  <input type="hidden">
-
-  					  <input id="file_upload" type="file" ng-file-select="onFileSelect($files)" >
+              <span class="btn btn-primary btn-file">
+                  <i class="fa fa-search"></i>&nbsp;Browse<input id="file_upload" type="file" ng-file-select="onFileSelect($files)">
+              </span>
+              <span ng-show="selectedFiles != null"><span class="uploaded-file-name">{{uploadFileName()}}</span></span>
 
   					  <div ng-show="dropSupported" class="drop-box" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">or drop image here</div>
   					  <div ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
 
   					<!--  <button ng-click="upload.abort()">Cancel Upload</button> -->
-
+              <loading></loading>
   						<div ng-show="selectedFiles != null">
   							<div class="sel-file" ng-repeat="f in selectedFiles">
+
   								<img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive">
   							</div>
   						</div>
@@ -45,7 +47,7 @@
 
   	      <div class="form-group">
   	        <label for="desc">Description</label>
-  	        <textarea class="form-control" rows="3" id="desc" ng-model="description"></textarea>
+  	        <textarea class="form-control" rows="3" id="desc" ng-model="description" placeholder="Optional"></textarea>
   	      </div>
 
 

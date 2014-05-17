@@ -69,9 +69,9 @@ module.exports = function(grunt) {
                         'assets/js/flat-ui/jquery.placeholder.js',
                         'assets/js/flat-ui/flatui-checkbox.js',
                         'assets/js/flat-ui/flatui-radio.js',
-                        //gravitar
+                        //gravatar
                         'assets/js/lib/angular-gravatar.js',
-                        'assets/js/lib/md5.js'                  
+                        'assets/js/lib/md5.js'               
       
                     ]
                 }
