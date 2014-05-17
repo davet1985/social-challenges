@@ -10,7 +10,7 @@ class UploadRepository
 
   def self.all
     results = $uploaddb.execute("select * from uploads")
-    UploadModel.cast results
+    Uploadmodel.cast results
   end
 
   def self.get_by_id(id)
