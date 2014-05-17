@@ -8,9 +8,7 @@
 							<div class="col-sm-6 col-xs-12">
 			  					<section class="top">
 						          <div class="image-container">
-						            <a href="#!/tag/{{getPageTag()}}/{{value.id}}">
 							            <img ng-src="{{value.file_name}}" class="img-rounded img-responsive">
-						            </a>
 						          </div>
 							  </section>
 							</div>
@@ -28,5 +26,14 @@
 				</div>
 			<a href="#!/upload" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload another</a>
 		</section>
+
+		<br />
+
+		<section class="categories" ng-controller="tagCloudCtrl">
+            <h3>Tag Cloud</h3>
+            <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+              <li ng-repeat="key in tagCloud.tagCloud"><a href="#!/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.totalCount)}}%">{{key.tag}}</span></a></li>
+            </ul>
+  		</section>
 	</div> 
 </div>      
