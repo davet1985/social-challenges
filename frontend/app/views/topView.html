@@ -5,19 +5,19 @@
 				<div class="row">
 					<ul>
 						<li ng-repeat="(key, value) in top">
-							<div class="col-sm-6 col-xs-12">
+							<div class="col-xs-12">
 			  					<section class="top">
+			  					  <div>
 						          <div class="image-container">
-						            <a href="#!/tag/{{getPageTag()}}/{{value.id}}/1" >
-							            <img ng-src="{{value.file_name}}" class="img-rounded img-responsive">
+						            <a href="#!/tag/{{getPageTag()}}/{{value.id}}/1" style="pull-left">				          
+						        		<img alt="" ng-src="{{value.file_name}}" class="img-rounded topimg img-responsive">
 							            <h2 class="top-score"><span>{{$index+1}}</span></h2>
 						            </a>
 						          </div>
-							  </section>
-							</div>
-							<div class="col-sm-6 col-xs-12">
-			  					<section class="top">
-			  					<h2 class="top-score-total"><span>Rating: {{value.averageScore}}</span></h2>
+						            </div>
+
+						          <div class="details">
+						          <h2 class="top-score-total"><span>Rating: {{value.averageScore}}</span></h2>
 			  					<img gravatar-src="'sommes.email@gmail.com'" class="img-rounded profileThumb">
 			  						<p><a href="#!/user/{{value.userid}}">{{value.userid}}</a></p>
 			  						<h3 class="leaderboard-title">{{value.title}}</h3>
@@ -25,6 +25,7 @@
 			  						<ul class="tags">
 		   								<li ng-repeat="(key, value) in value.tags"><a href="#!/tag/{{value}}">{{value}}</a></li>
 		            				</ul>
+		            			</div>
 							  </section>
 							</div>
 						</li>
@@ -32,4 +33,4 @@
 				</div>
 		</section>
 	</div> 
-</div>      
+</div>
