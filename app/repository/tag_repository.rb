@@ -37,7 +37,7 @@ class TagRepository
   end
   
   def self.all
-    results = $uploaddb.execute("select id, tagName from tags")
+    results = $uploaddb.execute("select id, userid, tagName from tags")
   end
 
   def self.find_by_object_id(object_id)
