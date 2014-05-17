@@ -28,13 +28,5 @@ class Uploadmodel
   def set_tags(tags)
     @tags = tags
   end
-  
-  def self.cast(results)
-    uploads = Array.new
-    results.each { |r| uploads << upload = Uploadmodel.new(r[2], r[3], r[4], r[5], r[9], r[10], r[1], r[0], r[6], r[7], r[8]) 
-                                  upload.set_tags TagRepository.find_by_object_id(upload.id)
-                                  upload }
-    uploads
-  end
 
 end

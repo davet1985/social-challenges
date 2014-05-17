@@ -15,7 +15,7 @@ def self.get_random_object_bytagname(id, excludeIds)
     SQL
   results = $uploaddb.execute(select, id)
   
-  uploads = Uploadmodel.cast results
+  uploads = UploadModelHelper.cast_upload_results results
   uploads_temp = uploads
   uploads.delete_if { |upload| excludeIds.include?(upload.id) }
   
