@@ -1,4 +1,4 @@
-app.service('displayUploadService', ['$http', '$location',  function($http, $location) {
+app.service('displayUploadService', ['$http', '$location', 'configService',  function($http, $location, configService) {
   
     var _displayUploadDataArr = [];
 
@@ -7,7 +7,7 @@ app.service('displayUploadService', ['$http', '$location',  function($http, $loc
         var tagId = $location.path().split('/')[4]||'Unknown';
 
 
-        var url  = 'http://localhost:9292/upload/'+tagId+'';
+        var url  = configService.API_END_POINT+'upload/'+tagId+'';
         //var url  = 'app/data/displayUpload.json';
 
         $http.get(url)

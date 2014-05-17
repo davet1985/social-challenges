@@ -3,7 +3,7 @@
 /* jshint  -W117 */
 /* jshint  -W062 */
 
-var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
+var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService) {
     
     'use strict';
 
@@ -78,7 +78,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
         $scope.progressBar = 0;
 		$scope.uploadId = 0;
         $scope.upload[index] = $upload.upload({
-            url : 'http://localhost:9292/upload/add',
+            url : configService.API_END_POINT+'upload/add',
             method: 'POST',
             data : {
                 userid : 1, //TODO: set this properly
@@ -114,5 +114,5 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location) {
 
 };
 
-fileUploadCtrl.$inject = ['$scope', '$http', '$timeout', '$upload', '$location'];
+fileUploadCtrl.$inject = ['$scope', '$http', '$timeout', '$upload', '$location', 'configService'];
  
