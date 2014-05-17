@@ -1,11 +1,11 @@
 /* jshint -W089 */
 
-var loginCtrl = function ($scope, $http) {
+var loginCtrl = function ($scope, $http, configService) {
 
     $scope.processForm = function() {
         $http({
             method  : 'POST',
-            url     : 'http://localhost:9393/auth/login',
+            url     : configService.API_END_POINT+'auth/login',
             data: {'username': $scope.username, 'password': $scope.password},
             transformRequest: function(obj) {
                 var str = [];
@@ -32,4 +32,4 @@ var loginCtrl = function ($scope, $http) {
 
 };
 
-loginCtrl.$inject = ['$scope', '$http'];
+loginCtrl.$inject = ['$scope', '$http', 'configService'];

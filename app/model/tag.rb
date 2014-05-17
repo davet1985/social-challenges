@@ -3,7 +3,7 @@ require_relative './../model/uploadmodel'
 
 class Tag
 
-  attr_reader :tagName, :userId
+  attr_reader :tagName, :userId, :id
 
   def initialize(tagName, userId, id = nil)
     @tagName = tagName

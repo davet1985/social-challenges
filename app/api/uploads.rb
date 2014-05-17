@@ -54,6 +54,7 @@ module SocialChallenges
       upload_id = UploadRepository.save upload
       UploadRepository.transfer_file file, file_name
       TagHelper.process_tags tags_csv, upload_id, user_id
+      upload_id
     end
 
   end

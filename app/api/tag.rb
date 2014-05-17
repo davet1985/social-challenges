@@ -6,6 +6,7 @@ require_relative './../model/tag'
 require_relative './../repository/tag_repository'
 require_relative './../repository/tag_upload_repository'
 require_relative './../helpers/tag_helper'
+require_relative './../helpers/tag_cloud'
 
 module SocialChallenges
 
@@ -15,7 +16,7 @@ module SocialChallenges
     format :json
     
     get :all do
-      JSON.parse(TagRepository.all.to_json)
+      JSON.parse(TagCloud.tag_cloud(TagRepository.all))
     end
 
     post '/add' do      
