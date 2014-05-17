@@ -3,7 +3,7 @@ app.service('displayUploadService', ['$http', '$location', 'configService',  fun
     var _displayUploadDataArr = [];
 
     var _getDisplayUploadData = function(){
-		
+    
         var tagId = $location.path().split('/')[4]||'Unknown';
 
 
