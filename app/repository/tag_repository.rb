@@ -12,7 +12,7 @@ class TagRepository
   def self.save(tag)
     insert =  <<-SQL
       INSERT INTO tags
-      values (NULL, ?, ?, datetime('now'))
+      values (NULL, ?, ?, datetime('now'), 0)
       SQL
       $uploaddb.execute(insert, tag.tagName, tag.userId)
     tagId = $uploaddb.last_insert_row_id()
@@ -34,10 +34,16 @@ class TagRepository
       values (NULL, ?, ?, datetime('now'))
       SQL
     $uploaddb.execute(insert, objectId, tagId)
+    update =  <<-SQL
+      update tags
+      set numOfObjects = numOfObjects + 1 
+      where id = ?
+      SQL
+    $uploaddb.execute(update, tagId)
   end
   
   def self.all
-    results = $uploaddb.execute("select id, userid, tagName from tags")
+    results = $uploaddb.execute("select id, userid, tagName, numOfObjects from tags")
   end
 
   def self.find_by_object_id(object_id)

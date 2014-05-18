@@ -38,7 +38,8 @@ module UploadDB
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             tagName VARCHAR(255) NOT NULL,
             userid INTEGER NOT NULL,
-            tag_datetime DATETIME NOT NULL
+            tag_datetime DATETIME NOT NULL,
+            numOfObjects INTEGER NOT NULL
             );
           SQL
           )
