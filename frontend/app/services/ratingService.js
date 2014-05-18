@@ -19,11 +19,16 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 		
 		if (pageId !== 'Unknown') {
 			urlWithCurrentAndPrev = urlWithCurrentAndPrev + '/' + pageId;
-			ignore_ids.push(pageId);
+			if (ignore_ids.indexOf(pageId) === -1) {
+				ignore_ids.push(pageId);
+			}
 		}
 		
 		if (prevId !== 'Unknown') {
 			urlWithCurrentAndPrev = urlWithCurrentAndPrev + '/' + prevId;
+			if (ignore_ids.indexOf(prevId) === -1) {
+				ignore_ids.push(prevId);
+			}
 		}
 			
 		
@@ -47,7 +52,7 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
                 angular.copy(results.data, _ratingDataArr);
             }, function(results){
                 //Error
-                $location.path( '/404' );
+                $location.path( '/top/' + pageTag );
             });
     };
     
