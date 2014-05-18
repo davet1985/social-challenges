@@ -20,9 +20,21 @@ class Tag
       }].to_json
   end
   
+  def self.returnJSONNoNext(currentObject, previousObject)
+    [{
+      "current"       => JSON.parse(currentObject.to_json), "previous" => {"id" => previousObject.id, "type" => previousObject.type, "rating" => previousObject.averageScore.round(1), "file_name" => "http://localhost:9292/upload/#{previousObject.id}/download"}
+      }].to_json
+  end
+  
   def self.returnJSONNoPrevious(currentObject, nextObject)
     [{
       "current"       => JSON.parse(currentObject.to_json), "next" => {"id" => nextObject.id, "type" => nextObject.type, "rating" => nextObject.overallScore, "file_name" => "http://localhost:9292/upload/#{nextObject.id}/download"}
+      }].to_json
+  end
+  
+  def self.returnJSONNoPreviousNoNext(currentObject)
+    [{
+      "current"       => JSON.parse(currentObject.to_json)
       }].to_json
   end
 
