@@ -7,11 +7,22 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 	var ignore_ids = [];
 
     var _getRatingData = function(){
+
+        var pageTag,
+        pageId,
+        prevId;
         
-    
-        var pageTag = $location.path().split('/')[2]||'Unknown';
-        var pageId  = $location.path().split('/')[3]||'Unknown';
-		var prevId  = $location.path().split('/')[4]||'Unknown';
+        if($location.path().split('/')[1] === 'video'){
+
+            pageTag = $location.path().split('/')[3]||'Unknown';
+            pageId  = $location.path().split('/')[4]||'Unknown';
+            prevId  = $location.path().split('/')[5]||'Unknown';
+        } else{
+            pageTag = $location.path().split('/')[2]||'Unknown';
+            pageId  = $location.path().split('/')[3]||'Unknown';
+            prevId  = $location.path().split('/')[4]||'Unknown';
+
+        }
 
         var url  = 'http://localhost:9292/tag/';
 		
