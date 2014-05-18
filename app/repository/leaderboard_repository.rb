@@ -2,6 +2,7 @@ require 'sqlite3'
 
 require_relative './../model/tag'
 require_relative './../model/uploadmodel'
+require_relative './../helpers/upload_model_helper'
 
 $uploaddb = SQLite3::Database.open 'upload.db'
 
@@ -18,7 +19,7 @@ class LeaderboardRepository
       LIMIT ?
       SQL
     results = $uploaddb.execute(select, tag, numberToGet)
-    uploads = Uploadmodel.cast results
+    uploads = UploadModelHelper.cast_upload_results results
   end
   
 

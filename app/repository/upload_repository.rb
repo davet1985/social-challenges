@@ -1,6 +1,5 @@
 require 'sqlite3'
 
-require_relative './../model/uploadmodel'
 require_relative './../helpers/upload_model_helper'
 
 $uploaddb = SQLite3::Database.open 'upload.db'

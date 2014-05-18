@@ -2,16 +2,19 @@ class TagCloud
 
   def self.tag_cloud(tags)
     json_new = []
-    tagJson = tags.each { |tag| json_new.push(JSON.parse({
-      "id"=> tag[0], 
-      "tag" => tag[2],
-      "count" => 5
-    }.to_json))
+    totalCount = 0
+    tagJson = tags.each { |tag| 
+      totalCount = totalCount + tag[3]
+      json_new.push(JSON.parse({
+        "id"=> tag[0], 
+        "tag" => tag[2],
+        "count" => tag[3]
+      }.to_json))
   }
     
     [
         {
-            "totalCount" => 80,
+            "totalCount" => totalCount,
             "tagCloud" => JSON.parse(json_new.to_json)
         }
     ].to_json
