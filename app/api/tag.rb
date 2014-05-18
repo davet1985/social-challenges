@@ -47,12 +47,18 @@ module SocialChallenges
         idstoignore = params[:ignoreIds].split(',').map { |s| s.to_i }
       end
       currentObject = UploadRepository.get_by_id params[:currentId]
+      idstoignore.push(currentObject.id)
       previousObject = UploadRepository.get_by_id params[:previousId]
+      idstoignore.push(previousObject.id)
       nextObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore
       if !currentObject then
         error! 'Upload not found', 404
       else
-        JSON.parse(Tag.returnJSON(currentObject, previousObject, nextObject))
+        if nextObject == false then
+          JSON.parse(Tag.returnJSONNoNext(currentObject, previousObject))  
+        else
+          JSON.parse(Tag.returnJSON(currentObject, previousObject, nextObject))
+        end
       end
     end
     
@@ -66,12 +72,17 @@ module SocialChallenges
         idstoignore = params[:ignoreIds].split(',').map { |s| s.to_i }
       end
       
-      currentObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore 
+      currentObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore
+      idstoignore.push(currentObject.id) 
       nextObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore
       if !currentObject then
         error! 'Upload not found', 404
       else
-        JSON.parse(Tag.returnJSONNoPrevious(currentObject, nextObject))
+        if nextObject == false then
+          JSON.parse(Tag.returnJSONNoPreviousNoNext(currentObject))  
+        else
+          JSON.parse(Tag.returnJSONNoPrevious(currentObject, nextObject))
+        end
       end
     end
 

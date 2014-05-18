@@ -29,7 +29,12 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
             },
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
         });
-        $location.path('/tag/'+tagName+'/'+nextId+'/'+currentId);
+		if (nextId == null) {
+			$location.path('/top/'+tagName);
+		}
+		else {
+			$location.path('/tag/'+tagName+'/'+nextId+'/'+currentId);
+		}
     };
 
 };
