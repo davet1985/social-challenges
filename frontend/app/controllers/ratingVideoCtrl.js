@@ -14,9 +14,6 @@ var ratingVideoCtrl = function ($scope, $location, $http, ratingService) {
         $scope.overStar = value;
     };
 
-    //youtube id of video
-    $scope.code = 'dYDGqmxMZFI';
-
     // do something with value
     /*
     $scope.getValue = function (value, prevId, currentId, nextId) {
