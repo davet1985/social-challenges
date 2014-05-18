@@ -4,72 +4,63 @@
 	    <h2>Upload</h2>
   		<div class="row">
   			<span class="fa fa-cloud-upload page-bg"></span>
-  			<form class="col-sm-6" role="form" ng-submit="processForm()">
-
+  			<form class="col-sm-6" role="form" name="uploadForm" ng-submit="processForm(uploadForm.$valid)" novalidate>
         <div ng-hide="progressBar > 1">
-
-          <div class="form-group">
+          <div class="form-group" ng-class="{ 'has-error' : selectedFilesLengthCheck() > 1 || checkFileType() === false || submittedError && selectedFilesLengthCheck() === undefined}">
             <label for="inputFile">Image</label>
   				  <div>
   					  <input type="hidden">
               <span class="btn btn-primary btn-file">
-                  <i class="fa fa-search"></i>&nbsp;Browse<input id="file_upload" type="file" ng-file-select="onFileSelect($files)">
+                  <i class="fa fa-search"></i>&nbsp;Browse<input id="file_upload" name="file" type="file" ng-file-select="onFileSelect($files)">
               </span>
-              <span ng-show="selectedFiles != null"><span class="uploaded-file-name">{{uploadFileName()}}</span></span>
-
+              <span ng-show="selectedFiles != null" ng-hide="selectedFilesLengthCheck() > 1"><span class="uploaded-file-name">{{uploadFileName()}}</span></span>
+              <p ng-show="checkFileType() === false" class="help-block">File type not supported</p>
+              <p ng-show="submittedError && selectedFilesLengthCheck() === undefined" class="help-block">Select and image</p>
   					  <div ng-show="dropSupported" class="drop-box" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">or drop image here</div>
   					  <div ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
 
-  					<!--  <button ng-click="upload.abort()">Cancel Upload</button> -->
               <loading></loading>
   						<div ng-show="selectedFiles != null">
   							<div class="sel-file" ng-repeat="f in selectedFiles">
+  								<img ng-hide="selectedFilesLengthCheck() > 1" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive">
 
-  								<img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive">
   							</div>
+                 <p ng-show="selectedFilesLengthCheck() > 1" class="help-block">Upload one image at a time</p>
   						</div>
   					</div>
   				</div>
 
-  	      <div class="form-group">
+  	      <div class="form-group" ng-class="{ 'has-error' : uploadForm.title.$invalid && !uploadForm.title.$pristine || submittedError && uploadForm.title.$invalid && !uploadForm.title.$dirty}">
   	        <label for="title">Title</label>
-  	        <input type="text" class="form-control" id="title" ng-model="title">
-  	      </div>
+  	        <input type="text" class="form-control" name="title" id="title" ng-model="title" required ng-minlength="3" ng-maxlength="30" >
+            <p ng-show="uploadForm.title.$error.required && !uploadForm.title.$pristine || submittedError && uploadForm.title.$invalid && !uploadForm.title.$dirty" class="help-block">Title is required</p>
+            <p ng-show="uploadForm.title.$error.minlength" class="help-block">Title is too short</p>
+            <p ng-show="uploadForm.title.$error.maxlength" class="help-block">Title is too long</p>
+  	      </div>   
 
-  	      <div class="form-group">
+  	      <div class="form-group" ng-class="{ 'has-error' : tagLength() <= 2 && !uploadForm.tags.$pristine || submittedError && tagLength() <= 2 && !uploadForm.tags.$dirty}">
   	        <label for="tags" style="margin-bottom: -14px;">Tags</label>
         		<div>
-        			<tags-input ng-model="tags"></tags-input>
-              <p class="help-block">Separate with commas or return</p>
+        			<tags-input ng-model="tags" name="tags" id="tags" required ></tags-input>
+              <p ng-show="tagLength() <= 2 && !uploadForm.tags.$pristine || submittedError && tagLength() <= 2 && !uploadForm.tags.$dirty" class="help-block">At least one tag is required</p>
+              <p class="help-block help">Separate with commas or return</p>
         		</div>
         	</div>
 
-
-  	      <div class="form-group">
-  	        <label for="desc">Description</label>
-  	        <textarea class="form-control" rows="3" id="desc" ng-model="description" placeholder="Optional"></textarea>
+  	      <div class="form-group" ng-class="{ 'has-error' : uploadForm.description.$invalid }">
+  	        <label for="description">Description</label>
+  	        <textarea class="form-control" rows="3" id="description" name="description" ng-model="description" placeholder="Optional" ng-maxlength="200"></textarea>
+            <p ng-show="uploadForm.description.$error.maxlength" class="help-block">Title is too long</p>
   	      </div>
 
-
-
   	      <button type="submit" class="btn btn-primary btn-block">Upload</button>
-
           </div>
 
-                <div class="sel-file" ng-show="progressBar > 0">
-                    
-                    <h3 class="pull-left">Crunching...</h3><i class="fa fa-cog fa-spin" style="margin-top: 3em;"></i>
-                    <div class="clearfix"></div>
-                    <progressbar class="progress-striped active" value="progressBar" ></progressbar>
-        
-                          <!-- <button class="button" ng-click="start($index)" ng-show="progress[$index] < 0">Start</button>
-                   <p>{{progress[$index]}}% downloaded</p>
-                  <button class="button" ng-click="abort($index)" ng-show="hasUploader($index) && progress[$index] < 100">Abort</button>
-                  {{f.name}} - size: {{f.size}}B - type: {{f.type}} -->
-                </div>
- 
-
-
+          <div class="sel-file" ng-show="progressBar > 0">
+              <h3 class="pull-left">Crunching...</h3><i class="fa fa-cog fa-spin" style="margin-top: 3em;"></i>
+              <div class="clearfix"></div>
+              <progressbar class="progress-striped active" value="progressBar" ></progressbar>
+          </div>
   	    </form>
   		</div> 
 	  </section>

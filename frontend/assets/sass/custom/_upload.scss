@@ -53,3 +53,11 @@
 .user-uploads .leaderboard-title {
   margin-top: 0px !important;
  } 
+
+.has-error tags-input .tags{
+  border-color: $brand-danger;
+}
+
+.has-error .help{
+  color: $text-color;
+}
