@@ -77,7 +77,7 @@ tags-input .tags .input {
     font: 14px $font-family-base;
 }
 tags-input .tags .input.invalid-tag {
-    color: red;
+    color: $text-color;
 }
 tags-input .tags .input::-ms-clear {
     display: none;

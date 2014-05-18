@@ -25,6 +25,12 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 
     $scope.onFileSelect = function($files) {
         $scope.selectedFiles = [];
+
+        //selected files length
+        $scope.selectedFilesLengthCheck = function(){
+            return $scope.selectedFiles.length;
+        };
+
         if ($scope.upload && $scope.upload.length > 0) {
             for (var i = 0; i < $scope.upload.length; i++) {
                 if ($scope.upload[i] != null) {
@@ -32,20 +38,30 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 }
             }
         }
+
         $scope.upload = [];
         $scope.uploadResult = [];
         $scope.selectedFiles = $files;
         $scope.dataUrls = [];
-                
+               
         for ( var x = 0; x < $files.length; x++) {
             var $file = $files[x];
-            if (window.FileReader && $file.type.indexOf('image') > -1) {
 
+            $scope.checkFileType = function () {
                 if (
                     $files[0].type === 'image/jpeg' ||
                     $files[0].type === 'image/png'  ||
                     $files[0].type === 'image/jpg'  ||
                     $files[0].type === 'image/gif'){
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+
+            if (window.FileReader && $file.type.indexOf('image') > -1) {
+
+                if ($scope.checkFileType() === true){
                     $scope.loading = true;
                 }
 
@@ -71,34 +87,55 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 }(fileReader, x);
             }
         }
+       
     };
 
-    $scope.processForm = function() {
-        var index = 0;
-        $scope.progressBar = 0;
-		$scope.uploadId = 0;
-        $scope.upload[index] = $upload.upload({
-            url : configService.API_END_POINT+'upload/add',
-            method: 'POST',
-            data : {
-                userid : 1, //TODO: set this properly
-                title : $scope.title,
-                description : $scope.description,
-                tags : $scope.tagsToCSV()
-            },
-            file: $scope.selectedFiles[index],
-            fileFormDataName: 'image_file'
-        }).progress(function(evt) {
-			$scope.progressBar = parseInt(100.0 * evt.loaded / evt.total);
-        }).success(function(data, status, headers, config) {
-			$location.path('/user/userName/uploads/' + data);// todo: get upload id and replace with hardcoded value "1"
-        }).xhr(function(xhr){
-            xhr.upload.addEventListener('abort', function(){
-                console.log('aborted complete');
-            }, false);
-        });
-    };
+    // check to make sure the form is completely valid before post
+    $scope.processForm = function(isValid){
 
+        if (
+            isValid &&
+            $scope.tags.length >= 1 &&
+            $scope.selectedFiles.length === 1 &&
+            $scope.checkFileType() === true
+            ) {
+            //do post
+            var index = 0;
+            $scope.progressBar = 0;
+            $scope.uploadId = 0;
+
+            if ($scope.description === undefined){
+                $scope.description = '';
+            }
+            
+            $scope.upload[index] = $upload.upload({
+                url : configService.API_END_POINT+'upload/add',
+                method: 'POST',
+                data : {
+                    userid : 1, //TODO: set this properly
+                    title : $scope.title,
+                    description : $scope.description,
+                    tags : $scope.tagsToCSV()
+                },
+                file: $scope.selectedFiles[index],
+                fileFormDataName: 'image_file'
+            }).progress(function(evt) {
+                $scope.progressBar = parseInt(100.0 * evt.loaded / evt.total);
+            }).success(function(data, status, headers, config) {
+                $location.path('/user/userName/uploads/' + data);// todo: get userName
+            }).xhr(function(xhr){
+                xhr.upload.addEventListener('abort', function(){
+                    console.log('aborted complete');
+                }, false);
+            });
+
+        } else{
+        //show errors after form submit
+            $scope.submittedError = true;
+        }
+
+    };
+        
     // TODO: create a tag service to handle stuff like this and inject it into this controller
     $scope.tagsToCSV = function() {
         var tags = $scope.tags;
@@ -110,6 +147,11 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
             }
         }
         return tagsCSV;
+    };
+
+    //check tag character length
+    $scope.tagLength = function(){
+        return $scope.tagsToCSV().length;
     };
 
 };
