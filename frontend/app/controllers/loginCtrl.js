@@ -1,6 +1,6 @@
 /* jshint -W089 */
 
-var loginCtrl = function ($scope, $http, configService) {
+var loginCtrl = function ($scope, $location, $http, configService, usernameService) {
 
     $scope.processForm = function() {
         $http({
@@ -18,6 +18,11 @@ var loginCtrl = function ($scope, $http, configService) {
         })
             .success(function(data) {
                 console.log(data);
+				
+				usernameService.setUsername(data.username);
+				console.log(usernameService.username());
+				
+				$location.path('/upload');
 
                 // if (!data.success) {
                 //   // if not successful, bind errors to error variables
@@ -32,4 +37,4 @@ var loginCtrl = function ($scope, $http, configService) {
 
 };
 
-loginCtrl.$inject = ['$scope', '$http', 'configService'];
+loginCtrl.$inject = ['$scope', '$location', '$http', 'configService', 'usernameService'];

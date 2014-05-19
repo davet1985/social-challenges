@@ -4,12 +4,18 @@
 /* jshint  -W062 */
 /* jshint  -W089 */
 
-var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService) {
+var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService, usernameService) {
     
     'use strict';
 
     $scope.tags = [];
-    $scope.currentFields = '';
+	$scope.currentFields = '';
+	
+    $scope.username = usernameService.username();
+	
+	if ($scope.username === '') {
+		$location.path('/login');
+	}
 
     $scope.fileReaderSupported = window.FileReader != null;
     $scope.changeAngularVersion = function() {
@@ -242,5 +248,5 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 
 };
 
-fileUploadCtrl.$inject = ['$scope', '$http', '$timeout', '$upload', '$location', 'configService'];
+fileUploadCtrl.$inject = ['$scope', '$http', '$timeout', '$upload', '$location', 'configService', 'usernameService'];
  
