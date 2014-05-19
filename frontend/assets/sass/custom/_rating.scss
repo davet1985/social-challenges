@@ -8,6 +8,9 @@
 		margin: 10px 0 20px 0;
 		color: $brand-primary;
 	}
+	i{
+		font-size: 2em;
+	}
 	.star-empty {
 		color: #B3B3B3 !important;
 	}
@@ -30,16 +33,18 @@
 
    h2 { 
 	   position: absolute; 
-	   bottom: 0; 
+	   top: -40px; 
 	   width: 100%; 
-	   margin-left: -11px;
+	   	padding: 4px 8px;
+	   //font-size: 1.2em;
+	  margin-left: -20px;
 	   span { 
 		   color: white; 
 		   font: bold .4em/1.8em $font-family-base; 
 		   //background: rgb(0, 0, 0); /* fallback color */
 		   //background: rgba(0, 0, 0, 0.7);
 		   background: $brand-primary;
-		   padding: 10px; 
+		   padding: 6px; 
 		   .spacer {
 			   padding:0 5px;
 			}
@@ -48,7 +53,7 @@
 	h2.next{	
 	  	right: 0; 
 	  	width: auto;
-	  	margin-right: -11px;
+	  	margin-right: -20px;
 	}
 }
 
@@ -76,7 +81,13 @@ img.profileThumb{
 	margin: 0 10px 0 0;
 }
 
-
+.caption{
+	h3{
+		font-size: 2em;
+		margin-top: 0;
+		font-weight: 100;
+	}
+}
 .categories{
 
 	h3{
@@ -132,6 +143,14 @@ section.top{
 }
 .user-link{
 	font-size: .8em;
-	margin-top: 2px;
+	margin-top: 0px;
 	display: inline-block;
+}
+.currentTag{
+	position: absolute;
+	border-radius: 0;
+	margin: 14px 0 0 30px;
+	padding: 9px;
+	margin-left: -11px;
+	font-size: 1.15em;
 }

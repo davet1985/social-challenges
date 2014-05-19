@@ -61,3 +61,17 @@
 .has-error .help{
   color: $text-color;
 }
+input[name="mediaType"]:hover,
+.mediaType label{
+  cursor: pointer;
+  cursor: hand;
+}
+.radio-mediaType{
+  display: table;
+    label{
+      margin-left: 10px;
+    }
+    input[ng-checked="true"]{
+      border: solid 1px #000;
+    }
+}

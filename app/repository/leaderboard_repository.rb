@@ -15,7 +15,7 @@ class LeaderboardRepository
       WHERE uploads.id = tag_objects.objectId
       AND tags.id = tag_objects.tagId
       AND tags.tagName = ?
-      ORDER BY uploads.averageScore DESC
+      ORDER BY uploads.overallScore DESC
       LIMIT ?
       SQL
     results = $uploaddb.execute(select, tag, numberToGet)

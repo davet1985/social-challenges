@@ -6,7 +6,7 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
     
     ratingService.getRatingData();
 
-    $scope.max = 5;
+    $scope.max = 3;
 
     var tagName = $scope.getPageTag();
 
@@ -16,19 +16,22 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
 
     // do something with value
     $scope.getValue = function (value, prevId, currentId, nextId) {
-        $http({
-            method  : 'POST',
-            url     : configService.API_END_POINT+'rating/add',
-            data: {'userId': '1', 'againstTag': tagName, 'objectId': currentId, 'score': value},
-            transformRequest: function(obj) {
-                var str = [];
-                for(var p in obj) {
-                    str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-                }
-                return str.join('&');
-            },
-            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
-        });
+        
+        if (value !== 0) {
+            $http({
+                method  : 'POST',
+                url     : configService.API_END_POINT+'rating/add',
+                data: {'userId': '1', 'againstTag': tagName, 'objectId': currentId, 'score': value},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj) {
+                        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+                    }
+                    return str.join('&');
+                },
+                headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
+            });
+        }
 		if (nextId == null) {
 			$location.path('/top/'+tagName);
 		}

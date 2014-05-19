@@ -2,12 +2,14 @@
 /* jshint  -W083 */
 /* jshint  -W117 */
 /* jshint  -W062 */
+/* jshint  -W089 */
 
 var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService) {
     
     'use strict';
 
     $scope.tags = [];
+    $scope.currentFields = '';
 
     $scope.fileReaderSupported = window.FileReader != null;
     $scope.changeAngularVersion = function() {
@@ -69,10 +71,9 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 fileReader.readAsDataURL($files[x]);
                 var loadFile = function(fileReader, index) {
                     fileReader.onload = function(e) {
-                        $scope.uploadFileName = function() {
-                            return  $files[0].name;
-                        };
-
+                        
+                        $scope.uploadFileName = $files[0].name;
+                        
                         $timeout(function() {
                             $scope.dataUrls[index] = e.target.result;
                         });
@@ -92,14 +93,21 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 
     // check to make sure the form is completely valid before post
     $scope.processForm = function(isValid){
+ 
 
         if (
+            $scope.currentFields === 'image' &&
             isValid &&
             $scope.tags.length >= 1 &&
             $scope.selectedFiles.length === 1 &&
-            $scope.checkFileType() === true
+            $scope.checkFileType() === true ||
+            $scope.currentFields === 'video' &&
+            isValid &&
+            $scope.tags.length >= 1 &&
+            $scope.checkYoutubeTotalResults !== 0
             ) {
             //do post
+            //alert('yes');
             var index = 0;
             $scope.progressBar = 0;
             $scope.uploadId = 0;
@@ -132,6 +140,8 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
         } else{
         //show errors after form submit
             $scope.submittedError = true;
+            //alert('Noooooooo!');
+
         }
 
     };
@@ -153,6 +163,82 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
     $scope.tagLength = function(){
         return $scope.tagsToCSV().length;
     };
+
+    $scope.drawFields = function (type) {
+        //clear fields and setpristine
+        $scope.title = '';
+        $scope.description = '';
+        $scope.tags = '';
+        $scope.youtube = '';
+        $scope.selectedFiles = '';
+        $scope.uploadFileName = '';
+        $scope.youtubeThumb = '';
+        $scope.selectedFilesLengthCheck = undefined;
+        $scope.uploadForm.$setPristine();
+        
+        if (type === 'image'){
+            $scope.currentFields = 'image';
+            $scope.youtubeError = false;
+        }
+        if (type === 'video'){
+            $scope.currentFields = 'video';
+        }
+       
+    };
+
+    $scope.getYoutubeData = function(youtube){
+        
+        //strip the url
+        $scope.getURLParam = function ( name ){
+            var url = youtube;
+            var needle = '?v=';
+            if (url.indexOf(needle) >= 0) {
+                var query_string = url.split('?');
+                var params = query_string[1].split('&');
+                var i = 0;
+                while (i < params.length) {
+                    var param_item = params[i].split('=');
+                    if (param_item[0] === name) {
+                        return param_item[1];
+                    }
+                    i++;
+                }
+                return '';
+
+            } else {
+                $scope.youtubeError = true;
+            }
+        };
+
+        var youtubeId = $scope.getURLParam('v');
+        
+        var apikey = 'AIzaSyCK4uFum6_DUKD65-RuaMgVe6hnT_E9G1s';
+
+        $http({method: 'GET', url: 'https://www.googleapis.com/youtube/v3/videos?id='+youtubeId+'&key='+apikey+'&part=snippet,contentDetails,statistics,status'}).
+        success(function(data) {
+ 
+            $scope.checkYoutubeTotalResults = JSON.parse(JSON.stringify(data.pageInfo.totalResults));
+
+            if ($scope.checkYoutubeTotalResults !== 0 ){
+                $scope.title = JSON.parse(JSON.stringify(data.items[0].snippet.title));
+                $scope.description = JSON.parse(JSON.stringify(data.items[0].snippet.description));
+                $scope.youtubeThumb = JSON.parse(JSON.stringify(data.items[0].snippet.thumbnails.high.url));
+                $scope.youtubeError = false;
+            } else {
+                $scope.title = '';
+                $scope.description = '';
+                $scope.youtubeThumb = '';
+                $scope.youtubeError = true;
+            }
+        }).
+        error(function(data) {
+            //do something with error
+            alert('oops!');
+
+        });
+    };
+
+
 
 };
 
