@@ -14,12 +14,6 @@ Rake::TestTask.new do |t|
 end
 
 namespace :db do
-
-  desc "Creates the words database"
-  task :create do
-    puts "Creating words database..."
-    WordDB.setup($worddb)
-  end
   
   desc "Creates the users database"
   task :usercreate do

@@ -13,8 +13,6 @@ use Rack::Cors do
   end
 end
 
-run SocialChallenges::API
-
 map '/auth' do
   run SocialChallenges::LOGINAPI
 end
