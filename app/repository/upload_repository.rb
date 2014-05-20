@@ -2,14 +2,14 @@ require 'sqlite3'
 
 require_relative './../helpers/upload_model_helper'
 
-$uploaddb = SQLite3::Database.open 'upload.db'
+$db = SQLite3::Database.open 'hashbang.db'
 
 class UploadRepository
 
   @@upload_dir = 'uploads'
 
   def self.all
-    results = $uploaddb.execute("select * from uploads")
+    results = $db.execute("select * from uploads")
     UploadModelHelper.cast_upload_results results
   end
 
@@ -19,7 +19,7 @@ class UploadRepository
       FROM uploads
       WHERE id = ?
       SQL
-    results = $uploaddb.execute(select, id)
+    results = $db.execute(select, id)
     uploads = UploadModelHelper.cast_upload_results results
     if uploads.count == 1
       uploads[0]
@@ -33,8 +33,8 @@ class UploadRepository
       INSERT INTO uploads
       values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       SQL
-    $uploaddb.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid, upload.overallScore, upload.numOfRatings, upload.averageScore , upload.title, upload.description)
-    upload_id = $uploaddb.last_insert_row_id()
+    $db.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid, upload.overallScore, upload.numOfRatings, upload.averageScore , upload.title, upload.description)
+    upload_id = $db.last_insert_row_id()
   end
 
   def self.transfer_file(file, file_name)

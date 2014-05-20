@@ -4,7 +4,7 @@ require_relative './../model/tag'
 require_relative './../model/uploadmodel'
 require_relative './../helpers/upload_model_helper'
 
-$uploaddb = SQLite3::Database.open 'upload.db'
+$db = SQLite3::Database.open 'hashbang.db'
 
 class LeaderboardRepository
   
@@ -18,7 +18,7 @@ class LeaderboardRepository
       ORDER BY uploads.overallScore DESC
       LIMIT ?
       SQL
-    results = $uploaddb.execute(select, tag, numberToGet)
+    results = $db.execute(select, tag, numberToGet)
     uploads = UploadModelHelper.cast_upload_results results
   end
   
