@@ -17,6 +17,12 @@ module HashBangDB
     )
     database.execute(
       <<-SQL
+      INSERT INTO users
+      values (NULL, 'a@b.com', '$2a$10$Iv1tOac6mjL2.A2FiHmRquWf4MPuFBo59de1iMsSwzg8eUjBcIyb.', 'a@b.com', 'active', 0)
+      SQL
+    )
+    database.execute(
+      <<-SQL
       CREATE TABLE session (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         userid INTEGER NOT NULL,

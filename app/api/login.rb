@@ -16,7 +16,6 @@ module SocialChallenges
 
         use Warden::Manager do |manager|
           manager.default_strategies :password
-          manager.failure_app = SocialChallenges::API
         end
 
     use Rack::JSONP
