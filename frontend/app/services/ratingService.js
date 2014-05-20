@@ -7,11 +7,22 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 	var ignore_ids = [];
 
     var _getRatingData = function(){
+
+        var pageTag,
+        pageId,
+        prevId;
         
-    
-        var pageTag = $location.path().split('/')[2]||'Unknown';
-        var pageId  = $location.path().split('/')[3]||'Unknown';
-		var prevId  = $location.path().split('/')[4]||'Unknown';
+        if($location.path().split('/')[1] === 'video'){
+
+            pageTag = $location.path().split('/')[3]||'Unknown';
+            pageId  = $location.path().split('/')[4]||'Unknown';
+            prevId  = $location.path().split('/')[5]||'Unknown';
+        } else{
+            pageTag = $location.path().split('/')[2]||'Unknown';
+            pageId  = $location.path().split('/')[3]||'Unknown';
+            prevId  = $location.path().split('/')[4]||'Unknown';
+
+        }
 
         var url  = 'http://localhost:9292/tag/';
 		
@@ -19,11 +30,16 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 		
 		if (pageId !== 'Unknown') {
 			urlWithCurrentAndPrev = urlWithCurrentAndPrev + '/' + pageId;
-			ignore_ids.push(pageId);
+			if (ignore_ids.indexOf(pageId) === -1) {
+				ignore_ids.push(pageId);
+			}
 		}
 		
 		if (prevId !== 'Unknown') {
 			urlWithCurrentAndPrev = urlWithCurrentAndPrev + '/' + prevId;
+			if (ignore_ids.indexOf(prevId) === -1) {
+				ignore_ids.push(prevId);
+			}
 		}
 			
 		
@@ -47,7 +63,7 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
                 angular.copy(results.data, _ratingDataArr);
             }, function(results){
                 //Error
-                $location.path( '/404' );
+                $location.path( '/top/' + pageTag );
             });
     };
     

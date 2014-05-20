@@ -53,3 +53,25 @@
 .user-uploads .leaderboard-title {
   margin-top: 0px !important;
  } 
+
+.has-error tags-input .tags{
+  border-color: $brand-danger;
+}
+
+.has-error .help{
+  color: $text-color;
+}
+input[name="mediaType"]:hover,
+.mediaType label{
+  cursor: pointer;
+  cursor: hand;
+}
+.radio-mediaType{
+  display: table;
+    label{
+      margin-left: 10px;
+    }
+    input[ng-checked="true"]{
+      border: solid 1px #000;
+    }
+}
