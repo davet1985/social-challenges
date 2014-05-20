@@ -1,6 +1,6 @@
 require_relative './../helpers/upload_model_helper'
 
-$uploaddb = SQLite3::Database.open 'upload.db'
+$db = SQLite3::Database.open 'hashbang.db'
 
 class TagUploadRepository
 
@@ -12,7 +12,7 @@ def self.get_random_object_bytagname(id, excludeIds)
     AND tags.id = tag_objects.tagId
     AND tags.tagName = ?
     SQL
-  results = $uploaddb.execute(select, id)
+  results = $db.execute(select, id)
   
   uploads = UploadModelHelper.cast_upload_results results
   uploads_temp = uploads

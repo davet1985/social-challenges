@@ -2,7 +2,7 @@ require 'sqlite3'
 
 require_relative './../model/rating'
 
-$uploaddb = SQLite3::Database.open 'upload.db'
+$db = SQLite3::Database.open 'hashbang.db'
 
 class RatingRepository
 
@@ -11,7 +11,7 @@ class RatingRepository
       INSERT INTO ratings
       values (NULL, datetime('now'), ?, ?, ?, ?)
       SQL
-      $uploaddb.execute(insert, rating.againstTag, rating.objectId, rating.score, rating.userid)
+      $db.execute(insert, rating.againstTag, rating.objectId, rating.score, rating.userid)
   end
   
   def self.updateScore(objectId, score)
@@ -20,13 +20,13 @@ class RatingRepository
       set overallScore = overallScore + ?, numOfRatings = numOfRatings + 1 
       where id = ?
       SQL
-      $uploaddb.execute(update, score, objectId)
+      $db.execute(update, score, objectId)
     updateAverageScore =  <<-SQL
         update uploads
         set averageScore = (overallScore * 1.0) / numOfRatings
         where id = ?
         SQL
-        $uploaddb.execute(updateAverageScore, objectId)
+        $db.execute(updateAverageScore, objectId)
   end
 
 end

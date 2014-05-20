@@ -3,8 +3,6 @@
 ```
 sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future bundle install
 rake db:create
-rake db:usercreate
-rake db:uploadcreate
 rackup
 ```
 Then browse to http://localhost:9292

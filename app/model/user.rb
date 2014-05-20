@@ -1,7 +1,7 @@
 require 'bcrypt'
 require 'net/smtp'
 
-$db = SQLite3::Database.open './user.db'
+$db = SQLite3::Database.open './hashbang.db'
 
 module GrapeWarden
   class User

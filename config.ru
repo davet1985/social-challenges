@@ -1,4 +1,3 @@
-require './app/api/version1'
 require './app/api/login'
 require './app/api/uploads'
 require './app/api/rating'
@@ -12,8 +11,6 @@ use Rack::Cors do
     resource '*', headers: :any, methods: :post
   end
 end
-
-run SocialChallenges::API
 
 map '/auth' do
   run SocialChallenges::LOGINAPI
