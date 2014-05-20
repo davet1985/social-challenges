@@ -28,10 +28,10 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/ratingView.html',
                     controller: 'ratingCtrl'
                 })
-				.when('/tag/:tag',{
-					templateUrl: 'app/views/ratingView.html',
-					controller: 'ratingCtrl'
-				})
+                .when('/tag/:tag',{
+                    templateUrl: 'app/views/ratingView.html',
+                    controller: 'ratingCtrl'
+                })
                 .when('/video/tag/:tag',{
                     templateUrl: 'app/views/ratingVideoView.html',
                     controller: 'ratingVideoCtrl'
