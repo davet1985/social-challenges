@@ -10,3 +10,5 @@ gem 'bcrypt'
 gem "password_strength"
 gem 'rack-cors'
 gem 'activerecord'
+gem 'rack-test'
+gem "factory_girl", "~> 4.0"

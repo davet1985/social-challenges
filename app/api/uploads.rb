@@ -21,7 +21,7 @@ module SocialChallenges
 
     get '/:id' do
       upload = UploadRepository.get_by_id(params[:id])
-      upload.set_tags TagRepository.find_by_object_id(upload.id)
+      upload.tags = TagRepository.find_by_object_id(upload.id)
       if !upload then
         error! 'Upload not found', 404
       else
