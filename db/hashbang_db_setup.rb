@@ -86,5 +86,15 @@ module HashBangDB
       SQL
     )
   end
+
+  def self.seed(uploads, database)
+    insert =  <<-SQL
+      INSERT INTO uploads
+      values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      SQL
+    uploads.each do |upload|
+      database.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid, upload.overallScore, upload.numOfRatings, upload.averageScore , upload.title, upload.description)
+    end
+  end
   
 end
