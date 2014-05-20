@@ -7,14 +7,16 @@
 var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService, usernameService) {
     
     'use strict';
+    $scope.apikey = 'AIzaSyCK4uFum6_DUKD65-RuaMgVe6hnT_E9G1s';
 
     $scope.tags = [];
+
 	$scope.currentFields = '';
 	
     $scope.username = usernameService.username();
 	
 	if ($scope.username === '') {
-		$location.path('/login');
+		//$location.path('/login');
 	}
 
     $scope.fileReaderSupported = window.FileReader != null;
@@ -218,9 +220,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 
         var youtubeId = $scope.getURLParam('v');
         
-        var apikey = 'AIzaSyCK4uFum6_DUKD65-RuaMgVe6hnT_E9G1s';
-
-        $http({method: 'GET', url: 'https://www.googleapis.com/youtube/v3/videos?id='+youtubeId+'&key='+apikey+'&part=snippet,contentDetails,statistics,status'}).
+        $http({method: 'GET', url: 'https://www.googleapis.com/youtube/v3/videos?id='+youtubeId+'&key='+$scope.apikey+'&part=snippet,contentDetails,statistics,status'}).
         success(function(data) {
  
             $scope.checkYoutubeTotalResults = JSON.parse(JSON.stringify(data.pageInfo.totalResults));
@@ -230,6 +230,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 $scope.description = JSON.parse(JSON.stringify(data.items[0].snippet.description));
                 $scope.youtubeThumb = JSON.parse(JSON.stringify(data.items[0].snippet.thumbnails.high.url));
                 $scope.youtubeError = false;
+                $scope.tags = [{text: 'Category'}];
             } else {
                 $scope.title = '';
                 $scope.description = '';
@@ -245,6 +246,12 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
     };
 
 
+    //to do: get user region code then get youtube catogries and map to populate tag
+    //console.log('https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=GB&key='+$scope.apikey);
+
+    $scope.loadTags = function(query) {
+        return $http.get('app/data/autotags.json');
+    };
 
 };
 
