@@ -66,7 +66,9 @@
           <div class="form-group" ng-show="mediaType == 'video' || mediaType == 'image'" ng-class="{ 'has-error' : tagLength() <= 2 && !uploadForm.tags.$pristine || submittedError && tagLength() <= 2 && !uploadForm.tags.$dirty}">
             <label for="tags" style="margin-bottom: -14px;">Tags</label>
             <div>
-              <tags-input ng-model="tags" name="tags" id="tags" required ></tags-input>
+              <tags-input ng-model="tags" name="tags" id="tags" required >
+                <auto-complete source="loadTags($query)"></auto-complete>
+              </tags-input>
               <p ng-show="tagLength() <= 2 && !uploadForm.tags.$pristine || submittedError && tagLength() <= 2 && !uploadForm.tags.$dirty" class="help-block">At least one tag is required</p>
               <p class="help-block help">Separate with commas or return.</p>
             </div>

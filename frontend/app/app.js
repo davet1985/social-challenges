@@ -5,7 +5,8 @@ var app = angular.module('app', [
     'ui.bootstrap',
     'ngTagsInput',
     'angularFileUpload',
-    'ui.gravatar'
+    'ui.gravatar',
+	'ngCookies'
 ])
     .config([
         '$routeProvider',
