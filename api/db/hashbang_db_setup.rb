@@ -17,6 +17,12 @@ module HashBangDB
     )
     database.execute(
       <<-SQL
+      INSERT INTO users
+      values (NULL, 'a@b.com', '$2a$10$Iv1tOac6mjL2.A2FiHmRquWf4MPuFBo59de1iMsSwzg8eUjBcIyb.', 'a@b.com', 'active', 0)
+      SQL
+    )
+    database.execute(
+      <<-SQL
       CREATE TABLE session (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         userid INTEGER NOT NULL,
@@ -85,6 +91,16 @@ module HashBangDB
         );
       SQL
     )
+  end
+
+  def self.seed(uploads, database)
+    insert =  <<-SQL
+      INSERT INTO uploads
+      values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      SQL
+    uploads.each do |upload|
+      database.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid, upload.overallScore, upload.numOfRatings, upload.averageScore , upload.title, upload.description)
+    end
   end
   
 end

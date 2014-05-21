@@ -16,7 +16,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
     $scope.username = usernameService.username();
 	
 	if ($scope.username === '') {
-		//$location.path('/login');
+		$location.path('/login');
 	}
 
     $scope.fileReaderSupported = window.FileReader != null;

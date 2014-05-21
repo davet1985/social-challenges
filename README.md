@@ -37,6 +37,12 @@ Get endpoints for uploads API are as follows: -
 * http://localhost:9393/upload/[id]
 * http://localhost:9393/upload/[id]/download
 
+### Running the tests
+
+```
+rake spec
+```
+
 #Front end
 
 ```

@@ -10,13 +10,13 @@ class Uploadmodel
     @file_name = file_name
     @original_file_name = original_file_name
     @userid = userid
+    @title = title
+    @description = description
     @upload_datetime = upload_datetime
     @id = id
     @overallScore = overallScore
     @numOfRatings = numOfRatings
     @averageScore = averageScore
-    @title = title
-    @description = description
   end
 
   def to_json(*a)

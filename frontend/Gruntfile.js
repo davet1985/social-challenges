@@ -59,6 +59,7 @@ module.exports = function(grunt) {
                         'assets/js/lib/lodash.min.js',
                         'assets/js/file-upload/angular-file-upload-shim.min.js',
                         'assets/js/lib/angular.min.js',
+						'assets/js/lib/cookies.js',
                         'assets/js/file-upload/angular-file-upload.min.js',
                         'assets/js/lib/angular-route.min.js',
                         'assets/js/jquery/jquery-1.10.2.min.js',
