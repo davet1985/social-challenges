@@ -32,11 +32,6 @@ namespace :db do
 
 end
 
-desc "Task description"
-task :task_name => [:dependent, :tasks] do
-  
-end
-
 desc "Run the specs"
 task :spec do
   Rake::Task['db:testprep'].invoke

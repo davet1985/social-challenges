@@ -10,6 +10,11 @@ gem 'bcrypt'
 gem "password_strength"
 gem 'rack-cors'
 gem 'activerecord'
-gem 'rack-test'
-gem 'rspec'
-gem 'capybara'
+
+group :development do
+  gem 'rack-test'
+  gem 'rspec'
+  gem 'capybara'
+  gem 'guard'
+  gem 'guard-rspec', require: false
+end
