@@ -4,7 +4,8 @@ app.service('usernameService', ['$cookies', function($cookies) {
 
     return{
         username: function() { return $cookies.username; },
-		setUsername: function(newUsername) { $cookies.username = newUsername; }
+		id: function() { return $cookies.id; },
+		setUsername: function(newUsername, id) { $cookies.username = newUsername; $cookies.id = id; }
     };
    
 }]);

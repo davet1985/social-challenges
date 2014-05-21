@@ -17,10 +17,8 @@ var loginCtrl = function ($scope, $location, $http, configService, usernameServi
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
         })
             .success(function(data) {
-                console.log(data);
 				
-				usernameService.setUsername(data.username);
-				console.log(usernameService.username());
+				usernameService.setUsername(data.username, data.id);
 				
 				$location.path('/upload');
 
