@@ -56,6 +56,7 @@ module.exports = function(grunt) {
                 files: {
                     'public/js/core.js' : [
                         //libs
+                        'assets/js/lib/lodash.min.js',
                         'assets/js/file-upload/angular-file-upload-shim.min.js',
                         'assets/js/lib/angular.min.js',
 						'assets/js/lib/cookies.js',
