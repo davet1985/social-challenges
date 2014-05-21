@@ -4,7 +4,7 @@
 /* jshint  -W062 */
 /* jshint  -W089 */
 
-var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService, usernameService) {
+var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService, usernameService, tagCloudService, data) {
     
     'use strict';
     $scope.apikey = 'AIzaSyCK4uFum6_DUKD65-RuaMgVe6hnT_E9G1s';
@@ -230,7 +230,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 $scope.description = JSON.parse(JSON.stringify(data.items[0].snippet.description));
                 $scope.youtubeThumb = JSON.parse(JSON.stringify(data.items[0].snippet.thumbnails.high.url));
                 $scope.youtubeError = false;
-                $scope.tags = [{text: 'Category'}];
+                $scope.tags = [{text: 'get youtube category'}];
             } else {
                 $scope.title = '';
                 $scope.description = '';
@@ -245,15 +245,15 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
         });
     };
 
-
     //to do: get user region code then get youtube catogries and map to populate tag
     //console.log('https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=GB&key='+$scope.apikey);
 
-    $scope.loadTags = function(query) {
-        return $http.get('app/data/autotags.json');
+    //autocomplete
+    $scope.loadItems = function($query) {
+        return data.search($query);
     };
 
 };
 
-fileUploadCtrl.$inject = ['$scope', '$http', '$timeout', '$upload', '$location', 'configService', 'usernameService'];
+fileUploadCtrl.$inject = ['$scope', '$http', '$timeout', '$upload', '$location', 'configService', 'usernameService' , 'tagCloudService', 'data'];
  

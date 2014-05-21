@@ -110,7 +110,7 @@ tags-input .autocomplete .suggestion-item {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    font: 16px $font-family-base;
+    font: normal 16px $font-family-base;
     color: #000;
     background-color: #fff;
 }
@@ -119,7 +119,7 @@ tags-input .autocomplete .suggestion-item.selected, tags-input .autocomplete .su
     background-color: #0097cf;
 }
 tags-input .autocomplete .suggestion-item em {
-    font: normal bold 16px $font-family-base;
+    font: bold 16px $font-family-base-bold;
     color: #000;
     background-color: #fff;
 }
