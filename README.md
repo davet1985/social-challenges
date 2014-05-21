@@ -40,7 +40,10 @@ Get endpoints for uploads API are as follows: -
 ### Running the tests
 
 ```
+# to run all tests
 rake spec
+# to use guard to watch for changes and run tests for you
+bundle exec guard
 ```
 
 #Front end
