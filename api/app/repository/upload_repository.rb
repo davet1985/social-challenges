@@ -3,10 +3,9 @@ require 'sqlite3'
 require_relative './../helpers/upload_model_helper'
 
 $db = SQLite3::Database.open 'hashbang.db'
+$upload_dir = 'uploads'
 
 class UploadRepository
-
-  @@upload_dir = 'uploads'
 
   def self.all
     results = $db.execute("select * from uploads")
@@ -42,7 +41,7 @@ class UploadRepository
   end
 
   def self.get_file_path(file_name)
-    "#{@@upload_dir}/#{file_name}"
+    "#{$upload_dir}/#{file_name}"
   end
 
 end
