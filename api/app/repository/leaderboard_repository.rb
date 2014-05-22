@@ -11,9 +11,10 @@ class LeaderboardRepository
   def self.get_leaderboard_bytagname(tag, numberToGet)
     select =  <<-SQL
       SELECT *
-      FROM uploads, tag_objects, tags
+      FROM uploads, users, tag_objects, tags
       WHERE uploads.id = tag_objects.objectId
       AND tags.id = tag_objects.tagId
+      AND uploads.userid = users.id
       AND tags.tagName = ?
       ORDER BY uploads.overallScore DESC
       LIMIT ?

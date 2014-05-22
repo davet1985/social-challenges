@@ -95,7 +95,7 @@ module SocialChallenges
     post 'login' do
           env['warden'].authenticate(:password)
           error! "Invalid username or password", 401 unless env['warden'].user
-          { "username" => env['warden'].user.name }
+          { "username" => env['warden'].user.name, "id" => env['warden'].user.id }
     end
 
     post 'logout' do

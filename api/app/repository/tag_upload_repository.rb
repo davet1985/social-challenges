@@ -7,9 +7,10 @@ class TagUploadRepository
 def self.get_random_object_bytagname(id, excludeIds)
   select =  <<-SQL
     SELECT *
-    FROM uploads u, tag_objects, tags
+    FROM uploads u, users us, tag_objects, tags
     WHERE u.id = tag_objects.objectId
     AND tags.id = tag_objects.tagId
+    AND u.userid = us.id
     AND tags.tagName = ?
     SQL
   results = $db.execute(select, id)

@@ -16,8 +16,9 @@ class UploadRepository
   def self.get_by_id(id)
     select =  <<-SQL
       SELECT *
-      FROM uploads
-      WHERE id = ?
+      FROM uploads up, users u
+      WHERE up.id = ?
+      AND up.userid = u.id
       SQL
     results = $db.execute(select, id)
     uploads = UploadModelHelper.cast_upload_results results
