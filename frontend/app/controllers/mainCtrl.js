@@ -4,7 +4,13 @@ var mainCtrl = function ($scope, $location, $http) {
 		return $location.path().split('/')[2]||'Unknown';
     };
 
-    //console.log($scope.getPageTag());
+    //get countrycode
+	$http({method: 'GET', url: 'http://freegeoip.net/json/'})
+	.success(function(data){
+		$scope.countryCode = data.country_code;
+	});
+	
+
 };
 
 mainCtrl.$inject = ['$scope', '$location', '$http'];
