@@ -93,13 +93,34 @@ module HashBangDB
     )
   end
 
-  def self.seed(uploads, database)
+  def self.seed_uploads(uploads, database)
     insert =  <<-SQL
       INSERT INTO uploads
       values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       SQL
     uploads.each do |upload|
       database.execute(insert, upload.upload_datetime, upload.type, upload.file_name, upload.original_file_name, upload.userid, upload.overallScore, upload.numOfRatings, upload.averageScore , upload.title, upload.description)
+    end
+  end
+
+  def self.seed_tags(tags, database)
+    insert = <<-SQL
+      INSERT INTO tags
+      VALUES (NULL, ?, ?, ?, ?)
+      SQL
+    tags.each do |tag|
+      database.execute(insert, tag.tagName, tag.userId, tag.tag_datetime, tag.numOfObjects)
+    end
+  end
+
+  def self.seed_tag_objects(tag_objects, database)
+    insert = <<-SQL
+      INSERT INTO tag_objects
+      VALUES (NULL, ?, ?, ?)
+      SQL
+    tag_objects.each do |tag_object|
+      puts tag_object
+      database.execute(insert, tag_object["objectid"], tag_object["tagid"], tag_object["tag_datetime"])
     end
   end
   

@@ -10,7 +10,6 @@ namespace :db do
   task :create do
     puts "Creating the hashbang database..."
     HashBangDB.setup($hashbang_db)
-    HashBangDB.seed(Parser.parse('db/uploads.csv', Uploadmodel), $hashbang_db)
   end
 
   desc "Drop the databases"
@@ -26,7 +25,9 @@ namespace :db do
     puts "Creating test db... "
     HashBangDB.setup(SQLite3::Database.new('hashbang_test.db'))
     puts "Seeding database..."
-    HashBangDB.seed(Parser.parse('db/uploads.csv', Uploadmodel), SQLite3::Database.new('hashbang_test.db'))
+    HashBangDB.seed_uploads(Parser.parse_uploads('db/uploads.csv', Uploadmodel), SQLite3::Database.new('hashbang_test.db'))
+    HashBangDB.seed_tags(Parser.parse_tags('db/tags.csv', Tag), SQLite3::Database.new('hashbang_test.db'))
+    HashBangDB.seed_tag_objects(Parser.parse_tag_objects('db/tag_objects.csv'), SQLite3::Database.new('hashbang_test.db'))
     puts "Done"
   end
 

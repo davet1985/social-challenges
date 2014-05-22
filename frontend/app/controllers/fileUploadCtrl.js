@@ -3,23 +3,21 @@
 /* jshint  -W117 */
 /* jshint  -W062 */
 /* jshint  -W089 */
+/* jshint  -W073 */
 
 var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService, usernameService, tagCloudService, data) {
     
     'use strict';
+
     $scope.apikey = 'AIzaSyCK4uFum6_DUKD65-RuaMgVe6hnT_E9G1s';
-
     $scope.tags = [];
-
 	$scope.currentFields = '';
-	
     $scope.username = usernameService.username();
 	$scope.userId = usernameService.id();
 	
 	if ($scope.username === undefined) {
 		$location.path('/login');
 	}
-
     $scope.fileReaderSupported = window.FileReader != null;
     $scope.changeAngularVersion = function() {
         window.location.hash = $scope.angularVersion;
@@ -102,8 +100,6 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 
     // check to make sure the form is completely valid before post
     $scope.processForm = function(isValid){
- 
-
         if (
             $scope.currentFields === 'image' &&
             isValid &&
@@ -116,7 +112,6 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
             $scope.checkYoutubeTotalResults !== 0
             ) {
             //do post
-            //alert('yes');
             var index = 0;
             $scope.progressBar = 0;
             $scope.uploadId = 0;
@@ -150,6 +145,8 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
         //show errors after form submit
             $scope.submittedError = true;
             //alert('Noooooooo!');
+
+            //to do: display backend validation errors
 
         }
 
@@ -201,26 +198,34 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
         $scope.getURLParam = function ( name ){
             var url = youtube;
             var needle = '?v=';
-            if (url.indexOf(needle) >= 0) {
-                var query_string = url.split('?');
-                var params = query_string[1].split('&');
-                var i = 0;
-                while (i < params.length) {
-                    var param_item = params[i].split('=');
-                    if (param_item[0] === name) {
-                        return param_item[1];
-                    }
-                    i++;
-                }
-                return '';
+            var isValidYoutubeUrl = function (contains) {
+                return url.indexOf(contains) > -1;
+            };
 
-            } else {
-                $scope.youtubeError = true;
+            if (url !== undefined && isValidYoutubeUrl(needle) === true) {
+                if (url.indexOf(needle) >= 0){
+                    var query_string = url.split('?');
+                    var params = query_string[1].split('&');
+                    var i = 0;
+                    while (i < params.length) {
+                        var param_item = params[i].split('=');
+                        if (param_item[0] === name) {
+                            return param_item[1];
+                        }
+                        i++;
+                    }
+                    return '';
+
+                } else {
+                    $scope.youtubeError = true;
+                }
+            } else{
+                $scope.youtube = '';
             }
         };
 
         var youtubeId = $scope.getURLParam('v');
-        
+        //get youtube data
         $http({method: 'GET', url: 'https://www.googleapis.com/youtube/v3/videos?id='+youtubeId+'&key='+$scope.apikey+'&part=snippet,contentDetails,statistics,status'}).
         success(function(data) {
  
@@ -231,12 +236,35 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 $scope.description = JSON.parse(JSON.stringify(data.items[0].snippet.description));
                 $scope.youtubeThumb = JSON.parse(JSON.stringify(data.items[0].snippet.thumbnails.high.url));
                 $scope.youtubeError = false;
-                $scope.tags = [{text: 'get youtube category'}];
+                $scope.youtubecategoryId = JSON.parse(JSON.stringify(data.items[0].snippet.categoryId));
+
+                //map youtube category
+                $scope.returnYoutubeCategory = function (ytId) {
+                    $http.jsonp('https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode='+$scope.countryCode+'&key='+$scope.apikey+'&callback=JSON_CALLBACK')
+                    .success(function(data){
+                        function objectFindByKey(array, key, value) {
+                            for (var i = 0; i < array.length; i++) {
+                                if (array[i][key] === value) {
+                                    return array[i].snippet.title;
+                                }
+                            }
+                            return null;
+                        }
+                        $scope.youtubeCategory =  objectFindByKey(data.items, 'id', ytId);
+                        //use youtube category as a tag
+                        $scope.tags = [{text: $scope.youtubeCategory}];
+                    });
+                };
+
+                $scope.returnYoutubeCategory($scope.youtubecategoryId);
+
             } else {
+                //clear if fail
                 $scope.title = '';
                 $scope.description = '';
                 $scope.youtubeThumb = '';
                 $scope.youtubeError = true;
+                $scope.tags = '';
             }
         }).
         error(function(data) {
@@ -245,9 +273,6 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 
         });
     };
-
-    //to do: get user region code then get youtube catogries and map to populate tag
-    //console.log('https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=GB&key='+$scope.apikey);
 
     //autocomplete
     $scope.loadItems = function($query) {
