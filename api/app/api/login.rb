@@ -29,8 +29,8 @@ module SocialChallenges
       strength = PasswordStrength.test(params[:username], params[:password])
       if strength.strong?
         if params[:password] == params[:confirmPassword]
-          if GrapeWarden::User.usernameDoesNotExist(params[:username])
-            GrapeWarden::User.save(params[:username], params[:password], params[:email])
+          if User.usernameDoesNotExist(params[:username])
+            User.save(params[:username], params[:password], params[:email])
             { "status" => "user successfully created. You have been sent an email with instructions on how to activate the account" }
           else
             { "status" => "username already in use. Please chose another" }
@@ -50,7 +50,7 @@ module SocialChallenges
       strength = PasswordStrength.test(env['warden'].user.name, params[:password])
       if strength.strong?
         if params[:password] == params[:confirmPassword]
-          GrapeWarden::User.changePassword(env['warden'].user.id, params[:password])
+          User.changePassword(env['warden'].user.id, params[:password])
           { "status" => "password changed successfully" }
         else
           { "status" => "passwords do not match" }
@@ -61,7 +61,7 @@ module SocialChallenges
     end
     
     post 'activate/:token' do
-      if GrapeWarden::User.activate(params[:token])
+      if User.activate(params[:token])
         { "status" => "Account activated" }
       else
         { "status" => "Invalid token provided" }
@@ -69,7 +69,7 @@ module SocialChallenges
     end
     
     post 'forgot-password' do
-      GrapeWarden::User.sendForgotPassword(params[:email])
+      User.sendForgotPassword(params[:email])
       { "status" => "email sent to address provided if it is a valid email" } 
     end
     
@@ -77,9 +77,9 @@ module SocialChallenges
       strength = PasswordStrength.test("test", params[:password])
       if strength.strong?
         if params[:password] == params[:confirmPassword]
-          userId = GrapeWarden::User.getIdFromToken(params[:token])
+          userId = User.getIdFromToken(params[:token])
           if userId != -1
-            GrapeWarden::User.changePassword(userId, params[:password])
+            User.changePassword(userId, params[:password])
             { "status" => "successfully changed password" }
           else
             { "status" => "token not valid" }
@@ -93,26 +93,26 @@ module SocialChallenges
     end
     
     post 'login' do
-          env['warden'].authenticate(:password)
-          error! "Invalid username or password", 401 unless env['warden'].user
-          { "username" => env['warden'].user.name, "id" => env['warden'].user.id }
+          user = User.authenticate(params[:username], params[:password])
+          error! "Invalid username or password", 401 unless user != nil
+          { "username" => user.name, "id" => user.id, "token" => user.token }
     end
 
     post 'logout' do
-          env['warden'].authenticate
-          error! "Logged out", 401 unless env['warden'].user
+          user = User.get(params[:token])
+          error! "Logged out", 401 unless user != nil
 
-          env['warden'].logout
+          User.logout(params[:token])
           { "status" => "ok" }
     end
     
-    get "info" do
-          env['warden'].authenticate
-          error! "Unauthorized", 401 unless env['warden'].user
-          { "username" => env['warden'].user.name }
+    post "info" do
+          user = User.get(params[:token])
+          error! "Unauthorized", 401 unless user != nil
+          { "username" => user.name }
     end
     
-    get "info2" do
+    post "info2" do
           env['warden'].authenticate
           error! "Unauthorized", 401 unless env['warden'].user
           { "well done" => env['warden'].user.name }

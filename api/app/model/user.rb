@@ -3,7 +3,6 @@ require 'net/smtp'
 
 $db = SQLite3::Database.open './hashbang.db'
 
-module GrapeWarden
   class User
     
     /USERS =/ 
@@ -12,10 +11,12 @@ module GrapeWarden
 
     attr_reader :name
     attr_reader :id
+    attr_reader :token
     
-    def initialize(id, name)
+    def initialize(id, name, token)
       @id = id
       @name = name
+      @token = token
     end
     
     def self.usernameDoesNotExist(username)
@@ -132,12 +133,20 @@ module GrapeWarden
       
       include BCrypt
 
-      def get(id)
-        row = $db.get_first_row("select * from session where userid = ? and expires > datetime('now')", id)
+      def get(token)
+        row = $db.get_first_row("select * from session where token = ? and expires > datetime('now')", token)
         if row != nil
           $db.execute( "update session set expires= datetime('now', '+30 minutes')  where id = ?",  row[0])
-          User.new(row[1], row[2])
+          User.new(row[1], row[2], row[5])
         end
+      end
+      
+      def logout(token)
+        delete =  <<-SQL
+        DELETE FROM session
+        WHERE token = ?
+        SQL
+        $db.execute(delete, token)
       end
       
       def authenticate(u, p)
@@ -150,23 +159,24 @@ module GrapeWarden
           matchingPass = false
           matchingPass = Password.new(currentPassword) == p 
         
-          if matchingPass == true        
-            insertSession(userId, u)
+          if matchingPass == true 
+            token = SecureRandom.uuid       
+            insertSession(userId, u, token)
             resetLoginAttempts(userId)
           elsif row != nil
             increaseLoginAttempts(userId)
           end
 
-          User.new(userId, u) if matchingPass
+          User.new(userId, u, token) if matchingPass
         end
       end
       
-      def insertSession(id, username)
+      def insertSession(id, username, token)
         insert =  <<-SQL
         INSERT INTO session
-        values (NULL, ? , ? , datetime('now', '+30 minutes'))
+        values (NULL, ? , ? , datetime('now', '+30 minutes'), ?)
         SQL
-        $db.execute(insert, id, username)
+        $db.execute(insert, id, username, token)
       end 
       
       def resetLoginAttempts(id)
@@ -190,4 +200,3 @@ module GrapeWarden
     end
 
   end
-end

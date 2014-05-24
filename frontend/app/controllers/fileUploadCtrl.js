@@ -120,12 +120,14 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
             if ($scope.description === undefined){
                 $scope.description = '';
             }
+			
+			console.log(usernameService.token());
             
             $scope.upload[index] = $upload.upload({
                 url : configService.API_END_POINT+'upload/add',
                 method: 'POST',
                 data : {
-                    userid : usernameService.id(),
+                    usertoken : usernameService.token(),
                     title : $scope.title,
                     description : $scope.description,
                     tags : $scope.tagsToCSV()
