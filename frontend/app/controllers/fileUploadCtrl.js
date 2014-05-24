@@ -14,8 +14,9 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 	$scope.currentFields = '';
     $scope.username = usernameService.username();
 	$scope.userId = usernameService.id();
+	$scope.token = usernameService.token();
 	
-	if ($scope.username === undefined) {
+	if (usernameService.username() === undefined || usernameService.username() === 'empty') {
 		$location.path('/login');
 	}
     $scope.fileReaderSupported = window.FileReader != null;
@@ -124,7 +125,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 url : configService.API_END_POINT+'upload/add',
                 method: 'POST',
                 data : {
-                    userid : $scope.userId,
+                    userid : usernameService.id(),
                     title : $scope.title,
                     description : $scope.description,
                     tags : $scope.tagsToCSV()

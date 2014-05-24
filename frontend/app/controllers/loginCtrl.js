@@ -18,7 +18,8 @@ var loginCtrl = function ($scope, $location, $http, configService, usernameServi
         })
             .success(function(data) {
 				
-				usernameService.setUsername(data.username, data.id);
+				console.log(data.token);
+				usernameService.setUsername(data.username, data.id, data.token);
 				
 				$location.path('/upload');
 
