@@ -63,6 +63,7 @@ module.exports = function(grunt) {
                         'assets/js/file-upload/angular-file-upload.min.js',
                         'assets/js/lib/angular-route.min.js',
                         'assets/js/jquery/jquery-1.10.2.min.js',
+                        'assets/js/jquery/jquery.Jcrop.min.js',
                         'assets/js/lib/ng-tags-input.min.js',
                         //ui-bootstrap
                         'assets/js/ui-bootstrap/ui-bootstrap.js',
@@ -79,6 +80,9 @@ module.exports = function(grunt) {
                 }
             },
              app: {
+                options:{
+                     beautify: true
+                },
                 files: {
                     'public/js/app.js' : [
                         'public/js/app.js'

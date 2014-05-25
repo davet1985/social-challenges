@@ -7,7 +7,6 @@ app.service('data', ['$http', '$q', 'tagCloudService',  function($http, $q, tagC
     this.search = function(query) {
 
         var tagAll = tagCloudService.tagCloud[0].tagCloud;
-        tagCloudService.getTagCloudData();
         
         var tagsArray = [];
 

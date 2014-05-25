@@ -33,13 +33,31 @@
               <loading></loading>
               <div ng-show="selectedFiles != null">
                 <div class="sel-file" ng-repeat="f in selectedFiles">
-                  <img ng-hide="selectedFilesLengthCheck() > 1" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive">
+                 <img ng-hide="selectedFilesLengthCheck() > 1" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive"> 
 
+
+<!-- to do:
+<div ng-controller="imageCropCtrl">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-body">
+        <img ng-src="{{itemsimage}}" class="img-responsive"> 
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    <button href="#" class="btn btn-primary" ng-click="open('lg')" type="button" style="margin-top:20px">Crop</button>
+</div>
+-->
+                  
                 </div>
                  <p ng-show="selectedFilesLengthCheck() > 1" class="help-block">Upload one image at a time</p>
               </div>
             </div>
           </div>
+
 
 
 
@@ -55,7 +73,7 @@
           <div class="form-group"  ng-show="mediaType == 'video' || mediaType == 'image'" ng-class="{ 'has-error' : uploadForm.title.$invalid && !uploadForm.title.$pristine || submittedError && uploadForm.title.$invalid && !uploadForm.title.$dirty}">
             <label for="title">Title</label>
 
-            <input type="text" class="form-control" name="title" id="title" ng-model="title"  ng-minlength="3" ng-maxlength="2000" required>
+            <input type="text" class="form-control" name="title" id="title" ng-model="title"  ng-minlength="3" ng-maxlength="2000" autocomplete="off" required>
             <p ng-show="uploadForm.title.$error.required && !uploadForm.title.$pristine || submittedError && uploadForm.title.$invalid && !uploadForm.title.$dirty" class="help-block">Title is required</p>
             <p ng-show="uploadForm.title.$error.minlength" class="help-block">Title is too short</p>
             <p ng-show="uploadForm.title.$error.maxlength" class="help-block">Title is too long</p>
@@ -65,7 +83,7 @@
             <label for="tags" style="margin-bottom: -14px;">Tags</label>
             <div>
               <tags-input ng-model="tags" name="tags" id="tags" required>
-                <auto-complete source="loadItems($query)" min-length="1" debounce-delay="0"></auto-complete>
+                <auto-complete source="loadItems($query)" min-length="1" debounce-delay="0" ng-controller="tagCloudCtrl"></auto-complete>
               </tags-input>
               <p ng-show="tagLength() <= 2 && !uploadForm.tags.$pristine || submittedError && tagLength() <= 2 && !uploadForm.tags.$dirty" class="help-block">At least one tag is required</p>
               <p class="help-block help">Separate with commas or return.</p>
@@ -92,3 +110,5 @@
     </section>
   </div>
 </div>
+
+

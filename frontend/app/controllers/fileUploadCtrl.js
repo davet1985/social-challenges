@@ -5,7 +5,7 @@
 /* jshint  -W089 */
 /* jshint  -W073 */
 
-var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService, usernameService, tagCloudService, data) {
+var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService, usernameService, data) {
     
     'use strict';
 
@@ -83,6 +83,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                         
                         $timeout(function() {
                             $scope.dataUrls[index] = e.target.result;
+                            $scope.xyz = e.target.result;
                         });
 
                         $scope.previewProgress = parseInt(100.0 * e.loaded / e.total);
@@ -135,6 +136,9 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 $scope.progressBar = parseInt(100.0 * evt.loaded / evt.total);
             }).success(function(data, status, headers, config) {
                 $location.path('/user/userName/uploads/' + data);// todo: get userName
+            }).error(function(data, status, headers, config) {
+                //to do echo these errors on frontend
+                console.log(data.error[0].field_name + ' - ' + data.error[0].message);
             }).xhr(function(xhr){
                 xhr.upload.addEventListener('abort', function(){
                     console.log('aborted complete');
@@ -281,5 +285,5 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 
 };
 
-fileUploadCtrl.$inject = ['$scope', '$http', '$timeout', '$upload', '$location', 'configService', 'usernameService' , 'tagCloudService', 'data'];
+fileUploadCtrl.$inject = ['$scope', '$http', '$timeout', '$upload', '$location', 'configService', 'usernameService', 'data'];
  
