@@ -17,6 +17,13 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 	if (usernameService.username() === undefined || usernameService.username() === 'empty') {
 		$location.path('/login');
 	}
+	usernameService.isActive().then(function(d) {
+		if (d.data.active === false) {
+			usernameService.setUsername('empty', 'empty', 'empty');
+			$location.path('/login');
+		}
+	});
+	
     $scope.fileReaderSupported = window.FileReader != null;
     $scope.changeAngularVersion = function() {
         window.location.hash = $scope.angularVersion;

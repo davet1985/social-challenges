@@ -106,6 +106,15 @@ module SocialChallenges
           { "status" => "ok" }
     end
     
+    post "active" do
+          user = User.get(params[:token])
+          if user != nil
+            { "active" => true }
+          else
+            { "active" => false }
+          end
+    end
+    
     post "info" do
           user = User.get(params[:token])
           error! "Unauthorized", 401 unless user != nil
