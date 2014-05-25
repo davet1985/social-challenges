@@ -42,7 +42,7 @@ var app = angular.module('app', [
                     controller: 'loginCtrl'
                 })
                 .when('/logout',{
-                    templateUrl: 'app/views/loginView.html',
+                    templateUrl: 'app/views/uploadView.html',
                     controller: 'logoutCtrl'
                 })
                 .when('/signup',{
