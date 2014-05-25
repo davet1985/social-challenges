@@ -13,8 +13,6 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
     $scope.tags = [];
 	$scope.currentFields = '';
     $scope.username = usernameService.username();
-	$scope.userId = usernameService.id();
-	$scope.token = usernameService.token();
 	
 	if (usernameService.username() === undefined || usernameService.username() === 'empty') {
 		$location.path('/login');
