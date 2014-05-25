@@ -27,7 +27,8 @@ module HashBangDB
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         userid INTEGER NOT NULL,
         username VARCHAR(50) NOT NULL,
-        expires DATETIME NOT NULL
+        expires DATETIME NOT NULL,
+        token VARCHAR(255) NOT NULL 
         );
       SQL
     )

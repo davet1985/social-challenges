@@ -7,6 +7,7 @@ require_relative './../repository/upload_repository'
 require_relative './../repository/tag_repository'
 require_relative './../helpers/tag_helper'
 require_relative './../model/error'
+require_relative './../model/user'
 
 module SocialChallenges
 
@@ -44,8 +45,8 @@ module SocialChallenges
 
     post '/add' do
       errors = Array.new
-      user_id = params[:userid]
-      errors << Error.new("userid", "The userid field is required") if user_id.empty? || user_id == 'undefined'
+      user_token = params[:usertoken]
+      errors << Error.new("user_token", "The userid field is required") if user_token.empty? || user_token == 'undefined'
       title = params[:title]
       errors << Error.new("title", "The title field is required") if title.empty? || title == 'undefined'
       tags_csv = params[:tags]
@@ -59,11 +60,13 @@ module SocialChallenges
         file = params[:image_file]
       end
       error! JSON.parse(errors.to_json), 403 if errors.length > 0
+      user = User.get(user_token)
+      error! "Unauthorized", 401 unless user != nil
       file_name = Time.now.strftime('%Y%m%d%H%M%S%L') + '_' + original_file_name
-      upload = Uploadmodel.new type, file_name, original_file_name, user_id, title, description
+      upload = Uploadmodel.new type, file_name, original_file_name, user.id, title, description
       upload_id = UploadRepository.save upload
       UploadRepository.transfer_file file, file_name
-      TagHelper.process_tags tags_csv, upload_id, user_id
+      TagHelper.process_tags tags_csv, upload_id, user.id
       upload_id
     end
 
