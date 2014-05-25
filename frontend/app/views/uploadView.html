@@ -22,7 +22,13 @@
             <div>
               <input type="hidden">
               <span class="btn btn-primary btn-file">
-                  <i class="fa fa-search"></i>&nbsp;Browse<input id="file_upload" name="file" type="file" ng-file-select="onFileSelect($files)">
+                  <i class="fa fa-search"></i>&nbsp;Browse<input id="file_upload" name="file" type="file" ng-file-select="onFileSelect($files)"
+
+accept="image/*" image="image2"
+resize-max-height="300"
+resize-max-width="250"
+resize-quality="0.7"
+                  >
               </span>
               <span ng-show="selectedFiles != null" ng-hide="selectedFilesLengthCheck() > 1"><span class="uploaded-file-name">{{uploadFileName}}</span></span>
               <p ng-show="checkFileType() === false" class="help-block">File type not supported</p>
@@ -35,6 +41,8 @@
                 <div class="sel-file" ng-repeat="f in selectedFiles">
                  <img ng-hide="selectedFilesLengthCheck() > 1" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive"> 
 
+<!-- to do: add to upload -->
+<img ng-show="image2" ng-src="{{image2.resized.dataURL}}" />
 
 <!-- to do:
 <div ng-controller="imageCropCtrl">
