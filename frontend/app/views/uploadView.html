@@ -39,13 +39,13 @@ resize-quality="0.7"
               <loading></loading>
               <div ng-show="selectedFiles != null">
                 <div class="sel-file" ng-repeat="f in selectedFiles">
-                 <img ng-hide="selectedFilesLengthCheck() > 1" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive"> 
+                 <img ng-hide="selectedFilesLengthCheck() > 1" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive" id="target"> 
 
 <!-- to do: add to upload -->
 <img ng-show="image2" ng-src="{{image2.resized.dataURL}}" />
 
-<!-- to do:
-<div ng-controller="imageCropCtrl">
+<!-- to do: 
+<div ng-controller="ModalDemoCtrl">
     <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-body">
         <img ng-src="{{itemsimage}}" class="img-responsive"> 

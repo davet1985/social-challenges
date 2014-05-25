@@ -65,6 +65,10 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/userUploadsView.html',
                     controller: 'displayUploadCtrl'
                 })
+                .when('/croptest',{
+                    templateUrl: 'app/views/testView.html',
+                    controller: 'cropCtrl' //testing cropping
+                })
                 .when('/404',{
                     templateUrl: 'app/views/404View.html',
                     controller: 'errorCtrl'
