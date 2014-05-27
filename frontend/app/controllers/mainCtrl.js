@@ -1,7 +1,7 @@
 /* jshint -W117 */
 /* jshint -W065 */
 
-var mainCtrl = function ($scope, $location, $http, $window, fileReader, $timeout) {
+var mainCtrl = function ($scope, $location, $http, $window) {
 	
 	$scope.getPageTag = function() {
 		return $location.path().split('/')[2]||'Unknown';
@@ -24,4 +24,4 @@ var mainCtrl = function ($scope, $location, $http, $window, fileReader, $timeout
 
 };
 
-mainCtrl.$inject = ['$scope', '$location', '$http', '$window', 'fileReader', '$timeout'];
+mainCtrl.$inject = ['$scope', '$location', '$http', '$window'];

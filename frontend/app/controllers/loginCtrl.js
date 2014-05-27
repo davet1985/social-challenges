@@ -16,23 +16,18 @@ var loginCtrl = function ($scope, $location, $http, configService, usernameServi
             },
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
         })
-            .success(function(data) {
-				
-				console.log(data.token);
-				usernameService.setUsername(data.username, data.id, data.token);
-				
-				$location.path('/upload');
+        .success(function(data) {
+			
+			console.log(data.token);
+			usernameService.setUsername(data.username, data.id, data.token);
+			
+			$location.path('/upload');
 
-                // if (!data.success) {
-                //   // if not successful, bind errors to error variables
-                //     $scope.errorName = data.errors.name;
-                //     $scope.errorSuperhero = data.errors.superheroAlias;
-                // } else {
-                //   // if successful, bind success message to message
-                //     $scope.message = data.message;
-                // }
-            });
+        }).error(function(data) {
+            $scope.errorMessage = data.error;
+        });
     };
+
 
 };
 

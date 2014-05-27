@@ -26,7 +26,7 @@ app.service('usernameService', ['$cookies', '$http', 'configService', function($
             .success(function(data) {
 				return data.active;
             });
-			console.log(active);
+			//console.log(active);
 			return active;
 		},
 		setUsername: function(newUsername, id, token) { $cookies.username = newUsername; $cookies.id = id; $cookies.token = token; }

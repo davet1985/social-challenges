@@ -90,11 +90,11 @@ html, body {
 
 //jcrop
 
-//#cropped-image{
-  //height:150px;
-  //width:150px;
-  //overflow:hidden;
-  //}
+#cropped-image .preview-container{
+width: 250px;
+height: 170px;
+overflow: hidden;
+}
 /* jquery.Jcrop.css v0.9.12 - MIT License */
 /*
   The outer-most container in a typical Jcrop instance

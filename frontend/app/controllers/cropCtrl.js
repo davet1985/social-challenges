@@ -43,17 +43,67 @@ var cropCtrl = function ($scope, $location, $window, fileReader, $timeout) {
 		});
 	};
 
+/*
+	$scope.selected = function() {
+
+		$scope.jcrop_api = '';
+			// Grab some information about the preview pane
+		$scope.preview = $window.jQuery('#cropped-image');
+		$scope.pcnt = $window.jQuery('#cropped-image .preview-container');
+		$scope.pimg = $window.jQuery('#cropped-image .preview-container img');
+
+		$scope.xsize = $scope.pcnt.width();
+		$scope.ysize = $scope.pcnt.height();
+
+		console.log('init',[$scope.xsize,$scope.ysize]);
+
+		$window.jQuery('#target').Jcrop({
+			onChange: $scope.updatePreview,
+			onSelect: $scope.updatePreview,
+			aspectRatio: $scope.xsize / $scope.ysize
+		},function(){
+			// Use the API to get the real image size
+			$scope.bounds = this.getBounds();
+			$scope.boundx = $scope.bounds[0];
+			$scope.boundy = $scope.bounds[1];
+			// Store the API in the jcrop_api variable
+			$scope.jcrop_api = this;
+
+			// Move the preview into the jcrop container for css positioning
+			//$scope.preview.appendTo($scope.jcrop_api.ui.holder);
+
+		});
+
+		function updatePreview(c){
+			if (parseInt(c.w) > 0){
+				$scope.rx = $scope.xsize / c.w;
+				$scope.ry = $scope.ysize / c.h;
+
+				$scope.pimg.css({
+					width: Math.round($scope.rx * $scope.boundx) + 'px',
+					height: Math.round($scope.ry * $scope.boundy) + 'px',
+					marginLeft: '-' + Math.round($scope.rx * c.x) + 'px',
+					marginTop: '-' + Math.round($scope.ry * c.y) + 'px'
+				});
+			}
+		}
+	};
+	
+*/
 
 	$scope.cropOpts = {
 		ratioW: 1,
 		ratioH: 1
 	};
+	
+	
 	$scope.selected = function(cords) {
 		var scale;
 		$scope.picWidth = cords.w;
 		$scope.picHeight = cords.h;
 
 		console.log('scale');
+
 		if ($scope.picWidth > 400) {
 			scale = (400 / $scope.picWidth);
 			console.log($scope.picHeight);

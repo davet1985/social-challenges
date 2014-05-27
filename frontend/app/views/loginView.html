@@ -4,10 +4,11 @@
 			<h2>Login</h2>
 				<div class="row">
 					<span class="fa fa-key fa-flip-horizontal page-bg"></span>
-					<form class="form-signin col-xs-12 col-sm-6 col-md-5" role="form" ng-submit="processForm()">
+					<form class="form-signin col-xs-12 col-sm-6 col-md-5" role="form" ng-submit="processForm()" novalidate>
+						<p class="help-block" style="color:#e74c3c">{{errorMessage}}</p>
 						<div class="form-group">
-							<input name="username" type="email" class="form-control" placeholder="Email address" required autofocus ng-model="username">
-			        		<input password="password" type="password" class="form-control" placeholder="Password" required ng-model="password">
+							<input name="username" type="email" class="form-control" placeholder="Email address" required autofocus ng-model="username" autocomplete="off">
+			        		<input password="password" type="password" class="form-control" placeholder="Password" required ng-model="password" autocomplete="off">
 						</div>
 						<div class="form-group">
 							<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
@@ -24,7 +25,6 @@
 						<div class="login-links">
 							<p>Don't have an account? <a href="#!/signup">Sign up</a></p>
 						</div>
-
 					</form>
 
 				</div>
