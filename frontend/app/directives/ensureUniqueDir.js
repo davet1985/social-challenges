@@ -6,7 +6,7 @@ app.directive('ensureUnique', ['$http', 'configService', '$location', function($
             scope.$watch(attrs.ngModel, function() {
                 $http({
                     method: 'POST',
-                    url: configService.API_END_POINT+'auth/check'+attrs.ensureUnique,
+                    url: configService.API_END_POINT+'auth/check/'+attrs.ensureUnique,
                     data: {
                         'field': attrs.ensureUnique
                     },
