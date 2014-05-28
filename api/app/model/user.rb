@@ -27,6 +27,15 @@ $db = SQLite3::Database.open './hashbang.db'
       end
       userDoesNotExists
     end
+
+    def self.emailDoesNotExist(email)
+      row = $db.get_first_row("select * from users where email = ?", email)
+      emailDoesNotExists = false
+      if row == nil
+        emailDoesNotExists = true
+      end
+      emailDoesNotExists
+    end    
     
     def self.save(username, password, email)
       insert =  <<-SQL

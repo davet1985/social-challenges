@@ -26,7 +26,7 @@ var signupCtrl = function ($scope, $location, $http, configService) {
                 //usernameService.setUsername(data.username, data.id, data.token);
                 console.log(data);
 
-                $location.path('/login');
+                //$location.path('/login');
 
             })
             .error(function(data){

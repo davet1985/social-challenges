@@ -5,19 +5,20 @@
 				<div class="row">
 					<span class="fa fa-pencil page-bg"></span>
 					<form class="form-signup col-xs-12 col-sm-6 col-md-5" role="form" name="signupForm" ng-submit="processForm(signupForm.$valid)" novalidate>
-						<div class="form-group"  ng-class="{ 'has-error' : signupForm.email.$invalid && !signupForm.email.$pristine || submittedError && signupForm.email.$invalid && !signupForm.email.$dirty || signupForm.email.$error.unique}">
+						<div class="form-group"  ng-class="{ 'has-error' : signupForm.email.$invalid && !signupForm.email.$pristine || submittedError && signupForm.email.$invalid && !signupForm.email.$dirty || signupForm.email.$error.unique }">
 							<label for="email">Email</label>
-							<input type="email" class="form-control" id="email" name="email" ng-model="email" ng-pattern="emailRegx" required>
+							<input type="email" class="form-control" id="email" name="email" ng-model="email" ng-pattern="emailRegx" ensure-unique="email" required>
 							<p ng-show="signupForm.email.$error.required && !signupForm.email.$pristine || submittedError && signupForm.email.$invalid && !signupForm.email.$dirty" class="help-block">Email is required</p>
 							<p ng-show="signupForm.email.$error.pattern" class="help-block">Please input a valid email</p>
-							<p ng-show="signupForm.email.$error.unique">That email is already registerd, please try another</p>
+							<p ng-show="signupForm.email.$error.unique" class="help-block">{{email}} is already registered, please try another</p>
 						</div>
-						<div class="form-group" ng-class="{ 'has-error' : signupForm.username.$invalid && !signupForm.username.$pristine || submittedError && signupForm.username.$invalid && !signupForm.username.$dirty}">
+						<div class="form-group" ng-class="{ 'has-error' : signupForm.username.$invalid && !signupForm.username.$pristine || submittedError && signupForm.username.$invalid && !signupForm.username.$dirty || signupForm.username.$error.unique}">
 							<label for="username">Username</label>
-							<input type="username" class="form-control" name="username" id="username" ng-model="username"  ng-minlength="6" ng-maxlength="20" autocomplete="off" required>
+							<input type="username" class="form-control" name="username" id="username" ng-model="username" ensure-unique="username" ng-minlength="4" ng-maxlength="20" autocomplete="off" required>
 							<p ng-show="signupForm.username.$error.required && !signupForm.username.$pristine || submittedError && signupForm.username.$invalid && !signupForm.username.$dirty" class="help-block">Username is required</p>
 				            <p ng-show="signupForm.username.$error.minlength" class="help-block">Username is too short</p>
 				            <p ng-show="signupForm.username.$error.maxlength" class="help-block">Username is too long</p>
+				            <p ng-show="signupForm.username.$error.unique" class="help-block">{{username}} is already taken, please try another</p>
 						</div>
 						<div class="form-group" ng-class="{ 'has-error' : signupForm.password.$invalid && !signupForm.password.$pristine || submittedError && signupForm.password.$invalid && !signupForm.password.$dirty}">
 							<label for="password">Password</label>

@@ -42,7 +42,23 @@ module SocialChallenges
         { "status" => "password not strong enough" }
       end
     end
-    
+  
+    post 'check/username' do
+      if User.usernameDoesNotExist(params[:username])
+        { "status" => "ok" }
+      else
+        { "status" => "already in use" }
+      end
+    end
+
+    post 'check/email' do
+      if User.emailDoesNotExist(params[:email])
+        { "status" => "ok" }
+      else
+        { "status" => "already in use" }
+      end
+    end
+
     post 'change-password' do
       env['warden'].authenticate
       error! "Unauthorized", 401 unless env['warden'].user
