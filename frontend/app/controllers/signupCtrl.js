@@ -11,7 +11,7 @@ var signupCtrl = function ($scope, $location, $http, configService) {
             $http({
                 method  : 'POST',
                 url     : configService.API_END_POINT+'auth/create',
-                data: {'username': $scope.username, 'email': $scope.email, 'password': $scope.password, 'confirmPassword': $scope.passwordConfirm},
+                data: {'username': $scope.username, 'email': $scope.email, 'password': $scope.user.password, 'confirmPassword': $scope.user.passwordConfirm},
                 transformRequest: function(obj) {
                     var str = [];
                     for(var p in obj) {

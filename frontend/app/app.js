@@ -65,6 +65,10 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/userUploadsView.html',
                     controller: 'displayUploadCtrl'
                 })
+                .when('/user/:token',{
+                    templateUrl: 'app/views/activateView.html'
+                    //controller: 'activateCtrl'
+                })
                 .when('/croptest',{
                     templateUrl: 'app/views/testView.html',
                     controller: 'cropCtrl' //testing cropping

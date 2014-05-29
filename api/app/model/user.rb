@@ -55,7 +55,7 @@ $db = SQLite3::Database.open './hashbang.db'
       To: A Test User <#{email}>
       Subject: SMTP e-mail test
 
-      Please use this token to login #{token}.
+      Please use this token to login http://localhost:8000/#!/user/#{token}.
       MESSAGE_END
 
       Net::SMTP.start('localhost') do |smtp|
