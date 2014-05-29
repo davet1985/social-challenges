@@ -27,7 +27,7 @@ module SocialChallenges
     
     post 'create' do
       strength = PasswordStrength.test(params[:username], params[:password])
-      if strength.strong?
+      if strength.good?
         if params[:password] == params[:confirmPassword]
           if User.usernameDoesNotExist(params[:username])
             User.save(params[:username], params[:password], params[:email])
