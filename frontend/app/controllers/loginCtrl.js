@@ -1,6 +1,6 @@
 /* jshint -W089 */
 
-var loginCtrl = function ($scope, $location, $http, configService, usernameService) {
+var loginCtrl = function ($scope, $location, $http, configService, usernameService, $timeout) {
 
 
     $scope.processForm = function(isValid){
@@ -20,13 +20,21 @@ var loginCtrl = function ($scope, $location, $http, configService, usernameServi
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
             })
             .success(function(data, status, headers, config) {
-                console.log(data.token);
-                usernameService.setUsername(data.username, data.id, data.token);
-                //console.log('success!!!');
-                $location.path('/upload');
+
+                if (data.status === 'Invalid username or password'){
+                    $timeout(function() {
+                        $scope.errorMessage = '';
+                    }, 3500);
+                    $scope.errorMessage = data.status;
+                    
+                } else{
+                    console.log(data.token);
+                    usernameService.setUsername(data.username, data.id, data.token);
+                    $location.path('/upload');
+                }
 
             }).error(function(data) {
-                $scope.errorMessage = data.error;
+                $scope.errorMessage = data.status;
             });
     
         } else{
@@ -39,4 +47,4 @@ var loginCtrl = function ($scope, $location, $http, configService, usernameServi
 
 };
 
-loginCtrl.$inject = ['$scope', '$location', '$http', 'configService', 'usernameService'];
+loginCtrl.$inject = ['$scope', '$location', '$http', 'configService', 'usernameService', '$timeout'];
