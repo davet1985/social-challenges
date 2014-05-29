@@ -109,9 +109,14 @@ module SocialChallenges
     end
     
     post 'login' do
-          user = User.authenticate(params[:username], params[:password])
-          error! "Invalid username or password", 401 unless user != nil
+        user = User.authenticate(params[:username], params[:password])
+        #error! "Invalid username or password", 401 unless user != nil
+        #{ "username" => user.name, "id" => user.id, "token" => user.token }
+        if user != nil 
           { "username" => user.name, "id" => user.id, "token" => user.token }
+      	else
+          { "status" => "Invalid username or password"}
+        end 
     end
 
     post 'logout' do
