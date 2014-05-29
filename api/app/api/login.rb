@@ -59,6 +59,11 @@ module SocialChallenges
       end
     end
 
+    post 'get/email' do
+      email = User.getEmailAddress(params[:userId])
+          { "email" => email[0] }
+      end
+
     post 'change-password' do
       env['warden'].authenticate
       error! "Unauthorized", 401 unless env['warden'].user

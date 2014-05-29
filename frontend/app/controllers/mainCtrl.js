@@ -1,7 +1,7 @@
 /* jshint -W117 */
 /* jshint -W065 */
 
-var mainCtrl = function ($scope, $location, $http, $window) {
+var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, configService) {
 
 	$scope.emailRegx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	
@@ -24,6 +24,35 @@ var mainCtrl = function ($scope, $location, $http, $window) {
 		});
 	}
 
+    //get user details
+    $scope.getUserDetails = function (detail){
+		$http({
+			method: 'POST',
+			data: {
+				'userId': $cookies.id
+			},
+			url: configService.API_END_POINT+'auth/get/'+detail
+		})
+		.success(function(data){
+			//set gravatar email
+			$scope.gravatarEmail = data.email;
+		});
+	};
+
+
+	//watch for username cookie and show/hide
+	$scope.$watch(function() { return $cookies.username;}, function() {
+        if($cookies.username !== 'empty'){
+			$scope.isUserLogged = $cookies.username;
+			$scope.getUserDetails('email');
+		} else{
+			$scope.isUserLogged = null;
+			$scope.gravatarEmail = null;
+		}
+    });
+
+
+	
 };
 
-mainCtrl.$inject = ['$scope', '$location', '$http', '$window'];
+mainCtrl.$inject = ['$scope', '$location', '$http', '$window', '$cookies','$log', 'configService'];
