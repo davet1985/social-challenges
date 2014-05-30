@@ -1,6 +1,6 @@
 /* jshint -W089 */
 
-var signupCtrl = function ($scope, $location, $http, configService, $timeout) {
+var signupCtrl = function ($scope, $location, $http, configService, $timeout, $anchorScroll) {
 
     $scope.processForm = function(isValid){
         if (isValid){
@@ -53,10 +53,11 @@ var signupCtrl = function ($scope, $location, $http, configService, $timeout) {
 
         } else{
             $scope.submittedError = true;
+            $anchorScroll('top');
 
         }
 
     };
 };
 
-signupCtrl.$inject = ['$scope', '$location', '$http', 'configService', '$timeout'];
+signupCtrl.$inject = ['$scope', '$location', '$http', 'configService', '$timeout', '$anchorScroll'];

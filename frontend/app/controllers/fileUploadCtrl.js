@@ -5,7 +5,7 @@
 /* jshint  -W089 */
 /* jshint  -W073 */
 
-var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService, usernameService, data) {
+var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, configService, usernameService, data, $anchorScroll) {
     
     'use strict';
 
@@ -156,6 +156,8 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
         } else{
         //show errors after form submit
             $scope.submittedError = true;
+            $anchorScroll('top');
+
             //alert('Noooooooo!');
 
             //to do: display backend validation errors
@@ -293,5 +295,5 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 
 };
 
-fileUploadCtrl.$inject = ['$scope', '$http', '$timeout', '$upload', '$location', 'configService', 'usernameService', 'data'];
+fileUploadCtrl.$inject = ['$scope', '$http', '$timeout', '$upload', '$location', 'configService', 'usernameService', 'data', '$anchorScroll'];
  

@@ -9,8 +9,8 @@
 			  					<section class="top">
 			  					  <div>
 						          <div class="image-container">
-						        		<img alt="" ng-src="{{value.file_name}}" class="img-rounded topimg img-responsive" ng-show="value.type === 'image/jpeg' || value.type === 'image/jpg' || value.type === 'image/gif' || value.type === 'image/png'">
-						        		<youtube code="{{key.file_name}}" ng-show="value.type === 'video'"></youtube>
+						        		<img alt="" ng-src="{{value.file_name}}" class="img-rounded topimg img-responsive" ng-if="value.type === 'image/jpeg' || value.type === 'image/jpg' || value.type === 'image/gif' || value.type === 'image/png'">
+						        		<youtube code="{{key.file_name}}" ng-if="value.type === 'video'"></youtube>
 							            <h2 class="top-score"><span>{{$index+1}}</span></h2>
 						          </div>
 						            </div>

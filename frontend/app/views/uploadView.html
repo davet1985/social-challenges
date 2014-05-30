@@ -1,10 +1,13 @@
-<div class="row">
+<div class="row" id="top">
   <div class="col-md-12" >
     <section class="upload">
       <h2>Upload</h2>
       <div class="row">
         <span class="fa fa-cloud-upload page-bg"></span>
-        <form class="col-sm-6" role="form" name="uploadForm" ng-submit="processForm(uploadForm.$valid)" novalidate>       
+        <form class="col-sm-6" role="form" name="uploadForm" ng-submit="processForm(uploadForm.$valid)" novalidate>  
+        <div class="form-group"  ng-class="{ 'has-error' :submittedError}">
+          <p class="help-block" style='height:20px'><span  ng-show="submittedError">Please correct your errors</span></p>
+        </div>     
         <div class="form-group mediaType">
           <div class="radio-mediaType">
             <input id="image" type="radio" name="mediaType" ng-model="mediaType" value="image" ng-change="drawFields('image')">
