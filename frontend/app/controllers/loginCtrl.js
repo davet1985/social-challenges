@@ -1,6 +1,6 @@
 /* jshint -W089 */
 
-var loginCtrl = function ($scope, $location, $http, configService, usernameService, $timeout) {
+var loginCtrl = function ($scope, $location, $http, configService, usernameService, $timeout, $anchorScroll) {
 
 
     $scope.processForm = function(isValid){
@@ -26,6 +26,7 @@ var loginCtrl = function ($scope, $location, $http, configService, usernameServi
                         $scope.errorMessage = '';
                     }, 3500);
                     $scope.errorMessage = data.status;
+                    $anchorScroll('top');
                     
                 } else{
                     console.log(data.token);
@@ -40,6 +41,7 @@ var loginCtrl = function ($scope, $location, $http, configService, usernameServi
         } else{
             //console.log('error');
             $scope.submittedError = true;
+            $anchorScroll('top');
 
         }
     };
@@ -47,4 +49,4 @@ var loginCtrl = function ($scope, $location, $http, configService, usernameServi
 
 };
 
-loginCtrl.$inject = ['$scope', '$location', '$http', 'configService', 'usernameService', '$timeout'];
+loginCtrl.$inject = ['$scope', '$location', '$http', 'configService', 'usernameService', '$timeout', '$anchorScroll'];
