@@ -1,7 +1,7 @@
 /* jshint -W117 */
 /* jshint -W065 */
 
-var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, configService) {
+var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, configService, usernameService) {
 
 	$scope.emailRegx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	
@@ -39,20 +39,19 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 		});
 	};
 
-
-	//watch for username cookie and show/hide
+	//watch for username cookie and show/hide if active
 	$scope.$watch(function() { return $cookies.username;}, function() {
-        if($cookies.username !== 'empty'){
-			$scope.isUserLogged = $cookies.username;
-			$scope.getUserDetails('email');
-		} else{
-			$scope.isUserLogged = null;
-			$scope.gravatarEmail = null;
-		}
-    });
+		usernameService.isActive().then(function(d) {
+			if (d.data.active === true) {
+				$scope.isUserLogged = $cookies.username;
+				$scope.getUserDetails('email');
+			}else{
+				$scope.isUserLogged = null;
+				$scope.gravatarEmail = null;
+			}
+		});
+	});
 
-
-	
 };
 
-mainCtrl.$inject = ['$scope', '$location', '$http', '$window', '$cookies','$log', 'configService'];
+mainCtrl.$inject = ['$scope', '$location', '$http', '$window', '$cookies','$log', 'configService', 'usernameService'];

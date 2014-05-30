@@ -39,7 +39,7 @@ module SocialChallenges
           { "status" => "passwords do not match" }
         end
       else
-        { "status" => "password not strong enough" }
+        { "status" => "Password not strong enough" }
       end
     end
   

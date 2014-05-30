@@ -4,16 +4,17 @@ var signupCtrl = function ($scope, $location, $http, configService, $timeout) {
 
     $scope.processForm = function(isValid){
         if (isValid){
+            
             console.log($scope.username);
             console.log($scope.email);
             console.log($scope.user.password);
             console.log($scope.user.passwordConfirm);
 
             var postData = {
-                'username': $scope.username,
-                'email': $scope.email,
-                'password': $scope.user.password,
-                'confirmPassword': $scope.user.passwordConfirm
+                username: $scope.username,
+                email: $scope.email,
+                password: $scope.user.password,
+                confirmPassword: $scope.user.passwordConfirm
             };
             
             $http({
@@ -34,7 +35,7 @@ var signupCtrl = function ($scope, $location, $http, configService, $timeout) {
                 //usernameService.setUsername(data.username, data.id, data.token);
                 console.log(data.status);
 
-                if (data.status === 'password not strong enough'){
+                if (data.status === 'Password not strong enough'){
                     $timeout(function() {
                         $scope.errorMessagePassword = '';
                     }, 3500);
