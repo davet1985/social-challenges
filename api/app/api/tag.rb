@@ -19,7 +19,7 @@ module SocialChallenges
       JSON.parse(TagCloud.tag_cloud(TagRepository.all))
     end
 
-    post '/add' do      
+    post '/add' do
       tagName = params[:tagName]
       userid = params[:userId]
       tag = Tag.new tagName, userid
@@ -64,6 +64,7 @@ module SocialChallenges
     
     
     post '/:tagName' do
+      puts '***********'
       
       idstoignore = params[:ignoreIds]
       if params[:ignoreIds] == "" then
