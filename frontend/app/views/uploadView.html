@@ -19,21 +19,16 @@
           </div>
         </div>
         <div ng-hide="progressBar > 1">
-          <div class="form-group" ng-show="mediaType == 'image'" ng-class="{ 'has-error' : selectedFilesLengthCheck() > 1 || checkFileType() === false || submittedError && selectedFilesLengthCheck() === undefined}">
+          <div class="form-group" ng-show="mediaType == 'image'" ng-class="{ 'has-error' : selectedFilesLengthCheck() > 1 ||  submittedError || submittedError && selectedFilesLengthCheck() === undefined}">
             <label for="inputFile">Image</label>
             <div>
               <input type="hidden">
               <span class="btn btn-primary btn-file">
-                  <i class="fa fa-search"></i>&nbsp;Browse<input id="file_upload" name="file" type="file" ng-file-select="onFileSelect($files)"
-
-accept="image/*" image="image2"
-resize-max-height="300"
-resize-max-width="250"
-resize-quality="0.7"
-                  >
+                  <i class="fa fa-search"></i>&nbsp;Browse<input id="file_upload" name="file" type="file" ng-file-select="onFileSelect($files)">
               </span>
               <span ng-show="selectedFiles != null" ng-hide="selectedFilesLengthCheck() > 1"><span class="uploaded-file-name">{{uploadFileName}}</span></span>
               <p ng-show="checkFileType() === false" class="help-block">File type not supported</p>
+              <p ng-show="checkFileSize() === true" class="help-block">Max file size is {{getMaxFileSize}}</p>
               <p ng-show="submittedError && selectedFilesLengthCheck() === undefined || selectedFilesLengthCheck() === 0" class="help-block">Select and image</p>
               <div ng-show="dropSupported" class="drop-box" ng-file-drop="onFileSelect($files);" ng-file-drop-available="dropSupported=true">or drop image here</div>
               <div ng-show="!dropSupported">HTML5 Drop File is not supported!</div>
@@ -41,35 +36,12 @@ resize-quality="0.7"
               <loading></loading>
               <div ng-show="selectedFiles != null">
                 <div class="sel-file" ng-repeat="f in selectedFiles">
-                 <img ng-hide="selectedFilesLengthCheck() > 1" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive" id="target"> 
-
-<!-- to do: add to upload -->
-<img ng-show="image2" ng-src="{{image2.resized.dataURL}}" />
-
-<!-- to do: 
-<div ng-controller="ModalDemoCtrl">
-    <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-body">
-        <img ng-src="{{itemsimage}}" class="img-responsive"> 
-
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
-    <button href="#" class="btn btn-primary" ng-click="open('lg')" type="button" style="margin-top:20px">Crop</button>
-</div>
--->
-                  
+                 <img ng-hide="selectedFilesLengthCheck() > 1" ng-src="{{dataUrls[$index]}}" class="img-rounded img-responsive" id="target">                   
                 </div>
                  <p ng-show="selectedFilesLengthCheck() > 1" class="help-block">Upload one image at a time</p>
               </div>
             </div>
           </div>
-
-
-
 
           <div class="form-group" ng-show="mediaType == 'video'" ng-class="{ 'has-error' : uploadForm.youtube.$invalid && !uploadForm.youtube.$pristine || submittedError && uploadForm.youtube.$invalid && !uploadForm.youtube.$dirty || youtubeError === true }">
             <label for="youtube">Youtube video</label>

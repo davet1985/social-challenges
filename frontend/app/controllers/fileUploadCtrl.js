@@ -13,6 +13,20 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
     $scope.tags = [];
 	$scope.currentFields = '';
     $scope.username = usernameService.username();
+    $scope.maxFileSize = 5000000; //in bytes
+
+    //convert bytes
+    $scope.bytesToSize = function (bytes) {
+        if(bytes === 0) { return '0 Byte';}
+        var k = 1000;
+        var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+        var i = Math.floor(Math.log(bytes) / Math.log(k));
+        return (bytes / Math.pow(k, i)).toPrecision(1) + ' ' + sizes[i];
+    };
+
+    //for max file size text
+    $scope.getMaxFileSize = $scope.bytesToSize($scope.maxFileSize);
+
 	
 	if (usernameService.username() === undefined || usernameService.username() === 'empty') {
 		$location.path('/login');
@@ -70,11 +84,22 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                     $files[0].type === 'image/gif'){
                     return true;
                 } else {
+                    $scope.submittedError = true;
+                    return false;
+                }
+            };
+            
+            $scope.checkFileSize = function(){
+                if (Math.round($files[0].size) > $scope.maxFileSize){
+                    $scope.submittedError = true;
+                    return true;
+                } else{
                     return false;
                 }
             };
 
-            if (window.FileReader && $file.type.indexOf('image') > -1) {
+
+            if (window.FileReader && $file.type.indexOf('image') > -1 && $scope.checkFileSize() === false) {
 
                 if ($scope.checkFileType() === true){
                     $scope.loading = true;
@@ -112,7 +137,8 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
             isValid &&
             $scope.tags.length >= 1 &&
             $scope.selectedFiles.length === 1 &&
-            $scope.checkFileType() === true ||
+            $scope.checkFileType() === true &&
+            $scope.checkFileSize() === false ||
             $scope.currentFields === 'video' &&
             isValid &&
             $scope.tags.length >= 1 &&
