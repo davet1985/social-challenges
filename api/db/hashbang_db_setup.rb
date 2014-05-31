@@ -18,7 +18,13 @@ module HashBangDB
     database.execute(
       <<-SQL
       INSERT INTO users
-      values (NULL, 'a@b.com', '$2a$10$Iv1tOac6mjL2.A2FiHmRquWf4MPuFBo59de1iMsSwzg8eUjBcIyb.', 'a@b.com', 'active', 0)
+      values (NULL, 'cat_lover1990', '$2a$10$Iv1tOac6mjL2.A2FiHmRquWf4MPuFBo59de1iMsSwzg8eUjBcIyb.', 'a@b.com', 'active', 0)
+      SQL
+    )
+    database.execute(
+      <<-SQL
+      INSERT INTO users
+      values (NULL, 'dog_lover1980', '$2a$10$Iv1tOac6mjL2.A2FiHmRquWf4MPuFBo59de1iMsSwzg8eUjBcIyb.', 'x@y.com', 'active', 0)
       SQL
     )
     database.execute(

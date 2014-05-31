@@ -18,6 +18,25 @@ shotgun config.ru
 
 Then browse to http://localhost:9393
 
+### Seed database
+
+Running 
+
+...
+rake db:create
+...
+
+Will now delete your current DB and create a new DB with seeded data. 
+
+*IMPORTANT* Restart the RUBY server after doing this.
+
+This will create 2 users by default:
+
+* dog_lover1980
+* cat_lover1990
+
+Password is 12Password12
+
 ## Uploads API
 
 ### Posting a file upload
@@ -68,9 +87,10 @@ ruby resize.rb
 ```
 
 It shoud create 3 sizes:
-api/spec/upoads/resize_large.jpg
-api/spec/upoads/resize_medium.jpg
-api/spec/upoads/resize_thumb.jpg
+
+* api/spec/upoads/resize_large.jpg
+* api/spec/upoads/resize_medium.jpg
+* api/spec/upoads/resize_thumb.jpg
 
 #Front end
 

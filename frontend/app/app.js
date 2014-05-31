@@ -66,8 +66,8 @@ var app = angular.module('app', [
                     controller: 'displayUploadCtrl'
                 })
                 .when('/user/:token',{
-                    templateUrl: 'app/views/activateView.html'
-                    //controller: 'activateCtrl'
+                    templateUrl: 'app/views/activateView.html',
+                    controller: 'activateCtrl'
                 })
                 .when('/croptest',{
                     templateUrl: 'app/views/testView.html',
