@@ -1,35 +1,42 @@
+<div class="row col-md-12">
+	<h2>Top 20 in {{getPageTag()}}</h2>		
+</div>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-9">
 		<section class="leaderboard">
-			<h2>Top 20 in {{getPageTag()}}</h2>
-				<div class="row">
-					<ul>
-						<li ng-repeat="(key, value) in top">
-							<div class="col-xs-12">
-			  					<section class="top">
-			  					  <div>
-						          <div class="image-container">
-						        		<img alt="" ng-src="{{value.file_name}}" class="img-rounded topimg img-responsive" ng-if="value.type === 'image/jpeg' || value.type === 'image/jpg' || value.type === 'image/gif' || value.type === 'image/png'">
-						        		<youtube code="{{key.file_name}}" ng-if="value.type === 'video'"></youtube>
-							            <h2 class="top-score"><span>{{$index+1}}</span></h2>
-						          </div>
-						            </div>
+				<ul>
+					<li ng-repeat="(key, value) in top">
+	  					<section class="top top-image">
+	  					  <div class="col-sm-8">
+				          <div class="image-container">
+			        		<img alt="" ng-src="{{value.file_name}}" class="img-rounded topimg img-responsive" ng-if="value.type === 'image/jpeg' || value.type === 'image/jpg' || value.type === 'image/gif' || value.type === 'image/png'">
+			        		<youtube code="{{key.file_name}}" ng-if="value.type === 'video'"></youtube>
+				            <h2 class="top-score"><span>{{$index+1}}</span></h2>
+				          </div>
+				            </div>
 
-						          <div class="details">
-						          <h2 class="top-score-total"><span><i class="fa fa-thumbs-up"></i>{{value.overallScore}}</span></h2>
-			  					<img gravatar-src="'sommes.email@gmail.com'" class="img-rounded profileThumb">
-			  						<p><a href="#!/user/{{value.userid}}">{{value.userid}}</a></p>
-			  						<h3 class="leaderboard-title">{{value.title}}</h3>
-			  						<p>{{value.description}}</p>
-			  						<ul class="tags">
-		   								<li ng-repeat="(key, value) in value.tags"><a href="#!/tag/{{value}}">{{value}}</a></li>
-		            				</ul>
-		            			</div>
-							  </section>
-							</div>
-						</li>
-					</ul>					
-				</div>
+				          <div class="details col-sm-4">
+				          <!-- <h2 class="top-score-total"></h2> -->
+	  						<img gravatar-src="'sommes.email@gmail.com'" class="img-rounded profileThumb">
+	  						<p><a href="#!/user/{{value.userid}}">{{value.userid}}</a></p>
+	  						<p><i class="fa fa-thumbs-up"></i>{{value.overallScore}}</p>
+	  						<h3 class="leaderboard-title">{{value.title}}</h3>
+	  						<p>{{value.description}}</p>
+	  						<ul class="tags">
+   								<li ng-repeat="(key, value) in value.tags"><a href="#!/tag/{{value}}">{{value}}</a></li>
+            				</ul>
+            			</div>
+					  </section>
+					</li>
+				</ul>					
 		</section>
 	</div> 
+	<div class="col-md-3">
+		<section class="categories" ng-controller="tagCloudCtrl">
+            <h3>Tag Cloud</h3>
+            <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+		        <li ng-repeat="key in tagCloud.tagCloud"><a href="#!/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
+            </ul>
+  		</section>
+	</div>
 </div>
