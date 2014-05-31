@@ -18,7 +18,7 @@ var forgotCtrl = function ($scope, $location, $http, configService, usernameServ
         })
             .success(function(data) {
 				
-				console.log(data.token);
+				//console.log(data.token);
 				//usernameService.setUsername(data.username, data.id, data.token);
 				
 				$location.path('/login');

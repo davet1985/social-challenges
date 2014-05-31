@@ -37,6 +37,16 @@ Get endpoints for uploads API are as follows: -
 * http://localhost:9393/upload/[id]
 * http://localhost:9393/upload/[id]/download
 
+## User creation
+cd to api and run a bundle install (sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future bundle install)
+type mailcatcher in cmd to run the mailcatcher daemon.
+Navigate to http://localhost:1080/ on the browser
+Go to the signup page and create a user (hint: you can use the password: myPass145)
+You should receive an email in mailcatcher, open the email and copy the activation link into the browser
+You should now be able to log in with your new user
+
+
+
 ### Running the tests
 
 ```
