@@ -1,6 +1,6 @@
 /* jshint -W089 */
 
-var activateCtrl = function ($scope, $location, $http, configService) {
+var activateCtrl = function ($scope, $location, $http, configService, $sce) {
 	
 	$scope.getPageToken = function() {
 		return $location.path().split('/')[2]||'Unknown';
@@ -26,9 +26,11 @@ var activateCtrl = function ($scope, $location, $http, configService) {
 		//usernameService.setUsername('empty', 'empty', 'empty');
 		
 		if (data.status === 'Invalid token provided'){
-			$scope.message = 'Sorry, the token you provided is expired or not valid. Please sign up';
+			$scope.messageInvalid = true;
+			$scope.message = $sce.trustAsHtml('Sorry, the token you provided is expired or not valid. <a href="#!/signup">Please sign up</a>');
 		} else {
-			$scope.message = 'Congratulations, please sign in to start uploading content';
+			$scope.messageInvalid = false;
+			$scope.message =  $sce.trustAsHtml('Congratulations, <a href="#!/login">please login</a> to start uploading content');
 		}
 				
 		//$location.path('/login');
@@ -37,4 +39,4 @@ var activateCtrl = function ($scope, $location, $http, configService) {
 
 };
 
-activateCtrl.$inject = ['$scope', '$location', '$http', 'configService'];
+activateCtrl.$inject = ['$scope', '$location', '$http', 'configService', '$sce'];
