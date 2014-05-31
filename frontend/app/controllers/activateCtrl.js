@@ -22,8 +22,14 @@ var activateCtrl = function ($scope, $location, $http, configService) {
         headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
     })
     .success(function(data) {
-		console.log('got here');
+		//console.log('got here');
 		//usernameService.setUsername('empty', 'empty', 'empty');
+		
+		if (data.status === 'Invalid token provided'){
+			$scope.message = 'Sorry, the token you provided is expired or not valid. Please sign up';
+		} else {
+			$scope.message = 'Congratulations, please sign in to start uploading content';
+		}
 				
 		//$location.path('/login');
     });
