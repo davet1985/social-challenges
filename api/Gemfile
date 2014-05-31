@@ -8,6 +8,7 @@ gem 'bcrypt'
 gem "password_strength"
 gem 'rack-cors'
 gem 'activerecord'
+gem 'mailcatcher'
 
 group :development, :test do
   gem 'rack-test'
