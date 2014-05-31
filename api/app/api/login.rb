@@ -31,7 +31,8 @@ module SocialChallenges
         if params[:password] == params[:confirmPassword]
           if User.usernameDoesNotExist(params[:username])
             User.save(params[:username], params[:password], params[:email])
-            { "status" => "user successfully created. You have been sent an email with instructions on how to activate the account" }
+            { "message" => "user successfully created. You have been sent an email with instructions on how to activate the account" }
+            { "status" => "ok" }
           else
             { "status" => "username already in use. Please chose another" }
           end
