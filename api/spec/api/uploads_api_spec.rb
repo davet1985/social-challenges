@@ -3,24 +3,39 @@ require 'spec_helper'
 $db = SQLite3::Database.open 'hashbang_test.db'
 $upload_dir = 'spec/uploads'
 
-OUTER_APP = Rack::Builder.parse_file('config.ru').first
+$OUTER_APP = Rack::Builder.parse_file('config.ru').first
+$upload_count = 2
 
 describe SocialChallenges::UploadAPI, :type => :feature do
 
   include Rack::Test::Methods
+  include Warden::Test::Helpers
 
-  let(:app) { OUTER_APP }
+  after(:each) do
+    post '/auth/logout', {'token' => @token}
+  end
 
-  describe "API endpoints" do
-    it "should get all uploads" do
+  before(:each) do
+    post '/auth/login', {'username' => 'cat_lover1990', 'password' => '12Password12'}
+    @token = JSON.parse(last_response.body)['token']
+  end
+
+  let(:app) { $OUTER_APP }
+
+  describe "API get endpoints" do
+    it "should get all uploads, count = #{$upload_count}" do
       get '/upload/all'
       last_response.status.should == 200
-      last_response.body.should eq "[{\"id\":1,\"type\":\"image/jpeg\",\"file_name\":\"http://localhost:9292/upload/1/download\",\"userid\":\"a@b.com\",\"upload_datetime\":\"2014-05-20 22:21:43 +0100\",\"overallScore\":2,\"numOfRatings\":3,\"title\":\"The amazing cat\",\"description\":\"This can is amazing\",\"tags\":[\"tag1\",\"tag2\",\"tag3\"]},{\"id\":2,\"type\":\"image/jpeg\",\"file_name\":\"http://localhost:9292/upload/2/download\",\"userid\":\"a@b.com\",\"upload_datetime\":\"2014-05-20 22:21:43 +0100\",\"overallScore\":4,\"numOfRatings\":2,\"title\":\"The stinking dog\",\"description\":\"This dog smells!\",\"tags\":[]}]"
+      response = JSON.parse(last_response.body)
+      (response.instance_of? Array).should be_true
+      response.count.should eq $upload_count
     end
     it "should get a single upload" do
       get '/upload/1'
       last_response.status.should == 200
-      last_response.body.should eq "{\"id\":1,\"type\":\"image/jpeg\",\"file_name\":\"http://localhost:9292/upload/1/download\",\"userid\":\"a@b.com\",\"upload_datetime\":\"2014-05-20 22:21:43 +0100\",\"overallScore\":2,\"numOfRatings\":3,\"title\":\"The amazing cat\",\"description\":\"This can is amazing\",\"tags\":[\"tag1\",\"tag2\",\"tag3\"]}"
+      last_response.body.should eq "{\"id\":1,\"type\":\"image/jpeg\",\"file_name\":\"http://localhost:9292/upload/1/download\",\"userid\":\"cat_lover1990\",\"upload_datetime\":\"2014-05-20 22:21:43 +0100\",\"overallScore\":2,\"numOfRatings\":3,\"title\":\"The amazing cat\",\"description\":\"This can is amazing\",\"tags\":[\"tag1\",\"tag3\"]}"
+      response = JSON.parse(last_response.body)
+      (response.instance_of? Hash).should be_true
     end
     it "should get a single uploaded file" do
       get '/upload/1/download'
@@ -30,6 +45,54 @@ describe SocialChallenges::UploadAPI, :type => :feature do
     it "should return a 404" do
       get '/upload/999'
       last_response.status.should == 404
+    end
+  end
+
+  describe "API post endpoints" do
+    it "should error 403 with 4 errors" do
+      post '/upload/add', {'usertoken' => '', 'title' => '', 'tags' => ''}
+      last_response.status.should == 403
+      last_response.body.should eq "{\"error\":[{\"field_name\":\"user_token\",\"message\":\"The userid field is required\"},{\"field_name\":\"title\",\"message\":\"The title field is required\"},{\"field_name\":\"tags\",\"message\":\"At least one tag is required\"},{\"field_name\":\"image_file\",\"message\":\"Image upload is required\"}]}"
+      response = JSON.parse(last_response.body)
+      (response.instance_of? Hash).should be_true
+      response['error'].count.should eq 4
+    end
+    it "should error 403 with usertoken error" do
+      post '/upload/add', {'usertoken' => '', 'title' => 'the title', 'tags' => 'some,tag', "image_file" => Rack::Test::UploadedFile.new("#{$upload_dir}/cat.jpg", "image/jpeg")}
+      last_response.status.should == 403
+      last_response.body.should eq "{\"error\":[{\"field_name\":\"user_token\",\"message\":\"The userid field is required\"}]}"
+      response = JSON.parse(last_response.body)
+      (response.instance_of? Hash).should be_true
+      response['error'].count.should eq 1
+    end
+    it "should error 403 with title error" do
+      post '/upload/add', {'usertoken' => 'invalid-token', 'title' => '', 'tags' => 'some,tag', "image_file" => Rack::Test::UploadedFile.new("#{$upload_dir}/cat.jpg", "image/jpeg")}
+      last_response.status.should == 403
+      last_response.body.should eq "{\"error\":[{\"field_name\":\"title\",\"message\":\"The title field is required\"}]}"
+      response = JSON.parse(last_response.body)
+      (response.instance_of? Hash).should be_true
+      response['error'].count.should eq 1
+    end
+    it "should error 403 with tags error" do
+      post '/upload/add', {'usertoken' => 'invalid-token', 'title' => 'the title', 'tags' => '', "image_file" => Rack::Test::UploadedFile.new("#{$upload_dir}/cat.jpg", "image/jpeg")}
+      last_response.status.should == 403
+      last_response.body.should eq "{\"error\":[{\"field_name\":\"tags\",\"message\":\"At least one tag is required\"}]}"
+      response = JSON.parse(last_response.body)
+      (response.instance_of? Hash).should be_true
+      response['error'].count.should eq 1
+    end
+    it "should error 401" do
+      post '/upload/add', {'usertoken' => 'invalid-token', 'title' => 'the title', 'tags' => 'some,tag', "image_file" => Rack::Test::UploadedFile.new("#{$upload_dir}/cat.jpg", "image/jpeg")}
+      last_response.status.should == 401
+      last_response.body.should eq "{\"error\":\"Unauthorized\"}"
+      response = JSON.parse(last_response.body)
+      (response.instance_of? Hash).should be_true
+    end
+    it "should add an upload" do
+      post '/upload/add', {'usertoken' => @token, 'title' => 'the title', 'tags' => 'some,tag', "image_file" => Rack::Test::UploadedFile.new("#{$upload_dir}/cat.jpg", "image/jpeg")}
+      last_response.status.should == 201
+      last_response.body.should eq "3"
+      $upload_count+=1
     end
   end
 
