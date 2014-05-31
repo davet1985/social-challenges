@@ -46,6 +46,19 @@ rake spec
 bundle exec guard
 ```
 
+### imagemagick
+
+```
+cd api/app/api
+brew install pkgconfig
+brew install imagemagick
+brew link imagemagick
+bundle install
+ruby resize.rb
+```
+
+It shoud create api/spec/upoads/thumb.jpg
+
 #Front end
 
 ```
