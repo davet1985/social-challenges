@@ -46,7 +46,7 @@ rake spec
 bundle exec guard
 ```
 
-### imagemagick
+### RMagick
 
 ```
 cd api/app/api
@@ -57,7 +57,10 @@ bundle install
 ruby resize.rb
 ```
 
-It shoud create api/spec/upoads/thumb.jpg
+It shoud create 3 sizes:
+api/spec/upoads/resize_large.jpg
+api/spec/upoads/resize_medium.jpg
+api/spec/upoads/resize_thumb.jpg
 
 #Front end
 
