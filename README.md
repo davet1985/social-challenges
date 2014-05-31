@@ -87,9 +87,10 @@ ruby resize.rb
 ```
 
 It shoud create 3 sizes:
-api/spec/upoads/resize_large.jpg
-api/spec/upoads/resize_medium.jpg
-api/spec/upoads/resize_thumb.jpg
+
+* api/spec/upoads/resize_large.jpg
+* api/spec/upoads/resize_medium.jpg
+* api/spec/upoads/resize_thumb.jpg
 
 #Front end
 
