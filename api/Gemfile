@@ -8,7 +8,6 @@ gem 'bcrypt'
 gem "password_strength"
 gem 'rack-cors'
 gem 'activerecord'
-gem 'mailcatcher'
 
 group :development, :test do
   gem 'rack-test'
@@ -16,4 +15,5 @@ group :development, :test do
   gem 'capybara'
   gem 'guard'
   gem 'guard-rspec', require: false
+  gem 'mailcatcher'
 end

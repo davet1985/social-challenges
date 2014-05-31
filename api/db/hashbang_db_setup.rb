@@ -120,7 +120,6 @@ module HashBangDB
       VALUES (NULL, ?, ?, ?)
       SQL
     tag_objects.each do |tag_object|
-      puts tag_object
       database.execute(insert, tag_object["objectid"], tag_object["tagid"], tag_object["tag_datetime"])
     end
   end

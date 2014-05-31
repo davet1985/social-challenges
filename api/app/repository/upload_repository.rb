@@ -8,7 +8,12 @@ $upload_dir = 'uploads'
 class UploadRepository
 
   def self.all
-    results = $db.execute("select * from uploads")
+    select = <<-SQL
+      SELECT *
+      FROM uploads up, users u
+      WHERE up.userid = u.id
+      SQL
+    results = $db.execute(select)
     UploadModelHelper.cast_upload_results results
   end
 
