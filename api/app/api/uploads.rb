@@ -17,7 +17,7 @@ module SocialChallenges
     format :json
 
     get :all do
-      UploadRepository.all.to_json
+      JSON.parse(UploadRepository.all.to_json)
     end
 
     get '/:id' do

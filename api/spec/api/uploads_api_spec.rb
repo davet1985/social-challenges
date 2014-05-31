@@ -15,13 +15,12 @@ describe SocialChallenges::UploadAPI, :type => :feature do
     it "should get all uploads" do
       get '/upload/all'
       last_response.status.should == 200
-      # TODO: need to figure out why everything is escaped multiple times...
-      last_response.body.should eq "\"[{\\\"id\\\":1,\\\"type\\\":\\\"image/jpeg\\\",\\\"file_name\\\":\\\"http://localhost:9292/upload/1/download\\\",\\\"userid\\\":1,\\\"upload_datetime\\\":\\\"2014-05-20 22:21:43 +0100\\\",\\\"overallScore\\\":2,\\\"numOfRatings\\\":3,\\\"title\\\":\\\"The amazing cat\\\",\\\"description\\\":\\\"This can is amazing\\\",\\\"tags\\\":[\\\"tag1\\\",\\\"tag2\\\",\\\"tag3\\\"]},{\\\"id\\\":2,\\\"type\\\":\\\"image/jpeg\\\",\\\"file_name\\\":\\\"http://localhost:9292/upload/2/download\\\",\\\"userid\\\":2,\\\"upload_datetime\\\":\\\"2014-05-20 22:21:43 +0100\\\",\\\"overallScore\\\":4,\\\"numOfRatings\\\":2,\\\"title\\\":\\\"The stinking dog\\\",\\\"description\\\":\\\"This dog smells!\\\",\\\"tags\\\":[]}]\""
+      last_response.body.should eq "[{\"id\":1,\"type\":\"image/jpeg\",\"file_name\":\"http://localhost:9292/upload/1/download\",\"userid\":\"a@b.com\",\"upload_datetime\":\"2014-05-20 22:21:43 +0100\",\"overallScore\":2,\"numOfRatings\":3,\"title\":\"The amazing cat\",\"description\":\"This can is amazing\",\"tags\":[\"tag1\",\"tag2\",\"tag3\"]},{\"id\":2,\"type\":\"image/jpeg\",\"file_name\":\"http://localhost:9292/upload/2/download\",\"userid\":\"a@b.com\",\"upload_datetime\":\"2014-05-20 22:21:43 +0100\",\"overallScore\":4,\"numOfRatings\":2,\"title\":\"The stinking dog\",\"description\":\"This dog smells!\",\"tags\":[]}]"
     end
     it "should get a single upload" do
       get '/upload/1'
       last_response.status.should == 200
-      last_response.body.should eq "{\"id\":1,\"type\":\"image/jpeg\",\"file_name\":\"http://localhost:9292/upload/1/download\",\"userid\":1,\"upload_datetime\":\"2014-05-20 22:21:43 +0100\",\"overallScore\":2,\"numOfRatings\":3,\"title\":\"The amazing cat\",\"description\":\"This can is amazing\",\"tags\":[\"tag1\",\"tag2\",\"tag3\"]}"
+      last_response.body.should eq "{\"id\":1,\"type\":\"image/jpeg\",\"file_name\":\"http://localhost:9292/upload/1/download\",\"userid\":\"a@b.com\",\"upload_datetime\":\"2014-05-20 22:21:43 +0100\",\"overallScore\":2,\"numOfRatings\":3,\"title\":\"The amazing cat\",\"description\":\"This can is amazing\",\"tags\":[\"tag1\",\"tag2\",\"tag3\"]}"
     end
     it "should get a single uploaded file" do
       get '/upload/1/download'
