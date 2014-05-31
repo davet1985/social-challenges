@@ -41,10 +41,9 @@ var signupCtrl = function ($scope, $location, $http, configService, $timeout, $a
                     }, 3500);
                     $scope.errorMessagePassword = data.status;
                     
-                } else{
-                    $location.path('/login');
+                } else if (data.status === 'ok' ){
+                    $scope.signupMessage = 'Success! You have been sent an email with instructions on how to activate your account.';
                 }
-                
 
             })
             .error(function(data){

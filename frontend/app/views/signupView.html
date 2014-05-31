@@ -4,7 +4,7 @@
 			<h2>Sign up</h2>
 				<div class="row">
 					<span class="fa fa-pencil page-bg"></span>
-					<form class="form-signup col-xs-12 col-sm-6 col-md-5" role="form" name="signupForm" ng-submit="processForm(signupForm.$valid)" novalidate>
+					<form class="form-signup col-xs-12 col-sm-6 col-md-5" role="form" name="signupForm" ng-submit="processForm(signupForm.$valid)" novalidate ng-hide="signupMessage">
 					     <div class="form-group"  ng-class="{ 'has-error' :submittedError}">
          					<p class="help-block" style='height:20px'><span  ng-show="submittedError">Please correct your errors</span></p>
         				</div>
@@ -41,6 +41,9 @@
 							<p>Already have an account? <a href="#!/login">Login</a></p>
 						</div>
 					</form>
+					<p ng-if="signupMessage" class="col-xs-12 col-sm-6 col-md-5">
+						{{signupMessage}}
+					</p>
 				</div>
 		</section>
 	</div> 
