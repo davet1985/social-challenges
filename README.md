@@ -51,11 +51,6 @@ Run the following command to run the cucumber tests:
 cucumber
 ...
 
-To get the selenium web-driver to work I had to complete the answer in the following stackoverflow article:
-
-http://stackoverflow.com/questions/20567215/unable-to-obtain-stable-firefox-connection-in-60-seconds-127-0-0-17055-ubuntu
-
-
 ## Uploads API
 
 ### Posting a file upload
