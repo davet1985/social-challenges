@@ -174,6 +174,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 			
 			console.log(usernameService.token());
             //console.log('selected '+$scope.currentFields);
+            //console.log($scope.selectedFiles[index].type);
 
             if ($scope.currentFields === 'image'){
                 //post image
@@ -184,7 +185,8 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                         usertoken : usernameService.token(),
                         title : $scope.title,
                         description : $scope.description,
-                        tags : $scope.tagsToCSV()
+                        tags : $scope.tagsToCSV(),
+                        type: 'image'
                     },
                     file: $scope.selectedFiles[index],
                     fileFormDataName: 'image_file'
@@ -208,24 +210,26 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 console.log('title = '+$scope.title);
                 console.log('desc = '+$scope.description);
                 console.log('tags ='+$scope.tagsToCSV());
-                /*
+                
                 $http({
                     url : configService.API_END_POINT+'upload/add',
                     method: 'POST',
                     data : {
-                        youtubeId : $scope.getURLParam('v'),
+                        usertoken : usernameService.token(),
                         title : $scope.title,
                         description : $scope.description,
-                        tags : $scope.tagsToCSV()
+                        tags : $scope.tagsToCSV(),
+                        type: 'video',
+                        file: $scope.getURLParam('v')
                     }
                 }).
                 success(function(data) {
-                    console.log(data);
+                    $location.path('/user/userName/uploads/' + data);// todo: get userName
                 }).
                 error(function(data) {
                     console.log(data);
                 });
-                */
+                
             }
 
         } else{

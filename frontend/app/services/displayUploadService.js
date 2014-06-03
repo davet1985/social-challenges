@@ -13,6 +13,7 @@ app.service('displayUploadService', ['$http', '$location', 'configService',  fun
         $http.get(url)
             .then(function(results){
                 //Success
+                console.log(results.data);
                 angular.copy(JSON.parse('['+JSON.stringify(results.data)+']'), _displayUploadDataArr);
 
             }, function(results){

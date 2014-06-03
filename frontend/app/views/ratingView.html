@@ -2,8 +2,8 @@
 <div class="col-xs-6 col-sm-3">
   <section class="prev" ng-repeat="key in ratings" ng-hide="key.previous.id == null">
     <div class="image-container">
-    <img ng-src="{{key.previous.file_name}}" class="img-rounded img-responsive" ng-if="key.previous.type === 'image/jpeg' || key.previous.type === 'image/jpg' || key.previous.type === 'image/gif' || key.previous.type === 'image/png'">
-    <img ng-src="{{getVideoThumb(key.previous.file_name)}}" class="img-rounded img-responsive" ng-if="key.previous.type === 'video'">
+    <img ng-src="{{key.previous.file_name}}" class="img-rounded img-responsive" ng-if="key.previous.type === 'image'">
+    <img ng-src="https://i1.ytimg.com/vi/{{key.previous.original_file_name}}/sddefault.jpg" class="img-rounded img-responsive" ng-if="key.previous.type === 'video'">
 
     <h2><span><i class="fa fa-thumbs-up"></i>{{key.previous.overallScore}}</span></h2>
     </div>
@@ -19,8 +19,8 @@
 <div class="col-xs-6 col-sm-3 col-sm-push-6" ng-repeat="key in ratings">
   <section class="next">
   <div class="image-container">
-    <img ng-src="{{key.next.file_name}}" class="img-rounded img-responsive" ng-if="key.next.type === 'image/jpeg' || key.next.type === 'image/jpg' || key.next.type === 'image/gif' || key.next.type === 'image/png'">
-    <img ng-src="{{getVideoThumb(key.next.file_name)}}" class="img-rounded img-responsive" ng-if="key.next.type === 'video'">
+    <img ng-src="{{key.next.file_name}}" class="img-rounded img-responsive" ng-if="key.next.type === 'image'">
+    <img ng-src="https://i1.ytimg.com/vi/{{key.next.original_file_name}}/sddefault.jpg" class="img-rounded img-responsive" ng-if="key.next.type === 'video'">
     <h2 class="next"><span>Next...</span></h2>
   </div>
   </section>
@@ -28,8 +28,8 @@
 
 <div class="col-xs-12 col-sm-6 col-sm-pull-3" ng-repeat="key in ratings">
   <section class="current">
-        <img ng-src="{{key.current.file_name}}" class="img-rounded img-responsive" ng-if="key.current.type === 'image/jpeg' || key.current.type === 'image/jpg' || key.current.type === 'image/gif' || key.current.type === 'image/png'">
-        <youtube code="{{key.current.file_name}}" ng-if="key.current.type === 'video'"></youtube>
+        <img ng-src="{{key.current.file_name}}" class="img-rounded img-responsive" ng-if="key.current.type === 'image'">
+        <youtube code="{{key.current.original_file_name}}" ng-if="key.current.type === 'video'"></youtube>
             <div class="rating">
               <div style="text-align:center; margin: 20px 0">
                 <button class="btn btn-primary" popover-placement="bottom" popover="I like it"  popover-trigger="mouseenter" ng-click ="getValue(1, key.previous.id, key.current.id, key.next.id)"><i class="fa fa-thumbs-up"></i></button>

@@ -50,4 +50,8 @@ class UploadRepository
     "#{$upload_dir}/#{file_name}"
   end
 
+  def self.get_video_path(file_name)
+    "#{file_name}"
+  end
+
 end

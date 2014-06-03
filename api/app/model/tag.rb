@@ -24,13 +24,13 @@ class Tag
   
   def self.returnJSONNoNext(currentObject, previousObject)
     [{
-      "current"       => JSON.parse(currentObject.to_json), "previous" => {"id" => previousObject.id, "type" => previousObject.type, "overallScore" => previousObject.overallScore, "file_name" => "http://localhost:9292/upload/#{previousObject.id}/download"}
+      "current"       => JSON.parse(currentObject.to_json), "previous" => {"id" => previousObject.id, "type" => previousObject.type, "overallScore" => previousObject.overallScore, "file_name" => "http://localhost:9292/upload/#{previousObject.id}/download", "original_file_name" => previousObject.original_file_name}
       }].to_json
   end
   
   def self.returnJSONNoPrevious(currentObject, nextObject)
     [{
-      "current"       => JSON.parse(currentObject.to_json), "next" => {"id" => nextObject.id, "type" => nextObject.type, "overallScore" => nextObject.overallScore, "file_name" => "http://localhost:9292/upload/#{nextObject.id}/download"}
+      "current"       => JSON.parse(currentObject.to_json), "next" => {"id" => nextObject.id, "type" => nextObject.type, "overallScore" => nextObject.overallScore, "file_name" => "http://localhost:9292/upload/#{nextObject.id}/download", "original_file_name" => nextObject.original_file_name}
       }].to_json
   end
   

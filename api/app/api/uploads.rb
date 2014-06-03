@@ -36,8 +36,14 @@ module SocialChallenges
       if !upload then
         error! 'Upload not found', 404
       else
-        file_path = UploadRepository.get_file_path upload.file_name
-        data = File.open(file_path, 'rb').read
+        if upload.type === 'image'
+          file_path = UploadRepository.get_file_path upload.file_name
+          data = File.open(file_path, 'rb').read
+        end
+        if upload.type === 'video'
+          file_path = UploadRepository.get_video_path upload.file_name
+          data = file_path
+        end  
         content_type upload.type
         env['api.format'] = :binary
         present data
@@ -78,20 +84,33 @@ module SocialChallenges
       tags_csv = params[:tags]
       errors << Error.new("tags", "At least one tag is required") if tags_csv.empty? || title == 'undefined'
       description = params[:description]
-      if params[:image_file].nil?
-        errors << Error.new("image_file", "Image upload is required")
-      else
-        type = params[:image_file].type
-        original_file_name = params[:image_file].filename
-        file = params[:image_file]
-      end
+      type = params[:type]
+      if params[:type] === 'image'
+        if params[:image_file].nil?
+          errors << Error.new("image_file", "Image upload is required")
+        else
+          original_file_name = params[:image_file].filename
+          file = params[:image_file]
+        end
+      end 
+      if params[:type] === 'video'
+        original_file_name = params[:file]
+        file = params[:file]
+      end 
       error! JSON.parse(errors.to_json), 403 if errors.length > 0
       user = User.get(user_token)
       error! "Unauthorized", 401 unless user != nil
-      file_name = Time.now.strftime('%Y%m%d%H%M%S%L') + '_' + original_file_name
+      if params[:type] === 'image'
+        file_name = Time.now.strftime('%Y%m%d%H%M%S%L') + '_' + original_file_name
+      end
+      if params[:type] === 'video'
+        file_name = original_file_name
+      end
       upload = Uploadmodel.new type, file_name, original_file_name, user.id, title, description
       upload_id = UploadRepository.save upload
-      UploadRepository.transfer_file file, file_name
+      if params[:type] === 'image'
+        UploadRepository.transfer_file file, file_name
+      end
       TagHelper.process_tags tags_csv, upload_id, user.id
       upload_id
     end
