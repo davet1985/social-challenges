@@ -2,7 +2,9 @@
 <div class="col-xs-6 col-sm-3">
   <section class="prev" ng-repeat="key in ratings" ng-hide="key.previous.id == null">
     <div class="image-container">
-    <img ng-src="{{key.previous.file_name}}" class="img-rounded img-responsive">
+    <img ng-src="{{key.previous.file_name}}" class="img-rounded img-responsive" ng-if="key.previous.type === 'image/jpeg' || key.previous.type === 'image/jpg' || key.previous.type === 'image/gif' || key.previous.type === 'image/png'">
+    <img ng-src="{{getVideoThumb(key.previous.file_name)}}" class="img-rounded img-responsive" ng-if="key.previous.type === 'video'">
+
     <h2><span><i class="fa fa-thumbs-up"></i>{{key.previous.overallScore}}</span></h2>
     </div>
   </section>
@@ -17,7 +19,8 @@
 <div class="col-xs-6 col-sm-3 col-sm-push-6" ng-repeat="key in ratings">
   <section class="next">
   <div class="image-container">
-    <img ng-src="{{key.next.file_name}}" class="img-rounded img-responsive">
+    <img ng-src="{{key.next.file_name}}" class="img-rounded img-responsive" ng-if="key.next.type === 'image/jpeg' || key.next.type === 'image/jpg' || key.next.type === 'image/gif' || key.next.type === 'image/png'">
+    <img ng-src="{{getVideoThumb(key.next.file_name)}}" class="img-rounded img-responsive" ng-if="key.next.type === 'video'">
     <h2 class="next"><span>Next...</span></h2>
   </div>
   </section>

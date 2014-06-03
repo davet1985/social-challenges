@@ -173,32 +173,60 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
             }
 			
 			console.log(usernameService.token());
-            
-            $scope.upload[index] = $upload.upload({
-                url : configService.API_END_POINT+'upload/add',
-                method: 'POST',
-                data : {
-                    usertoken : usernameService.token(),
-                    title : $scope.title,
-                    description : $scope.description,
-                    tags : $scope.tagsToCSV()
-                },
-                file: $scope.selectedFiles[index],
-                fileFormDataName: 'image_file'
-            }).progress(function(evt) {
-                $scope.progressBar = parseInt(100.0 * evt.loaded / evt.total);
-            }).success(function(data, status, headers, config) {
-                $scope.resizeImage(data, 760, 760, 125, 125, 70);
-                $location.path('/user/userName/uploads/' + data);// todo: get userName
-                //console.log(data);
-            }).error(function(data, status, headers, config) {
-                //to do echo these errors on frontend
-                //console.log(data.error[0].field_name + ' - ' + data.error[0].message);
-            }).xhr(function(xhr){
-                xhr.upload.addEventListener('abort', function(){
-                    console.log('aborted complete');
-                }, false);
-            });
+            //console.log('selected '+$scope.currentFields);
+
+            if ($scope.currentFields === 'image'){
+                //post image
+                $scope.upload[index] = $upload.upload({
+                    url : configService.API_END_POINT+'upload/add',
+                    method: 'POST',
+                    data : {
+                        usertoken : usernameService.token(),
+                        title : $scope.title,
+                        description : $scope.description,
+                        tags : $scope.tagsToCSV()
+                    },
+                    file: $scope.selectedFiles[index],
+                    fileFormDataName: 'image_file'
+                }).progress(function(evt) {
+                    $scope.progressBar = parseInt(100.0 * evt.loaded / evt.total);
+                }).success(function(data, status, headers, config) {
+                    $scope.resizeImage(data, 760, 760, 125, 125, 70);
+                    $location.path('/user/userName/uploads/' + data);// todo: get userName
+                    //console.log(data);
+                }).error(function(data, status, headers, config) {
+                    //to do echo these errors on frontend
+                    //console.log(data.error[0].field_name + ' - ' + data.error[0].message);
+                }).xhr(function(xhr){
+                    xhr.upload.addEventListener('abort', function(){
+                        console.log('aborted complete');
+                    }, false);
+                });
+            } else if ($scope.currentFields === 'video'){
+                //post video
+                console.log('youtube id = '+$scope.getURLParam('v'));
+                console.log('title = '+$scope.title);
+                console.log('desc = '+$scope.description);
+                console.log('tags ='+$scope.tagsToCSV());
+                /*
+                $http({
+                    url : configService.API_END_POINT+'upload/add',
+                    method: 'POST',
+                    data : {
+                        youtubeId : $scope.getURLParam('v'),
+                        title : $scope.title,
+                        description : $scope.description,
+                        tags : $scope.tagsToCSV()
+                    }
+                }).
+                success(function(data) {
+                    console.log(data);
+                }).
+                error(function(data) {
+                    console.log(data);
+                });
+                */
+            }
 
         } else{
         //show errors after form submit
@@ -339,6 +367,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
     $scope.loadItems = function($query) {
         return data.search($query);
     };
+
 
 };
 
