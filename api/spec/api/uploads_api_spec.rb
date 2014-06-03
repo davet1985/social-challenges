@@ -33,7 +33,7 @@ describe SocialChallenges::UploadAPI, :type => :feature do
     it "should get a single upload" do
       get '/upload/1'
       last_response.status.should == 200
-      last_response.body.should eq "{\"id\":1,\"type\":\"image/jpeg\",\"file_name\":\"http://localhost:9292/upload/1/download\",\"userid\":\"cat_lover1990\",\"upload_datetime\":\"2014-05-20 22:21:43 +0100\",\"overallScore\":2,\"numOfRatings\":3,\"title\":\"The amazing cat\",\"description\":\"This can is amazing\",\"tags\":[\"tag1\",\"tag3\"]}"
+      last_response.body.should eq "{\"id\":1,\"type\":\"image/jpeg\",\"file_name\":\"http://localhost:9292/upload/1/download\",\"userid\":\"cat_lover1990\",\"upload_datetime\":\"2014-05-20 22:21:43 +0100\",\"overallScore\":2,\"numOfRatings\":3,\"title\":\"The amazing cat\",\"description\":\"This can is amazing\",\"tags\":[\"tag1\",\"tag3\"],\"gravatar\":\"357a20e8c56e69d6f9734d23ef9517e8\"}"
       response = JSON.parse(last_response.body)
       (response.instance_of? Hash).should be_true
     end

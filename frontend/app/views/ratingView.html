@@ -38,9 +38,8 @@
                 <button class="btn btn-primary" popover-placement="bottom" popover="Meh"  popover-trigger="mouseenter" ng-click ="getValue(0, key.previous.id, key.current.id, key.next.id)"><i class="fa fa-arrow-right" ></i></button>
                 </div>
               </div>          
-  
               <div class="caption">
-                <img gravatar-src="'sommes.email@gmail.com'" class="profileThumb">
+                <img gravatar-src="'{{key.current.gravatar}}'" class="profileThumb">
                 <a href="{{key.current.userid}}" class="user-link">{{key.current.userid}}</a> 
                 <h3>{{key.current.title}}</h3>
                 <P><i class="fa fa-tag"></i> {{getPageTag()}}</p>

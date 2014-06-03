@@ -24,7 +24,7 @@ describe Uploadmodel do
 
   describe "deserializing" do
     it "must deserialize to json" do
-      upload.to_json.should eq '{"id":null,"type":"image/jpeg","file_name":"http://localhost:9292/upload//download","userid":1,"upload_datetime":"'+time_now+'","overallScore":0,"numOfRatings":0,"title":"The title","description":"The description","tags":["tag1","tag2","tag3"]}'
+      upload.to_json.should eq '{"id":null,"type":"image/jpeg","file_name":"http://localhost:9292/upload//download","userid":1,"upload_datetime":"'+time_now+'","overallScore":0,"numOfRatings":0,"title":"The title","description":"The description","tags":["tag1","tag2","tag3"],"gravatar":"d41d8cd98f00b204e9800998ecf8427e"}'
     end
   end
 
