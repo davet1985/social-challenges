@@ -18,7 +18,7 @@ class Tag
   
   def self.returnJSON(currentObject, previousObject, nextObject)
     [{
-      "current"       => JSON.parse(currentObject.to_json), "previous" => {"id" => previousObject.id, "type" => previousObject.type, "overallScore" => previousObject.overallScore, "file_name" => "http://localhost:9292/upload/#{previousObject.id}/download"}, "next" => {"id" => nextObject.id, "type" => nextObject.type, "overallScore" => nextObject.overallScore, "file_name" => "http://localhost:9292/upload/#{nextObject.id}/download"}
+      "current"       => JSON.parse(currentObject.to_json), "previous" => {"id" => previousObject.id, "original_file_name" => previousObject.original_file_name, "type" => previousObject.type, "overallScore" => previousObject.overallScore, "file_name" => "http://localhost:9292/upload/#{previousObject.id}/download"}, "next" => {"id" => nextObject.id, "original_file_name" => nextObject.original_file_name,  "type" => nextObject.type, "overallScore" => nextObject.overallScore, "file_name" => "http://localhost:9292/upload/#{nextObject.id}/download"}
       }].to_json
   end
   
