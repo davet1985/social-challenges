@@ -89,7 +89,7 @@ rake spec
 bundle exec guard
 ```
 
-### RMagick
+## RMagick
 
 ```
 cd api/app/api
@@ -99,7 +99,7 @@ brew link imagemagick
 bundle install
 ```
 
-## Demo: create 3 sizes:
+### Demo: creates 3 sizes
 ```
 ruby resizeDemo.rb
 ```
@@ -107,10 +107,14 @@ ruby resizeDemo.rb
 * api/spec/upoads/resize_medium.jpg
 * api/spec/upoads/resize_thumb.jpg
 
-## API post resize image
+### API post resize image
 Post to endpoint:
 * http://localhost:9292/upload/[id]/resize
-Required attributes:
+
+Images will resize if original image is > maxWidthImage and thmbnails will be created automatically
+
+Required attributes example:
+
 * maxWidthImage = 760
 * maxHeightImage = 760
 * maxWidthThumb = 125
