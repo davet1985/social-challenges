@@ -97,14 +97,25 @@ brew install pkgconfig
 brew install imagemagick
 brew link imagemagick
 bundle install
-ruby resize.rb
 ```
 
-It shoud create 3 sizes:
-
+## Demo: create 3 sizes:
+```
+ruby resizeDemo.rb
+```
 * api/spec/upoads/resize_large.jpg
 * api/spec/upoads/resize_medium.jpg
 * api/spec/upoads/resize_thumb.jpg
+
+## API post resize image
+Post to endpoint:
+* http://localhost:9292/upload/[id]/resize
+Required attributes:
+* maxWidthImage = 760
+* maxHeightImage = 760
+* maxWidthThumb = 125
+* maxHeightThumb = 125
+* resizeQuality = 70
 
 #Front end
 

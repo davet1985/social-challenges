@@ -8,6 +8,7 @@ require_relative './../repository/tag_repository'
 require_relative './../helpers/tag_helper'
 require_relative './../model/error'
 require_relative './../model/user'
+require_relative './../model/resize'
 
 module SocialChallenges
 
@@ -43,7 +44,32 @@ module SocialChallenges
       end
     end
 
+    post '/:id/resize' do
+      upload = UploadRepository.get_by_id params[:id]
+      if !upload then
+        error! 'Upload not found', 404
+      else
+        fname = UploadRepository.get_file_path upload.file_name
+        maxWidthImage = params[:maxWidthImage]
+        maxHeightImage = params[:maxHeightImage]
+        maxWidthThumb = params[:maxWidthThumb]
+        maxHeightThumb = params[:maxHeightThumb]
+        resizeQuality = params[:resizeQuality]
+        ResizeImage.resize(fname, maxWidthImage, maxHeightImage, maxWidthThumb, maxHeightThumb, resizeQuality)
+        {
+          'status' => 'ok', 
+          'maxWidthImage' => maxWidthImage,
+          'maxHeightImage' => maxHeightImage,
+          'maxWidthThumb' => maxWidthThumb,
+          'maxHeightThumb' => maxHeightThumb,
+          'resizeQuality' => resizeQuality,
+          'filename' => fname
+        }
+      end  
+    end  
+
     post '/add' do
+      puts '***********'
       errors = Array.new
       user_token = params[:usertoken]
       errors << Error.new("user_token", "The userid field is required") if user_token.empty? || user_token == 'undefined'
@@ -69,7 +95,8 @@ module SocialChallenges
       TagHelper.process_tags tags_csv, upload_id, user.id
       upload_id
     end
-
   end
+
+
 
 end

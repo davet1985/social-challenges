@@ -5,13 +5,13 @@
 	<div class="col-md-9">
 		<section class="leaderboard">
 				<ul>
-					<li ng-repeat="(key, value) in top">
+					<li ng-repeat="(key, value) in top | reverse">
 	  					<section class="top top-image">
 	  					  <div class="col-sm-8">
 				          <div class="image-container">
 			        		<img alt="" ng-src="{{value.file_name}}" class="img-rounded topimg img-responsive" ng-if="value.type === 'image/jpeg' || value.type === 'image/jpg' || value.type === 'image/gif' || value.type === 'image/png'">
 			        		<youtube code="{{key.file_name}}" ng-if="value.type === 'video'"></youtube>
-				            <h2 class="top-score"><span>{{$index+1}}</span></h2>
+				            <h2 class="top-score"><span>{{reverseIndex($index+1, top.length)}}</span></h2>
 				          </div>
 				            </div>
 

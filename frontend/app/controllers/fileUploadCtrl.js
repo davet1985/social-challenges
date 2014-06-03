@@ -52,6 +52,26 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
     };
     $scope.angularVersion = window.location.hash.length > 1 ? window.location.hash.substring(1) : '1.2.0';
 
+    //resize image
+    $scope.resizeImage = function(uploadId, maxWidthImage, maxHeightImage, maxWidthThumb, maxHeightThumb, resizeQuality){
+        $http({url : configService.API_END_POINT+'upload/'+uploadId+'/resize',
+            method: 'POST',
+            data : {
+                'maxWidthImage': maxWidthImage,
+                'maxHeightImage': maxHeightImage,
+                'maxWidthThumb': maxWidthThumb,
+                'maxHeightThumb': maxHeightThumb,
+                'resizeQuality': resizeQuality
+            }
+            }).
+            success(function(data) {
+                console.log(data);
+            }).
+            error(function(data) {
+                console.log(data);
+            });
+    };
+
     $scope.onFileSelect = function($files) {
         $scope.selectedFiles = [];
 
@@ -97,7 +117,6 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                     return false;
                 }
             };
-
 
             if (window.FileReader && $file.type.indexOf('image') > -1 && $scope.checkFileSize() === false) {
 
@@ -169,10 +188,12 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
             }).progress(function(evt) {
                 $scope.progressBar = parseInt(100.0 * evt.loaded / evt.total);
             }).success(function(data, status, headers, config) {
+                $scope.resizeImage(data, 760, 760, 125, 125, 70);
                 $location.path('/user/userName/uploads/' + data);// todo: get userName
+                //console.log(data);
             }).error(function(data, status, headers, config) {
                 //to do echo these errors on frontend
-                console.log(data.error[0].field_name + ' - ' + data.error[0].message);
+                //console.log(data.error[0].field_name + ' - ' + data.error[0].message);
             }).xhr(function(xhr){
                 xhr.upload.addEventListener('abort', function(){
                     console.log('aborted complete');
