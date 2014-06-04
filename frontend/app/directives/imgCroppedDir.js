@@ -21,8 +21,8 @@ app.directive('imgCropped', ['$window', function($window) {
             scope.$watch('src', function (nv) {
                 clear();
 
-                console.log('[src]');
-                console.log(nv);
+                //console.log('[src]');
+                //console.log(nv);
                 if (!nv) { // newValue
                     return;
                 }
@@ -39,60 +39,31 @@ app.directive('imgCropped', ['$window', function($window) {
                             scope.selected({cords: cords});
                         });
                     },
-                    aspectRatio: 1.666666666
+                    onChange: function (cords) {
+                        scope.$apply(function() {
+                            cords.bx = bounds.x;
+                            cords.by = bounds.y;
+                            scope.selected({cords: cords});
+                        });
+                    },
+                    aspectRatio: 1,
+                    minSize: [ 80, 80 ]
                 },
                 function () {
                     // Use the API to get the real image size  
                     var boundsArr = this.getBounds();
                     bounds.x = boundsArr[0];
                     bounds.y = boundsArr[1];
+                    //on load animate to center-ish
+                    var animate = this.animateTo([162,72,385,295]);
                 });
+
+
+
+                
             });
                 
             scope.$on('$destroy', clear);
         }
     };
-}]);
-
-app.factory('fileReader', ['$q', function($q) {
-  
-    var onLoad = function (reader, deferred, Sscope) {
-        return function () {
-            Sscope.$apply(function () {
-                deferred.resolve(reader.result);
-            });
-        };
-    };
-    var onError = function (reader, deferred, Sscope) {
-        return function () {
-            Sscope.$apply(function () {
-                deferred.reject(reader.result);
-            });
-        };
-    };
-    var onProgress = function (reader, Sscope) {
-        return function (event) {
-            Sscope.$broadcast('fileProgress', {
-                total: event.total,
-                loaded: event.loaded
-            });
-        };
-    };
-    var getReader = function (deferred, Sscope) {
-        var reader = new FileReader();
-        reader.onload = onLoad(reader, deferred, Sscope);
-        reader.onerror = onError(reader, deferred, Sscope);
-        reader.onprogress = onProgress(reader, Sscope);
-        return reader;
-    };
-    var readAsDataURL = function (file, Sscope) {
-        var deferred = $q.defer();
-        var reader = getReader(deferred, Sscope);
-        reader.readAsDataURL(file);
-        return deferred.promise;
-    };
-    return {
-        readAsDataUrl: readAsDataURL
-    };
-
 }]);

@@ -1,11 +1,11 @@
 #resize demo
-
 require 'rmagick'
 
 fname = '../../spec/uploads/cat.jpg'
 newFileLarge = '../../spec/uploads/resize_large.jpg'
 newFileMedium = '../../spec/uploads/resize_medium.jpg'
 newFileThumb = '../../spec/uploads/resize_thumb.jpg'
+newFileCropped = '../../spec/uploads/cropped.jpg'
 
 Magick::Image::read(fname)[0].resize_to_fit(1200, 1200).write(newFileLarge){|f| f.quality = 0.7 }
 Magick::Image::read(fname)[0].resize_to_fit(600, 600).write(newFileMedium){|f| f.quality = 0.7 }
@@ -27,3 +27,24 @@ puts "
 	quality = #{quality}
 	resolution = #{resolution}
 	"
+
+#crop thumbnail demo
+x = 358
+y = 91
+cropWidth = 40
+cropHeight = 40
+scaleW = 555
+scaleH = 416
+thumbnailSize = 150
+ratio = thumbnailSize.to_f / cropWidth.to_f 
+
+#correct ratio to thumbnailSize
+x *= ratio.to_f
+y *= ratio.to_f
+cropWidth *= ratio.to_f
+cropHeight *= ratio.to_f
+scaleW *= ratio.to_f
+scaleH *= ratio.to_f
+
+#do it
+Magick::Image::read(fname)[0].resize(scaleW, scaleH).crop(x, y, cropWidth, cropHeight).write(newFileCropped){|f| f.quality = 0.7 }
