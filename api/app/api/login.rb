@@ -3,10 +3,10 @@ require 'sqlite3'
 require 'json'
 require 'rack/contrib'
 require 'warden'
-require 'password_strength'
 
 require_relative './../model/user'
 require_relative './../model/warden'
+require_relative './../helpers/password_strength'
 
 module SocialChallenges
 
@@ -26,8 +26,8 @@ module SocialChallenges
     end
     
     post 'create' do
-      strength = PasswordStrength.test(params[:username], params[:password])
-      if strength.good?
+      strength = PasswordStrength.calcStrength(params[:password])
+      if strength == "strong"
         if params[:password] == params[:confirmPassword]
           if User.usernameDoesNotExist(params[:username])
             User.save(params[:username], params[:password], params[:email])
@@ -40,7 +40,7 @@ module SocialChallenges
           { "status" => "passwords do not match" }
         end
       else
-        { "status" => "Password not strong enough" }
+        { "status" => "Password not strong enough: " + strength }
       end
     end
   
@@ -69,8 +69,8 @@ module SocialChallenges
       env['warden'].authenticate
       error! "Unauthorized", 401 unless env['warden'].user
       
-      strength = PasswordStrength.test(env['warden'].user.name, params[:password])
-      if strength.strong?
+      strength = PasswordStrength.calcStrength(params[:password])
+      if strength == "strong"
         if params[:password] == params[:confirmPassword]
           User.changePassword(env['warden'].user.id, params[:password])
           { "status" => "password changed successfully" }
@@ -78,7 +78,7 @@ module SocialChallenges
           { "status" => "passwords do not match" }
         end
       else
-        { "status" => "password not strong enough" }
+        { "status" => "Password not strong enough: " + strength }
       end
     end
     
@@ -96,8 +96,8 @@ module SocialChallenges
     end
     
     post 'forgot-password/:token' do
-      strength = PasswordStrength.test("test", params[:password])
-      if strength.strong?
+      strength = PasswordStrength.calcStrength(params[:password])
+      if strength == "strong"
         if params[:password] == params[:confirmPassword]
           userId = User.getIdFromToken(params[:token])
           if userId != -1
@@ -110,7 +110,7 @@ module SocialChallenges
           { "status" => "passwords do not match" }
         end
       else
-        { "status" => "password not strong enough" }
+        { "status" => "Password not strong enough: " + strength }
       end
     end
     
