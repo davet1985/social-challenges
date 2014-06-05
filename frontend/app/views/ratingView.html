@@ -32,10 +32,10 @@
         <youtube code="{{key.current.original_file_name}}" ng-if="key.current.type === 'video'"></youtube>
             <div class="rating">
               <div style="text-align:center; margin: 20px 0">
-                <button class="btn btn-primary" popover-placement="bottom" popover="I like it"  popover-trigger="mouseenter" ng-click ="getValue(1, key.previous.id, key.current.id, key.next.id)"><i class="fa fa-thumbs-up"></i></button>
-                <button class="btn btn-primary" popover-placement="bottom" popover="I like it alot"  popover-trigger="mouseenter" ng-click ="getValue(2, key.previous.id, key.current.id, key.next.id)"><i class="fa fa-star"></i></button>
-                <button class="btn btn-primary" popover-placement="bottom" popover="I love it"  popover-trigger="mouseenter" ng-click ="getValue(3, key.previous.id, key.current.id, key.next.id)"><i class="fa fa-heart"></i></button>
-                <button class="btn btn-primary" popover-placement="bottom" popover="Meh"  popover-trigger="mouseenter" ng-click ="getValue(0, key.previous.id, key.current.id, key.next.id)"><i class="fa fa-arrow-right" ></i></button>
+                <button id="like" class="btn btn-primary" popover-placement="bottom" popover="I like it"  popover-trigger="mouseenter" ng-click ="getValue(1, key.previous.id, key.current.id, key.next.id)"><i class="fa fa-thumbs-up"></i></button>
+                <button id="likelot" class="btn btn-primary" popover-placement="bottom" popover="I like it alot"  popover-trigger="mouseenter" ng-click ="getValue(2, key.previous.id, key.current.id, key.next.id)"><i class="fa fa-star"></i></button>
+                <button id="love" class="btn btn-primary" popover-placement="bottom" popover="I love it"  popover-trigger="mouseenter" ng-click ="getValue(3, key.previous.id, key.current.id, key.next.id)"><i class="fa fa-heart"></i></button>
+                <button id="next" class="btn btn-primary" popover-placement="bottom" popover="Meh"  popover-trigger="mouseenter" ng-click ="getValue(0, key.previous.id, key.current.id, key.next.id)"><i class="fa fa-arrow-right" ></i></button>
                 </div>
               </div>          
               <div class="caption">
