@@ -16,12 +16,18 @@ var signupCtrl = function ($scope, $location, $http, configService, $timeout, $a
 
             if(data.status === 'strong'){
                 $scope.checkStrengthMessage = 'strong';
+                $scope.strengthColor = 'success'; //green
+                $scope.strengthValue = 100;
             }
             if(data.status === 'medium'){
                 $scope.checkStrengthMessage = 'medium';
+                $scope.strengthColor = 'warning'; //red
+                $scope.strengthValue = 60;
             }
             if(data.status === 'weak'){
                 $scope.checkStrengthMessage = 'weak';
+                $scope.strengthColor = 'danger'; //orange
+                $scope.strengthValue = 30;
             }
         });
     };

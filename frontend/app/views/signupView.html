@@ -26,8 +26,9 @@
 						<div class="form-group" ng-class="{ 'has-error' : signupForm.password.$invalid && !signupForm.password.$pristine || submittedError && signupForm.password.$invalid && !signupForm.password.$dirty || errorMessagePassword}">
 							<label for="password">Password</label>
 							<input type="password" name="password" class="form-control" id="password" ng-model="user.password" ng-change="passwordStrength()" required>
-							<p class="strength">Strength: {{checkStrengthMessage}}</p>
-							
+							<p class="help-block strength">Password strength: {{checkStrengthMessage}}</p>
+							<div class="progress">
+							  <div class="progress-bar progress-bar-{{strengthColor}}" role="progressbar" aria-valuenow="{{strengthValue}}" aria-valuemin="0" aria-valuemax="100" style="width: {{strengthValue}}%;"></div></div>
 
 							<p ng-show="signupForm.password.$error.required && !signupForm.password.$pristine || submittedError && signupForm.password.$invalid && !signupForm.password.$dirty" class="help-block">Password is required</p>
 							<p ng-show="errorMessagePassword" class="help-block">{{errorMessagePassword}}</p>
