@@ -2,6 +2,31 @@
 
 var signupCtrl = function ($scope, $location, $http, configService, $timeout, $anchorScroll) {
 
+    $scope.passwordStrength = function() {
+        var postData = {
+            password: $scope.user.password
+        };
+
+        $http({
+            method: 'POST',
+            url: configService.API_END_POINT+'auth/check/password',
+            data: postData
+        })
+        .success(function(data, status) {
+
+            if(data.status === 'strong'){
+                $scope.checkStrengthMessage = 'strong';
+            }
+            if(data.status === 'medium'){
+                $scope.checkStrengthMessage = 'medium';
+            }
+            if(data.status === 'weak'){
+                $scope.checkStrengthMessage = 'weak';
+            }
+        });
+    };
+
+
     $scope.processForm = function(isValid){
         if (isValid){
             
@@ -33,13 +58,13 @@ var signupCtrl = function ($scope, $location, $http, configService, $timeout, $a
             .success(function(data) {
                 //console.log(data.token);
                 //usernameService.setUsername(data.username, data.id, data.token);
-                console.log(data.status);
+                console.log(data);
 
                 if (data.status === 'Password not strong enough'){
                     $timeout(function() {
                         $scope.errorMessagePassword = '';
                     }, 3500);
-                    $scope.errorMessagePassword = data.status;
+                    $scope.errorMessagePassword = data.message;
                     
                 } else if (data.status === 'ok' ){
                     $scope.signupMessage = 'Success! You have been sent an email with instructions on how to activate your account.';

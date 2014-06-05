@@ -3,7 +3,7 @@
   <section class="prev" ng-repeat="key in ratings" ng-hide="key.previous.id == null">
     <div class="image-container">
     <img ng-src="{{key.previous.file_name}}" class="img-rounded img-responsive" ng-if="key.previous.type === 'image'">
-    <img ng-src="https://i1.ytimg.com/vi/{{key.previous.original_file_name}}/sddefault.jpg" class="img-rounded img-responsive" ng-if="key.previous.type === 'video'">
+    <img ng-src="https://i1.ytimg.com/vi/{{key.previous.original_file_name}}/hqdefault.jpg" class="img-rounded img-responsive" ng-if="key.previous.type === 'video'">
 
     <h2><span><i class="fa fa-thumbs-up"></i>{{key.previous.overallScore}}</span></h2>
     </div>
@@ -20,7 +20,7 @@
   <section class="next">
   <div class="image-container">
     <img ng-src="{{key.next.file_name}}" class="img-rounded img-responsive" ng-if="key.next.type === 'image'">
-    <img ng-src="https://i1.ytimg.com/vi/{{key.next.original_file_name}}/sddefault.jpg" class="img-rounded img-responsive" ng-if="key.next.type === 'video'">
+    <img ng-src="https://i1.ytimg.com/vi/{{key.next.original_file_name}}/hqdefault.jpg" class="img-rounded img-responsive" ng-if="key.next.type === 'video'">
     <h2 class="next"><span>Next...</span></h2>
   </div>
   </section>

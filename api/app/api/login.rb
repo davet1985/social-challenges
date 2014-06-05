@@ -40,7 +40,10 @@ module SocialChallenges
           { "status" => "passwords do not match" }
         end
       else
-        { "status" => "Password not strong enough: " + strength }
+        { 
+          "status" => "Password not strong enough",
+          "message" => "Password is " + strength
+        }
       end
     end
   
@@ -50,6 +53,11 @@ module SocialChallenges
       else
         { "status" => "already in use" }
       end
+    end
+
+    post 'check/password' do
+      strength = PasswordStrength.calcStrength(params[:password])
+        { "status" => strength }
     end
 
     post 'check/email' do
@@ -78,7 +86,10 @@ module SocialChallenges
           { "status" => "passwords do not match" }
         end
       else
-        { "status" => "Password not strong enough: " + strength }
+        { 
+          "status" => "Password not strong enough",
+          "message" => "Password is " + strength
+        }
       end
     end
     
@@ -110,7 +121,10 @@ module SocialChallenges
           { "status" => "passwords do not match" }
         end
       else
-        { "status" => "Password not strong enough: " + strength }
+        { 
+          "status" => "Password not strong enough",
+          "message" => "Password is " + strength
+        }
       end
     end
     
