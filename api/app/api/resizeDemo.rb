@@ -48,3 +48,8 @@ scaleH *= ratio.to_f
 
 #do it
 Magick::Image::read(fname)[0].resize(scaleW, scaleH).crop(x, y, cropWidth, cropHeight).write(newFileCropped){|f| f.quality = 0.7 }
+
+#resize all in dir
+#Dir.glob("*.*") do |fname|
+#   Magick::Image.read(fname)[0].resize_to_fill(120, 90, Magick::CenterGravity).write("#{fname.split(".")[0]}_thumb.jpg")
+#end 

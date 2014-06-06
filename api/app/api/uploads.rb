@@ -50,6 +50,36 @@ module SocialChallenges
       end
     end
 
+    get '/:id/download/thumb' do
+      upload = UploadRepository.get_by_id params[:id]
+      if !upload then
+        error! 'Upload not found', 404
+      else
+        if upload.type === 'image'
+          file_path = UploadRepository.get_file_path_thumb upload.file_name
+          data = File.open(file_path, 'rb').read
+        end
+        content_type upload.type
+        env['api.format'] = :binary
+        present data
+      end
+    end
+
+    get '/:id/download/medium' do
+      upload = UploadRepository.get_by_id params[:id]
+      if !upload then
+        error! 'Upload not found', 404
+      else
+        if upload.type === 'image'
+          file_path = UploadRepository.get_file_path_medium upload.file_name
+          data = File.open(file_path, 'rb').read
+        end
+        content_type upload.type
+        env['api.format'] = :binary
+        present data
+      end
+    end
+
     post '/:id/resize' do
       upload = UploadRepository.get_by_id params[:id]
       if !upload then
@@ -60,14 +90,18 @@ module SocialChallenges
         maxHeightImage = params[:maxHeightImage]
         maxWidthThumb = params[:maxWidthThumb]
         maxHeightThumb = params[:maxHeightThumb]
+        maxWidthMedium = params[:maxWidthMedium]
+        maxHeightMedium = params[:maxHeightMedium]
         resizeQuality = params[:resizeQuality]
-        ResizeImage.resize(fname, maxWidthImage, maxHeightImage, maxWidthThumb, maxHeightThumb, resizeQuality)
+        ResizeImage.resize(fname, maxWidthImage, maxHeightImage, maxWidthThumb, maxHeightThumb, maxWidthMedium, maxHeightMedium, resizeQuality)
         {
           'status' => 'ok', 
           'maxWidthImage' => maxWidthImage,
           'maxHeightImage' => maxHeightImage,
           'maxWidthThumb' => maxWidthThumb,
           'maxHeightThumb' => maxHeightThumb,
+          'maxWidthMedium' => maxWidthMedium,
+          'maxHeightMedium' => maxHeightMedium,
           'resizeQuality' => resizeQuality,
           'filename' => fname
         }
@@ -75,7 +109,6 @@ module SocialChallenges
     end  
 
     post '/add' do
-      puts '***********'
       errors = Array.new
       user_token = params[:usertoken]
       errors << Error.new("user_token", "The userid field is required") if user_token.empty? || user_token == 'undefined'

@@ -53,7 +53,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
     $scope.angularVersion = window.location.hash.length > 1 ? window.location.hash.substring(1) : '1.2.0';
 
     //resize image
-    $scope.resizeImage = function(uploadId, maxWidthImage, maxHeightImage, maxWidthThumb, maxHeightThumb, resizeQuality){
+    $scope.resizeImage = function(uploadId, maxWidthImage, maxHeightImage, maxWidthThumb, maxHeightThumb, maxWidthMedium, maxHeightMedium, resizeQuality){
         $http({url : configService.API_END_POINT+'upload/'+uploadId+'/resize',
             method: 'POST',
             data : {
@@ -61,6 +61,8 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 'maxHeightImage': maxHeightImage,
                 'maxWidthThumb': maxWidthThumb,
                 'maxHeightThumb': maxHeightThumb,
+                'maxWidthMedium': maxWidthMedium,
+                'maxHeightMedium': maxHeightMedium,
                 'resizeQuality': resizeQuality
             }
             }).
@@ -193,7 +195,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 }).progress(function(evt) {
                     $scope.progressBar = parseInt(100.0 * evt.loaded / evt.total);
                 }).success(function(data, status, headers, config) {
-                    $scope.resizeImage(data, 760, 760, 125, 125, 70);
+                    $scope.resizeImage(data, 760, 760, 120, 90, 460, 345, 75);
                     $location.path('/user/userName/uploads/' + data);// todo: get userName
                     //console.log(data);
                 }).error(function(data, status, headers, config) {

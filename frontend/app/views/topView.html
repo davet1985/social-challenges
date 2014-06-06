@@ -2,36 +2,29 @@
 	<h2>Top 20 in {{getPageTag()}}</h2>		
 </div>
 <div class="row">
-	<div class="col-md-9">
+	<div class="col-sm-9">
 		<section class="leaderboard">
 				<ul>
-					<li ng-repeat="(key, value) in top | reverse">
+					<li ng-repeat="(key, value) in top">
 	  					<section class="top top-image">
-	  					  <div class="col-sm-8">
-				          <div class="image-container">
-			        		<img alt="" ng-src="{{value.file_name}}" class="img-rounded topimg img-responsive" ng-if="value.type === 'image'">
-			        		<youtube code="{{value.original_file_name}}" ng-if="value.type === 'video'"></youtube>
-				            <h2 class="top-score"><span>{{reverseIndex($index+1, top.length)}}</span></h2>
-				          </div>
-				            </div>
-
-				          <div class="details col-sm-4">
-				          <!-- <h2 class="top-score-total"></h2> -->
-	  						<img gravatar-src="'{{value.gravatar}}'" class="img-rounded profileThumb">
-	  						<p><a href="#!/user/{{value.userid}}">{{value.userid}}</a></p>
-	  						<p><i class="fa fa-thumbs-up"></i><span id="upload_{{value.id}}">{{value.overallScore}}</span></p>
-	  						<h3 class="leaderboard-title">{{value.title}}</h3>
-	  						<p>{{value.description}}</p>
-	  						<ul class="tags">
-   								<li ng-repeat="(key, value) in value.tags"><a href="#!/tag/{{value}}">{{value}}</a></li>
-            				</ul>
-            			</div>
+	  					<div class="top-score-container hidden-xs">
+	  					 	<h2 class="top-score"><span>{{$index+1}}</span></h2>
+	  					 </div>
+	  						<div class="image-container">
+			        			<img alt="" ng-src="{{value.file_name_thumb}}" class="img-rounded" ng-if="value.type === 'image'" width="120" height="90">
+			        			<img ng-src="https://i1.ytimg.com/vi/{{value.original_file_name}}/default.jpg" class="img-rounded topimg" ng-if="value.type === 'video'" width="120" height="90">
+			        		</div>
+			        		<div class="top-details">
+				        		<h3 class="leaderboard-title"><div class="visible-xs xs-score">{{$index+1}}</div>{{value.title}}</h3>
+				        		<h4><a href="#!/user/{{value.userid}}">{{value.userid}}</a></h4>
+				        		<p><i class="fa fa-thumbs-up"></i> <span id="upload_{{value.id}}">{{value.overallScore}}</span></p>
+			        		</div>
 					  </section>
 					</li>
 				</ul>					
 		</section>
 	</div> 
-	<div class="col-md-3">
+	<div class="col-sm-3">
 		<section class="categories" ng-controller="tagCloudCtrl">
             <h3>Tag Cloud</h3>
             <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">

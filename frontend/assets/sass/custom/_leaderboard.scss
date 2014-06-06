@@ -56,20 +56,55 @@
 }
 .leaderboard ul li{
 	display: block;
+	.image-container{
+		width: 120px;
+		margin: 0 15px;
+		float: left;
+	}
+	.top-score-container{
+		float: left;
+		width:120px;
+	}
 	section.top.top-image{
-		display: flex;
+		//display: flex;
 		padding: 15px 0;
 	}
+	section.top{
+		margin-bottom: 15px;
+	}
+	.top-details{
+		margin: 0 20px;
+		//width: 100%;
+	}
 	h2.top-score{
-		top: -10px;
-		font-size: 1em;
+		//top: -10px;
+	
+		margin: 0 20px;
+		span{
+			font-size: 1.7em;
+			width: 100px;
+			display: block;
+			text-align: center;
+		}
 	}
 	h3.leaderboard-title{
-		margin-top: 30px;
-		font-size: 28px;
+		font-size: 0.9em;
+		margin: 0;
+		//margin-top: 30px;
+		//font-size: 28px;
+	}
+	h4{font-size: .8em;
+		//margin-left: 20px;
+		margin: 10px 0 ;
+	}
+	.xs-score{
+		font-weight: bold;
+		font-size: 2.1em;
+		float: left;
+		margin-right: 10px;
 	}
 	.image-container h2 {
-		margin-left: -24px;
+		//margin-left: -24px;
 	}
 	.details{
 		margin: 0;
@@ -90,24 +125,29 @@
 */
 @media (max-width: $screen-sm-min) { 
 	.leaderboard h2.top-score{
-		top: -20px !important;
+		//top: -20px !important;
 	}
 	.leaderboard h2.top-score span{
 		//font-size: .6em !important;
 	}
 	section.top.top-image{
-		display: inline-block !important;
-		padding: 15px 0;
+		//display: inline-block !important;
+		//padding: 15px 0;
 	}
+
 	.leaderboard ul li .details{
-		margin: 15px;
-		padding: 0;
+		//margin: 15px;
+		//padding: 0;
 	}
 
 }
 @media (max-width: $screen-md-min) { 
+	.leaderboard h2{
+		font-size: 1.2em;
+	margin-top: 0;
+	}
 	.leaderboard h2.top-score{
-		top: -10px;
+		//top: -10px;
 	}
 	.leaderboard h2.top-score {
 		//font-size: 1em;

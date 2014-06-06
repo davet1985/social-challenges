@@ -23,7 +23,7 @@ class Uploadmodel
 
   def to_json(*a)
     md5gravatar = Digest::MD5.hexdigest(@gravatar)
-    {"id" => @id, "type" => @type, "file_name" => @file_name, "original_file_name" => @original_file_name, "file_name" => "http://localhost:9292/upload/#{@id}/download", "userid" => @userid, "upload_datetime" => @upload_datetime, "overallScore" => @overallScore, "numOfRatings" => @numOfRatings, "title" => @title, "description" => @description, "tags" => JSON.parse(@tags.to_json), "gravatar" => md5gravatar}.to_json(*a)
+    {"id" => @id, "type" => @type, "file_name" => @file_name, "original_file_name" => @original_file_name, "file_name" => "http://localhost:9292/upload/#{@id}/download", "file_name_thumb" => "http://localhost:9292/upload/#{@id}/download/thumb", "file_name_medium" => "http://localhost:9292/upload/#{@id}/download/medium", "userid" => @userid, "upload_datetime" => @upload_datetime, "overallScore" => @overallScore, "numOfRatings" => @numOfRatings, "title" => @title, "description" => @description, "tags" => JSON.parse(@tags.to_json), "gravatar" => md5gravatar}.to_json(*a)
   end
 
 end

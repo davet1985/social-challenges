@@ -11,9 +11,10 @@ var topCtrl = function ($scope, topService) {
 topCtrl.$inject = ['$scope', 'topService'];
 
 //reverse filter
+/*
 app.filter('reverse', function() {
     return function(items) {
         return items.slice().reverse();
     };
 });
-
+*/

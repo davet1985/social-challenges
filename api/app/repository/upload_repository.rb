@@ -50,6 +50,14 @@ class UploadRepository
     "#{$upload_dir}/#{file_name}"
   end
 
+  def self.get_file_path_thumb(file_name)
+    "#{$upload_dir}/#{file_name.split(".")[0]}_thumb.jpg"
+  end
+
+  def self.get_file_path_medium(file_name)
+    "#{$upload_dir}/#{file_name.split(".")[0]}_medium.jpg"
+  end
+
   def self.get_video_path(file_name)
     "#{file_name}"
   end
