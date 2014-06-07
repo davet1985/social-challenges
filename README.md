@@ -51,6 +51,21 @@ Run the following command to run the cucumber tests:
 cucumber
 ...
 
+## Tags API
+
+There are two modes support for getting tags : popular or recent
+
+Both modes return the results with the most recent first.
+
+Format: http://localhost:9292/tag/:mode/:searchString/:number
+
+Examples: 
+
+http://localhost:9292/tag/popular/all/3
+http://localhost:9292/tag/recent/cat/2
+http://localhost:9292/tag/popular/dog/10
+
+
 ## Uploads API
 
 ### Posting a file upload
