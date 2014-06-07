@@ -45,6 +45,32 @@ class TagRepository
   def self.all
     results = $db.execute("select id, userid, tagName, numOfObjects from tags")
   end
+  
+  def self.popular(search, number)
+    select = <<-SQL
+    select id, userid, tagName, numOfObjects from (
+      select id, userid, tagName, numOfObjects, tag_datetime from tags
+      where tagName like ?
+      order by numOfObjects desc
+      limit ? 
+    ) order by tag_datetime desc
+      SQL
+      
+      search = '%' + search + '%'
+    results = $db.execute(select, search, number)
+  end
+  
+  def self.recent(search, number)
+    select = <<-SQL
+      select id, userid, tagName, numOfObjects from tags
+      where tagName like ?
+      order by tag_datetime desc
+      limit ?
+      SQL
+      
+      search = '%' + search + '%'
+    results = $db.execute(select, search, number)
+  end
 
   def self.find_by_object_id(object_id)
     select = <<-SQL

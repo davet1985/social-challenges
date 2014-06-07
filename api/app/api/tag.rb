@@ -15,6 +15,21 @@ module SocialChallenges
     use Rack::JSONP
     format :json
     
+    get '/:mode/:search/:number' do
+      mode = params[:mode]
+      search = params[:search]
+      if search == 'all' then search = '' end
+      number = params[:number]
+      case mode
+      when "popular"
+        JSON.parse(TagCloud.tag_cloud(TagRepository.popular(search, number)))
+      when "recent"
+        JSON.parse(TagCloud.tag_cloud(TagRepository.recent(search, number)))
+      else
+        { "mode" => "Mode not supported. Either: popular or recent." } 
+      end
+    end
+    
     get :all do
       JSON.parse(TagCloud.tag_cloud(TagRepository.all))
     end

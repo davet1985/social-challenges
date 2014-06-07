@@ -2,7 +2,7 @@ class TagCloud
 
   def self.tag_cloud(tags)
     json_new = []
-    minCount = 0
+    minCount = 9999999
     maxCount = 0
     tagJson = tags.each { |tag|
       if minCount > tag[3] then
