@@ -49,6 +49,10 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/signupView.html',
                     controller: 'signupCtrl'
                 })
+                .when('/forgot/:token',{
+                    templateUrl: 'app/views/forgotPassword.html',
+                    controller: 'forgotPasswordCtrl'
+                })
                 .when('/forgot',{
                     templateUrl: 'app/views/forgotView.html',
                     controller: 'forgotCtrl'
