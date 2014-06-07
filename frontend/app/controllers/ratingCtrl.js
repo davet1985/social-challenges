@@ -14,7 +14,6 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
         $scope.overStar = value;
     };
 
-    // do something with value
     $scope.getValue = function (value, prevId, currentId, nextId) {
         
         if (value !== 0) {

@@ -6,16 +6,17 @@
 		<section class="leaderboard">
 				<ul>
 					<li ng-repeat="(key, value) in top">
-	  					<section class="top top-image">
-	  					<div class="top-score-container hidden-xs">
+	  					<section class="top top-image" ng-class="{ 'top-one' : $index == 0 }">
+	  					<div class="top-score-container hidden-sm hidden-xs">
 	  					 	<h2 class="top-score"><span>{{$index+1}}</span></h2>
 	  					 </div>
 	  						<div class="image-container">
+			        			<a href="#!/tag/{{getPageTag()}}/{{value.id}}/{{value.id}}">
 			        			<img alt="" ng-src="{{value.file_name_thumb}}" class="img-rounded" ng-if="value.type === 'image'" width="120" height="90">
-			        			<img ng-src="https://i1.ytimg.com/vi/{{value.original_file_name}}/default.jpg" class="img-rounded topimg" ng-if="value.type === 'video'" width="120" height="90">
+			        			<img ng-src="https://i1.ytimg.com/vi/{{value.original_file_name}}/default.jpg" class="img-rounded topimg" ng-if="value.type === 'video'" width="120" height="90"></a>
 			        		</div>
 			        		<div class="top-details">
-				        		<h3 class="leaderboard-title"><div class="visible-xs xs-score">{{$index+1}}</div>{{value.title}}</h3>
+				        		<h3 class="leaderboard-title"><span class="visible-sm visible-xs sm-score">{{$index+1}}</span>{{value.title}}</h3>
 				        		<h4><a href="#!/user/{{value.userid}}">{{value.userid}}</a></h4>
 				        		<p><i class="fa fa-thumbs-up"></i> <span id="upload_{{value.id}}">{{value.overallScore}}</span></p>
 			        		</div>

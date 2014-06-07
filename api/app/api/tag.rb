@@ -54,14 +54,15 @@ module SocialChallenges
       if !currentObject then
         error! 'Upload not found', 404
       else
-        if nextObject == false then
+        if currentObject.id == previousObject.id then
+          JSON.parse(Tag.returnJSONNoPrevious(currentObject, nextObject))
+        elsif nextObject == false then
           JSON.parse(Tag.returnJSONNoNext(currentObject, previousObject))  
         else
           JSON.parse(Tag.returnJSON(currentObject, previousObject, nextObject))
-        end
-      end
-    end
-    
+        end 
+      end 
+    end    
     
     post '/:tagName' do
       puts '***********'
