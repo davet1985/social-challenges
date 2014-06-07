@@ -6,7 +6,8 @@
 		<section class="leaderboard">
 				<ul>
 					<li ng-repeat="(key, value) in top">
-	  					<section class="top top-image" ng-class="{ 'top-one' : $index == 0 }">
+	  					<section class="top top-image" ng-class="{ 'top-one' : $index == 0, 'top-two' : $index == 1, 'top-three' : $index == 2 }">
+	  					<span class="trophy" ng-if="$index == 0 || $index == 1 || $index == 2"><i class="fa fa-trophy"></i></span>
 	  					<div class="top-score-container hidden-sm hidden-xs">
 	  					 	<h2 class="top-score"><span>{{$index+1}}</span></h2>
 	  					 </div>
@@ -19,6 +20,7 @@
 				        		<h3 class="leaderboard-title"><span class="visible-sm visible-xs sm-score">{{$index+1}}</span>{{value.title}}</h3>
 				        		<h4><a href="#!/user/{{value.userid}}">{{value.userid}}</a></h4>
 				        		<p><i class="fa fa-thumbs-up"></i> <span id="upload_{{value.id}}">{{value.overallScore}}</span></p>
+
 			        		</div>
 					  </section>
 					</li>

@@ -77,11 +77,38 @@
 		
 		h2.top-score span,
 		.top-details p,
-		.sm-score {
+		.sm-score,
+		.trophy {
 			color: #FFB415;
 		}
-
 	}
+	
+	section.top-two{
+		//background-color: #DDD;
+		
+		h2.top-score span,
+		.top-details p,
+		.sm-score,
+		.trophy {
+			color: #8A8A8A;
+		}
+	}
+	section.top-three{
+		//background-color: #e2dda6;
+		
+		h2.top-score span,
+		.top-details p,
+		.sm-score,
+		.trophy {
+			color: #A78F31;
+		}
+	}
+	.trophy{
+		float: right;
+		font-size: 2em;
+		margin-right: 20px;
+		margin-top: 12px;
+	}	
 	.top-details{
 		margin: 0 20px;
 		//width: 100%;
