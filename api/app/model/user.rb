@@ -92,7 +92,7 @@ $db = SQLite3::Database.open './hashbang.db'
       To: A Test User <#{email}>
       Subject: SMTP e-mail test
 
-      Please use this token to change your password #{token}
+      Please use this token to change your password http://localhost:8000/#!/forgot/#{token}
       MESSAGE_END
 
       Net::SMTP.start('localhost', 1025) do |smtp|
