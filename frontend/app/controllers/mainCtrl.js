@@ -52,6 +52,12 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 		});
 	});
 
+	$scope.roundFontSize = function(v, minV , maxV) {
+		var minFS = 100,		//minimum font size in %
+		maxFS = 500;		//maximum font size in %
+		return minFS + Math.floor(v / ((maxV - minV) / (maxFS - minFS)));
+	};
+
 };
 
 mainCtrl.$inject = ['$scope', '$location', '$http', '$window', '$cookies','$log', 'configService', 'usernameService', 'md5'];

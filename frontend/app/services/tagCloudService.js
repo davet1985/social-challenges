@@ -2,11 +2,16 @@ app.service('tagCloudService', ['$http', '$location',  function($http, $location
   
     var _tagCloudDataArr = [];
 
-    var _getTagCloudData = function(){
-
-        var url  = 'http://localhost:9292/tag/all';
-
-        //var url  = 'app/data/tag_cloud.json';
+    var _getTagCloudData = function(mode, searchString, count){
+        
+        var url;
+        
+        if (mode === 'cloud' ){
+            url  = 'http://localhost:9292/tag/all';
+        } else {
+            url  = 'http://localhost:9292/tag/'+mode+'/'+searchString+'/'+count+'';
+        }
+         
         
         $http.get(url)
             .then(function(results){
