@@ -63,16 +63,16 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 		var color;
 
 		if (roundSize > 200){
-			color = '#23bbdf';
+			color = 'tag1';
 		}
 		if (roundSize > 300){
-			color = '#1986a0';
+			color = 'tag2';
 		}
 		if (roundSize > 400){
-			color = '#157990';
+			color = 'tag3';
 		}
 		if (roundSize > 500){
-			color = '#126b80';
+			color = 'tag4';
 		}
 		return color;
 	};

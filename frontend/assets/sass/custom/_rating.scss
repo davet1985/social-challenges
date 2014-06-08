@@ -110,7 +110,7 @@ img.profileThumb{
 		li{
 			//display: inline-block;
 			//background-color: $brand-primary;
-			background-color: #25bbdd;
+			background-color: $peter-river;
 			//padding: .2em;
 			//line-height: 100%;
 			//font-size: .75em;
@@ -126,6 +126,18 @@ img.profileThumb{
 					padding: 8px;
 				}
 			}
+		}
+		li.tag1{
+			background-color: darken($peter-river, 10%);
+		}
+		li.tag2{
+			background-color: darken($peter-river, 20%);
+		}
+		li.tag3{
+			background-color: darken($peter-river, 30%);
+		}
+		li.tag4{
+			background-color: darken($peter-river, 40%);
 		}
 	}
 }
