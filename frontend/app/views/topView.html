@@ -1,5 +1,5 @@
 <div class="row col-md-12">
-	<h2>Top 20 in {{getPageType()}}</h2>		
+	<h2>Top 20 in {{getPageTag()}}</h2>		
 </div>
 <div class="row">
 	<div class="col-sm-9">
@@ -12,7 +12,7 @@
 	  					 	<h2 class="top-score"><span>{{$index+1}}</span></h2>
 	  					 </div>
 	  						<div class="image-container">
-			        			<a href="#!/rate/tag/{{getPageType()}}/{{value.id}}/{{value.id}}">
+			        			<a href="#!/rate/tag/{{getPageTag()}}/{{value.id}}/{{value.id}}">
 			        			<img alt="" ng-src="{{value.file_name_thumb}}" class="img-rounded" ng-if="value.type === 'image'" width="120" height="90">
 			        			<img ng-src="https://i1.ytimg.com/vi/{{value.original_file_name}}/default.jpg" class="img-rounded topimg" ng-if="value.type === 'video'" width="120" height="90"></a>
 			        		</div>
@@ -31,7 +31,7 @@
 	    <section class="categories hidden-xs" ng-controller="tagPopularCtrl">
     <h3><i class="fa fa-trophy"></i> Top 20 in</h3>
     <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-      <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/top/{{key.tag}}"><span style="font-size:144%;">{{key.tag}}</span></a></li>
+      <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/top/{{getPageType()}}/{{key.tag}}"><span style="font-size:144%;">{{key.tag}}</span></a></li>
     </ul>
   </section>
 
