@@ -4,7 +4,7 @@ app.service('topService', ['$http', '$location',  function($http, $location) {
 
     var _gettopData = function(){
 		
-		var pageTag = $location.path().split('/')[2]||'Unknown';
+		var pageTag = $location.path().split('/')[3]||'Unknown';
 
         var url  = 'http://localhost:9292/leaderboard/' + pageTag + '/20';
         //var url  = 'app/data/top.json';
