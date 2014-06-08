@@ -1,4 +1,4 @@
-id,tagname,userid,tag_datetime,numofobjects,type
-1,cat,1,2014-05-21 21:37:16 +0100,6,tag
-2,dog,2,2014-05-21 21:37:16 +0100,6,tag
-3,funny,1,2014-05-21 21:37:16 +0100,10,tag
+id,tagname,userid,type,tag_datetime,numofobjects
+1,cat,1,tag,2014-05-21 21:37:16 +0100,6
+2,dog,2,tag,2014-05-21 21:37:16 +0100,6
+3,funny,1,tag,2014-05-21 21:37:16 +0100,10
