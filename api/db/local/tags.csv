@@ -23,3 +23,5 @@ id,tagname,userid,type,tag_datetime,numofobjects
 23,xbox,2,tag,2014-05-03 21:37:16 +0100,100
 24,beach,1,tag,2014-05-26 21:37:16 +0100,66
 25,snow,2,tag,2014-05-30 21:37:16 +0100,88
+26,cat_lover1990,1,user,2014-05-30 21:37:16 +0100,88
+27,dog_lover1980,2,user,2014-05-30 21:37:16 +0100,88
