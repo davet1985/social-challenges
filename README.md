@@ -61,9 +61,9 @@ Format: http://localhost:9292/tag/:mode/:searchString/:number
 
 Examples: 
 
-http://localhost:9292/tag/popular/all/3
-http://localhost:9292/tag/recent/cat/2
-http://localhost:9292/tag/popular/dog/10
+* http://localhost:9292/tag/popular/all/3
+* http://localhost:9292/tag/recent/cat/2
+* http://localhost:9292/tag/popular/dog/10
 
 
 ## Uploads API

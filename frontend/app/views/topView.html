@@ -28,11 +28,19 @@
 		</section>
 	</div> 
 	<div class="col-sm-3">
-		<section class="categories" ng-controller="tagCloudCtrl">
-            <h3>Tag Cloud</h3>
-            <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-		        <li ng-repeat="key in tagCloud.tagCloud"><a href="#!/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
-            </ul>
-  		</section>
+	    <section class="categories hidden-xs" ng-controller="tagPopularCtrl">
+    <h3><i class="fa fa-trophy"></i> Top 20 in</h3>
+    <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+      <li ng-repeat="key in tagCloud.tagCloud" style="background-color:{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/top/{{key.tag}}"><span style="font-size:144%;">{{key.tag}}</span></a></li>
+    </ul>
+  </section>
+
+      <section class="categories" ng-controller="tagPopularCtrl">
+	      <h3><i class="glyphicon glyphicon-fire"></i> Popular tags</h3>
+	      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+	        <li ng-repeat="key in tagCloud.tagCloud" style="background-color:{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/tag/{{key.tag}}"><span style="font-size:144%">{{key.tag}}</span></a></li>
+	      </ul>
+	      <a href="#!/tagsearch">More...</a>
+      </section>
 	</div>
 </div>

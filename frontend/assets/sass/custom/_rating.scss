@@ -96,8 +96,9 @@ img.profileThumb{
 .categories{
 
 	h3{
-		font-size: 1.6em;
+		font-size: 1.2em;
 		margin: 0;
+		font-weight: 100; 
 	}
 	.tags{
 		list-style: none; 
@@ -108,12 +109,13 @@ img.profileThumb{
 		
 		li{
 			//display: inline-block;
-			background-color: $brand-primary;
+			//background-color: $brand-primary;
+			background-color: #25bbdd;
 			//padding: .2em;
 			//line-height: 100%;
 			//font-size: .75em;
 			&:hover{
-				background-color: #333;
+				background-color: #333 !important;
 			}
 			a{
 				color: #fff;
@@ -127,7 +129,7 @@ img.profileThumb{
 		}
 	}
 }
-
+	
 .buttons{
 	margin-bottom: 30px;
 	margin-right: 30px;
