@@ -6,6 +6,10 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 	$scope.emailRegx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	
 	$scope.getPageTag = function() {
+		return $location.path().split('/')[3]||'Unknown';
+    };
+	
+	$scope.getPageType = function() {
 		return $location.path().split('/')[2]||'Unknown';
     };
 

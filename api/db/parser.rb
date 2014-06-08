@@ -11,7 +11,7 @@ module Parser
   def self.parse_tags(file, object)
     tags = []
     CSV.foreach(file, :headers => true, header_converters: :symbol) do |csv_obj|
-      tags << object.new(csv_obj.field(:tagname), csv_obj.field(:userid), csv_obj.field(:id), csv_obj.field(:tag_datetime), csv_obj.field(:numofobjects))
+      tags << object.new(csv_obj.field(:tagname), csv_obj.field(:userid), csv_obj.field(:id), csv_obj.field(:tag_datetime), csv_obj.field(:numofobjects), csv_obj.field(:type))
     end
     tags
   end

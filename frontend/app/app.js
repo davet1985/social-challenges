@@ -21,15 +21,15 @@ var app = angular.module('app', [
 
             $routeProvider
                 .when('/',{
-                    redirectTo: '/tag/cat', /* todo: make it go to a random tag or most popular? */
+                    redirectTo: '/rate/tag/cat', /* todo: make it go to a random tag or most popular? */
                     templateUrl: 'app/views/ratingView.html',
                     controller: 'ratingCtrl'
                 })
-                .when('/tag/:tag/:id/:prevId',{
+                .when('/rate/:type/:tag/:id/:prevId',{
                     templateUrl: 'app/views/ratingView.html',
                     controller: 'ratingCtrl'
                 })
-                .when('/tag/:tag',{
+                .when('/rate/:type/:tag',{
                     templateUrl: 'app/views/ratingView.html',
                     controller: 'ratingCtrl'
                 })

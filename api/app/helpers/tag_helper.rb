@@ -1,4 +1,5 @@
 require_relative './../repository/tag_repository'
+require_relative './../repository/user_repository'
 require_relative './../model/tag'
 
 class TagHelper
@@ -8,6 +9,10 @@ class TagHelper
       tag_id = self.find_or_add_tag tag.tagName, tag.userId
       TagRepository.tagObject object_id, tag_id
     end
+    
+    username = UserRepository.getUsername user_id
+    usertag_id = self.find_or_add_user_tag username, user_id
+    TagRepository.tagObject object_id, usertag_id
   end
 
   def self.create_tags_from_csv(tags_csv, user_id)
@@ -17,7 +22,16 @@ class TagHelper
   def self.find_or_add_tag(tag, user_id)
     tag_id = TagRepository.findByName tag
     if tag_id == -1
-      tag = Tag.new tag, user_id
+      tag = Tag.new tag, user_id, 'tag'
+      tag_id = TagRepository.save tag
+    end
+    tag_id
+  end
+  
+  def self.find_or_add_user_tag(tag, user_id)
+    tag_id = TagRepository.findUserTagByName tag
+    if tag_id == -1
+      tag = Tag.new tag, user_id, 'user'
       tag_id = TagRepository.save tag
     end
     tag_id

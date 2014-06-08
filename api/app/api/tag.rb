@@ -15,16 +15,17 @@ module SocialChallenges
     use Rack::JSONP
     format :json
     
-    get '/:mode/:search/:number' do
+    get '/:type/:mode/:search/:number' do
+      type = params[:type]
       mode = params[:mode]
       search = params[:search]
       if search == 'all' then search = '' end
       number = params[:number]
       case mode
       when "popular"
-        JSON.parse(TagCloud.tag_cloud(TagRepository.popular(search, number)))
+        JSON.parse(TagCloud.tag_cloud(TagRepository.popular(search, number, type)))
       when "recent"
-        JSON.parse(TagCloud.tag_cloud(TagRepository.recent(search, number)))
+        JSON.parse(TagCloud.tag_cloud(TagRepository.recent(search, number, type)))
       else
         { "mode" => "Mode not supported. Either: popular or recent." } 
       end
@@ -53,7 +54,7 @@ module SocialChallenges
       }
     end
     
-    post '/:tagName/:currentId/:previousId' do
+    post '/:type/:tagName/:currentId/:previousId' do
       
       idstoignore = params[:ignoreIds]
       if params[:ignoreIds] == "" then
@@ -65,7 +66,7 @@ module SocialChallenges
       idstoignore.push(currentObject.id)
       previousObject = UploadRepository.get_by_id params[:previousId]
       idstoignore.push(previousObject.id)
-      nextObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore
+      nextObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore, params[:type]
       if !currentObject then
         error! 'Upload not found', 404
       else
@@ -79,7 +80,7 @@ module SocialChallenges
       end 
     end    
     
-    post '/:tagName' do
+    post '/:type/:tagName' do
       puts '***********'
       
       idstoignore = params[:ignoreIds]
@@ -89,9 +90,9 @@ module SocialChallenges
         idstoignore = params[:ignoreIds].split(',').map { |s| s.to_i }
       end
       
-      currentObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore
+      currentObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore, params[:type]
       idstoignore.push(currentObject.id) 
-      nextObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore
+      nextObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore, params[:type]
       if !currentObject then
         error! 'Upload not found', 404
       else

@@ -9,6 +9,7 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
     $scope.max = 3;
 
     var tagName = $scope.getPageTag();
+	var tagType = $scope.getPageType();
 
     $scope.hoveringOver = function(value) {
         $scope.overStar = value;
@@ -35,7 +36,7 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
 			$location.path('/top/'+tagName);
 		}
 		else {
-			$location.path('/tag/'+tagName+'/'+nextId+'/'+currentId);
+			$location.path('/rate/'+tagType+'/'+tagName+'/'+nextId+'/'+currentId);
 		}
     };
 

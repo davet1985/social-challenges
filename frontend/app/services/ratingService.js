@@ -10,23 +10,25 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 
         var pageTag,
         pageId,
-        prevId;
+        prevId,
+		tagType;
         
         if($location.path().split('/')[1] === 'video'){
-
+			tagType = $location.path().split('/')[3]||'Unknown';
+            pageTag = $location.path().split('/')[4]||'Unknown';
+            pageId  = $location.path().split('/')[5]||'Unknown';
+            prevId  = $location.path().split('/')[6]||'Unknown';
+        } else{
+			tagType = $location.path().split('/')[2]||'Unknown';
             pageTag = $location.path().split('/')[3]||'Unknown';
             pageId  = $location.path().split('/')[4]||'Unknown';
             prevId  = $location.path().split('/')[5]||'Unknown';
-        } else{
-            pageTag = $location.path().split('/')[2]||'Unknown';
-            pageId  = $location.path().split('/')[3]||'Unknown';
-            prevId  = $location.path().split('/')[4]||'Unknown';
 
         }
 
         var url  = 'http://localhost:9292/tag/';
 		
-		var urlWithCurrentAndPrev = url + pageTag;
+		var urlWithCurrentAndPrev = url + tagType + '/' + pageTag;
 		
 		if (pageId !== 'Unknown') {
 			urlWithCurrentAndPrev = urlWithCurrentAndPrev + '/' + pageId;

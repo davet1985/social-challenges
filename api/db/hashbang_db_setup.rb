@@ -84,7 +84,8 @@ module HashBangDB
         tagName VARCHAR(255) NOT NULL,
         userid INTEGER NOT NULL,
         tag_datetime DATETIME NOT NULL,
-        numOfObjects INTEGER NOT NULL
+        numOfObjects INTEGER NOT NULL,
+        type VARCHAR(20) NOT NULL
         );
       SQL
     )
@@ -113,10 +114,10 @@ module HashBangDB
   def self.seed_tags(tags, database)
     insert = <<-SQL
       INSERT INTO tags
-      VALUES (NULL, ?, ?, ?, ?)
+      VALUES (NULL, ?, ?, ?, ?, ?)
       SQL
     tags.each do |tag|
-      database.execute(insert, tag.tagName, tag.userId, tag.tag_datetime, tag.numOfObjects)
+      database.execute(insert, tag.tagName, tag.userId, tag.tag_datetime, tag.numOfObjects, tag.type)
     end
   end
 

@@ -12,15 +12,24 @@ class TagRepository
   def self.save(tag)
     insert =  <<-SQL
       INSERT INTO tags
-      values (NULL, ?, ?, datetime('now'), 0)
+      values (NULL, ?, ?, datetime('now'), 0, ?)
       SQL
-      $db.execute(insert, tag.tagName, tag.userId)
+      $db.execute(insert, tag.tagName, tag.userId, tag.type)
     tagId = $db.last_insert_row_id()
     tagId
   end
   
   def self.findByName(tagName)
-    row = $db.get_first_row("select * from tags where tagName = ?", tagName)
+    row = $db.get_first_row("select * from tags where tagName = ? and type='tag'", tagName)
+    tagId = -1
+    if row != nil
+      tagId = row[0]
+    end
+    tagId
+  end
+  
+  def self.findUserTagByName(tagName)
+    row = $db.get_first_row("select * from tags where tagName = ? and type='user'", tagName)
     tagId = -1
     if row != nil
       tagId = row[0]
@@ -46,30 +55,30 @@ class TagRepository
     results = $db.execute("select id, userid, tagName, numOfObjects from tags")
   end
   
-  def self.popular(search, number)
+  def self.popular(search, number, type)
     select = <<-SQL
     select id, userid, tagName, numOfObjects from (
       select id, userid, tagName, numOfObjects, tag_datetime from tags
-      where tagName like ?
+      where tagName like ? and type = ?
       order by numOfObjects desc
       limit ? 
     ) order by tag_datetime desc
       SQL
       
       search = '%' + search + '%'
-    results = $db.execute(select, search, number)
+    results = $db.execute(select, search, type, number)
   end
   
-  def self.recent(search, number)
+  def self.recent(search, number, type)
     select = <<-SQL
       select id, userid, tagName, numOfObjects from tags
-      where tagName like ?
+      where tagName like ? and type = ?
       order by tag_datetime desc
       limit ?
       SQL
       
       search = '%' + search + '%'
-    results = $db.execute(select, search, number)
+    results = $db.execute(select, search, type, number)
   end
 
   def self.find_by_object_id(object_id)
