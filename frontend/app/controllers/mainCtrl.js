@@ -57,9 +57,28 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 	});
 
 	$scope.roundFontSize = function(v, minV , maxV) {
-		var minFS = 100,		//minimum font size in %
+		var minFS = 100,	//minimum font size in %
 		maxFS = 500;		//maximum font size in %
 		return minFS + Math.floor(v / ((maxV - minV) / (maxFS - minFS)));
+	};
+	$scope.roundTagColor = function(v, minV , maxV) {
+
+		var roundSize = $scope.roundFontSize(v, minV , maxV);
+		var color;
+
+		if (roundSize > 200){
+			color = 'tag1';
+		}
+		if (roundSize > 300){
+			color = 'tag2';
+		}
+		if (roundSize > 400){
+			color = 'tag3';
+		}
+		if (roundSize > 500){
+			color = 'tag4';
+		}
+		return color;
 	};
 
 };

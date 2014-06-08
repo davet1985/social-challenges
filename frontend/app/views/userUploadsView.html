@@ -17,8 +17,8 @@
 			  					<section class="top">
 			  						<h3 class="leaderboard-title">{{value.title}}</h3>
 			  						<p>{{value.description}}</p>
-			  						<ul class="image_tags">
-		   								<li ng-repeat="(key, value) in value.tags"><a href="#!/tag/{{value}}">{{value}}</a></li>
+			  						<ul class="tags">
+		   								<li ng-repeat="(key, value) in value.tags"><span class="label label-primary"><a href="#!/tag/{{value}}">{{value}}</a></span></li>
 		            				</ul>
 							  </section>
 							</div>
@@ -28,13 +28,5 @@
 			<a href="#!/upload" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload another</a>
 		</section>
 
-		<br />
-
-		<section class="categories" ng-controller="tagCloudCtrl">
-            <h3>Tag Cloud</h3>
-            <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-		        <li ng-repeat="key in tagCloud.tagCloud"><a href="#!/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
-            </ul>
-  		</section>
 	</div> 
 </div>      

@@ -51,8 +51,8 @@ class TagRepository
     $db.execute(update, tagId)
   end
   
-  def self.all
-    results = $db.execute("select id, userid, tagName, numOfObjects from tags")
+  def self.all(type)
+    results = $db.execute("select id, userid, tagName, numOfObjects from tags where type = ?", type)
   end
   
   def self.popular(search, number, type)
@@ -85,7 +85,7 @@ class TagRepository
     select = <<-SQL
       SELECT t.id, t.userid, t.tagName
       FROM tag_objects o join tags t on t.id = o.tagid
-      WHERE o.objectid = ?
+      WHERE o.objectid = ? and t.type = 'tag'
       SQL
     results = $db.execute(select, object_id)
     tags = TagHelper.cast_results results

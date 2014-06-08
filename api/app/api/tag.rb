@@ -31,8 +31,8 @@ module SocialChallenges
       end
     end
     
-    get :all do
-      JSON.parse(TagCloud.tag_cloud(TagRepository.all))
+    get '/:type/all' do
+      JSON.parse(TagCloud.tag_cloud(TagRepository.all(params[:type])))
     end
 
     post '/add' do

@@ -7,16 +7,19 @@ app.service('tagCloudService', ['$http', '$location',  function($http, $location
         var url;
         
         if (mode === 'cloud' ){
-            url  = 'http://localhost:9292/tag/all';
+            url  = 'http://localhost:9292/tag/'+type+'/all';
         } else {
             url  = 'http://localhost:9292/tag/'+type+'/'+mode+'/'+searchString+'/'+count+'';
         }
          
         
-        $http.get(url)
-        .success(function(data) {
-			angular.copy(data, _tagCloudDataArr);
-        });
+		$http.get(url)
+		.then(function(results){
+			//Success
+			angular.copy(results.data, _tagCloudDataArr);
+		}, function(results){
+			//Error
+		});
     };
 
 

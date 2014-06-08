@@ -13,9 +13,11 @@
 
           <ul class="nav navbar-nav">
             <li ng-if="isUserLogged"><a href="#!/user/{{isUserLogged}}"><img ng-if="gravatarEmail" gravatar-src="'{{gravatarEmail}}'" class="profileThumb" gravatar-size="24">{{isUserLogged}}</a></li>
-			       <li ng-if="isUserLogged"><a href="#!/logout">Logout</a></li>
             <li ng-if="!isUserLogged"><a href="#!/signup">Sign up</a></li>
             <li ng-if="!isUserLogged"><a href="#!/login">Login</a></li>
+            <li><a href="#!/upload">Upload</a></li>
+            <li><a href="#!/tagsearch">Search</a></li>
+            <li ng-if="isUserLogged"><a href="#!/logout">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
  

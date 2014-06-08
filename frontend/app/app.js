@@ -33,9 +33,9 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/ratingView.html',
                     controller: 'ratingCtrl'
                 })
-                .when('/video/tag/:tag',{
-                    templateUrl: 'app/views/ratingVideoView.html',
-                    controller: 'ratingVideoCtrl'
+                .when('/tagsearch',{
+                    templateUrl: 'app/views/tagSearchView.html',
+                    controller: 'tagCloudCtrl'
                 })
                 .when('/login',{
                     templateUrl: 'app/views/loginView.html',

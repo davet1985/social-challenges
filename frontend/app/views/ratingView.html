@@ -7,29 +7,25 @@
     <div class="image-container">
     <img ng-src="{{key.previous.file_name_medium}}" class="img-rounded img-responsive" ng-if="key.previous.type === 'image'">
     <img ng-src="https://i1.ytimg.com/vi/{{key.previous.original_file_name}}/hqdefault.jpg" class="img-rounded img-responsive" ng-if="key.previous.type === 'video'">
-
     <h2><span><i class="fa fa-thumbs-up"></i> {{key.previous.overallScore}}</span></h2>
     </div>
   </section>
 
-    <section class="categories hidden-xs" ng-controller="tagCloudCtrl">
-      <h3>Tag cloud</h3>
-      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-        <li ng-repeat="key in tagCloud.tagCloud"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
-      </ul>
-  </section> 
-      <section class="categories hidden-xs" ng-controller="tagPopularCtrl">
-      <h3>Most popular tags</h3>
-      <ul class="tags" ng-repeat="(key, tagCloud) in tagPopularCloud">
-        <li ng-repeat="key in tagCloud.tagCloud"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
-      </ul>
+  <section class="categories hidden-xs" ng-controller="tagPopularCtrl">
+    <h3><i class="glyphicon glyphicon-fire"></i> Popular tags</h3>
+    <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+      <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:144%">{{key.tag}}</span></a></li>
+    </ul>
+    <a href="#!/tagsearch">More...</a>
   </section>
-        <section class="categories hidden-xs" ng-controller="tagRecentCtrl">
-      <h3>Most recent tags</h3>
-      <ul class="tags" ng-repeat="(key, tagCloud) in tagRecentCloud">
-        <li ng-repeat="key in tagCloud.tagCloud"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
-      </ul>
+
+    <section class="categories hidden-xs" ng-controller="tagPopularCtrl">
+    <h3><i class="fa fa-trophy"></i> Top 20 in</h3>
+    <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+      <li ng-repeat="key in tagCloud.tagCloud | orderBy:key.count:reverse" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/top/{{key.tag}}"><span style="font-size:144%">{{key.tag}}</span></a></li>
+    </ul>
   </section>
+
 </div>
 
 <div class="col-xs-6 col-sm-3 col-sm-push-6" ng-repeat="key in ratings">
@@ -42,6 +38,14 @@
     <h2 class="next" ng-if="key.next.type === 'end'"><span>No more in {{getPageTag()}}</span></h2>
   </div>
   </section>
+
+    <section class="categories hidden-xs" ng-controller="tagRecentCtrl">
+      <h3><i class="glyphicon glyphicon-send"></i> Recent tags</h3>
+      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+        <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:144%">{{key.tag}}</span></a></li>
+      </ul>
+      <a href="#!/tagsearch">More...</a>
+    </section>
 </div>
 
 <div class="col-xs-12 col-sm-6 col-sm-pull-3" ng-repeat="key in ratings">
@@ -75,12 +79,23 @@
 </div>
 
 <div class="col-xs-12 visible-xs">
-      <section class="categories" ng-controller="tagCloudCtrl">
-      <h3>More</h3>
+      <section class="categories" ng-controller="tagPopularCtrl">
+      <h3><i class="glyphicon glyphicon-fire"></i> Popular tags</h3>
       <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-        <li ng-repeat="key in tagCloud.tagCloud"><a href="#!/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
+        <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
       </ul>
+      <a href="#!/tagsearch">More...</a>
+      </section>
+
+        <section class="categories" ng-controller="tagRecentCtrl">
+      <h3><i class="glyphicon glyphicon-send"></i> Recent tags</h3>
+      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+        <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
+      </ul>
+      <a href="#!/tagsearch">More...</a>
   </section>
+
+
 </div>
 
 </div>
