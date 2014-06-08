@@ -1,5 +1,5 @@
 //tag cloud
-var tagCloudCtrl = function ($scope, tagCloudService) {
+var tagCloudCtrl = function ($scope, tagCloudService, searchValue) {
 	$scope.tagCloud = tagCloudService.tagCloud;
 	tagCloudService.getTagCloudData('tag', 'cloud', 'all');
 
@@ -20,7 +20,7 @@ var tagCloudCtrl = function ($scope, tagCloudService) {
 		return element.name.match(/^Ma/) ? true : false;
 	};
 };
-tagCloudCtrl.$inject = ['$scope', 'tagCloudService'];
+tagCloudCtrl.$inject = ['$scope', 'tagCloudService', 'searchValue'];
 
 //Most popular tags
 var tagPopularCtrl = function ($scope, tagCloudService) {

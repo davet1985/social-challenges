@@ -13,6 +13,17 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 		return $location.path().split('/')[2]||'Unknown';
     };
 
+    $scope.searchQuery = function(query){
+		$scope.query = query;
+		$location.path('/tagsearch');
+    };
+
+    $scope.searchClear = function(query){
+		if(query.length === 0){
+			$scope.query = '';
+		}
+	};
+
 	//ckeck if country code exists - if not go get it
 	if (window.localStorage.getItem('CountryCode') !== null){
 		$scope.countryCode = window.localStorage.getItem('CountryCode');

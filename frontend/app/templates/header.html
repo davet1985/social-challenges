@@ -16,8 +16,16 @@
             <li ng-if="!isUserLogged"><a href="#!/signup">Sign up</a></li>
             <li ng-if="!isUserLogged"><a href="#!/login">Login</a></li>
             <li><a href="#!/upload">Upload</a></li>
-            <li><a href="#!/tagsearch">Search</a></li>
             <li ng-if="isUserLogged"><a href="#!/logout">Logout</a></li>
+            <li class="nav-search"> <form ng-submit="searchQuery(query)">
+ <div class="input-group">
+
+      <input type="text" class="form-control" ng-model="query" placeholder="Search tags" ng-change="searchClear(query)">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="searchQuery(query)"><i class="fa fa-search"></i></button>
+      </span>
+    </div> </form>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
  
