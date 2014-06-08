@@ -1,7 +1,7 @@
 //tag cloud
 var tagCloudCtrl = function ($scope, tagCloudService) {
 	$scope.tagCloud = tagCloudService.tagCloud;
-	tagCloudService.getTagCloudData('cloud');
+	tagCloudService.getTagCloudData('tag', 'cloud', 'all');
 
 	//set default
 	$scope.radioModel = 'all';
