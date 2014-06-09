@@ -57,12 +57,10 @@ class TagRepository
   
   def self.popular(search, number, type)
     select = <<-SQL
-    select id, userid, tagName, numOfObjects from (
       select id, userid, tagName, numOfObjects, tag_datetime from tags
       where tagName like ? and type = ?
       order by numOfObjects desc
       limit ? 
-    ) order by tag_datetime desc
       SQL
       
       search = '%' + search + '%'
