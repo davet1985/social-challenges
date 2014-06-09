@@ -2,26 +2,30 @@
 /* jshint -W065 */
 
 var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, configService, usernameService, md5) {
-
+	//email regex
 	$scope.emailRegx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	
+	//get 3rd path
 	$scope.getPageTag = function() {
 		return $location.path().split('/')[3]||'Unknown';
     };
-	
+	//get 2nd path
 	$scope.getPageType = function() {
 		return $location.path().split('/')[2]||'Unknown';
     };
-
+    //redirect to search page
     $scope.searchQuery = function(query){
 		$scope.query = query;
 		$location.path('/tagsearch');
     };
-
+    //clear search
     $scope.searchClear = function(query){
 		if(query.length === 0){
 			$scope.query = '';
 		}
+		//return tag list length 
+		$scope.listLength = function(){
+			return document.getElementsByClassName('tag-list').length;
+		};
 	};
 
 	//ckeck if country code exists - if not go get it

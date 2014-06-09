@@ -8,8 +8,11 @@ app.service('tagCloudService', ['$http', '$location',  function($http, $location
         
         if (mode === 'cloud' ){
             url  = 'http://localhost:9292/tag/'+type+'/all';
-        } else {
+            console.log(mode);
+        }
+        else {
             url  = 'http://localhost:9292/tag/'+type+'/'+mode+'/'+searchString+'/'+count+'';
+            console.log(mode);
         }
          
         
