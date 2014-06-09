@@ -5,6 +5,7 @@
 				<div class="row">
 					<span class="fa fa-key fa-flip-horizontal page-bg"></span>
 					<form class="form-signin col-xs-12 col-sm-6 col-md-5" role="form" name="loginForm" ng-submit="processForm(loginForm.$valid)" novalidate>
+			
 						<div class="form-group" ng-class="{ 'has-error' : loginForm.username.$error.required && !loginForm.username.$pristine || submittedError && loginForm.username.$invalid && !loginForm.username.$dirty || errorMessage}">
 							<p class="help-block"  style='height:20px'>{{errorMessage}}</p>
 							<label for="username">Username</label>
