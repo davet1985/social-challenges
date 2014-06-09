@@ -1,3 +1,6 @@
+require_relative './../model/tag'
+require_relative './../repository/tag_upload_repository'
+
 class TagCloud
 
   def self.tag_cloud(tags)
@@ -12,10 +15,22 @@ class TagCloud
       if maxCount < tag[3] then
         maxCount = tag[3]
       end
+      
+      randomObject = TagUploadRepository.get_random_object_bytagname tag[2], Array[-1], 'tag'
+      
+      randomId = 1
+      if randomObject != false then
+        randomId = randomObject.id
+      end
+        
+      
       json_new.push(JSON.parse({
         "id"=> tag[0], 
         "tag" => tag[2],
-        "count" => tag[3]
+        "count" => tag[3],
+        "file_name" => "http://localhost:9292/upload/#{randomId}/download",
+        "file_name_thumb" => "http://localhost:9292/upload/#{randomId}/download/thumb",
+        "file_name_medium" => "http://localhost:9292/upload/#{randomId}/download/medium"
       }.to_json))
   }
   totalCount = tags.count
