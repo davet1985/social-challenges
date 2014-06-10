@@ -29,6 +29,8 @@ module SocialChallenges
         JSON.parse(TagCloud.tag_cloud(TagRepository.popular(search, number, type)))
       when "recent"
         JSON.parse(TagCloud.tag_cloud(TagRepository.recent(search, number, type)))
+      when "random"
+        JSON.parse(TagCloud.tag_cloud(TagRepository.random(search, number, type)))
       else
         { "mode" => "Mode not supported. Either: popular or recent." } 
       end

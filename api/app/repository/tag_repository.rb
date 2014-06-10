@@ -90,6 +90,18 @@ class TagRepository
       search = '%' + search + '%'
     results = $db.execute(select, search, type, number)
   end
+  
+  def self.random(search, number, type)
+    select = <<-SQL
+      select id, userid, tagName, numOfObjects from tags
+      where tagName like ? and type = ?
+      order by tag_datetime desc
+      SQL
+      
+      search = '%' + search + '%'
+    results = $db.execute(select, search, type)
+    results.sample(number.to_i)
+  end
 
   def self.find_by_object_id(object_id)
     select = <<-SQL
