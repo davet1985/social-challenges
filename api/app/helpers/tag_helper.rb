@@ -20,9 +20,10 @@ class TagHelper
   end
   
   def self.find_or_add_tag(tag, user_id)
-    tag_id = TagRepository.findByName tag
+    tagLowercase = tag.downcase
+    tag_id = TagRepository.findByName tagLowercase
     if tag_id == -1
-      tag = Tag.new tag, user_id, 'tag'
+      tag = Tag.new tagLowercase, user_id, 'tag'
       tag_id = TagRepository.save tag
     end
     tag_id

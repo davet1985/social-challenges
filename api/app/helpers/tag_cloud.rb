@@ -19,8 +19,12 @@ class TagCloud
       randomObject = TagUploadRepository.get_random_object_bytagname tag[2], Array[-1], 'tag'
       
       randomId = 1
+      type = 'image'
+      video_id = 'xxx'
       if randomObject != false then
         randomId = randomObject.id
+        type = randomObject.type
+        video_id = randomObject.file_name
       end
         
       
@@ -28,6 +32,8 @@ class TagCloud
         "id"=> tag[0], 
         "tag" => tag[2],
         "count" => tag[3],
+        "type" => type,
+        "video_id" => video_id,
         "file_name" => "http://localhost:9292/upload/#{randomId}/download",
         "file_name_thumb" => "http://localhost:9292/upload/#{randomId}/download/thumb",
         "file_name_medium" => "http://localhost:9292/upload/#{randomId}/download/medium"
