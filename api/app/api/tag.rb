@@ -21,7 +21,10 @@ module SocialChallenges
       search = params[:search]
       if search == 'all' then search = '' end
       number = params[:number]
+      if number == 'all' then number = 300000 end
       case mode
+      when "all"
+        JSON.parse(TagCloud.tag_cloud(TagRepository.alphabetic(search, number, type)))
       when "popular"
         JSON.parse(TagCloud.tag_cloud(TagRepository.popular(search, number, type)))
       when "recent"

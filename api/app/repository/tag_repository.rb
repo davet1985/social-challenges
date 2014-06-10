@@ -55,6 +55,18 @@ class TagRepository
     results = $db.execute("select id, userid, tagName, numOfObjects from tags where type = ?", type)
   end
   
+  def self.alphabetic(search, number, type)
+    select = <<-SQL
+      select id, userid, tagName, numOfObjects, tag_datetime from tags
+      where tagName like ? and type = ?
+      order by tagName asc
+      limit ? 
+      SQL
+      
+      search = '%' + search + '%'
+    results = $db.execute(select, search, type, number)
+  end
+  
   def self.popular(search, number, type)
     select = <<-SQL
       select id, userid, tagName, numOfObjects, tag_datetime from tags
