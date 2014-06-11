@@ -32,6 +32,69 @@ class UploadRepository
       false
     end
   end
+  
+  def self.alphabetic(search, number, type)
+    select =  <<-SQL
+      SELECT *
+      FROM uploads up, users u
+      WHERE up.userid = u.id
+      AND up.title like ?
+      AND up.type like ?
+      order by up.title asc
+      LIMIT ?
+      SQL
+    search = '%' + search + '%'
+    results = $db.execute(select, search, type, number)
+    uploads = UploadModelHelper.cast_upload_results results
+    uploads
+  end
+  
+  def self.popular(search, number, type)
+    select =  <<-SQL
+      SELECT *
+      FROM uploads up, users u
+      WHERE up.userid = u.id
+      AND up.title like ?
+      AND up.type like ?
+      order by up.overallScore desc
+      LIMIT ?
+      SQL
+    search = '%' + search + '%'
+    results = $db.execute(select, search, type, number)
+    uploads = UploadModelHelper.cast_upload_results results
+    uploads
+  end
+  
+  def self.recent(search, number, type)
+    select =  <<-SQL
+      SELECT *
+      FROM uploads up, users u
+      WHERE up.userid = u.id
+      AND up.title like ?
+      AND up.type like ?
+      order by up.upload_datetime desc
+      LIMIT ?
+      SQL
+    search = '%' + search + '%'
+    results = $db.execute(select, search, type, number)
+    uploads = UploadModelHelper.cast_upload_results results
+    uploads
+  end
+  
+  def self.random(search, number, type)
+    select =  <<-SQL
+      SELECT *
+      FROM uploads up, users u
+      WHERE up.userid = u.id
+      AND up.title like ?
+      AND up.type like ?
+      order by up.upload_datetime desc
+      SQL
+    search = '%' + search + '%'
+    results = $db.execute(select, search, type).sample(number.to_i)
+    uploads = UploadModelHelper.cast_upload_results results
+    uploads
+  end
 
   def self.save(upload)
     insert =  <<-SQL

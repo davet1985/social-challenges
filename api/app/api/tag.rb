@@ -17,6 +17,7 @@ module SocialChallenges
     
     get '/:type/:mode/:search/:number' do
       type = params[:type]
+      if type == 'all' then type = '%%' end
       mode = params[:mode]
       search = params[:search]
       if search == 'all' then search = '' end

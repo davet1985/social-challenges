@@ -57,8 +57,8 @@ class TagRepository
   
   def self.alphabetic(search, number, type)
     select = <<-SQL
-      select id, userid, tagName, numOfObjects, tag_datetime from tags
-      where tagName like ? and type = ?
+      select id, userid, tagName, numOfObjects, type, tag_datetime from tags
+      where tagName like ? and type like ?
       order by tagName asc
       limit ? 
       SQL
@@ -69,8 +69,8 @@ class TagRepository
   
   def self.popular(search, number, type)
     select = <<-SQL
-      select id, userid, tagName, numOfObjects, tag_datetime from tags
-      where tagName like ? and type = ?
+      select id, userid, tagName, numOfObjects, type, tag_datetime from tags
+      where tagName like ? and type like ?
       order by numOfObjects desc
       limit ? 
       SQL
@@ -81,8 +81,8 @@ class TagRepository
   
   def self.recent(search, number, type)
     select = <<-SQL
-      select id, userid, tagName, numOfObjects from tags
-      where tagName like ? and type = ?
+      select id, userid, tagName, numOfObjects, type from tags
+      where tagName like ? and type like ?
       order by tag_datetime desc
       limit ?
       SQL
@@ -93,8 +93,8 @@ class TagRepository
   
   def self.random(search, number, type)
     select = <<-SQL
-      select id, userid, tagName, numOfObjects from tags
-      where tagName like ? and type = ?
+      select id, userid, tagName, numOfObjects, type from tags
+      where tagName like ? and type like ?
       order by tag_datetime desc
       SQL
       

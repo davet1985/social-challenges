@@ -147,8 +147,29 @@ module SocialChallenges
       TagHelper.process_tags tags_csv, upload_id, user.id
       upload_id
     end
+    
+    get '/:mode/:type/:search/:number' do
+      type = params[:type]
+      if type == 'all' then type = '%%' end
+      mode = params[:mode]
+      search = params[:search]
+      if search == 'all' then search = '' end
+      number = params[:number]
+      if number == 'all' then number = 300000 end
+      case mode
+      when "all"
+        JSON.parse(UploadRepository.alphabetic(search, number, type).to_json)
+      when "popular"
+        JSON.parse(UploadRepository.popular(search, number, type).to_json)
+      when "recent"
+        JSON.parse(UploadRepository.recent(search, number, type).to_json)
+      when "random"
+        JSON.parse(UploadRepository.random(search, number, type).to_json)
+      else
+        { "mode" => "Mode not supported. Either: popular or recent." } 
+      end
+    end
+  
   end
-
-
 
 end

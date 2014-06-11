@@ -16,7 +16,7 @@ class TagCloud
         maxCount = tag[3]
       end
       
-      randomObject = TagUploadRepository.get_random_object_bytagname tag[2], Array[-1], 'tag'
+      randomObject = TagUploadRepository.get_random_object_bytagname tag[2], Array[-1], tag[4]
       
       randomId = 1
       type = 'image'
