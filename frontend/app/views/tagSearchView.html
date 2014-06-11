@@ -1,23 +1,31 @@
 <div class="row">
     <div class="col-md-12">
         <section class="">
-            <h2>Tag search</h2>      
+            <h2>Tag search</h2>     
+
+                   <div class="row">
+         <div class="col-xs-12 col-sm-6 col-md-5">
+<input type="text" class="form-control" id="main-search" ng-model="query" placeholder="Search tags" ng-change="searchTags('all', query, 'all')">
+          </div>
+          </div>
+
+<br />
+
        <div class="row">
          <div class="col-md-12">
              <div class="form-group">
                 <div class="btn-group">
-                    <label class="btn btn-info" ng-model="radioModel" btn-radio="'all'" uncheckable ng-change="sortBy('all')">All</label>
-                    <label class="btn btn-info" ng-model="radioModel" btn-radio="'popular'" uncheckable ng-change="sortBy('popular', '100')"><i class="glyphicon glyphicon-fire"></i> Popular</label>
-                    <label class="btn btn-info" ng-model="radioModel" btn-radio="'recent'" uncheckable ng-change="sortBy('recent', '100')"><i class="glyphicon glyphicon-send"></i> Recent</label>
+                    <label class="btn btn-info" ng-model="radioModel" btn-radio="'all'" uncheckable ng-change="searchTags(radioModel, query, 'all')">All</label>
+                    <label class="btn btn-info" ng-model="radioModel" btn-radio="'popular'" uncheckable ng-change="searchTags(radioModel, query, 'all')"><i class="glyphicon glyphicon-fire"></i> Popular</label>
+                    <label class="btn btn-info" ng-model="radioModel" btn-radio="'recent'" uncheckable ng-change="searchTags(radioModel, query, 'all')"><i class="glyphicon glyphicon-send"></i> Recent</label>
                 </div>
             </div>
           </div>  
         </div>  
 
-
             <section class="categories cloud">
               <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-                <li ng-repeat="key in tagCloud.tagCloud | filter:query" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}} tag-list"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a>
+                <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}} tag-list"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a>
                 </li>
               </ul>
               <p ng-show="listLength() == 0">No results</p>

@@ -35,7 +35,7 @@ var app = angular.module('app', [
                 })
                 .when('/tagsearch',{
                     templateUrl: 'app/views/tagSearchView.html',
-                    controller: 'tagCloudCtrl'
+                    controller: 'tagSearchCtrl'
                 })
                 .when('/login',{
                     templateUrl: 'app/views/loginView.html',
@@ -81,7 +81,8 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/404View.html',
                     controller: 'errorCtrl'
                 })
-                .otherwise({'redirectTo': '/404'});
+                .otherwise({'redirectTo': '/404'
+                });
 
             $locationProvider
             .html5Mode(false)

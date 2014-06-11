@@ -4,6 +4,11 @@
 var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, configService, usernameService, md5) {
 	//email regex
 	$scope.emailRegx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	
+	//generic get page
+	$scope.getPage = function(page){
+		return $location.path().split('/')[page];
+	};
 	//get 3rd path
 	$scope.getPageTag = function() {
 		return $location.path().split('/')[3]||'Unknown';
@@ -12,22 +17,19 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 	$scope.getPageType = function() {
 		return $location.path().split('/')[2]||'Unknown';
     };
+   
     //redirect to search page
-    $scope.searchQuery = function(query){
-		$scope.query = query;
+    $scope.searchQuery = function(topQuery){
+		$scope.query = topQuery;
 		$location.path('/tagsearch');
     };
-    //clear search
-    $scope.searchClear = function(query){
-		if(query.length === 0){
+    //clear top search
+    $scope.searchClear = function(topQuery){
+		if(topQuery.length === 0 ){
+			$scope.topQuery = '';
 			$scope.query = '';
 		}
-		//return tag list length 
-		$scope.listLength = function(){
-			return document.getElementsByClassName('tag-list').length;
-		};
 	};
-
 	//ckeck if country code exists - if not go get it
 	if (window.localStorage.getItem('CountryCode') !== null){
 		$scope.countryCode = window.localStorage.getItem('CountryCode');
@@ -73,8 +75,17 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 
 	$scope.roundFontSize = function(v, minV , maxV) {
 		var minFS = 100,	//minimum font size in %
-		maxFS = 500;		//maximum font size in %
-		return minFS + Math.floor(v / ((maxV - minV) / (maxFS - minFS)));
+		maxFS = 500,		//maximum font size in %
+		size = 0;
+		if (minV === maxV) {
+			size = maxFS;
+		}
+		else {
+			var multiplier = (maxFS-minFS)/(maxV-minV);
+			size = minFS + ((maxV-(maxV-(v-minV)))*multiplier);
+		}
+		return size;
+		
 	};
 	$scope.roundTagColor = function(v, minV , maxV) {
 
@@ -95,6 +106,7 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 		}
 		return color;
 	};
+
 
 };
 
