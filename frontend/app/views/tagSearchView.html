@@ -25,9 +25,15 @@
 
             <section class="categories cloud search-cloud" >
               <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-                <li ng-repeat="key in tagCloud.tagCloud" style="background-image: url('{{key.file_name_medium}}');" class="tag-list grow"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" ng-if="key.type === 'image'" >{{key.tag}}</span></a>
-                </li>
-                <li ng-repeat="key in tagCloud.tagCloud" style="background-image: url('https://i1.ytimg.com/vi/{{key.video_id}}/hqdefault.jpg');" class="tag-list grow"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" ng-if="key.type === 'video'">{{key.tag}}</span></a>
+                <li ng-repeat="key in tagCloud.tagCloud" class="tag-list grow">
+                <a href="#!/rate/tag/{{key.tag}}">
+                  <span ng-if="key.type === 'image'" style="background-image: url('{{key.file_name_medium}}');" class="tag-list">
+                    <span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" >{{key.tag}}</span>
+                  </span>  
+                  <span ng-if="key.type === 'video'" style="background-image: url('https://i1.ytimg.com/vi/{{key.video_id}}/hqdefault.jpg');">
+                    <span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%"  class="tag-list">{{key.tag}}</span>
+                  </span>
+                  </a>
                 </li>
               </ul>
               <p ng-show="listLength() == 0">No results</p>
