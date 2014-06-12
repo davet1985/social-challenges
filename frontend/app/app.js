@@ -6,7 +6,8 @@ var app = angular.module('app', [
     'ngTagsInput',
     'angularFileUpload',
     'ui.gravatar',
-	'ngCookies'
+	'ngCookies',
+    'wu.masonry'
 ])
     .config([
         '$routeProvider',

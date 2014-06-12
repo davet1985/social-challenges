@@ -58,6 +58,7 @@ module.exports = function(grunt) {
                         //jquery
                         'assets/js/jquery/jquery-1.10.2.min.js',
                         'assets/js/jquery/jquery.Jcrop.min.js',
+                        'assets/js/jquery/jjquery.masonry.min.js',
                         //angular libs
                         'assets/js/lib/lodash.min.js',
                         'assets/js/file-upload/angular-file-upload-shim.min.js',
@@ -68,17 +69,16 @@ module.exports = function(grunt) {
                         'assets/js/lib/angular-route.min.js',
                         'assets/js/lib/ng-sanitize.js',
                         'assets/js/lib/ng-tags-input.min.js',
+                        'assets/js/lib/angular-gravatar.js',
+                        'assets/js/lib/md5.js',
+                        'assets/js/lib/angular-masonry.js',
                         //ui-bootstrap
                         'assets/js/ui-bootstrap/ui-bootstrap.js',
                         //flat ui
                         'assets/js/flat-ui/jquery-ui-1.10.3.custom.min.js',
                         'assets/js/flat-ui/jquery.placeholder.js',
                         'assets/js/flat-ui/flatui-checkbox.js',
-                        'assets/js/flat-ui/flatui-radio.js',
-                        //gravatar
-                        'assets/js/lib/angular-gravatar.js',
-                        'assets/js/lib/md5.js'               
-      
+                        'assets/js/flat-ui/flatui-radio.js'
                     ]
                 }
             },

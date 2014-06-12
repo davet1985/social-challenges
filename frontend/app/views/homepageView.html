@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-12">
+            <h2>Home</h2>    
+
+<h3>New users</h3>
+<section class="categories cloud search-cloud" ng-controller="homepageCtrl">
+              <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+                <li ng-repeat="key in tagCloud.tagCloud" style="background-image: url('{{key.file_name_medium}}');" class="tag-list grow"><a href="#!/rate/user/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" ng-if="key.type === 'image'" >{{key.tag}}</span></a>
+                </li>
+                <li ng-repeat="key in tagCloud.tagCloud" style="background-image: url('https://i1.ytimg.com/vi/{{key.video_id}}/hqdefault.jpg');" class="tag-list grow"><a href="#!/rate/user/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" ng-if="key.type === 'video'">{{key.tag}}</span></a>
+                </li>
+              </ul>
+          </section>  
+
+
+<h3>Popular images</h3>
+<section class="categories cloud search-cloud" ng-controller="uploadsCtrl">
+              <ul class="tags" ng-repeat="key in uploads">
+                <li class="tag-list grow"><img ng-src="{{key.file_name_thumb}}"></li>
+              </ul>
+          </section>  
+
+<h3>Popular videos</h3>
+<section class="categories cloud search-cloud" ng-controller="uploadsVideosCtrl">
+              <ul class="tags" ng-repeat="key in uploadsVideo">
+                <li class="tag-list grow"><img ng-src="https://i1.ytimg.com/vi/{{key.original_file_name}}/default.jpg"></li>
+              </ul>
+          </section>  
+              
+    </div> 
+</div>      
