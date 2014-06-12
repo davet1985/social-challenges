@@ -29,6 +29,10 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 			$scope.topQuery = '';
 			$scope.query = '';
 		}
+		//return tag list length 
+		$scope.listLength = function(){
+			return document.getElementsByClassName('tag-list').length;
+		};
 	};
 	//ckeck if country code exists - if not go get it
 	if (window.localStorage.getItem('CountryCode') !== null){
@@ -74,8 +78,8 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 	});
 
 	$scope.roundFontSize = function(v, minV , maxV) {
-		var minFS = 100,	//minimum font size in %
-		maxFS = 500,		//maximum font size in %
+		var minFS = 300,	//minimum font size in %
+		maxFS = 1000,		//maximum font size in %
 		size = 0;
 		if (minV === maxV) {
 			size = maxFS;

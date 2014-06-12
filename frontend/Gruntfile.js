@@ -55,16 +55,18 @@ module.exports = function(grunt) {
             core: {
                 files: {
                     'public/js/core.js' : [
-                        //libs
+                        //jquery
+                        'assets/js/jquery/jquery-1.10.2.min.js',
+                        'assets/js/jquery/jquery.Jcrop.min.js',
+                        //angular libs
                         'assets/js/lib/lodash.min.js',
                         'assets/js/file-upload/angular-file-upload-shim.min.js',
                         'assets/js/lib/angular.min.js',
+                        //angular modules
 						'assets/js/lib/cookies.js',
                         'assets/js/file-upload/angular-file-upload.min.js',
                         'assets/js/lib/angular-route.min.js',
                         'assets/js/lib/ng-sanitize.js',
-                        'assets/js/jquery/jquery-1.10.2.min.js',
-                        'assets/js/jquery/jquery.Jcrop.min.js',
                         'assets/js/lib/ng-tags-input.min.js',
                         //ui-bootstrap
                         'assets/js/ui-bootstrap/ui-bootstrap.js',

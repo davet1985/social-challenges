@@ -212,7 +212,8 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                 console.log('title = '+$scope.title);
                 console.log('desc = '+$scope.description);
                 console.log('tags ='+$scope.tagsToCSV());
-                
+
+
                 $http({
                     url : configService.API_END_POINT+'upload/add',
                     method: 'POST',
@@ -249,7 +250,12 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
         
     // TODO: create a tag service to handle stuff like this and inject it into this controller
     $scope.tagsToCSV = function() {
+
         var tags = $scope.tags;
+
+        if(tags === undefined){
+            tags = '';
+        }
         var tagsCSV = '';
         for (var i = 0; i < tags.length; i++) {
             tagsCSV += tags[i].text;

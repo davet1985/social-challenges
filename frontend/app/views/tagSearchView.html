@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <section class="">
+
             <h2>Tag search</h2>     
 
                    <div class="row">
@@ -23,13 +23,16 @@
           </div>  
         </div>  
 
-            <section class="categories cloud">
+            <section class="categories cloud search-cloud" >
               <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-                <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}} tag-list"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a>
+                <li ng-repeat="key in tagCloud.tagCloud" style="background-image: url('{{key.file_name_medium}}');" class="tag-list grow"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" ng-if="key.type === 'image'" >{{key.tag}}</span></a>
+                </li>
+                <li ng-repeat="key in tagCloud.tagCloud" style="background-image: url('https://i1.ytimg.com/vi/{{key.video_id}}/hqdefault.jpg');" class="tag-list grow"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" ng-if="key.type === 'video'">{{key.tag}}</span></a>
                 </li>
               </ul>
               <p ng-show="listLength() == 0">No results</p>
           </section> 
-        </section>
+
+
     </div> 
 </div>      

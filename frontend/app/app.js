@@ -21,9 +21,9 @@ var app = angular.module('app', [
 
             $routeProvider
                 .when('/',{
-                    redirectTo: '/rate/tag/cat', /* todo: make it go to a random tag or most popular? */
-                    templateUrl: 'app/views/ratingView.html',
-                    controller: 'ratingCtrl'
+                    //redirectTo: '/rate/tag/cat', /* todo: make it go to a random tag or most popular? */
+                    templateUrl: 'app/views/homepageView.html'
+                    //controller: 'homepageCtrl'
                 })
                 .when('/rate/:type/:tag/:id/:prevId',{
                     templateUrl: 'app/views/ratingView.html',
