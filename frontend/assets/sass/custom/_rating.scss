@@ -121,7 +121,7 @@ img.profileThumb{
 				color: #fff;
 				font-size: .5em;
 				span{
-					display: inline-block;
+					display: -webkit-box;
 					line-height: .7em;
 					padding: 8px;
 				}
@@ -142,7 +142,7 @@ img.profileThumb{
 		}
 	}
 }
-	.grow {
+	.grow a{
   display: inline-block;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
@@ -155,7 +155,7 @@ img.profileThumb{
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
 
-.grow:hover {
+.grow a:hover {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
@@ -172,9 +172,18 @@ img.profileThumb{
 
 }
 
+.categories.search-cloud .tags li a:hover .tag-text{
+	background-color: #333 !important;
+}
 
 .tag-text{
-	display: block;
+	display: inline-block;
+	background-color: $peter-river;
+	transition: background-color 0.5s ease;
+}
+.categories.search-cloud .tags li{
+	background-color: transparent;		
+
 }
 .categories.search-cloud .tags div a div{
 	display: block;
@@ -212,12 +221,12 @@ img.profileThumb{
 	height: 136px;
 }
 .tagSize3{
-	width: 270px;
-	height: 207px;
+	width: 230px;
+	height: 173px;
 }
 .tagSize4{
-	width: 368px;
-	height: 276px; 
+	width: 300px;
+	height: 225px; 
 }
 
 .buttons{

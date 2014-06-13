@@ -114,22 +114,22 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 	$scope.roundTagSize = function(v, minV , maxV) {
 
 		var roundSize = $scope.roundFontSize(v, minV , maxV);
-		var color;
+		var size;
 
-		if (roundSize > 199 ){
-			color = 'tagSize1';
+		if (roundSize > 100 ){
+			size = 'tagSize1';
 		}
-		if (roundSize > 299){
-			color = 'tagSize2';
+		if (roundSize > 200){
+			size = 'tagSize2';
 		}
-		if (roundSize > 399){
-			color = 'tagSize3';
+		if (roundSize > 300){
+			size = 'tagSize3';
 		}
-		if (roundSize > 499){
-			color = 'tagSize4';
+		if (roundSize > 400 ){
+			size = 'tagSize4';
 		}
 
-		return color;
+		return size;
 	};
 
 
