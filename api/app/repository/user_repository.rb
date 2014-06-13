@@ -12,5 +12,17 @@ class UserRepository
     row = $db.get_first_row(select, id)
     row[0]
   end
+  
+  def self.popular(number)
+    select =  <<-SQL
+      select "","",us.username, sum(up.overallScore), "user" as totalScore from uploads up, users us
+      where up.userid = us.id
+      group by up.userid
+      order by totalScore desc
+      limit ?
+      SQL
+    rows = $db.execute(select, number)
+    rows
+  end
 
 end
