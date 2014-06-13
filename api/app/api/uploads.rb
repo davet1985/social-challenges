@@ -148,7 +148,7 @@ module SocialChallenges
       upload_id
     end
     
-    get '/:mode/:type/:search/:number' do
+    get '/:type/:mode/:search/:number' do
       type = params[:type]
       if type == 'all' then type = '%%' end
       mode = params[:mode]
