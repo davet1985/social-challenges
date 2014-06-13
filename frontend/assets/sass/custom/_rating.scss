@@ -192,7 +192,8 @@ img.profileThumb{
 }
 .tag-img{
 	display: block;
-	width: 100%;
+	width: 92px;
+	height: 66px;
 }
 .masonry-brick {
     margin: 8px !important;
@@ -202,6 +203,23 @@ img.profileThumb{
 .masonry-brick.loaded {
     display: block;
 }
+.tagSize1{
+	width: 92px; 
+	height: 66px;
+}
+.tagSize2{
+	width: 184px; 
+	height: 136px;
+}
+.tagSize3{
+	width: 270px;
+	height: 207px;
+}
+.tagSize4{
+	width: 368px;
+	height: 276px; 
+}
+
 .buttons{
 	margin-bottom: 30px;
 	margin-right: 30px;

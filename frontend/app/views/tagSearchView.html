@@ -24,12 +24,12 @@
         </div>  
 
             <section class="categories cloud search-cloud">
-              <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry>
+              <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry column-width="5">
                 <li ng-repeat="key in tagCloud.tagCloud" class="tag-list grow masonry-brick">
                 <a href="#!/rate/tag/{{key.tag}}">
                   <span class="search-cloud-items">
-                  <img ng-if="key.type === 'image'" ng-src="{{key.file_name_thumb}}" class="tag-img">
-                  <img ng-if="key.type === 'video'" ng-src="https://i1.ytimg.com/vi/{{key.video_id}}/default.jpg" class="tag-img">
+                  <img ng-if="key.type === 'image'" ng-src="{{key.file_name_medium}}" class="tag-img {{roundTagSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}">
+                  <img ng-if="key.type === 'video'" ng-src="https://i1.ytimg.com/vi/{{key.video_id}}/hqdefault.jpg" class="tag-img {{roundTagSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}">
                   <span ng-if="key.type === 'image'" style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" class="tag-text">{{key.tag}}</span> 
                   <span ng-if="key.type === 'video'" style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" class="tag-text">{{key.tag}}</span>
                   </span>

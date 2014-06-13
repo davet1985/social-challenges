@@ -96,18 +96,39 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 		var roundSize = $scope.roundFontSize(v, minV , maxV);
 		var color;
 
-		if (roundSize > 200){
+		if (roundSize > 199){
 			color = 'tag1';
 		}
-		if (roundSize > 300){
+		if (roundSize > 299){
 			color = 'tag2';
 		}
-		if (roundSize > 400){
+		if (roundSize > 399){
 			color = 'tag3';
 		}
-		if (roundSize > 500){
+		if (roundSize > 499){
 			color = 'tag4';
 		}
+
+		return color;
+	};
+	$scope.roundTagSize = function(v, minV , maxV) {
+
+		var roundSize = $scope.roundFontSize(v, minV , maxV);
+		var color;
+
+		if (roundSize > 199 ){
+			color = 'tagSize1';
+		}
+		if (roundSize > 299){
+			color = 'tagSize2';
+		}
+		if (roundSize > 399){
+			color = 'tagSize3';
+		}
+		if (roundSize > 499){
+			color = 'tagSize4';
+		}
+
 		return color;
 	};
 
