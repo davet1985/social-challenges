@@ -160,28 +160,48 @@ img.profileThumb{
   -ms-transform: scale(1.1);
   transform: scale(1.1);
 }
-
-.categories.search-cloud .tags li{
+.categories.search-cloud .tags{
+	//margin-left: -8px;
+}
+.categories.search-cloud .tags div{
 
 	margin:8px;
-	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02);
 
 
 }
-.categories.search-cloud .tags li a span{
-	padding:10px;
-	text-shadow: 1px 1px 4px #000;
+
+
+.tag-text{
+	display: block;
+}
+.categories.search-cloud .tags div a div{
+	display: block;
+	padding:8px;
+	text-shadow: 10 1px 1px rgba(0, 0, 0, 0.02);
 	/*&:hover{
 		color: red;
 	}*/
 }
+
 .tag-list{
 	background-size: 100%; 
 	background-repeat: no-repeat;
 	background-position: 50%;
 }
+.tag-img{
+	display: block;
+	width: 100%;
+}
+.masonry-brick {
+    margin: 8px !important;
+    display: none;
+}
 
+.masonry-brick.loaded {
+    display: block;
+}
 .buttons{
 	margin-bottom: 30px;
 	margin-right: 30px;
@@ -210,6 +230,6 @@ section.top{
 	border-radius: 0;
 	margin: 14px 0 0 30px;
 	padding: 9px;
-	margin-left: -11px;
+	//margin-left: -11px;
 	font-size: 1.15em;
 }

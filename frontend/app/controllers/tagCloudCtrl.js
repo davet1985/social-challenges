@@ -1,13 +1,25 @@
 //tag cloud
-var tagCloudCtrl = function ($scope, tagCloudService, tagCloudRecentService) {
-	$scope.tagCloud = tagCloudService.tagCloud;
-	tagCloudService.getTagCloudData('tag', 'cloud', 'all');
+var tagCloudCtrl = function ($scope, tagCloudService) {
+	tagCloudService.getTagCloudData('tag','all', 'all', '20').then(function(d) {
+		$scope.tagCloud = d.data;
+	});
 };
-tagCloudCtrl.$inject = ['$scope', 'tagCloudService', 'tagCloudRecentService'];
+tagCloudCtrl.$inject = ['$scope', 'tagCloudService'];
 
 //Most popular tags
 var tagPopularCtrl = function ($scope, tagCloudService) {
-	$scope.tagCloud = tagCloudService.tagCloud;
-	tagCloudService.getTagCloudData('tag', 'popular', 'all', '20');
+
+	tagCloudService.getTagCloudData('tag','popular', 'all', '20').then(function(d) {
+		$scope.tagCloud = d.data;
+	});
 };
 tagPopularCtrl.$inject = ['$scope', 'tagCloudService'];
+
+
+//Most recent tags
+var tagRecentCtrl = function ($scope, tagCloudService) {
+	tagCloudService.getTagCloudData('tag','recent', 'all', '20').then(function(d) {
+		$scope.tagCloud = d.data;
+	});
+};
+tagRecentCtrl.$inject = ['$scope', 'tagCloudService'];

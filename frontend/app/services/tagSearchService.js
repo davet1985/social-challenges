@@ -2,23 +2,18 @@ app.service('tagSearchService', ['$http', '$location',  function($http, $locatio
   
     var _tagSearchDataArr = [];
 
-    var _getTagSearchData = function(mode, query, count){
-        
-        var url  = 'http://localhost:9292/tag/tag/'+mode+'/'+query+'/'+count+'';
-        
-		$http.get(url)
-		.then(function(results){
-			//Success
-			angular.copy(results.data, _tagSearchDataArr);
-		}, function(results){
-			//Error
-		});
-    };
-
-
     return{
         tagCloud: _tagSearchDataArr,
-        getTagSearchData: _getTagSearchData
+        getTagSearchData: function(type, mode, searchString, count){
+        
+            var theurl  = 'http://localhost:9292/tag/'+type+'/'+mode+'/'+searchString+'/'+count+'';
+            
+            var result = $http({method: 'GET', url: theurl})
+            .success(function(results){
+                return results;
+            });
+            return result;
+        }
     };
    
 }]);

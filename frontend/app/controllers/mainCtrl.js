@@ -78,8 +78,8 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 	});
 
 	$scope.roundFontSize = function(v, minV , maxV) {
-		var minFS = 300,	//minimum font size in %
-		maxFS = 1000,		//maximum font size in %
+		var minFS = 120,	//minimum font size in %
+		maxFS = 500,		//maximum font size in %
 		size = 0;
 		if (minV === maxV) {
 			size = maxFS;
@@ -88,7 +88,7 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 			var multiplier = (maxFS-minFS)/(maxV-minV);
 			size = minFS + ((maxV-(maxV-(v-minV)))*multiplier);
 		}
-		return size;
+		return Math.round(size);
 		
 	};
 	$scope.roundTagColor = function(v, minV , maxV) {

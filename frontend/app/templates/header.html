@@ -17,7 +17,7 @@
             <li ng-if="!isUserLogged"><a href="#!/login">Login</a></li>
             <li><a href="#!/upload">Upload</a></li>
             <li ng-if="isUserLogged"><a href="#!/logout">Logout</a></li>
-            <li class="nav-search" ng-controller="tagSearchCtrl" ng-hide="getPage(1) == 'tagsearch'">
+            <li class="nav-search" ng-hide="getPage(1) == 'tagsearch'">
               <form name="topSearchForm" ng-submit="searchQuery(topQuery)">
                 <div class="input-group">
                 <input type="text" id="top-search" class="form-control" ng-model="topQuery" placeholder="Search tags" ng-change="searchClear(topQuery)">

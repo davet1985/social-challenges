@@ -23,15 +23,15 @@
           </div>  
         </div>  
 
-            <section class="categories cloud search-cloud" >
-              <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-                <li ng-repeat="key in tagCloud.tagCloud" class="tag-list grow">
+            <section class="categories cloud search-cloud">
+              <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry>
+                <li ng-repeat="key in tagCloud.tagCloud" class="tag-list grow masonry-brick">
                 <a href="#!/rate/tag/{{key.tag}}">
-                  <span ng-if="key.type === 'image'" style="background-image: url('{{key.file_name_medium}}');" class="tag-list">
-                    <span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" >{{key.tag}}</span>
-                  </span>  
-                  <span ng-if="key.type === 'video'" style="background-image: url('https://i1.ytimg.com/vi/{{key.video_id}}/hqdefault.jpg');">
-                    <span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%"  class="tag-list">{{key.tag}}</span>
+                  <span class="search-cloud-items">
+                  <img ng-if="key.type === 'image'" ng-src="{{key.file_name_thumb}}" class="tag-img">
+                  <img ng-if="key.type === 'video'" ng-src="https://i1.ytimg.com/vi/{{key.video_id}}/default.jpg" class="tag-img">
+                  <span ng-if="key.type === 'image'" style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" class="tag-text">{{key.tag}}</span> 
+                  <span ng-if="key.type === 'video'" style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%" class="tag-text">{{key.tag}}</span>
                   </span>
                   </a>
                 </li>
