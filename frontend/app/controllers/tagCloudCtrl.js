@@ -34,7 +34,7 @@ var tagRecentCtrl = function ($scope, tagCloudService) {
 tagRecentCtrl.$inject = ['$scope', 'tagCloudService'];
 
 var tagRandomCtrl = function ($scope, tagCloudService) {
-	tagCloudService.getTagCloudData('tag','random', 'all', '20').then(function(d) {
+	tagCloudService.getTagCloudData('tag','random', 'all', '15').then(function(d) {
 		$scope.tagCloud = d.data;
 	});
 };
