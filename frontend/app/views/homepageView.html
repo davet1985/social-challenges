@@ -63,11 +63,11 @@
  
 <div class="row">
   <div class="col-md-12">
-   <section class="home-from-users" ng-controller="userRecentCtrl">
-      <h3>Recent Users</h3>
+   <section class="home-from-users" ng-controller="userPopularCtrl">
+      <h3>Popular Users</h3>
       <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry="{'transitionDuration': 0}" column-width="1">
         <li ng-repeat="key in tagCloud.tagCloud" class="masonry-brick">
-          <a href="#!/rate/tag/{{key.tag}}" class="grow">
+          <a href="#!/rate/user/{{key.tag}}" class="grow">
             <div class="image-contain"> 
               <img ng-if="key.type === 'image'" ng-src="{{key.file_name_medium}}" >
               <img ng-if="key.type === 'video'" ng-src="https://i1.ytimg.com/vi/{{key.video_id}}/hqdefault.jpg">
@@ -78,22 +78,6 @@
             </div>
           </a>
         </li>
-      </ul>
-    </section>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <section class="categories stacked" ng-controller="userPopularCtrl">
-      <h3><i class="glyphicon glyphicon-user"></i> Popular users</h3>
-      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-        <li ng-repeat="key in tagCloud.tagCloud | slice:0:8">
-
-        <a href="#!/rate/user/{{key.tag}}" ng-if="key.type === 'image'"><img gravatar-src="'{{key.gravatar}}'" class="profileThumb"><span style="font-size:180%">{{key.tag}}</span></a>
-
-        <a href="#!/rate/user/{{key.tag}}" ng-if="key.type === 'video'"><img gravatar-src="'{{key.gravatar}}'" class="profileThumb"><span style="font-size:180%">{{key.tag}}</span></a>
-      </li>
       </ul>
     </section>
   </div>
