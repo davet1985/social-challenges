@@ -21,10 +21,12 @@ class TagCloud
       randomId = 1
       type = 'image'
       video_id = 'xxx'
+      md5gravatar = 'xxx'
       if randomObject != false then
         randomId = randomObject.id
         type = randomObject.type
         video_id = randomObject.file_name
+        md5gravatar = Digest::MD5.hexdigest(randomObject.gravatar)
       end
         
       
@@ -36,7 +38,8 @@ class TagCloud
         "video_id" => video_id,
         "file_name" => "http://localhost:9292/upload/#{randomId}/download",
         "file_name_thumb" => "http://localhost:9292/upload/#{randomId}/download/thumb",
-        "file_name_medium" => "http://localhost:9292/upload/#{randomId}/download/medium"
+        "file_name_medium" => "http://localhost:9292/upload/#{randomId}/download/medium",
+        "gravatar" => md5gravatar
       }.to_json))
   }
   totalCount = tags.count
