@@ -1,12 +1,12 @@
 var uploadsCtrl = function ($scope, uploadsService) {
-	uploadsService.getUploadsData('all', 'popular', 'all', '5').then(function(d) {
+	uploadsService.getUploadsData('all', 'popular', 'all', '8').then(function(d) {
 		$scope.uploads = d.data;
 	});
 };
 uploadsCtrl.$inject = ['$scope', 'uploadsService'];
 
 var uploadsVideosCtrl = function ($scope, uploadsService) {
-	uploadsService.getUploadsData('video', 'popular', 'all', '5').then(function(d) {
+	uploadsService.getUploadsData('video', 'popular', 'all', '8').then(function(d) {
 		$scope.uploadsVideo = d.data;
 	});
 };

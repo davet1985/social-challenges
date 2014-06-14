@@ -7,3 +7,25 @@ section.categories.cloud{
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
+
+.stacked{
+	.tags li {
+		display: block;
+		padding: 2px;
+	}
+	.tags li a{
+		display: block;
+		span{
+			margin-left: 54px;
+			display: -webkit-box;
+			line-height: 1.4em;
+			padding: 8px;
+			text-transform: capitalize;
+		}
+
+		img{
+			height: 30px;
+			float: left;
+		}
+	}
+}
