@@ -73,6 +73,7 @@ module.exports = function(grunt) {
                         'assets/js/lib/md5.js',
                         'assets/js/lib/imagesloaded.js',
                         'assets/js/lib/angular-masonry.js',
+                        'assets/js/lib/angular-truncate.js',
                         //ui-bootstrap
                         'assets/js/ui-bootstrap/ui-bootstrap.js',
                         //flat ui

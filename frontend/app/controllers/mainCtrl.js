@@ -131,6 +131,19 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 
 		return size;
 	};
+	$scope.imgSize = function(v, minV , maxV) {
+
+		var roundSize = $scope.roundFontSize(v, minV , maxV);
+		var size;
+
+		if (roundSize < 290 ){
+			size = 'img-size-sm';
+		}else{
+			size = 'img-size-lg';
+		}
+
+		return size;
+	};
 
 
 };

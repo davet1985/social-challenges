@@ -7,7 +7,8 @@ var app = angular.module('app', [
     'angularFileUpload',
     'ui.gravatar',
 	'ngCookies',
-    'wu.masonry'
+    'wu.masonry',
+    'truncate'
 ])
     .config([
         '$routeProvider',
