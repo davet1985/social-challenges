@@ -24,6 +24,13 @@ var tagRecentCtrl = function ($scope, tagCloudService) {
 };
 tagRecentCtrl.$inject = ['$scope', 'tagCloudService'];
 
+var tagRandomCtrl = function ($scope, tagCloudService) {
+	tagCloudService.getTagCloudData('tag','random', 'all', '20').then(function(d) {
+		$scope.tagCloud = d.data;
+	});
+};
+tagRandomCtrl.$inject = ['$scope', 'tagCloudService'];
+
 app.filter('slice', function() {
 	return function(arr, start, end) {
 		return (arr || []).slice(start, end);
