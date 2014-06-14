@@ -40,7 +40,6 @@
   </div>
 </div>  
 
-
 <div class="row">
   <div class="col-md-12">
     <section class="home-popular-videos" ng-controller="uploadsVideosCtrl">
@@ -84,5 +83,20 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <section class="categories stacked" ng-controller="userPopularCtrl">
+      <h3><i class="glyphicon glyphicon-user"></i> Popular users</h3>
+      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+        <li ng-repeat="key in tagCloud.tagCloud | slice:0:8">
+
+        <a href="#!/rate/user/{{key.tag}}" ng-if="key.type === 'image'"><img gravatar-src="'{{key.gravatar}}'" class="profileThumb"><span style="font-size:180%">{{key.tag}}</span></a>
+
+        <a href="#!/rate/user/{{key.tag}}" ng-if="key.type === 'video'"><img gravatar-src="'{{key.gravatar}}'" class="profileThumb"><span style="font-size:180%">{{key.tag}}</span></a>
+      </li>
+      </ul>
+    </section>
+  </div>
+</div>
 
 

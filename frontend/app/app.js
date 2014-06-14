@@ -27,6 +27,16 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/homepageView.html'
                     //controller: 'homepageCtrl'
                 })
+                .when('/random',{
+                    //redirectTo: '/rate/tag/cat', /* todo: make it go to a random tag or most popular? */
+                    templateUrl: 'app/views/homepageRandom.html'
+                    //controller: 'homepageCtrl'
+                })
+                .when('/recent',{
+                    //redirectTo: '/rate/tag/cat', /* todo: make it go to a random tag or most popular? */
+                    templateUrl: 'app/views/homepageRecent.html'
+                    //controller: 'homepageCtrl'
+                })
                 .when('/rate/:type/:tag/:id/:prevId',{
                     templateUrl: 'app/views/ratingView.html',
                     controller: 'ratingCtrl'

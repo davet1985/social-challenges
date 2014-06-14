@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-xs-6 col-sm-3">
+    <section class="categories stacked hidden-xs" ng-controller="tagRecentCtrl">
+      <h3><i class="glyphicon glyphicon-fire"></i> Recent Tags</h3>
+      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+        <li ng-repeat="key in tagCloud.tagCloud | slice:0:8">
+
+        <a href="#!/rate/tag/{{key.tag}}" ng-if="key.type === 'image'" style="background: url({{key.file_name_thumb}}) no-repeat; background-position: 0 50%; background-size: contain;"><span style="font-size:180%">{{key.tag}}</span></a>
+
+        <a href="#!/rate/tag/{{key.tag}}" ng-if="key.type === 'video'" style="background: url(https://i1.ytimg.com/vi/{{key.video_id}}/default.jpg) no-repeat; background-position: 0 50%; background-size: contain;"><span style="font-size:180%">{{key.tag}}</span></a>
+
+
+        </li>
+      </ul>
+      <a href="#!/tagsearch">More...</a>
+    </section>
+
+        <section class="categories stacked" ng-controller="userRecentCtrl">
+      <h3><i class="glyphicon glyphicon-user"></i> Recent users</h3>
+      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+        <li ng-repeat="key in tagCloud.tagCloud | slice:0:8">
+
+        <a href="#!/rate/user/{{key.tag}}" ng-if="key.type === 'image'"><img gravatar-src="'{{key.gravatar}}'" class="profileThumb"><span style="font-size:180%">{{key.tag}}</span></a>
+
+        <a href="#!/rate/user/{{key.tag}}" ng-if="key.type === 'video'"><img gravatar-src="'{{key.gravatar}}'" class="profileThumb"><span style="font-size:180%">{{key.tag}}</span></a>
+
+
+        </li>
+      </ul>
+    </section>
+
+
+  </div>
+
+
+
+    <div class="col-xs-12 col-sm-9" >
+
+<h3>Recent images</h3>
+<section ng-controller="uploadsRecentCtrl" style="margin-left:-10px">
+              <ul class="tags" >
+                <li class="tag-list grow" style="display:inline-block; padding: 10px;" ng-repeat="key in uploads"><img ng-src="{{key.file_name_medium}}" style="width:190px"></li>
+              </ul>
+          </section>  
+
+<h3>Recent videos</h3>
+<section  ng-controller="uploadsRecentVideosCtrl" style="margin-left:-10px">
+              <ul class="tags" >
+                <li class="tag-list grow" style="display:inline-block; padding: 10px;" ng-repeat="key in uploadsVideo"><img ng-src="https://i1.ytimg.com/vi/{{key.original_file_name}}/hqdefault.jpg" style="width:190px"></li>
+              </ul>
+          </section> 
+
+  </div>
+  
+</div>
+
+
+
