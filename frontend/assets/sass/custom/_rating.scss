@@ -1,3 +1,9 @@
+.rating-header{
+	font-size: 1.2em;
+	text-transform: capitalize;
+	font-weight: 100;
+	margin-top: 0;
+}
 .rating{
 
 	.glyphicon{
@@ -69,6 +75,7 @@
 		margin: 0 4px 4px 0;
 		a{
 			color: #fff;
+			font-weight: 100;
 		}
 	}
 	.label:hover{
@@ -91,7 +98,9 @@ img.profileThumb{
 	p{
 		font-size: 14px;
 	}
-
+	h4{
+		font-size: 1em;
+	}	
 }
 .categories{
 
