@@ -99,6 +99,17 @@ module HashBangDB
         );
       SQL
     )
+    database.execute(
+    <<-SQL
+    CREATE TABLE comments (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      comment_datetime DATETIME NOT NULL,
+      object_id INTEGER NOT NULL,
+      comment TEXT NOT NULL,
+      userid INTEGER NOT NULL
+      );
+    SQL
+    )
   end
 
   def self.seed_uploads(uploads, database)

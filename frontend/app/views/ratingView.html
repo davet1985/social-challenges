@@ -80,6 +80,26 @@
       <a href="#!/upload" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
       <a href="#!/top/{{getPageType()}}/{{getPageTag()}}" class="btn btn-sm btn-primary"><span class="fa fa-heart"></span>&nbsp;Top 20 in {{getPageTag()}}</a>
     </div>
+	<br/>
+	<form ng-submit="submitComment(key.previous.id, key.current.id)" name="commentForm">
+
+			<!-- COMMENT TEXT -->
+			<div class="form-group">
+				<input type="text" class="form-control input-lg" name="comment" ng-model="$parent.comment" placeholder="Say what you have to say">
+			</div>
+		
+			<!-- SUBMIT BUTTON -->
+			<div class="form-group text-right">	
+				<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+			</div>
+		</form>
+	
+		<!-- THE COMMENTS =============================================== -->
+		<!-- hide these comments if the loading variable is true -->
+		<div class="comment pull-right" ng-hide="loading" ng-repeat="comment in key.current.comments">
+			<p>Comment by {{ comment.username }} on {{ comment.datetime }}</p>
+			<p>{{ comment.comment }}</p>
+		</div>
 </div>
 
 <div class="col-xs-12 visible-xs">
