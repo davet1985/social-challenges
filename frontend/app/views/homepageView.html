@@ -10,14 +10,14 @@
 
  <div class="row">
           <div class="col-md-12">
-           <section class="home-popular" ng-controller="tagPopularCtrl">
+           <section class="home-popular" ng-controller="tagPopularCtrl" >
               <h3>Popuar tags</h3>
-              <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry="{'transitionDuration': 0}" column-width="1">
-                <li ng-repeat="key in tagCloud.tagCloud" class="masonry-brick">
-                  <a href="#!/rate/tag/{{key.tag}}" class="grow">
+              <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry="{'transitionDuration': 0}" column-width="1" >
+                <li ng-repeat="key in tagCloud.tagCloud" class="masonry-brick {{imgSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}"  style=" margin-bottom: -1px !important; ">
+                  <a href="#!/rate/tag/{{key.tag}}" class="bordered">
                     <div class="image-contain"> 
-                      <img ng-if="key.type === 'image'" ng-src="{{key.file_name_medium}}" >
-                      <img ng-if="key.type === 'video'" ng-src="https://i1.ytimg.com/vi/{{key.video_id}}/hqdefault.jpg">
+                      <div class="img-bg" ng-if="key.type === 'image'" style="background-image:url('{{key.file_name_medium}}')"></div>
+                      <div class="img-bg" ng-if="key.type === 'video'" style="background-image:url('https://i1.ytimg.com/vi/{{key.video_id}}/hqdefault.jpg')"></div> 
                       <div class="image-text">
                         <h4>{{key.tag}}</h4>
                       </div>
@@ -25,7 +25,7 @@
                   </a>
                 </li>
               </ul>
-                <a href="#!/tagsearch" class="pull-right">More...</a>
+                <a href="#!/tagsearch">More...</a>
             </section>
           </div>
         </div>
@@ -36,7 +36,7 @@
                 <h3>Popular images</h3>
                 <ul class="tags" masonry="{'transitionDuration': 0}" column-width="1">
                   <li ng-repeat="key in uploads" class="masonry-brick">
-                  <a href="#" class="grow">
+                  <a href="#" class="bordered">
                   <div class="image-contain"> 
                     <img ng-src="{{key.file_name_medium}}">
                     <div class="image-text">
@@ -56,7 +56,7 @@
               <h3>Popular videos</h3>
               <ul class="tags" masonry="{'transitionDuration': 0}" column-width="1">
                 <li ng-repeat="key in uploadsVideo" class="masonry-brick">
-                <a href="#" class="grow">
+                <a href="#" class="bordered">
                 <div class="image-contain"> 
                 <img ng-src="https://i1.ytimg.com/vi/{{key.original_file_name}}/hqdefault.jpg">
                   <div class="image-text">
@@ -77,12 +77,10 @@
               <h3>Popular Users</h3>
               <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry="{'transitionDuration': 0}" column-width="1">
                 <li ng-repeat="key in tagCloud.tagCloud" class="masonry-brick">
-                  <a href="#!/rate/user/{{key.tag}}" class="grow">
+                  <a href="#!/rate/user/{{key.tag}}" class="bordered">
                     <div class="image-contain"> 
-                      <img ng-if="key.type === 'image'" ng-src="{{key.file_name_medium}}" >
-                      <img ng-if="key.type === 'video'" ng-src="https://i1.ytimg.com/vi/{{key.video_id}}/hqdefault.jpg">
+                      <img gravatar-src="'{{key.gravatar}}'" class="profile-thumb" gravatar-size="100">
                       <div class="image-text">
-                        <!-- <img gravatar-src="'{{key.gravatar}}'" class="profileThumb"> -->
                         <h4>{{key.tag | characters:17 :true}}</h4>
                       </div>
                     </div>

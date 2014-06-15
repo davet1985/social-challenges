@@ -74,6 +74,7 @@ module.exports = function(grunt) {
                         'assets/js/lib/imagesloaded.js',
                         'assets/js/lib/angular-masonry.js',
                         'assets/js/lib/angular-truncate.js',
+                        'assets/js/lib/angular-animate.min.js',
                         //ui-bootstrap
                         'assets/js/ui-bootstrap/ui-bootstrap.js',
                         //flat ui

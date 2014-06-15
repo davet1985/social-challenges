@@ -8,7 +8,8 @@ var app = angular.module('app', [
     'ui.gravatar',
 	'ngCookies',
     'wu.masonry',
-    'truncate'
+    'truncate',
+    'ngAnimate'
 ])
     .config([
         '$routeProvider',
