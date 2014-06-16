@@ -18,7 +18,7 @@ class CommentRepository
   
   def self.find_by_object_id(object_id)
     select = <<-SQL
-      SELECT c.id, us.username, c.comment, c.comment_datetime
+      SELECT c.id, us.username, c.comment, c.comment_datetime, us.email
       FROM comments c 
         join uploads u on c.object_id = u.id
         join users us on c.userid = us.id
