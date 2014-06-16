@@ -1,6 +1,7 @@
 /* jshint -W089 */
 
-var ratingCtrl = function ($scope, $location, $http, ratingService, configService, commentService, $timeout, $window) {
+
+var ratingCtrl = function ($scope, $location, $http, ratingService, configService, commentService, $timeout, $window, usernameService) {
 
     ratingService.getRatingData().then(function(d) {
         $scope.ratings = d.data;
@@ -44,4 +45,4 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
 
 };
 
-ratingCtrl.$inject = ['$scope', '$location', '$http', 'ratingService', 'configService', 'commentService', '$timeout', '$window'];
+ratingCtrl.$inject = ['$scope', '$location', '$http', 'ratingService', 'configService', 'commentService', '$timeout', '$window', 'usernameService'];
