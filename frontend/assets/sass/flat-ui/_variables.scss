@@ -76,11 +76,13 @@ $link-hover-color:          $brand-secondary !default;
 //
 //## Font, line-height for body text, headings, and more.
 
-$font-family-base:          "Ubuntu", Helvetica, Arial, sans-serif !default;
-$font-family-base-bold:		"Ubuntu-bold", Helvetica, Arial, sans-serif !default;
-$font-family-demo:          "Ubuntu", Helvetica Neue, Helvetica, Arial, sans-serif !default;
-$font-family-monospace:     Monaco, Menlo, Consolas, "Courier New", monospace !default;
-$font-size-base:            18px !default;
+$font-family-base:          	"ubuntu", Helvetica, Arial, sans-serif !default;
+$font-family-base-light:		"ubuntu-light", Helvetica, Arial, sans-serif !default;
+$font-family-base-light-italic:	"ubuntu-light-italic", Helvetica, Arial, sans-serif !default;
+$font-family-base-bold:			"ubuntu-bold", Helvetica, Arial, sans-serif !default;
+$font-family-demo:          	"ubuntu", Helvetica Neue, Helvetica, Arial, sans-serif !default;
+$font-family-monospace:     	Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$font-size-base:            	18px !default;
 
 $local-font-path:               "../fonts/" !default;
 $local-font-name:               "lato-regular" !default;

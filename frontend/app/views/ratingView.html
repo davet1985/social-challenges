@@ -76,49 +76,62 @@
                 </ul>   
               </div> 
   </section>
-      <div class="buttons pull-left">
+      <div class="pull-right">
       <a href="#!/upload" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
       <a href="#!/top/{{getPageType()}}/{{getPageTag()}}" class="btn btn-sm btn-primary"><span class="fa fa-heart"></span>&nbsp;Top 20 in {{getPageTag()}}</a>
     </div>
-	<br/>
+	
+<div class="clearfix"></div>
+<hr />
+
+  <h3 class="comment-header"><i class="fa fa-comments-o"></i> Comments</h3>
 	<form ng-submit="submitComment(key.previous.id, key.current.id)" name="commentForm">
 
 			<!-- COMMENT TEXT -->
 			<div class="form-group">
-				<input type="text" class="form-control input-lg" name="comment" ng-model="$parent.comment" placeholder="Say what you have to say">
+        <textarea class="form-control" rows="3" name="comment" ng-model="$parent.comment" placeholder="Say what you have to say"></textarea>
 			</div>
 		
 			<!-- SUBMIT BUTTON -->
 			<div class="form-group text-right">	
-				<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+				<button type="submit" class="btn btn-primary btn-sm">Submit</button>
 			</div>
 		</form>
 	
 		<!-- THE COMMENTS =============================================== -->
 		<!-- hide these comments if the loading variable is true -->
-		<div class="comment pull-right" ng-hide="loading" ng-repeat="comment in key.current.comments">
-			<p>Comment by {{ comment.username }} on {{ comment.datetime }}</p>
-			<p>{{ comment.comment }}</p>
-		</div>
+    <ul class="comment">
+  		<li ng-hide="loading" ng-repeat="comment in key.current.comments">
+        <div class="comment-avatar">
+          <a href="#"><img gravatar-src="'{{key.current.gravatar}}'" class="profileThumb" gravatar-size="60"></a>
+        </div>
+        <div class="comment-body">
+          <div class="fa fa-play fa-flip-horizontal comment-triangle"></div>
+  			 <p>{{ comment.comment }}</p>
+        </div>
+  			<p class="comment-info pull-right"><a href="#">{{ comment.username }}</a> on {{ comment.datetime }}</p>
+  		</li>
+    </ul>
+
+
 </div>
 
 <div class="col-xs-12 visible-xs">
-      <section class="categories" ng-controller="tagPopularCtrl">
-      <h3><i class="glyphicon glyphicon-fire"></i> Popular tags</h3>
-      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-        <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
-      </ul>
-      <a href="#!/tagsearch">More...</a>
-      </section>
-
-        <section class="categories" ng-controller="tagRecentCtrl">
-      <h3><i class="glyphicon glyphicon-send"></i> Recent tags</h3>
-      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
-        <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}}"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:{{roundFontSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}%">{{key.tag}}</span></a></li>
-      </ul>
-      <a href="#!/tagsearch">More...</a>
+  <section class="categories" ng-controller="tagPopularCtrl">
+    <h3><i class="glyphicon glyphicon-fire"></i> Popular tags</h3>
+    <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+      <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}} grow"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:144%">{{key.tag}}</span></a></li>
+    </ul>
+    <a href="#!/tagsearch">More...</a>
   </section>
 
+    <section class="categories" ng-controller="tagRecentCtrl">
+      <h3><i class="glyphicon glyphicon-send"></i> Recent tags</h3>
+      <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
+        <li ng-repeat="key in tagCloud.tagCloud" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}} grow"><a href="#!/rate/tag/{{key.tag}}"><span style="font-size:144%">{{key.tag}}</span></a></li>
+      </ul>
+      <a href="#!/tagsearch">More...</a>
+    </section>
 
 </div>
 

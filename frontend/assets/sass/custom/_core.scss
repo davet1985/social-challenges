@@ -3,6 +3,9 @@ html, body {
   height: 100%;
   padding-top: 0 !important;
 }
+.light{
+  font-family: $font-family-base-light;
+}
 .navbar{
 	border-radius: 0px;
     .profileThumb{
