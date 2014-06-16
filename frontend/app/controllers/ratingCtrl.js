@@ -39,18 +39,24 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
 			$location.path('/rate/'+tagType+'/'+tagName+'/'+nextId+'/'+currentId);
 		}
     };
-	$scope.submitComment = function(prevId, currentId) {
+	$scope.submitComment = function(isValid, prevId, currentId) {
+        if (isValid){
+            // save the comment. pass in comment data from the form
+            // use the function we created in our service
+            console.log($scope.comment);
+            commentService.save($scope.comment, currentId)
+                .success(function(data) {
+                    $route.reload();
+                })
+                .error(function(data) {
+                    console.log(data);
+                });
 
-		// save the comment. pass in comment data from the form
-		// use the function we created in our service
-		console.log($scope.comment);
-		commentService.save($scope.comment, currentId)
-			.success(function(data) {
-				$route.reload();
-			})
-			.error(function(data) {
-				console.log(data);
-			});
+        } else{
+            //console.log('error');
+            $scope.submittedError = true;
+
+        }
 	};
 };
 
