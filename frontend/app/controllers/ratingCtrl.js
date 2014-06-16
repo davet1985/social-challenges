@@ -1,6 +1,6 @@
 /* jshint -W089 */
 
-var ratingCtrl = function ($scope, $location, $http, ratingService, configService, commentService, $route) {
+var ratingCtrl = function ($scope, $location, $http, ratingService, configService, commentService, $route, usernameService) {
 
 	$scope.ratings = ratingService.ratings;
     
@@ -40,24 +40,18 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
 		}
     };
 	$scope.submitComment = function(isValid, prevId, currentId) {
-        if (isValid){
-            // save the comment. pass in comment data from the form
-            // use the function we created in our service
-            console.log($scope.comment);
-            commentService.save($scope.comment, currentId)
-                .success(function(data) {
-                    $route.reload();
-                })
-                .error(function(data) {
-                    console.log(data);
-                });
 
-        } else{
-            //console.log('error');
-            $scope.submittedError = true;
-
-        }
+		// save the comment. pass in comment data from the form
+		// use the function we created in our service
+		console.log($scope.comment);
+		commentService.save($scope.comment, currentId, usernameService.token())
+			.success(function(data) {
+				$route.reload();
+			})
+			.error(function(data) {
+				console.log(data);
+			});
 	};
 };
 
-ratingCtrl.$inject = ['$scope', '$location', '$http', 'ratingService', 'configService', 'commentService', '$route'];
+ratingCtrl.$inject = ['$scope', '$location', '$http', 'ratingService', 'configService', 'commentService', '$route', 'usernameService'];

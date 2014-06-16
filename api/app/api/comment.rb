@@ -12,10 +12,15 @@ module SocialChallenges
     format :json
 
     post '/add' do
-      userid = params[:userId]
+      errors = Array.new
+      user_token = params[:userToken]
+      errors << Error.new("user_token", "The userid field is required") if user_token.empty? || user_token == 'undefined'
+      error! JSON.parse(errors.to_json), 403 if errors.length > 0
+      user = User.get(user_token)
+      error! "Unauthorized", 401 unless user != nil
       objectId = params[:objectId]
       comment = params[:comment]
-      CommentRepository.save objectId, comment, userid
+      CommentRepository.save objectId, comment, user.id
     end
     
     get '/delete/:id' do
