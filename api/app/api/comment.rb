@@ -16,6 +16,7 @@ module SocialChallenges
       objectId = params[:objectId]
       comment = params[:comment]
       CommentRepository.save objectId, comment, userid
+      JSON.parse(CommentRepository.find_by_object_id(params[:objectId]).to_json)
     end
     
     get '/delete/:id' do

@@ -11,8 +11,8 @@
  <div class="row">
           <div class="col-md-12">
            <section class="home-popular" ng-controller="tagRandomCtrl">
-              <h3>Random tags</h3>
- <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry="{'transitionDuration': 0}" column-width="1" >
+              <h3 class="home-page-h3">Random tags</h3>
+              <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry="{'transitionDuration': 0}" column-width="1" >
                 <li ng-repeat="key in tagCloud.tagCloud" class="masonry-brick {{imgSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}"  style=" margin-bottom: -1px !important; ">
                   <a href="#!/rate/tag/{{key.tag}}" class="bordered">
                     <div class="image-contain"> 
@@ -33,7 +33,7 @@
         <div class="row">
           <div class="col-md-12">
               <section class="home-popular-images" ng-controller="uploadsRandomCtrl">
-                <h3>Random images</h3>
+              <h3 class="home-page-h3">Random images</h3>
                 <ul class="tags" masonry="{'transitionDuration': 0}" column-width="1">
                   <li ng-repeat="key in uploads" class="masonry-brick">
                   <a href="#!/rate/tag/{{key.tags[0]}}/{{key.id}}/{{key.id}}" class="bordered">
@@ -53,7 +53,7 @@
         <div class="row">
           <div class="col-md-12">
             <section class="home-popular-videos" ng-controller="uploadsRandomVideosCtrl">
-              <h3>Random videos</h3>
+              <h3 class="home-page-h3">Random videos</h3>
               <ul class="tags" masonry="{'transitionDuration': 0}" column-width="1">
                 <li ng-repeat="key in uploadsVideo" class="masonry-brick">
                 <a href="#!/rate/tag/{{key.tags[0]}}/{{key.id}}/{{key.id}}" class="bordered">
@@ -74,7 +74,7 @@
         <div class="row">
           <div class="col-md-12">
            <section class="home-from-users" ng-controller="userRandomCtrl">
-              <h3>Random Users</h3>
+             <h3 class="home-page-h3">Random Users</h3>
              <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry="{'transitionDuration': 0}" column-width="1">
                 <li ng-repeat="key in tagCloud.tagCloud" class="masonry-brick">
                   <a href="#!/rate/user/{{key.tag}}" class="bordered">
