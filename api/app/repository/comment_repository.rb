@@ -23,6 +23,7 @@ class CommentRepository
         join uploads u on c.object_id = u.id
         join users us on c.userid = us.id
       WHERE c.object_id = ?
+      ORDER BY c.comment_datetime desc
       SQL
     results = $db.execute(select, object_id)
     results
