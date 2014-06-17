@@ -1,25 +1,27 @@
-var commentCtrl = function ($scope, $location, $http, commentService, $timeout, $window) {
+var commentCtrl = function ($scope, $location, $http, commentService, $timeout, $window, usernameService) {
 
     $scope.submitComment = function(isValid, prevId, currentId) {
         if (isValid){
             // save the comment. pass in comment data from the form
             // use the function we created in our service
             //console.log($scope.comment);
-            commentService.save($scope.comment, currentId)
+            commentService.save($scope.comment, currentId, usernameService.token())
             .success(function(data) {
                 //$route.reload();
-                //console.log(data);
+
                 
-                $scope.userTag = data[data.length - 1][1];
-                $scope.userComment = data[data.length - 1][2];
-                $scope.userCommentTime = data[data.length - 1][3];
+                $scope.userTag = data[0][1];
+                $scope.userComment = data[0][2];
+                $scope.userCommentTime = 'just now';
                 
                 $timeout(function() {
                     $scope.commentMessage = '';
                 }, 3500);
                 $scope.commentMessage = 'Your comment is submitted';
                 
-                $window.jQuery('ul.comment').append('<li><div class="comment-avatar"><a href="#"><img gravatar-src="'+$scope.userTag+'" class="profileThumb" gravatar-size="60"></a></div><div class="comment-body"><div class="fa fa-play fa-flip-horizontal comment-triangle"></div><p>'+$scope.userComment+'</p></div><p class="comment-info pull-right"><a href="#">'+$scope.userTag+'</a> on '+$scope.userCommentTime+'</p></li>');
+                //$window.jQuery('ul.comment').prepend('<li><div class="comment-avatar"><a href="#"><img src="http://www.gravatar.com/avatar/'+$scope.gravatarEmail+'?size=60&default=mm" class="profileThumb"></a></div><div class="comment-body"><div class="fa fa-play fa-flip-horizontal comment-triangle"></div><p>'+$scope.userComment+'</p></div><p class="comment-info pull-right"><a href="#">'+$scope.userTag+'</a> '+$scope.userCommentTime+'</p></li>').fadeIn('slow');
+
+                $window.jQuery('ul.comment').prepend($('<li><div class="comment-avatar"><a href="#"><img src="http://www.gravatar.com/avatar/'+$scope.gravatarEmail+'?size=60&default=mm" class="profileThumb"></a></div><div class="comment-body"><div class="fa fa-play fa-flip-horizontal comment-triangle"></div><p>'+$scope.userComment+'</p></div><p class="comment-info pull-right"><a href="#">'+$scope.userTag+'</a> '+$scope.userCommentTime+'</p></li>').fadeIn('slow'));
 
                 $scope.submittedError = false;
 
@@ -40,4 +42,4 @@ var commentCtrl = function ($scope, $location, $http, commentService, $timeout, 
 
 };
 
-commentCtrl.$inject = ['$scope', '$location', '$http', 'commentService', '$timeout', '$window'];
+commentCtrl.$inject = ['$scope', '$location', '$http', 'commentService', '$timeout', '$window', 'usernameService'];

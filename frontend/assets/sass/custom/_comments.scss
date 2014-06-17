@@ -44,3 +44,11 @@ h3.comment-header{
 	}
 		
 }
+
+.comment-append{
+	-webkit-transition:0.4s linear all;
+	-moz-transition:0.4s linear all;
+	-o-transition:0.4s linear all;
+	transition:0.4s linear all;
+	opacity:1
+}

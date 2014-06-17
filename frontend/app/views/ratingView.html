@@ -82,10 +82,12 @@
     </div>
 	
 <div class="clearfix"></div>
-<hr />
+
  <div ng-if="isUserLogged">
-  <h3 class="comment-header"><i class="fa fa-comments-o"></i> Comments</h3>
-	<form role="form" ng-controller="commentCtrl" ng-submit="submitComment(commentForm.$valid, key.previous.id, key.current.id);" name="commentForm" novalidate>
+ <hr />
+ <h3 class="comment-header"><i class="fa fa-comments-o"></i> Comments</h3>
+ <form role="form" ng-controller="commentCtrl" ng-submit="submitComment(commentForm.$valid, key.previous.id, key.current.id);" name="commentForm" novalidate>
+  
 			<!-- COMMENT TEXT -->
 			<div class="form-group" ng-class="{ 'has-error' : commentForm.comment.$invalid && !commentForm.comment.$pristine || submittedError && commentForm.comment.$invalid && !commentForm.comment.$dirty}">
 
@@ -97,16 +99,16 @@
         <p ng-show="commentForm.comment.$error.minlength" class="help-block">Comment is too short</p>
         <p ng-show="commentForm.comment.$error.maxlength" class="help-block">Comment is too long</p>
 			</div>
-		{{commentForm.$pristine}}
+		
 			<!-- SUBMIT BUTTON -->
-			<div class="form-group text-right">	
-				<button type="submit" class="btn btn-primary btn-sm btn-block">Submit comment</button>
+			<div class="form-group">	
+				<button type="submit" class="btn btn-primary btn-sm pull-right">Submit comment</button>
 			</div>
-      <div ng-show="commentMessage" class="alert alert-success">{{commentMessage}}</div>
+      <p ng-show="commentMessage" class="help-block">{{commentMessage}}</p>
 		</form>
     
 
-    
+    <div class="clearfix"></div>
 
 
 		<!-- THE COMMENTS =============================================== -->
