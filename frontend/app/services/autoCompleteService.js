@@ -6,24 +6,30 @@ app.service('data', ['$http', '$q', 'tagCloudService',  function($http, $q, tagC
 
     this.search = function(query) {
 
-        var tagAll = tagCloudService.tagCloud[0].tagCloud;
+        var result = tagCloudService.getTagCloudData('tag','all', query, 'all').then(function(d) {
         
-        var tagsArray = [];
+            var tagAll = d.data[0].tagCloud;
 
-        for(var i=0;i<tagAll.length;i++){
-            tagsArray.push(tagAll[i].tag);
-        }
+            var tagsArray = [];
 
-        files = tagsArray;
+            for(var i=0;i<tagAll.length;i++){
+                tagsArray.push(tagAll[i].tag);
+            }
 
-        var items, deferred = $q.defer();
+            files = tagsArray;
 
-        items = _.chain(files)
-        .filter(function(x) { return x.toLowerCase().indexOf(query.toLowerCase()) > -1; })
-        .take(10)
-        .value();
+            var items, deferred = $q.defer();
 
-        deferred.resolve(items);
-        return deferred.promise;
+            items = _.chain(files)
+            .filter(function(x) { return x.toLowerCase().indexOf(query.toLowerCase()) > -1; })
+            .take(10)
+            .value();
+
+            deferred.resolve(items);
+        
+            return deferred.promise;
+        });
+
+        return result;
     };
 }]);

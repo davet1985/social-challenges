@@ -3,11 +3,12 @@ var tagCloudCtrl = function ($scope, tagCloudService) {
 	tagCloudService.getTagCloudData('tag','all', 'all', '18').then(function(d) {
 		$scope.tagCloud = d.data;
 	});
+
 };
 tagCloudCtrl.$inject = ['$scope', 'tagCloudService'];
 
 //Most popular tags
-var tagPopularCtrl = function ($scope, tagCloudService, $animate, $timeout) {
+var tagPopularCtrl = function ($scope, tagCloudService) {
 
 	tagCloudService.getTagCloudData('tag','popular', 'all', '18').then(function(d) {
 		$scope.tagCloud = d.data;
