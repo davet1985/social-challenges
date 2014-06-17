@@ -36,6 +36,7 @@ class TagCloud
         "count" => tag[3],
         "type" => type,
         "video_id" => video_id,
+        "random_id" => randomId,
         "file_name" => "http://localhost:9292/upload/#{randomId}/download",
         "file_name_thumb" => "http://localhost:9292/upload/#{randomId}/download/thumb",
         "file_name_medium" => "http://localhost:9292/upload/#{randomId}/download/medium",
