@@ -28,7 +28,7 @@
  <section class="search-results-tags" >
               <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry="{'transitionDuration': 0}" column-width="1" >
                 <li ng-repeat="key in tagCloud.tagCloud" class="tag-list masonry-brick {{imgSize(key.count,tagCloud.minCount,tagCloud.maxCount)}}"  style=" margin-bottom: -1px !important; ">
-                  <a href="#!/rate/tag/{{key.tag}}" class="bordered">
+                  <a href="#!/rate/tag/{{key.tag}}/{{key.random_id}}/{{key.random_id}}" class="bordered">
                     <div class="image-contain"> 
                       <div class="img-bg" ng-if="key.type === 'image'" style="background-image:url('{{key.file_name_medium}}')"></div>
                      <!--  <img ng-if="key.type === 'image'" ng-src="{{key.file_name_medium}}" > -->

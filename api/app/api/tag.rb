@@ -77,7 +77,11 @@ module SocialChallenges
         error! 'Upload not found', 404
       else
         if currentObject.id == previousObject.id then
-          JSON.parse(Tag.returnJSONNoPrevious(currentObject, nextObject))
+          if nextObject == false then 
+            JSON.parse(Tag.returnJSONNoPreviousNoNext(currentObject))
+          else
+            JSON.parse(Tag.returnJSONNoPrevious(currentObject, nextObject))
+          end
         elsif nextObject == false then
           JSON.parse(Tag.returnJSONNoNext(currentObject, previousObject))  
         else
@@ -97,6 +101,9 @@ module SocialChallenges
       end
       
       currentObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore, params[:type]
+      if currentObject == false then
+        currentObject = TagUploadRepository.get_random_object_bytagname params[:tagName], Array[-1], params[:type]
+      end
       idstoignore.push(currentObject.id) 
       nextObject = TagUploadRepository.get_random_object_bytagname params[:tagName], idstoignore, params[:type]
       if !currentObject then
