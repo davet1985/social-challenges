@@ -253,6 +253,8 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
 
         var tags = $scope.tags;
 
+        //console.log(tags.length);
+
         if(tags === undefined){
             tags = '';
         }
