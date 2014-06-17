@@ -61,14 +61,15 @@
             <p ng-show="uploadForm.title.$error.maxlength" class="help-block">Title is too long</p>
           </div>   
 
-          <div class="form-group" ng-show="mediaType == 'video' || mediaType == 'image'" ng-class="{ 'has-error' : tagLength() <= 2 && !uploadForm.tags.$pristine || submittedError && tagLength() <= 2 && !uploadForm.tags.$dirty}">
+          <div class="form-group" ng-show="mediaType == 'video' || mediaType == 'image'" ng-class="{ 'has-error' : tagLength() <= 2 && !uploadForm.tags.$pristine || submittedError && tagLength() <= 2 && !uploadForm.tags.$dirty || !uploadForm.tags.$valid || !uploadForm.tags.$error}">
             <label for="tags" style="margin-bottom: -14px;">Tags</label>
             <div>
-              <tags-input ng-model="tags" name="tags" id="tags" required>
-                <auto-complete source="loadItems($query)" min-length="1" debounce-delay="0" ng-controller="tagCloudCtrl"></auto-complete>
+              <tags-input ng-model="tags" name="tags" id="tags" required  min-length="3" max-length="30"  max-tags="6" >
+                <auto-complete source="loadItems($query)" debounce-delay="0" ng-controller="tagCloudCtrl" ></auto-complete>
               </tags-input>
               <p ng-show="tagLength() <= 2 && !uploadForm.tags.$pristine || submittedError && tagLength() <= 2 && !uploadForm.tags.$dirty" class="help-block">At least one tag is required</p>
-              <p class="help-block help">Separate with commas or return.</p>
+              <p ng-show="uploadForm.tags.$error.maxTags" class="help-block">You have too many tags</p>
+              <p class="help-block help">Separate with commas or return.</p>     
             </div>
           </div>
 
