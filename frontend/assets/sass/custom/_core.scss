@@ -36,10 +36,22 @@ html, body {
 }
 
 .nav-search{
-    width:180px; 
-    margin-top:5px;
-    margin-right: 20px;
+    //width:180px; 
+   // margin-top:5px;
+   // margin-right: 20px;
+  width: 300px;
+  margin-top: 10px;
+  display: -webkit-box;
+  .form-control{
+    height: 34px;
+
+  }
+      .btn{
+      padding: 6px 12px;
+    }
 }
+
+
 .main-container [class^="col-"] {
  
   .inner {
@@ -52,7 +64,24 @@ html, body {
     margin-right: -40px !important;
   }
 }
+@media (max-width: $screen-sm-min) { 
+  .nav-search{
+    //width:180px; 
+   // margin-top:5px;
+   // margin-right: 20px;
+  width: 100%;
+  margin-top: 10px;
+  display: block;
+  }
+ } 
+@media (max-width: $screen-xs-min) { 
+    .nav-search{
+      width: 300px;
+      display: inline-block;
+      margin-left: 20px;
 
+    }
+ }
 .page-bg{
   color: #E7E7E7;
   font-size: 80rem;
