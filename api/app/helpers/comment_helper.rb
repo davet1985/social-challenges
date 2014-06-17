@@ -34,10 +34,10 @@ class CommentHelper
       when 240..479        then 'over 4 hours ago'
       when 480..719        then 'over 8 hours ago'
       when 720..1439       then 'over 12 hours ago'
-      when 1440..11519     then 'over ' << pluralize((minutes/1440).floor, 'day') + ' ago'
-      when 11520..43199    then 'over ' << pluralize((minutes/11520).floor, 'week') + ' ago'
-      when 43200..525599   then 'over ' << pluralize((minutes/43200).floor, 'month') + ' ago' 
-      else                      'over ' << pluralize((minutes/525600).floor, 'year') + ' ago'
+      when 1440..11519     then 'over ' << (minutes/1440).floor.to_s + 'day' + ' ago'
+      when 11520..43199    then 'over ' << (minutes/11520).floor.to_s + 'week' + ' ago'
+      when 43200..525599   then 'over ' << (minutes/43200).floor.to_s + 'month' + ' ago' 
+      else                      'over ' << (minutes/525600).floor.to_s + 'year' + ' ago'
     end
   end
 

@@ -23,6 +23,4 @@ class LeaderboardRepository
     uploads = UploadModelHelper.cast_upload_results results
   end
   
-
-
 end
