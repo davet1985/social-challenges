@@ -102,6 +102,16 @@ class TagRepository
     results = $db.execute(select, search, type)
     results.sample(number.to_i)
   end
+  
+  def self.random_not_current(current, type)
+    select = <<-SQL
+      select id, userid, tagName, numOfObjects, type from tags
+      where tagName != ? and type like ?
+      order by tag_datetime desc
+      SQL
+    results = $db.execute(select, current, type)
+    results.sample(1)
+  end
 
   def self.find_by_object_id(object_id)
     select = <<-SQL

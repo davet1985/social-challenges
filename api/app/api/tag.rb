@@ -15,6 +15,12 @@ module SocialChallenges
     use Rack::JSONP
     format :json
     
+    get '/end/:type/:tagName/:previousId' do
+      previousObject = UploadRepository.get_by_id params[:previousId]
+      randomTag = TagRepository.random_not_current(params[:tagName], params[:type])
+      JSON.parse(Tag.returnJSONPreviousRandomTag(previousObject, randomTag[0][2]))  
+    end
+    
     get '/:type/:mode/:search/:number' do
       type = params[:type]
       if type == 'all' then type = '%%' end
