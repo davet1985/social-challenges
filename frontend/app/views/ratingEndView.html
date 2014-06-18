@@ -50,14 +50,15 @@
   </section> -->
 </div>
 
-<div class="col-xs-12 col-sm-6 " >
+<div class="col-xs-12 col-sm-6 col-sm-pull-3" ng-repeat="key in ratings">
   <section class="current">
   <h2 class="rating-header"><i class="fa fa-tag"></i> {{getPage(3)}}</h2>
         <img src="/public/img/end.png" class="img-responsive" >
         <h3>No more in {{getPage(3)}}</h3>
-        <button id="goto" class="btn btn-primary" ng-click ="">Go to {{key.randomtag}}...</button>
+        <a href="#!/{{getPage(1)}}/{{getPage(2)}}/{{key.randomTag}}" id="goto" class="btn btn-primary" >Go to {{key.randomTag}}...</a>
   </section>
-   
+
+
  <section class="home-popular" ng-controller="tagRandomCtrl">
     <h3 class="home-page-h3">You might like these</h3>
     <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry="{'transitionDuration': 0}" column-width="1" >
