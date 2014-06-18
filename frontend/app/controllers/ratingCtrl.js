@@ -1,22 +1,15 @@
 /* jshint -W089 */
 
 
-var ratingCtrl = function ($scope, $location, $http, ratingService, configService, commentService, $timeout, $window, usernameService) {
+var ratingCtrl = function ($scope, $location, $http, ratingService, configService, commentService, $timeout, $window, usernameService, $q) {
 
     ratingService.getRatingData().then(function(d) {
         $scope.ratings = d.data;
+        //$scope.testing = d.data[0].next.type;
     });
-
-    //console.log($scope.ratings);
-
-    $scope.max = 3;
 
     var tagName = $scope.getPageTag();
 	var tagType = $scope.getPageType();
-
-    $scope.hoveringOver = function(value) {
-        $scope.overStar = value;
-    };
 
     $scope.getValue = function (value, prevId, currentId, nextId) {
         
@@ -35,8 +28,11 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  // set the headers so angular passing info as form data (not request payload)
             });
         }
+
 		if (nextId == null) {
-			$location.path('/top/'+tagName);
+            //alert('end');
+			//$location.path('/top/'+tagName);
+            $location.path('/rate/'+tagType+'/'+tagName+'/end/'+currentId+'/'+currentId);
 		}
 		else {
 			$location.path('/rate/'+tagType+'/'+tagName+'/'+nextId+'/'+currentId);
@@ -45,4 +41,4 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
 
 };
 
-ratingCtrl.$inject = ['$scope', '$location', '$http', 'ratingService', 'configService', 'commentService', '$timeout', '$window', 'usernameService'];
+ratingCtrl.$inject = ['$scope', '$location', '$http', 'ratingService', 'configService', 'commentService', '$timeout', '$window', 'usernameService', '$q'];

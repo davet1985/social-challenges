@@ -46,6 +46,10 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/ratingView.html',
                     controller: 'ratingCtrl'
                 })
+                .when('/rate/:type/:tag/end/:prevId/:prevId',{
+                    templateUrl: 'app/views/ratingEndView.html'
+                    //controller: 'ratingCtrl'
+                })
                 .when('/tagsearch',{
                     templateUrl: 'app/views/tagSearchView.html',
                     controller: 'tagSearchCtrl'
