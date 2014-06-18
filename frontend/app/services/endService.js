@@ -1,4 +1,4 @@
-app.service('endService', ['$http', '$location',  function($http, $location) {
+app.service('endService', ['$http', '$location', 'configService', function($http, $location, configService) {
   
     var _ratingDataArr = [];
 
@@ -10,7 +10,7 @@ app.service('endService', ['$http', '$location',  function($http, $location) {
             string = $location.path().split('/')[3]||'Unknown';
             prevId  = $location.path().split('/')[5]||'Unknown';
 
-            var theurl  = 'http://localhost:9292/tag/end/'+type+'/'+string+'/'+prevId;
+            var theurl  = configService.API_END_POINT+'/tag/end/'+type+'/'+string+'/'+prevId;
              
             var result = $http({method: 'GET', url: theurl})
             .success(function(results){
