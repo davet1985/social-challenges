@@ -18,6 +18,8 @@ shotgun config.ru
 
 Then browse to http://localhost:9393
 
+test
+
 ### Seed database
 
 Running 

@@ -35,6 +35,12 @@ class Tag
       }].to_json
   end
   
+  def self.returnJSONPreviousRandomTag(previousObject, randomTag)
+    [{
+      "randomTag" => randomTag, "previous" => {"id" => previousObject.id, "type" => previousObject.type, "overallScore" => previousObject.overallScore, "file_name" => "http://localhost:9292/upload/#{previousObject.id}/download","file_name_medium" => "http://localhost:9292/upload/#{previousObject.id}/download/medium", "original_file_name" => previousObject.original_file_name}, "next" => {"type" => 'end'}
+      }].to_json
+  end
+  
   def self.returnJSONNoPreviousNoNext(currentObject)
     [{
       "current"       => JSON.parse(currentObject.to_json), "next" => {"type" => 'end'}
