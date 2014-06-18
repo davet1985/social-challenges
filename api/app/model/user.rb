@@ -1,11 +1,14 @@
 require 'bcrypt'
 require 'net/smtp'
+require 'yaml'
 
 $db = SQLite3::Database.open './hashbang.db'
 
   class User
     
     /USERS =/ 
+    
+    CONFIG = YAML.load_file("./config/config.yml") unless defined? CONFIG
     
     include BCrypt
 
@@ -59,7 +62,7 @@ $db = SQLite3::Database.open './hashbang.db'
       To: A Test User <#{email}>
       Subject: SMTP e-mail test
 
-      Please use this token to login http://localhost:8000/#!/user/#{token}
+      Please use this token to login http://#{CONFIG['frontend_url']}/#!/user/#{token}
       MESSAGE_END
 
       Net::SMTP.start('localhost', 1025) do |smtp|
@@ -92,7 +95,7 @@ $db = SQLite3::Database.open './hashbang.db'
       To: A Test User <#{email}>
       Subject: SMTP e-mail test
 
-      Please use this token to change your password http://localhost:8000/#!/forgot/#{token}
+      Please use this token to change your password http://#{CONFIG['frontend_url']}/#!/forgot/#{token}
       MESSAGE_END
 
       Net::SMTP.start('localhost', 1025) do |smtp|

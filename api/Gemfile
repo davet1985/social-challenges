@@ -8,6 +8,7 @@ gem 'bcrypt'
 gem 'rack-cors'
 gem 'activerecord'
 gem 'rmagick'
+gem 'psych'
 
 group :development, :test do
   gem 'rack-test'

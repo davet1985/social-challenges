@@ -1,7 +1,11 @@
 require_relative './../model/tag'
 require_relative './../repository/tag_upload_repository'
 
+require 'yaml'
+
 class TagCloud
+  
+  CONFIG = YAML.load_file("./config/config.yml") unless defined? CONFIG
 
   def self.tag_cloud(tags)
     json_new = []
@@ -29,7 +33,6 @@ class TagCloud
         md5gravatar = Digest::MD5.hexdigest(randomObject.gravatar)
       end
         
-      
       json_new.push(JSON.parse({
         "id"=> tag[0], 
         "tag" => tag[2],
@@ -37,9 +40,9 @@ class TagCloud
         "type" => type,
         "video_id" => video_id,
         "random_id" => randomId,
-        "file_name" => "http://localhost:9292/upload/#{randomId}/download",
-        "file_name_thumb" => "http://localhost:9292/upload/#{randomId}/download/thumb",
-        "file_name_medium" => "http://localhost:9292/upload/#{randomId}/download/medium",
+        "file_name" => "http://#{CONFIG['backend_url']}/upload/#{randomId}/download",
+        "file_name_thumb" => "http://#{CONFIG['backend_url']}/upload/#{randomId}/download/thumb",
+        "file_name_medium" => "http://#{CONFIG['backend_url']}/upload/#{randomId}/download/medium",
         "gravatar" => md5gravatar
       }.to_json))
   }
