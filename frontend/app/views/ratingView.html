@@ -28,7 +28,9 @@
             <img gravatar-src="'{{value.gravatar}}'" class="profile-thumb-30" gravatar-size="30"> 
             </div>
           </li>
-        </ul>         
+        </ul> 
+        <p><a href="#!/top/{{getPageType()}}/{{getPageTag()}}" class="btn btn-sm btn-info"><span class="fa fa-heart"></span>&nbsp;Top 20 in {{getPageTag()}}</a></p>
+
     </section>
 
 <!--
@@ -91,8 +93,10 @@
 </div>
 
 <div class="col-xs-12 col-sm-6 col-sm-pull-3" ng-repeat="key in ratings">
-  <section class="current">
+  <section class="current">  
+  <a href="#!/upload" class="btn btn-xs btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
   <h2 class="rating-header"><i class="fa fa-tag"></i> {{getPageTag()}}</h2>
+
         <img ng-src="{{key.current.file_name}}" class="img-responsive" ng-if="key.current.type === 'image'">
         <youtube code="{{key.current.original_file_name}}" ng-if="key.current.type === 'video'"></youtube>
             <div class="rating">
@@ -117,15 +121,9 @@
                 </ul>   
               </div> 
   </section>
-      <div class="pull-right">
-      <a href="#!/upload" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
-      <a href="#!/top/{{getPageType()}}/{{getPageTag()}}" class="btn btn-sm btn-primary"><span class="fa fa-heart"></span>&nbsp;Top 20 in {{getPageTag()}}</a>
-    </div>
-	
-<div class="clearfix"></div>
 
 
- <hr />
+
  <h3 class="comment-header"><i class="fa fa-comments-o"></i> Comments</h3>
 
    <div ng-if="isUserLogged">

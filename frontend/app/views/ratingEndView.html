@@ -9,6 +9,30 @@
     </div>
   </section>
 
+    <section class="home-popular-images" ng-controller="topCtrl">
+  <h2 class="rating-header"><i class="fa fa-trophy"></i> Top 3 in {{getPageTag() |  characters:10 :true }}</h2>
+        <ul class="tags" style="margin-left: 0">
+          <li ng-repeat="(key, value) in top | slice:0:3" >
+           <a href="#!/rate/tag/{{getPageTag()}}/{{value.id}}/{{value.id}}" class="bordered pull-left">
+            <div class="image-contain" > 
+                    <img ng-src="{{value.file_name_medium}}"  ng-if="value.type === 'image'" >
+                    <img ng-src="https://i1.ytimg.com/vi/{{value.original_file_name}}/hqdefault.jpg"  ng-if="value.type === 'video'">
+                    <div class="image-text">
+                    <h4>{{$index+1}}. {{value.title  | characters:17 :true}}</h4>
+                    <h5>{{value.userid}}</h5>
+                    </div>
+              </div>
+            </a>
+            <div class="side-top">
+            <span class="trophy ng-scope" ng-if="$index == 0 || $index == 1 || $index == 2" ng-class="{ 'top-one' : $index == 0, 'top-two' : $index == 1, 'top-three' : $index == 2 }"><i class="fa fa-trophy"></i></span>
+            <img gravatar-src="'{{value.gravatar}}'" class="profile-thumb-30" gravatar-size="30"> 
+            </div>
+          </li>
+        </ul> 
+        <p><a href="#!/top/{{getPageType()}}/{{getPageTag()}}" class="btn btn-sm btn-info"><span class="fa fa-heart"></span>&nbsp;Top 20 in {{getPageTag()}}</a></p>
+
+    </section>
+
 <!-- 
   <section class="categories hidden-xs" ng-controller="tagPopularCtrl">
     <h3><i class="glyphicon glyphicon-fire"></i> Popular tags</h3>
@@ -52,6 +76,7 @@
 
 <div class="col-xs-12 col-sm-6 col-sm-pull-3" ng-repeat="key in ratings">
   <section class="current">
+  <a href="#!/upload" class="btn btn-xs btn-primary pull-right"><span class="glyphicon glyphicon-plus"></span>&nbsp;Upload</a>
   <h2 class="rating-header"><i class="fa fa-tag"></i> {{getPage(3)}}</h2>
         <img src="/public/img/end.png" class="img-responsive" >
         <h3>No more in {{getPage(3)}}</h3>
