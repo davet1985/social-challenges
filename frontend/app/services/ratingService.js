@@ -1,6 +1,6 @@
 /* jshint -W089 */
 
-app.service('ratingService', ['$http', '$location',  function($http, $location) {
+app.service('ratingService', ['$http', '$location', 'configService', function($http, $location, configService) {
   
     var _ratingDataArr = [];
 	
@@ -29,7 +29,7 @@ app.service('ratingService', ['$http', '$location',  function($http, $location) 
 
             }
 
-            var url  = 'http://localhost:9292/tag/';
+            var url  = configService.API_END_POINT+'tag/';
             
             var urlWithCurrentAndPrev = url + tagType + '/' + pageTag;
             

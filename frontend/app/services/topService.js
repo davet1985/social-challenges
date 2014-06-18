@@ -1,4 +1,4 @@
-app.service('topService', ['$http', '$location',  function($http, $location) {
+app.service('topService', ['$http', '$location', 'configService', function($http, $location, configService) {
   
     var _topDataArr = [];
 
@@ -6,7 +6,7 @@ app.service('topService', ['$http', '$location',  function($http, $location) {
 		
 		var pageTag = $location.path().split('/')[3]||'Unknown';
 
-        var url  = 'http://localhost:9292/leaderboard/' + pageTag + '/20';
+        var url  = configService.API_END_POINT+ 'leaderboard/' + pageTag + '/20';
         //var url  = 'app/data/top.json';
 
 
