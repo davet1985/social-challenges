@@ -18,7 +18,12 @@ module SocialChallenges
     get '/end/:type/:tagName/:previousId' do
       previousObject = UploadRepository.get_by_id params[:previousId]
       randomTag = TagRepository.random_not_current(params[:tagName], params[:type])
-      JSON.parse(Tag.returnJSONPreviousRandomTag(previousObject, randomTag[0][2]))  
+      nextObject = TagUploadRepository.get_random_object_bytagname randomTag[0][2], Array[-1], params[:type]
+      if nextObject == false then 
+        JSON.parse(Tag.returnJSONPreviousRandomTag(previousObject, randomTag[0][2]))  
+      else
+        JSON.parse(Tag.returnJSONPreviousRandomTagWithNext(previousObject, randomTag[0][2], nextObject)) 
+      end
     end
     
     get '/:type/:mode/:search/:number' do
