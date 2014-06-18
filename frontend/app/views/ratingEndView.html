@@ -1,3 +1,16 @@
+  <div class="row">
+  <div class="col-md-12">
+     <ul class="nav nav-tabs">
+      <li><a href="#!/" data-toggle="tab">Popular</a></li>
+      <li><a href="#!/recent" data-toggle="tab">Recent</a></li>
+      <li><a href="#!/random" data-toggle="tab">Random</a></li>
+      <li class="active"><a href="#" data-toggle="tab">Rating</a></li>      
+      </ul>
+  </div>
+</div>
+<br />
+<div class="clearfix"></div>
+
 <div class="row">
 <div class="col-xs-6 col-sm-3">
   <section class="prev" ng-repeat="key in ratings" ng-hide="key.previous.id == null">
@@ -59,7 +72,7 @@
   <div class="image-container">
     <img ng-src="{{key.next.file_name_medium}}" class="img-responsive" ng-if="key.next.type === 'image'"  ng-hide="key.next.type === 'end'">
     <img ng-src="https://i1.ytimg.com/vi/{{key.next.original_file_name}}/hqdefault.jpg" class="img-responsive" ng-if="key.next.type === 'video'"  ng-hide="key.next.type === 'end'">
-    <!-- <h2 class="next" ng-hide="key.next.type === 'end'"><span>Next...</span></h2> -->
+   <h2 class="next" ng-hide="key.next.type === 'end'"><span>{{key.randomTag}}</span></h2>
     <img src="/public/img/end.png" class="img-responsive" ng-if="key.next.type === 'end'">
     <h2 class="next" ng-if="key.next.type === 'end'"><span>No more in {{getPageTag()}}</span></h2>
   </div>
@@ -80,7 +93,7 @@
   <h2 class="rating-header"><i class="fa fa-tag"></i> {{getPage(3)}}</h2>
         <img src="/public/img/end.png" class="img-responsive" >
         <h3>No more in {{getPage(3)}}</h3>
-        <a href="#!/{{getPage(1)}}/{{getPage(2)}}/{{key.randomTag}}" id="goto" class="btn btn-primary" >Go to {{key.randomTag}}...</a>
+        <a href="#!/{{getPage(1)}}/{{getPage(2)}}/{{key.randomTag}}/{{key.next.id}}/{{key.next.id}}" id="goto" class="btn btn-primary" >Go to {{key.randomTag}}...</a>
   </section>
 
 
