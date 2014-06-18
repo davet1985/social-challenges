@@ -2,6 +2,15 @@
 	width:151.5px; 
 	height:110px;
 }
+@mixin img-size-xs(){
+	width:102px; 
+	height:77px;
+}
+@mixin font-size-xs(){
+	font-size: 60% !important;
+	margin-left: 6px !important;
+	line-height: .15em !important;
+}
 @mixin font-size-sm(){
 	font-size: 80%;
 	margin-left: 6px;
@@ -261,6 +270,14 @@ section.categories.cloud{
 		}
 
 	}
+
+	.img-size-xs{
+		@include img-size-xs;
+		background-size: 100%;
+	}	
+	h4.font-size-xs{
+		@include font-size-xs;
+	}	
 	.img-size-m2{
 		img{
 			@include img-size-m2;

@@ -9,6 +9,7 @@
     </div>
   </section>
 
+<!-- 
   <section class="categories hidden-xs" ng-controller="tagPopularCtrl">
     <h3><i class="glyphicon glyphicon-fire"></i> Popular tags</h3>
     <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
@@ -25,7 +26,7 @@
       </ul>
       <a href="#!/tagsearch">More...</a>
     </section>
-
+-->
 </div>
 
 <div class="col-xs-6 col-sm-3 col-sm-push-6" ng-repeat="key in ratings">
@@ -40,31 +41,43 @@
   </div>
   </section>
 
-
+<!--
         <section class="categories hidden-xs" ng-controller="tagPopularCtrl">
     <h3><i class="fa fa-trophy"></i> Top 20 in</h3>
     <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud">
       <li ng-repeat="key in tagCloud.tagCloud | orderBy:key.count:reverse" class="{{roundTagColor(key.count,tagCloud.minCount,tagCloud.maxCount)}} grow"><a href="#!/top/{{getPageType()}}/{{key.tag}}"><span style="font-size:144%">{{key.tag}}</span></a></li>
     </ul>
-  </section>
+  </section> -->
 </div>
 
 <div class="col-xs-12 col-sm-6 " >
   <section class="current">
   <h2 class="rating-header"><i class="fa fa-tag"></i> {{getPage(3)}}</h2>
         <img src="/public/img/end.png" class="img-responsive" >
-<h3>No more in {{getPage(3)}}</h3>
-
+        <h3>No more in {{getPage(3)}}</h3>
+        <button id="goto" class="btn btn-primary" ng-click ="">Go to {{key.randomtag}}...</button>
   </section>
    
-	
-
-
-
-
-
+ <section class="home-popular" ng-controller="tagRandomCtrl">
+    <h3 class="home-page-h3">You might like these</h3>
+    <ul class="tags" ng-repeat="(key, tagCloud) in tagCloud" masonry="{'transitionDuration': 0}" column-width="1" >
+      <li ng-repeat="key in tagCloud.tagCloud | slice:0:8" class="masonry-brick"  style=" margin-bottom: -1px !important; ">
+        <a href="#!/rate/tag/{{key.tag}}/{{key.random_id}}/{{key.random_id}}" class="bordered">
+          <div class="image-contain"> 
+            <div class="img-size-xs" ng-if="key.type === 'image'" style="background-image:url('{{key.file_name_thumb}}')"></div>
+            <div class="img-size-xs" ng-if="key.type === 'video'" style="background-image:url('https://i1.ytimg.com/vi/{{key.video_id}}/default.jpg')"></div> 
+            <div class="image-text size-xs">
+              <h4 class="font-size-xs">{{key.tag}}</h4>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+      <a href="#!/tagsearch">More...</a>
+  </section>
 </div>
 
+<!-- 
 <div class="col-xs-12 visible-xs">
   <section class="categories" ng-controller="tagPopularCtrl">
     <h3><i class="glyphicon glyphicon-fire"></i> Popular tags</h3>
@@ -83,5 +96,5 @@
     </section>
 
 </div>
-
+-->
 </div>
