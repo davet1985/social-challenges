@@ -1,6 +1,6 @@
 /* jshint -W089 */
 
-app.service('commentService', ['$http', '$location',  function($http, $location) {
+app.service('commentService', ['$http', '$location', 'configService',  function($http, $location, configService) {
 
 		return {
 
@@ -9,7 +9,7 @@ app.service('commentService', ['$http', '$location',  function($http, $location)
 				console.log('token to ship' + userToken);
 				return $http({
 					method: 'POST',
-					url: 'http://localhost:9292/comment/add',
+					url: configService.API_END_POINT+ 'comment/add',
 					data: {'comment': comment, 'userToken': userToken, 'objectId': currentId},
 					transformRequest: function(obj) {
 						var str = [];
