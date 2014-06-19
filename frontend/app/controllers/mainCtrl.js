@@ -17,8 +17,8 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 	$scope.getPageType = function() {
 		return $location.path().split('/')[2]||'Unknown';
     };
-   
-    //redirect to search page
+
+	//redirect to search page
     $scope.searchQuery = function(topQuery){
 		$scope.query = topQuery;
 		$location.path('/tagsearch');

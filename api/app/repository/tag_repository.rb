@@ -113,6 +113,16 @@ class TagRepository
     results.sample(1)
   end
 
+  def self.random_start(type)
+    select = <<-SQL
+      select id, userid, tagName, numOfObjects, type from tags
+      where type like ?
+      order by tag_datetime desc
+      SQL
+    results = $db.execute(select, type)
+    results.sample(1)
+  end
+
   def self.find_by_object_id(object_id)
     select = <<-SQL
       SELECT t.id, t.userid, t.tagName

@@ -25,7 +25,12 @@ module SocialChallenges
         JSON.parse(Tag.returnJSONPreviousRandomTagWithNext(previousObject, randomTag[0][2], nextObject)) 
       end
     end
-    
+
+    get '/start/:type' do
+      randomTag = TagRepository.random_start(params[:type])
+      { "random_tag" => randomTag[0][2]}     
+    end   
+
     get '/:type/:mode/:search/:number' do
       type = params[:type]
       if type == 'all' then type = '%%' end
