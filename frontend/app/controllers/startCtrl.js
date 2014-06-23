@@ -6,3 +6,13 @@ var startRandomTagCtrl = function ($scope, startService) {
 
 };
 startRandomTagCtrl.$inject = ['$scope', 'startService'];
+
+/*
+var tabCtrl = function ($scope, startService) {
+	
+	if ($cookies.currentTag){
+
+	}
+
+};
+tabCtrl.$inject = ['$scope', '$cookies'];*/

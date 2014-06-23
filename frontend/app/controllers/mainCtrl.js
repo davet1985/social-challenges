@@ -18,6 +18,14 @@ var mainCtrl = function ($scope, $location, $http, $window, $cookies, $log, conf
 		return $location.path().split('/')[2]||'Unknown';
     };
 
+    //watch current tag
+	$scope.$watch(function(){
+		return $cookies.currentTag;
+	});
+    $scope.getCurrentTag = function(){
+		return $cookies.currentTag;
+    };
+
 	//redirect to search page
     $scope.searchQuery = function(topQuery){
 		$scope.query = topQuery;

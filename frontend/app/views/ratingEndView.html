@@ -4,8 +4,8 @@
       <li><a href="#!/" data-toggle="tab">Popular</a></li>
       <li><a href="#!/recent" data-toggle="tab">Recent</a></li>
       <li><a href="#!/random" data-toggle="tab">Random</a></li>
-      <li class="active"><a href="#!/rate/tag/{{randomTag}}" data-toggle="tab">Rating</a></li> 
-      <li><a href="#!/top/tag/{{randomTag}}" data-toggle="tab">Top 20's</a></li> 
+      <li ng-if="getCurrentTag()" class="active"><a href="#!/rate/tag/{{getCurrentTag()}}" data-toggle="tab">{{getCurrentTag()}}</a></li> 
+      <li ng-if="getCurrentTag()"><a href="#!/top/tag/{{getCurrentTag()}}" data-toggle="tab">Top 20 in {{getCurrentTag()}}</a></li>   
       <li><a href="#!/tagsearch" data-toggle="tab">Search</a></li>      
       </ul>
   </div>

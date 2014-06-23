@@ -1,4 +1,4 @@
-var topCtrl = function ($scope, topService) {
+var topCtrl = function ($scope, topService, $cookies) {
 
     $scope.top = topService.top;
     topService.gettopData();
@@ -6,9 +6,12 @@ var topCtrl = function ($scope, topService) {
     $scope.reverseIndex = function(index, length){
         return (length - index)+1;
     };
+
+    //set cookie
+    $cookies.currentTag = $scope.getPageTag();
 };
 
-topCtrl.$inject = ['$scope', 'topService'];
+topCtrl.$inject = ['$scope', 'topService', '$cookies'];
 
 //reverse filter
 /*

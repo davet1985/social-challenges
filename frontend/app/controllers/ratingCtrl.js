@@ -1,7 +1,7 @@
 /* jshint -W089 */
 
 
-var ratingCtrl = function ($scope, $location, $http, ratingService, configService, commentService, $timeout, $window, usernameService, $q) {
+var ratingCtrl = function ($scope, $location, $http, ratingService, configService, commentService, $timeout, $window, usernameService, $q, $cookies) {
 
     ratingService.getRatingData().then(function(d) {
         $scope.ratings = d.data;
@@ -39,6 +39,9 @@ var ratingCtrl = function ($scope, $location, $http, ratingService, configServic
 		}
     };
 
+    //set cookie
+    $cookies.currentTag = $scope.getPageTag();
+
 };
 
-ratingCtrl.$inject = ['$scope', '$location', '$http', 'ratingService', 'configService', 'commentService', '$timeout', '$window', 'usernameService', '$q'];
+ratingCtrl.$inject = ['$scope', '$location', '$http', 'ratingService', 'configService', 'commentService', '$timeout', '$window', 'usernameService', '$q', '$cookies'];
