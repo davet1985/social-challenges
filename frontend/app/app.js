@@ -82,9 +82,13 @@ var app = angular.module('app', [
                     templateUrl: 'app/views/topView.html',
                     controller: 'topCtrl'
                 })
-                .when('/user/:userName/uploads/:uploadId',{
+                .when('/:userName/uploads/:uploadId',{
                     templateUrl: 'app/views/userUploadsView.html',
                     controller: 'displayUploadCtrl'
+                })
+                .when('/:userName',{
+                    templateUrl: 'app/views/userView.html'
+                    //controller: 'displayUploadCtrl'
                 })
                 .when('/user/:token',{
                     templateUrl: 'app/views/activateView.html',

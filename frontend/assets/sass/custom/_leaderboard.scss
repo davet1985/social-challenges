@@ -1,5 +1,4 @@
-.leaderboard,
-.user-uploads{
+.leaderboard{
 	ul{
 		margin: 0;
 		padding: 0;
@@ -32,7 +31,7 @@
 	}
 
 	.tags{
-		list-style: none; 
+		list-style-type: none;
 		margin: 0;
 		padding: 0;
 		margin-top: 20px;

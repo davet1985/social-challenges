@@ -196,7 +196,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                     $scope.progressBar = parseInt(100.0 * evt.loaded / evt.total);
                 }).success(function(data, status, headers, config) {
                     $scope.resizeImage(data, 760, 760, 120, 90, 460, 345, 75);
-                    $location.path('/user/userName/uploads/' + data);// todo: get userName
+                    $location.path('/userName/uploads/' + data);// todo: get userName
                     //console.log(data);
                 }).error(function(data, status, headers, config) {
                     //to do echo these errors on frontend
@@ -227,7 +227,7 @@ var fileUploadCtrl = function ($scope, $http, $timeout, $upload, $location, conf
                     }
                 }).
                 success(function(data) {
-                    $location.path('/user/userName/uploads/' + data);// todo: get userName
+                    $location.path('/'+$scope.isUserLogged+'/uploads/' + data);// todo: get userName
                 }).
                 error(function(data) {
                     console.log(data);

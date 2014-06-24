@@ -50,9 +50,47 @@
 .uploaded-file-name{
   display: inline-block;
 }
-.user-uploads .leaderboard-title {
-  margin-top: 0px !important;
- } 
+.user-uploads {
+  ul{
+    list-style-type: none; 
+    margin: 0;
+    padding: 0;
+  }
+
+  .leaderboard-title {
+    font-size: 1.2em;
+    font-family: ubuntu-light;
+    margin-top: 0px !important;
+
+  } 
+
+  p{
+    font-size: .8em
+  }
+  .tags{
+    list-style-type: none; 
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    li{
+    font-size:.8em;
+    font-family: ubuntu-light;
+    a{
+      display: inline-block;
+      background-color: $brand-primary;
+      padding: 0 6px;
+      line-height: 1.6em;
+      font-size: 1em;
+        &:hover{
+          background-color: #333;
+        }
+      }
+
+    }
+  }
+}
+
 
 .has-error tags-input .tags{
   border-color: $brand-danger;
