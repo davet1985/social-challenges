@@ -87,8 +87,12 @@ var app = angular.module('app', [
                     controller: 'displayUploadCtrl'
                 })
                 .when('/:userName',{
-                    templateUrl: 'app/views/userView.html'
-                    //controller: 'displayUploadCtrl'
+                    templateUrl: 'app/views/userView.html',
+                    controller: 'userCtrl'
+                })
+                .when('/:userName/edit',{
+                    templateUrl: 'app/views/userEditView.html',
+                    controller: 'userEditCtrl'
                 })
                 .when('/user/:token',{
                     templateUrl: 'app/views/activateView.html',
