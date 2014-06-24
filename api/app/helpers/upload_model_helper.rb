@@ -13,7 +13,6 @@ class UploadModelHelper
         leaderboard = LeaderboardRepository.get_add_leaders_bytagname(tag.tagName)
         tags_rank[tag.tagName] = leaderboard.index { |x| x[0] == r[0] } + 1
       }
-      puts tags_rank
       upload.tags_with_rank = tags_rank
       upload.comments = CommentRepository.find_by_object_id upload.id
       uploads << upload 
