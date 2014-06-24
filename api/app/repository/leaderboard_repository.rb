@@ -23,4 +23,16 @@ class LeaderboardRepository
     uploads = UploadModelHelper.cast_upload_results results
   end
   
+  def self.get_add_leaders_bytagname(tag)
+    select =  <<-SQL
+      SELECT u.id, u.overallScore
+      FROM uploads u, tag_objects, tags
+      WHERE u.id = tag_objects.objectId
+      AND tags.id = tag_objects.tagId
+      AND tags.tagName = ?
+      ORDER BY u.overallScore DESC
+      SQL
+    results = $db.execute(select, tag)
+  end
+  
 end
