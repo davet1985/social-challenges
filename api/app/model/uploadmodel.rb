@@ -6,6 +6,7 @@ require 'yaml'
 class Uploadmodel
 
   attr_accessor :tags
+  attr_accessor :tags_with_rank
   attr_accessor :comments
   attr_reader :upload_datetime, :type, :file_name, :original_file_name, :userid, :title, :description, :overallScore, :numOfRatings, :averageScore, :id, :gravatar
 
@@ -31,7 +32,7 @@ class Uploadmodel
     {"id" => @id, "type" => @type, "file_name" => @file_name, "original_file_name" => @original_file_name, "file_name" => "http://#{CONFIG['backend_url']}/upload/#{@id}/download", 
     "file_name_thumb" => "http://#{CONFIG['backend_url']}/upload/#{@id}/download/thumb", "file_name_medium" => "http://#{CONFIG['backend_url']}/upload/#{@id}/download/medium", "userid" => @userid, 
     "upload_datetime" => @upload_datetime, "overallScore" => @overallScore, "numOfRatings" => @numOfRatings, "title" => @title, "description" => @description, "tags" => JSON.parse(@tags.to_json), 
-    "comments" => JSON.parse(CommentHelper.toJSON(@comments)), "gravatar" => md5gravatar}.to_json(*a)
+    "tags_with_rank" => JSON.parse(@tags_with_rank.to_json),"comments" => JSON.parse(CommentHelper.toJSON(@comments)), "gravatar" => md5gravatar}.to_json(*a)
   end
 
 end
